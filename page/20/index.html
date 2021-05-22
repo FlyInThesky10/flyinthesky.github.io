@@ -193,7 +193,7 @@
   </style>
 </noscript>
 
-  <link href="https://www.flyinthesky.win/tomorrow.min.css" rel="stylesheet">
+  <link href="https://blog.flyinthesky.win/scripts/tomorrow.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.1/google-fonts/fira-mono.css" rel="stylesheet">
 </head>
 
@@ -378,12 +378,12 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/Codeforces1093G/">
+    <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/Codeforces1093CD/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FlyInTheSky">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -397,7 +397,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Codeforces1093G/" itemprop="url">Codeforces 1093G (线段树 + 拆绝对值式子 + k维曼哈顿距离)</a></h1>
+                <a class="post-title-link" href="/Codeforces1093CD/" itemprop="url">Codeforces 1093CD(二分图染色 + 乘法原理)</a></h1>
         
 
         <div class="post-meta">
@@ -445,8 +445,8 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Codeforces1093G/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/Codeforces1093G/" itemprop="commentCount"></span>
+                <a href="/Codeforces1093CD/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/Codeforces1093CD/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -454,7 +454,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
 
           
           
-             <span id="/Codeforces1093G/" class="leancloud_visitors" data-flag-title="Codeforces 1093G (线段树 + 拆绝对值式子 + k维曼哈顿距离)">
+             <span id="/Codeforces1093CD/" class="leancloud_visitors" data-flag-title="Codeforces 1093CD(二分图染色 + 乘法原理)">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -487,182 +487,11 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
 
       
         
-          <p><a href="http://codeforces.com/contest/1093/problem/G" target="_blank" rel="external">Codeforces 1093G</a><br>题意)：给你 $n$ 个 $k$ 维的点 $a_{1..n}$，定义两点$(x_1,x_2,\cdots,x_k),(y_1,y_2,\cdots,y_k)$间的曼哈顿距离为 $\sum_{i=1}^k|x_i-y_i|$。<br>你需要执行下面两种操作：<br>$1 i b_1 b_2\cdots b_k$，表示将 $a_i$修改为 $(b_1,b_2,\cdots,b_k)$。<br>$2 l r$，表示询问 $[l,r]$ 内最大的两点间曼哈顿距离，即任取 $x,y\in[l,r]$ 得到的所有曼哈顿距离中的最大值。<br>翻译来自<a href="https://www.luogu.org/problemnew/show/CF1093G" target="_blank" rel="external">Luogu</a></p>
-<p>对于绝对值式子，不好处理我们作一个变式。<br>考虑二维的情况，设点$(a_1, a_2), (b_1, b_2)$，则根据绝对值函数定义和$x \leq |x|$，有<br>$$<br>|a_1-b_1|+|a_2-b_2| \\<br>= \max (a_1-b_1, b_1-a_1)+ \max (a_2-b_2, b_2-a_2) \\<br>= \max (a_1-b_1+a_2-b_2, a_1-b_1+b_2-a_2, b_1-a_1+a_2-b_2, b_1-a_1+b_2-a_2) \\<br>= \max ((a_1+a_2)-(b_1+b_2), (a_1-a_2)-(b_1-b_2), (-a_1+a_2)-(-b_1+b_2), (-a_1-a_2)-(-b_1-b_2))<br>$$</p>
-<p>观察到符号是<code>+</code>和<code>-</code>的$2^d$种不同组合，所以我们设第$i$个点的第$j$种为$s(i,j)$，那么两点曼哈顿距离最大值就是<br>$$<br>\max_j \max_i(s(i,j)-s(i,j))<br>$$<br>变形得<br>$$<br>\max_j (\max_i(s(i,j))-\min_i(s(i,j)))<br>$$</p>
-<p>那么用线段树维护$\max_is(i,j)$和$\min_is(i,j)$即可。</p>
-<p>知识点：<br><strong>以后遇到绝对值$\max \min$式子要尝试拆一下，因为很多这样的式子是不方便直接处理的，要转化一下。</strong></p>
+          <p><a href="http://codeforces.com/contest/1093/problem/C" target="_blank" rel="external">Codeforces 1093C</a><br>题意：给出数列$b_i​$, 已知一个序列$\forall i, a_i+a_{n-i+1}=b_i​$且$a_i \leq a_{i+1}​$，请构造出一个合法$a_i$数列，<strong>保证至少有一组解。</strong><br>解：这个<strong>保证至少有一组解</strong>提示我们要<strong>最优化构造</strong>。<br>最优就是前面尽可能小，后面尽可能大。<br>所以我们让$a[0]=0, a[n+1]=INF$，然后根据<strong>升序约束</strong>求出$a[1, n/2]$的值, $a[n/2+1,n]$则为$b[i]-a[i]$</p>
+<p><a href="http://codeforces.com/contest/1093/problem/D" target="_blank" rel="external">Codeforces 1093D</a><br>题意：给出$n$点$m$无向边图，请给每个点赋点权$1,2,3$，使得$\forall (u,v) \in E，w_u+w_v$为奇数。求方案数模$998244353$<br>解：对于一条边和要是奇数，那么点权一奇以偶。那么对图二分图染色，不同颜色的点分类赋奇数还是偶数，注意图不连通。最开始我把所有点一起算了贡献，直接爆炸。要分开乘法原理算。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/Codeforces1093G/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-	<div>
-	  
-	</div>
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/Codeforces1084CD/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FlyInTheSky">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FlyInTheSky's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Codeforces1084CD/" itemprop="url">Codeforces 1084CD(DP思想 / 树形DP)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-05T21:53:00+08:00">2018-12-05</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Codeforces/" itemprop="url" rel="index"><span itemprop="name">Codeforces</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/Codeforces1084CD/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/Codeforces1084CD/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/Codeforces1084CD/" class="leancloud_visitors" data-flag-title="Codeforces 1084CD(DP思想 / 树形DP)">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">+</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-				 s
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><a href="http://codeforces.com/contest/1084/problem/C" target="_blank" rel="external">Codeforces 1084C</a><br>题意：给定一个$n$长小写字母序列，找出只包含<code>a</code>的子序列，满足每两个<code>a</code>之间有<code>b</code>，求方案数。<br>DP思想。从后往前扫，对每个<code>a</code>维护从这个位置开始顺序，这个位置必选的合法序列数量。<br>对于更新，不妨用<code>b</code>将序列分块，每个<code>a</code>只能继承他右边最近的一块的值。然后自身还有一个贡献，累加即可。</p>
-<p><a href="http://codeforces.com/contest/1084/problem/D" target="_blank" rel="external">Codeforces 1084D</a><br>题意：树上每个点有正权值$a_i$，每条边有负权值$W$，你可以随意选择一条路径，使得这条路径的总权值最大，要求每个点每条边至多都只能走一次。<br>一开始想得好偏……<br>然而就是个树形DP，设$dp(u)$为$u$子树中的某个点到$u$的路径最长权。则转移为<br>$dp(u)=max(dp(v)-W(u,v)+a_u)$，当且仅当$dp(v)-W(u,v) \leq 0$<br>然后这样最后要统计每个点的$dp$值取个$max$就行了<br>等等，路径不一定是”直”的。所以我们要在DP每个点的过程中合并两条路径来得到”弯”的路径<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/Codeforces1084CD/#more" rel="contents">
+            <a class="btn" href="/Codeforces1093CD/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -722,7 +551,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FlyInTheSky">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -891,7 +720,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FlyInTheSky">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1053,12 +882,183 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/Codeforces1093G/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FlyInTheSky">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FlyInTheSky's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Codeforces1093G/" itemprop="url">Codeforces 1093G (线段树 + 拆绝对值式子 + k维曼哈顿距离)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-05T21:53:00+08:00">2018-12-05</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Codeforces/" itemprop="url" rel="index"><span itemprop="name">Codeforces</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Codeforces1093G/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/Codeforces1093G/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/Codeforces1093G/" class="leancloud_visitors" data-flag-title="Codeforces 1093G (线段树 + 拆绝对值式子 + k维曼哈顿距离)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">+</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 s
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><a href="http://codeforces.com/contest/1093/problem/G" target="_blank" rel="external">Codeforces 1093G</a><br>题意)：给你 $n$ 个 $k$ 维的点 $a_{1..n}$，定义两点$(x_1,x_2,\cdots,x_k),(y_1,y_2,\cdots,y_k)$间的曼哈顿距离为 $\sum_{i=1}^k|x_i-y_i|$。<br>你需要执行下面两种操作：<br>$1 i b_1 b_2\cdots b_k$，表示将 $a_i$修改为 $(b_1,b_2,\cdots,b_k)$。<br>$2 l r$，表示询问 $[l,r]$ 内最大的两点间曼哈顿距离，即任取 $x,y\in[l,r]$ 得到的所有曼哈顿距离中的最大值。<br>翻译来自<a href="https://www.luogu.org/problemnew/show/CF1093G" target="_blank" rel="external">Luogu</a></p>
+<p>对于绝对值式子，不好处理我们作一个变式。<br>考虑二维的情况，设点$(a_1, a_2), (b_1, b_2)$，则根据绝对值函数定义和$x \leq |x|$，有<br>$$<br>|a_1-b_1|+|a_2-b_2| \\<br>= \max (a_1-b_1, b_1-a_1)+ \max (a_2-b_2, b_2-a_2) \\<br>= \max (a_1-b_1+a_2-b_2, a_1-b_1+b_2-a_2, b_1-a_1+a_2-b_2, b_1-a_1+b_2-a_2) \\<br>= \max ((a_1+a_2)-(b_1+b_2), (a_1-a_2)-(b_1-b_2), (-a_1+a_2)-(-b_1+b_2), (-a_1-a_2)-(-b_1-b_2))<br>$$</p>
+<p>观察到符号是<code>+</code>和<code>-</code>的$2^d$种不同组合，所以我们设第$i$个点的第$j$种为$s(i,j)$，那么两点曼哈顿距离最大值就是<br>$$<br>\max_j \max_i(s(i,j)-s(i,j))<br>$$<br>变形得<br>$$<br>\max_j (\max_i(s(i,j))-\min_i(s(i,j)))<br>$$</p>
+<p>那么用线段树维护$\max_is(i,j)$和$\min_is(i,j)$即可。</p>
+<p>知识点：<br><strong>以后遇到绝对值$\max \min$式子要尝试拆一下，因为很多这样的式子是不方便直接处理的，要转化一下。</strong></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/Codeforces1093G/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+	<div>
+	  
+	</div>
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/bzoj1150/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FlyInTheSky">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1227,7 +1227,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FlyInTheSky">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1411,7 +1411,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FlyInTheSky">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1579,7 +1579,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FlyInTheSky">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1758,7 +1758,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FlyInTheSky">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1929,7 +1929,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FlyInTheSky">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -2118,7 +2118,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image"
-                src="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm"
+                src="https://blog.flyinthesky.win/avator.jpg"
                 alt="FlyInTheSky" />
             
               <p class="site-author-name" itemprop="name">FlyInTheSky</p>
@@ -2576,7 +2576,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
 
 
 
-  <div class="footer-custom">Hosted by <a target="_blank" href="https://pages.coding.me/">Coding Pages</a></div>
+  <div class="footer-custom">Hosted by <a target="_blank" href="">Github Pages</a></div>
 
 
 <span id="busuanzi_container_site_pv">
@@ -3243,7 +3243,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
 
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> 
 
-<script src="https://www.flyinthesky.win/highlight.min.js"></script>
+<script src="https://blog.flyinthesky.win/scripts/highlight.min.js"></script>
 <script >hljs.initHighlightingOnLoad();</script>
 
 <!-- 代码块复制功能 -->

@@ -650,9 +650,9 @@
         
         <tag>Codeforces</tag>
          
-        <tag>DFS</tag>
-         
         <tag>树上启发式合并</tag>
+         
+        <tag>DFS</tag>
          
         <tag>莫队</tag>
          
@@ -2840,9 +2840,9 @@
         
         <tag>Bzoj</tag>
          
-        <tag>前缀和</tag>
-         
         <tag>二分</tag>
+         
+        <tag>前缀和</tag>
          
         <tag>主席树</tag>
          
@@ -4052,6 +4052,8 @@
     </url>
 
     
+    
+    
   <url>
     <loc>http://blog.flyinthesky.win/bzoj1012/</loc>
     <lastmod>2019-02-03T06:06:46.545Z</lastmod>
@@ -4661,9 +4663,9 @@
         <title>「Bzoj 1233」「HNOI2001」产品加工 (单调队列优化DP+贪心)</title>
         <pubTime>2019-01-26T15:23:00.000Z</pubTime>
         
-        <tag>DP</tag>
-         
         <tag>贪心</tag>
+         
+        <tag>DP</tag>
          
         <tag>Bzoj</tag>
          
@@ -5129,9 +5131,9 @@
         <title>「poj 3017」Cut the Sequence (DP+堆+单调队列)</title>
         <pubTime>2019-01-13T14:30:00.000Z</pubTime>
         
-        <tag>DP</tag>
-         
         <tag>堆</tag>
+         
+        <tag>DP</tag>
          
         <tag>单调队列</tag>
          
@@ -5551,9 +5553,9 @@
         
         <tag>计数原理</tag>
          
-        <tag>DP</tag>
-         
         <tag>贪心</tag>
+         
+        <tag>DP</tag>
          
         <tag>BFS</tag>
          
@@ -6048,9 +6050,9 @@
         <title>「Bzoj 1899」「Zjoi2004」Lunch 午餐 (贪心+DP)</title>
         <pubTime>2018-08-24T08:06:00.000Z</pubTime>
         
-        <tag>DP</tag>
-         
         <tag>贪心</tag>
+         
+        <tag>DP</tag>
          
         <tag>Bzoj</tag>
          
@@ -7167,9 +7169,9 @@
         <title>「Bzoj 1150」「CTSC2007」数据备份Backup (贪心+堆+链表+差分)</title>
         <pubTime>2018-12-04T13:18:00.000Z</pubTime>
         
-        <tag>贪心</tag>
-         
         <tag>堆</tag>
+         
+        <tag>贪心</tag>
          
         <tag>Bzoj</tag>
          
@@ -8173,9 +8175,9 @@
         <title>Codeforces 1082E(DP / 贪心)</title>
         <pubTime>2018-12-05T13:53:00.000Z</pubTime>
         
-        <tag>DP</tag>
-         
         <tag>贪心</tag>
+         
+        <tag>DP</tag>
          
         <tag>Codeforces</tag>
          
@@ -8425,9 +8427,9 @@
         
         <tag>Codeforces</tag>
          
-        <tag>数学</tag>
-         
         <tag>贡献</tag>
+         
+        <tag>数学</tag>
          
          
            
@@ -8983,9 +8985,9 @@
         
         <tag>Codeforces</tag>
          
-        <tag>树的直径</tag>
-         
         <tag>Tarjan</tag>
+         
+        <tag>树的直径</tag>
          
          
            
@@ -9496,9 +9498,9 @@
         
         <tag>模拟题/训练题</tag>
          
-        <tag>DP</tag>
-         
         <tag>贪心</tag>
+         
+        <tag>DP</tag>
          
          
            
@@ -11259,9 +11261,9 @@
         
         <tag>Codeforces</tag>
          
-        <tag>前缀和</tag>
-         
         <tag>二分</tag>
+         
+        <tag>前缀和</tag>
          
          
            
@@ -11303,9 +11305,9 @@
         <title>Codeforces 854C(堆+贪心)</title>
         <pubTime>2017-10-24T12:12:00.000Z</pubTime>
         
-        <tag>贪心</tag>
-         
         <tag>堆</tag>
+         
+        <tag>贪心</tag>
          
         <tag>Codeforces</tag>
          
@@ -11487,9 +11489,9 @@
          
         <tag>线段树</tag>
          
-        <tag>前缀和</tag>
-         
         <tag>二分</tag>
+         
+        <tag>前缀和</tag>
          
         <tag>NOIP</tag>
          
@@ -12049,9 +12051,9 @@
         
         <tag>模拟题/训练题</tag>
          
-        <tag>贪心</tag>
-         
         <tag>堆</tag>
+         
+        <tag>贪心</tag>
          
          
            
@@ -12073,9 +12075,9 @@
         
         <tag>模拟题/训练题</tag>
          
-        <tag>贪心</tag>
-         
         <tag>堆</tag>
+         
+        <tag>贪心</tag>
          
          
            

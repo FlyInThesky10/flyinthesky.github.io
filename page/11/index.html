@@ -193,7 +193,7 @@
   </style>
 </noscript>
 
-  <link href="https://www.flyinthesky.win/tomorrow.min.css" rel="stylesheet">
+  <link href="https://blog.flyinthesky.win/scripts/tomorrow.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.1/google-fonts/fira-mono.css" rel="stylesheet">
 </head>
 
@@ -383,7 +383,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FlyInTheSky">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -554,7 +554,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FlyInTheSky">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -705,7 +705,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FlyInTheSky">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -870,166 +870,12 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/Luogu3768/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FlyInTheSky">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FlyInTheSky's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Luogu3768/" itemprop="url">「Luogu 3768」简单的数学题 (莫比乌斯反演 + Dirichlet卷积 + 杜教筛)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-02T18:27:00+08:00">2019-02-02</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/Luogu3768/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/Luogu3768/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/Luogu3768/" class="leancloud_visitors" data-flag-title="「Luogu 3768」简单的数学题 (莫比乌斯反演 + Dirichlet卷积 + 杜教筛)">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">+</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-				 s
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><a href="https://www.luogu.org/problemnew/show/P3768" target="_blank" rel="external">3768 简单的数学题</a><br>题意：给定$n, p$，求<br>$$<br>\sum_{i=1}^n \sum_{i=1}^n ij\gcd(i,j) \mod p<br>$$<br>枚举约数<br>$$<br>\sum_{d=1}^n d\sum_{i=1}^n \sum_{i=1}^n ij [\gcd(i,j)=d]<br>$$<br>将后面的提取因数<br>$$<br>\sum_{d=1}^n d^3 \sum_{i=1}^{\lfloor \frac nd \rfloor} \sum_{i=1}^{\lfloor \frac nd \rfloor} ij [\gcd(i,j)=1]<br>$$<br>将布尔式化成$\mu$<br>$$<br>\sum_{d=1}^n d^3 \sum_{i=1}^{\lfloor \frac nd \rfloor} \sum_{i=1}^{\lfloor \frac nd \rfloor} ij \sum_{k|i,k|j}\mu(k)<br>$$<br>先枚举$k$<br>$$<br>\sum_{d=1}^n d^3 \sum_{k=1}^{\lfloor \frac nd \rfloor} k^2 \mu(k) (\sum_{i=1}^{\lfloor \frac n{kd} \rfloor} i)^2<br>$$<br>设$T=kd​$<br>$$<br>\sum_{T=1}^n (\sum_{i=1}^{\lfloor \frac nT \rfloor} i)^2 \sum_{d|T}d^3 (\frac Td)^2 \mu(\frac Td) \\<br>\sum_{T=1}^n (\sum_{i=1}^{\lfloor \frac nT \rfloor} i)^2 T^2\sum_{d|T}d \mu(\frac Td)<br>$$<br>后面是个卷积形式，根据$\mu * id = \varphi$<br>$$<br>\sum_{T=1}^n (\sum_{i=1}^{\lfloor \frac nT \rfloor} i)^2 T^2 \varphi(T)<br>$$<br>现在要求$T^2 \varphi(T)$的前缀和。不妨先设$g=id^2$</p>
-<p>$$<br>(f * g)(i)=\sum_{d|i} d^2 \varphi(d) \times id^2(\frac id) \\<br>= \sum_{d|i} d^2 \varphi(d) \times (\frac id)^2 \\<br>= \sum_{d|i} i^2\varphi(d) \\<br>= i^2\sum_{d|i} \varphi(d) \\<br>= i^3<br>$$</p>
-<p>则</p>
-<p>$$<br>g(1)S(n)=\sum_{i=1}^n(f * g)(n) - \sum_{i=2}^n g(i)S(\lfloor \frac ni \rfloor) \ <br>S(n)=\sum_{i=1}^n i^3 - \sum_{i=2}^n i^2 S(\lfloor \frac ni \rfloor)<br>$$</p>
-<p>再由两个公式<br>$$<br>1^3+2^3+ \dots + n^3 = (1+2+ \dots + n)^2 \\<br>1^2+2^2+ \dots + n^2 = \frac{n(n+1)(2n+1)}{6}<br>$$<br>即可完成求解</p>
-<p>坑：<br>1、$n$要运算时一定要先模，否则$10^{10} \times 10^{10}$马上爆炸<br>2、$2n$也要模<br>知识点：<br>1、整除分块只有$\lfloor \frac nd \rfloor$部分相同，可以用来乘<br>2、Dirichlet卷积运用<br>3、LCM和那题没搞明白的东西<br>4、预处理逆元免除$\log$<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/Luogu3768/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-	<div>
-	  
-	</div>
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/Luogu3765/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FlyInTheSky">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1184,12 +1030,166 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/Luogu3768/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FlyInTheSky">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FlyInTheSky's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Luogu3768/" itemprop="url">「Luogu 3768」简单的数学题 (莫比乌斯反演 + Dirichlet卷积 + 杜教筛)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-02T18:27:00+08:00">2019-02-02</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Luogu3768/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/Luogu3768/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/Luogu3768/" class="leancloud_visitors" data-flag-title="「Luogu 3768」简单的数学题 (莫比乌斯反演 + Dirichlet卷积 + 杜教筛)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">+</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 s
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><a href="https://www.luogu.org/problemnew/show/P3768" target="_blank" rel="external">3768 简单的数学题</a><br>题意：给定$n, p$，求<br>$$<br>\sum_{i=1}^n \sum_{i=1}^n ij\gcd(i,j) \mod p<br>$$<br>枚举约数<br>$$<br>\sum_{d=1}^n d\sum_{i=1}^n \sum_{i=1}^n ij [\gcd(i,j)=d]<br>$$<br>将后面的提取因数<br>$$<br>\sum_{d=1}^n d^3 \sum_{i=1}^{\lfloor \frac nd \rfloor} \sum_{i=1}^{\lfloor \frac nd \rfloor} ij [\gcd(i,j)=1]<br>$$<br>将布尔式化成$\mu$<br>$$<br>\sum_{d=1}^n d^3 \sum_{i=1}^{\lfloor \frac nd \rfloor} \sum_{i=1}^{\lfloor \frac nd \rfloor} ij \sum_{k|i,k|j}\mu(k)<br>$$<br>先枚举$k$<br>$$<br>\sum_{d=1}^n d^3 \sum_{k=1}^{\lfloor \frac nd \rfloor} k^2 \mu(k) (\sum_{i=1}^{\lfloor \frac n{kd} \rfloor} i)^2<br>$$<br>设$T=kd​$<br>$$<br>\sum_{T=1}^n (\sum_{i=1}^{\lfloor \frac nT \rfloor} i)^2 \sum_{d|T}d^3 (\frac Td)^2 \mu(\frac Td) \\<br>\sum_{T=1}^n (\sum_{i=1}^{\lfloor \frac nT \rfloor} i)^2 T^2\sum_{d|T}d \mu(\frac Td)<br>$$<br>后面是个卷积形式，根据$\mu * id = \varphi$<br>$$<br>\sum_{T=1}^n (\sum_{i=1}^{\lfloor \frac nT \rfloor} i)^2 T^2 \varphi(T)<br>$$<br>现在要求$T^2 \varphi(T)$的前缀和。不妨先设$g=id^2$</p>
+<p>$$<br>(f * g)(i)=\sum_{d|i} d^2 \varphi(d) \times id^2(\frac id) \\<br>= \sum_{d|i} d^2 \varphi(d) \times (\frac id)^2 \\<br>= \sum_{d|i} i^2\varphi(d) \\<br>= i^2\sum_{d|i} \varphi(d) \\<br>= i^3<br>$$</p>
+<p>则</p>
+<p>$$<br>g(1)S(n)=\sum_{i=1}^n(f * g)(n) - \sum_{i=2}^n g(i)S(\lfloor \frac ni \rfloor) \ <br>S(n)=\sum_{i=1}^n i^3 - \sum_{i=2}^n i^2 S(\lfloor \frac ni \rfloor)<br>$$</p>
+<p>再由两个公式<br>$$<br>1^3+2^3+ \dots + n^3 = (1+2+ \dots + n)^2 \\<br>1^2+2^2+ \dots + n^2 = \frac{n(n+1)(2n+1)}{6}<br>$$<br>即可完成求解</p>
+<p>坑：<br>1、$n$要运算时一定要先模，否则$10^{10} \times 10^{10}$马上爆炸<br>2、$2n$也要模<br>知识点：<br>1、整除分块只有$\lfloor \frac nd \rfloor$部分相同，可以用来乘<br>2、Dirichlet卷积运用<br>3、LCM和那题没搞明白的东西<br>4、预处理逆元免除$\log$<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/Luogu3768/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+	<div>
+	  
+	</div>
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/loj6008/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FlyInTheSky">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1362,7 +1362,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FlyInTheSky">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1532,7 +1532,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FlyInTheSky">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1701,7 +1701,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FlyInTheSky">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1880,7 +1880,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FlyInTheSky">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -2075,7 +2075,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image"
-                src="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm"
+                src="https://blog.flyinthesky.win/avator.jpg"
                 alt="FlyInTheSky" />
             
               <p class="site-author-name" itemprop="name">FlyInTheSky</p>
@@ -2533,7 +2533,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
 
 
 
-  <div class="footer-custom">Hosted by <a target="_blank" href="https://pages.coding.me/">Coding Pages</a></div>
+  <div class="footer-custom">Hosted by <a target="_blank" href="">Github Pages</a></div>
 
 
 <span id="busuanzi_container_site_pv">
@@ -3200,7 +3200,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
 
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> 
 
-<script src="https://www.flyinthesky.win/highlight.min.js"></script>
+<script src="https://blog.flyinthesky.win/scripts/highlight.min.js"></script>
 <script >hljs.initHighlightingOnLoad();</script>
 
 <!-- 代码块复制功能 -->

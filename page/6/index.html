@@ -193,7 +193,7 @@
   </style>
 </noscript>
 
-  <link href="https://www.flyinthesky.win/tomorrow.min.css" rel="stylesheet">
+  <link href="https://blog.flyinthesky.win/scripts/tomorrow.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.1/google-fonts/fira-mono.css" rel="stylesheet">
 </head>
 
@@ -383,7 +383,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FlyInTheSky">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -548,183 +548,12 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/bzoj4552/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FlyInTheSky">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FlyInTheSky's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/bzoj4552/" itemprop="url">「Bzoj 4552」「HEOI2016/TJOI2016」排序 (线段树合并分裂 + Set / 二分 + 线段树)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-12T20:39:00+08:00">2019-03-12</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Bzoj/" itemprop="url" rel="index"><span itemprop="name">Bzoj</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/bzoj4552/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/bzoj4552/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/bzoj4552/" class="leancloud_visitors" data-flag-title="「Bzoj 4552」「HEOI2016/TJOI2016」排序 (线段树合并分裂 + Set / 二分 + 线段树)">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">+</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-				 s
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=4552" target="_blank" rel="external">BZOJ 4552</a><br>题意：给出一个$1$到$n$的全排列，现在对这个全排列序列进行$m$次局部排序，排序分为两种：<br>$1:(0,l,r)$表示将区间$[l,r]$的数字升序排序<br>$2:(1,l,r)$表示将区间$[l,r]$的数字降序排序最后询问第$q$位置上的数字。</p>
-<p><strong>方法一</strong><br>只有一个位置，我们可以二分这个上面的数是多少。<br><strong>考虑将数的排序转化为二进制数$01$的排序。</strong>因为二进制数$01$的排序只需要升序将所有$0$放在$1$前，降序反之。<br>那么我们怎么将数转化成这个呢，我们考虑大于二分值的数赋值为$1$, 否则为$0$，对询问离线，线段树辅助$01$数排序，求出最后的结果，然后如果$q$上是$1$，说明当前二分值小了，否则大了。<br>线段树排序$01$数即查询区间$01$个数，再区间修改<br>本方法难想但是代码好写。</p>
-<p><strong>方法二</strong><br>考虑直接模拟题目的过程，我们可以将原来的每个数变成孤立的每个点，那么每次排序都会合并一系列点，并且此时还可能需要分裂。我们考虑一个<strong>支持合并、按前$k$大分裂的权值线段树。</strong>用一个$\text{Set}(l,r,nd,op)$来维护区间合并情况，即记录$[l,r]$的根在$nd$, 是升序还是降序，然后分裂时二分找出来后处理即可。具体可以看代码实现。<strong>这里体现了数据结构互相辅助的优势。</strong><br>本方法好想，但是代码难写。本题为了训练线段树分裂，我写了方法二的代码。</p>
-<p>本文借鉴于<a href="https://www.cnblogs.com/xxzh/p/9776185.html" target="_blank" rel="external"> HEOI2016/TJOI2016 排序 解题报告（二分答案/线段树分裂合并+set） - 星星之火OIer - 博客园</a></p>
-<p>知识点<br>1、<strong>将数的排序转化为二进制数$01$的排序的方法 (用于二分)。</strong><br>2、数据结构互相辅助的优势。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/bzoj4552/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-	<div>
-	  
-	</div>
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/bzoj4542/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FlyInTheSky">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -891,12 +720,183 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/bzoj4552/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FlyInTheSky">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FlyInTheSky's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/bzoj4552/" itemprop="url">「Bzoj 4552」「HEOI2016/TJOI2016」排序 (线段树合并分裂 + Set / 二分 + 线段树)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-12T20:39:00+08:00">2019-03-12</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Bzoj/" itemprop="url" rel="index"><span itemprop="name">Bzoj</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/bzoj4552/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/bzoj4552/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/bzoj4552/" class="leancloud_visitors" data-flag-title="「Bzoj 4552」「HEOI2016/TJOI2016」排序 (线段树合并分裂 + Set / 二分 + 线段树)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">+</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 s
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=4552" target="_blank" rel="external">BZOJ 4552</a><br>题意：给出一个$1$到$n$的全排列，现在对这个全排列序列进行$m$次局部排序，排序分为两种：<br>$1:(0,l,r)$表示将区间$[l,r]$的数字升序排序<br>$2:(1,l,r)$表示将区间$[l,r]$的数字降序排序最后询问第$q$位置上的数字。</p>
+<p><strong>方法一</strong><br>只有一个位置，我们可以二分这个上面的数是多少。<br><strong>考虑将数的排序转化为二进制数$01$的排序。</strong>因为二进制数$01$的排序只需要升序将所有$0$放在$1$前，降序反之。<br>那么我们怎么将数转化成这个呢，我们考虑大于二分值的数赋值为$1$, 否则为$0$，对询问离线，线段树辅助$01$数排序，求出最后的结果，然后如果$q$上是$1$，说明当前二分值小了，否则大了。<br>线段树排序$01$数即查询区间$01$个数，再区间修改<br>本方法难想但是代码好写。</p>
+<p><strong>方法二</strong><br>考虑直接模拟题目的过程，我们可以将原来的每个数变成孤立的每个点，那么每次排序都会合并一系列点，并且此时还可能需要分裂。我们考虑一个<strong>支持合并、按前$k$大分裂的权值线段树。</strong>用一个$\text{Set}(l,r,nd,op)$来维护区间合并情况，即记录$[l,r]$的根在$nd$, 是升序还是降序，然后分裂时二分找出来后处理即可。具体可以看代码实现。<strong>这里体现了数据结构互相辅助的优势。</strong><br>本方法好想，但是代码难写。本题为了训练线段树分裂，我写了方法二的代码。</p>
+<p>本文借鉴于<a href="https://www.cnblogs.com/xxzh/p/9776185.html" target="_blank" rel="external"> HEOI2016/TJOI2016 排序 解题报告（二分答案/线段树分裂合并+set） - 星星之火OIer - 博客园</a></p>
+<p>知识点<br>1、<strong>将数的排序转化为二进制数$01$的排序的方法 (用于二分)。</strong><br>2、数据结构互相辅助的优势。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/bzoj4552/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+	<div>
+	  
+	</div>
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/bzoj4540/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FlyInTheSky">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1066,7 +1066,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FlyInTheSky">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1237,7 +1237,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FlyInTheSky">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1405,7 +1405,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FlyInTheSky">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1575,7 +1575,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FlyInTheSky">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1726,7 +1726,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FlyInTheSky">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1897,7 +1897,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FlyInTheSky">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -2095,7 +2095,7 @@ IJKL
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image"
-                src="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm"
+                src="https://blog.flyinthesky.win/avator.jpg"
                 alt="FlyInTheSky" />
             
               <p class="site-author-name" itemprop="name">FlyInTheSky</p>
@@ -2553,7 +2553,7 @@ IJKL
 
 
 
-  <div class="footer-custom">Hosted by <a target="_blank" href="https://pages.coding.me/">Coding Pages</a></div>
+  <div class="footer-custom">Hosted by <a target="_blank" href="">Github Pages</a></div>
 
 
 <span id="busuanzi_container_site_pv">
@@ -3220,7 +3220,7 @@ IJKL
 
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> 
 
-<script src="https://www.flyinthesky.win/highlight.min.js"></script>
+<script src="https://blog.flyinthesky.win/scripts/highlight.min.js"></script>
 <script >hljs.initHighlightingOnLoad();</script>
 
 <!-- 代码块复制功能 -->

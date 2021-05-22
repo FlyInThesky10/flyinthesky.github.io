@@ -193,7 +193,7 @@
   </style>
 </noscript>
 
-  <link href="https://www.flyinthesky.win/tomorrow.min.css" rel="stylesheet">
+  <link href="https://blog.flyinthesky.win/scripts/tomorrow.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.1/google-fonts/fira-mono.css" rel="stylesheet">
 </head>
 
@@ -383,7 +383,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FlyInTheSky">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -550,182 +550,12 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/Codeforces1091D/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FlyInTheSky">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FlyInTheSky's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Codeforces1091D/" itemprop="url">Codeforces 1091D (数学规律 / 组合数学)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-29T20:53:00+08:00">2018-12-29</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Codeforces/" itemprop="url" rel="index"><span itemprop="name">Codeforces</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/Codeforces1091D/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/Codeforces1091D/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/Codeforces1091D/" class="leancloud_visitors" data-flag-title="Codeforces 1091D (数学规律 / 组合数学)">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">+</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-				 s
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><a href="http://codeforces.com/contest/1091/problem/D" target="_blank" rel="external">Codeforces 1091D</a><br>题意：给定$n$，将$[1,n]$的排列按字典序接成$n \cdot n!$长的序列，求序列中有几个长度为$n$的区间和等于$\frac{n(n-1)}{2}$</p>
-<p>显然这个区间是一个排列。那么我们可以统计每个排列的贡献。<br>对于一个合法的区间，他一定是一个排列的结尾接上一个排列的开头。所以可以将组合问题<strong>分解</strong><br>对于一个排列有$n$种分解方法，所以有$n \cdot n!$种方案。<br>但是有不满足的情况，例如$(4, 2)$, $(1, 3, 5)$是不能接一起的。这样<strong>两个排列字典序大小不满足</strong>。<br>观察发现前面的是一个<strong>递减序列</strong>，所以我们要将这些递减序列构成的都删掉。选出$i$长递减序列有$C^{i}_{n}$种方法，对于每个递减序列他的<strong>第二个部分是随便填的</strong>，所以最后答案为</p>
-<p>$$<br>n \cdot n! - \sum_{i=0}^n C^i_n \cdot (n-i)!<br>$$</p>
-<p>找规律方法：<br>1、观察样例解释，发现和等于$\frac{n(n-1)}{2}$的有周期性<br>2、打表$4$的答案(顺序打印区间和)，发现确实有<strong>周期性</strong>，并且发现周期为$n!$<br>3、打表$3,5$的答案，发现答案有<strong>递推性</strong><br>4、发现答案<strong>一定是两个数相乘</strong>，因为周期是$n!$，选择有$n \cdot n!$种，所以两个数中有一个是$n$<br>5、对另一个数分析，观察表可以发现$4$的每个周期都在$3$的基础上加上了$(n-1)!$个答案<br>6、对答案调整分析，上面的还要减一才行<br>7、写出递推式<br>$$<br>f(i)=i \cdot ((i-1)!+f(i-1)-1)<br>$$<br>其中$f(1)=1$</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/Codeforces1091D/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-	<div>
-	  
-	</div>
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/Codeforces1096D/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FlyInTheSky">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -910,12 +740,182 @@ for (LL i = 1; i &lt;= n; ++i) {
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/Codeforces1091D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FlyInTheSky">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FlyInTheSky's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Codeforces1091D/" itemprop="url">Codeforces 1091D (数学规律 / 组合数学)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-29T20:53:00+08:00">2018-12-29</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Codeforces/" itemprop="url" rel="index"><span itemprop="name">Codeforces</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Codeforces1091D/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/Codeforces1091D/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/Codeforces1091D/" class="leancloud_visitors" data-flag-title="Codeforces 1091D (数学规律 / 组合数学)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">+</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 s
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><a href="http://codeforces.com/contest/1091/problem/D" target="_blank" rel="external">Codeforces 1091D</a><br>题意：给定$n$，将$[1,n]$的排列按字典序接成$n \cdot n!$长的序列，求序列中有几个长度为$n$的区间和等于$\frac{n(n-1)}{2}$</p>
+<p>显然这个区间是一个排列。那么我们可以统计每个排列的贡献。<br>对于一个合法的区间，他一定是一个排列的结尾接上一个排列的开头。所以可以将组合问题<strong>分解</strong><br>对于一个排列有$n$种分解方法，所以有$n \cdot n!$种方案。<br>但是有不满足的情况，例如$(4, 2)$, $(1, 3, 5)$是不能接一起的。这样<strong>两个排列字典序大小不满足</strong>。<br>观察发现前面的是一个<strong>递减序列</strong>，所以我们要将这些递减序列构成的都删掉。选出$i$长递减序列有$C^{i}_{n}$种方法，对于每个递减序列他的<strong>第二个部分是随便填的</strong>，所以最后答案为</p>
+<p>$$<br>n \cdot n! - \sum_{i=0}^n C^i_n \cdot (n-i)!<br>$$</p>
+<p>找规律方法：<br>1、观察样例解释，发现和等于$\frac{n(n-1)}{2}$的有周期性<br>2、打表$4$的答案(顺序打印区间和)，发现确实有<strong>周期性</strong>，并且发现周期为$n!$<br>3、打表$3,5$的答案，发现答案有<strong>递推性</strong><br>4、发现答案<strong>一定是两个数相乘</strong>，因为周期是$n!$，选择有$n \cdot n!$种，所以两个数中有一个是$n$<br>5、对另一个数分析，观察表可以发现$4$的每个周期都在$3$的基础上加上了$(n-1)!$个答案<br>6、对答案调整分析，上面的还要减一才行<br>7、写出递推式<br>$$<br>f(i)=i \cdot ((i-1)!+f(i-1)-1)<br>$$<br>其中$f(1)=1$</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/Codeforces1091D/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+	<div>
+	  
+	</div>
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/Codeforces1056B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FlyInTheSky">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1084,7 +1084,7 @@ for (LL i = 1; i &lt;= n; ++i) {
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FlyInTheSky">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1253,7 +1253,7 @@ for (LL i = 1; i &lt;= n; ++i) {
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FlyInTheSky">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1404,7 +1404,7 @@ for (LL i = 1; i &lt;= n; ++i) {
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FlyInTheSky">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1567,12 +1567,163 @@ for (LL i = 1; i &lt;= n; ++i) {
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/CH4302/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FlyInTheSky">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FlyInTheSky's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/CH4302/" itemprop="url">「CH 4302」Interval GCD (树状数组 + 线段树 + GCD更相减损术 + 差分序列)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-23T12:28:00+08:00">2018-12-23</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/CH4302/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/CH4302/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/CH4302/" class="leancloud_visitors" data-flag-title="「CH 4302」Interval GCD (树状数组 + 线段树 + GCD更相减损术 + 差分序列)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">+</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 s
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><a href="http://contest-hunter.org:83/contest/0x40%E3%80%8C%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%BF%9B%E9%98%B6%E3%80%8D%E4%BE%8B%E9%A2%98/4302%20Interval%20GCD" target="_blank" rel="external">CH 4302</a><br>题意：给出一个$n$长序列，你要支持区间增加和查询区间$gcd$。</p>
+<p>显然的线段树，但是区间增加对于$gcd$不好更新$lazy$标记。那么我们只能考虑一下能不能只单点修改，那么我们就想到了<strong>差分序列</strong>。<br>根据$gcd(a,b)=gcd(a, b-a)$推出$gcd(a,b,c)=gcd(a,b-a,c-b)$然后推广到更多数字可以发现，区间$gcd$值就等于区间第一个数和之后区间的<strong>差分序列</strong>的$gcd$相等。<br>所以只需要维护差分序列的$gcd$，线段树变为了单点修改区间查$gcd$。</p>
+<p>因为要用到原数组，所以开一个 BIT 维护原数组的差分序列即可</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/CH4302/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+	<div>
+	  
+	</div>
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/CH5105/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FlyInTheSky">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1719,163 +1870,12 @@ for (LL i = 1; i &lt;= n; ++i) {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/CH4302/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FlyInTheSky">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FlyInTheSky's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/CH4302/" itemprop="url">「CH 4302」Interval GCD (树状数组 + 线段树 + GCD更相减损术 + 差分序列)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-23T12:28:00+08:00">2018-12-23</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/CH4302/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/CH4302/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/CH4302/" class="leancloud_visitors" data-flag-title="「CH 4302」Interval GCD (树状数组 + 线段树 + GCD更相减损术 + 差分序列)">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">+</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-				 s
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><a href="http://contest-hunter.org:83/contest/0x40%E3%80%8C%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%BF%9B%E9%98%B6%E3%80%8D%E4%BE%8B%E9%A2%98/4302%20Interval%20GCD" target="_blank" rel="external">CH 4302</a><br>题意：给出一个$n$长序列，你要支持区间增加和查询区间$gcd$。</p>
-<p>显然的线段树，但是区间增加对于$gcd$不好更新$lazy$标记。那么我们只能考虑一下能不能只单点修改，那么我们就想到了<strong>差分序列</strong>。<br>根据$gcd(a,b)=gcd(a, b-a)$推出$gcd(a,b,c)=gcd(a,b-a,c-b)$然后推广到更多数字可以发现，区间$gcd$值就等于区间第一个数和之后区间的<strong>差分序列</strong>的$gcd$相等。<br>所以只需要维护差分序列的$gcd$，线段树变为了单点修改区间查$gcd$。</p>
-<p>因为要用到原数组，所以开一个 BIT 维护原数组的差分序列即可</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/CH4302/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-	<div>
-	  
-	</div>
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/poj2182/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FlyInTheSky">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -2062,7 +2062,7 @@ for (LL i = 1; i &lt;= n; ++i) {
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image"
-                src="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm"
+                src="https://blog.flyinthesky.win/avator.jpg"
                 alt="FlyInTheSky" />
             
               <p class="site-author-name" itemprop="name">FlyInTheSky</p>
@@ -2520,7 +2520,7 @@ for (LL i = 1; i &lt;= n; ++i) {
 
 
 
-  <div class="footer-custom">Hosted by <a target="_blank" href="https://pages.coding.me/">Coding Pages</a></div>
+  <div class="footer-custom">Hosted by <a target="_blank" href="">Github Pages</a></div>
 
 
 <span id="busuanzi_container_site_pv">
@@ -3187,7 +3187,7 @@ for (LL i = 1; i &lt;= n; ++i) {
 
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> 
 
-<script src="https://www.flyinthesky.win/highlight.min.js"></script>
+<script src="https://blog.flyinthesky.win/scripts/highlight.min.js"></script>
 <script >hljs.initHighlightingOnLoad();</script>
 
 <!-- 代码块复制功能 -->

@@ -1,0 +1,1801 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico?v=6.0.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=6.0.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico?v=6.0.3">
+
+
+  <link rel="mask-icon" href="/favicon.ico?v=6.0.3" color="#222">
+
+
+  <link rel="manifest" href="/favicon.ico">
+
+
+  <meta name="msapplication-config" content="/favicon.ico" />
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.0.3',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":true,"scrollpercent":false,"onmobile":true},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'T4TYK1DMV0',
+      apiKey: '8ae84ecb094e73f826b093645f9d90bc',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  
+  <meta name="keywords" content="计数原理,组合数学,算法笔记," />
+
+
+<meta name="description" content="知识点讲解排列组合圆周排列从$n$个不同元素中无重复地取出$k(1≤k≤n)$个元素排在一个圆周上，称为$n$个不同元素的一个圆周排列，简称k-圆排列圆周排列个数为$$\frac{A^k_n}{k} = \frac{n!}{k\cdot(n-k)!}$$">
+<meta name="keywords" content="计数原理,组合数学,算法笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="组合数学 学习笔记">
+<meta property="og:url" content="http://blog.flyinthesky.win/sz组合数学/index.html">
+<meta property="og:site_name" content="FlyInTheSky&#39;s blog">
+<meta property="og:description" content="知识点讲解排列组合圆周排列从$n$个不同元素中无重复地取出$k(1≤k≤n)$个元素排在一个圆周上，称为$n$个不同元素的一个圆周排列，简称k-圆排列圆周排列个数为$$\frac{A^k_n}{k} = \frac{n!}{k\cdot(n-k)!}$$">
+<meta property="og:updated_time" content="2019-06-15T09:49:54.639Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="组合数学 学习笔记">
+<meta name="twitter:description" content="知识点讲解排列组合圆周排列从$n$个不同元素中无重复地取出$k(1≤k≤n)$个元素排在一个圆周上，称为$n$个不同元素的一个圆周排列，简称k-圆排列圆周排列个数为$$\frac{A^k_n}{k} = \frac{n!}{k\cdot(n-k)!}$$">
+
+
+
+
+
+
+  <link rel="canonical" href="http://blog.flyinthesky.win/sz组合数学/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+  <title>组合数学 学习笔记 | FlyInTheSky's blog</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5cb42869838f4cfeb9c9b241d7f2a21c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+  <link href="https://www.flyinthesky.win/tomorrow.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.1/google-fonts/fira-mono.css" rel="stylesheet">
+</head>
+
+
+<div id="hexo-helper-live2d">
+  <canvas id="live2dcanvas" width="300" height="600"></canvas>
+</div>
+<style>
+  #live2dcanvas{
+    position: fixed;
+    width: 300px;
+    height: 600px;
+    opacity:0.8;
+    right: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -120px;
+  }
+</style>
+<script type="text/javascript" src="/live2d/device.min.js"></script>
+<script type="text/javascript">
+const loadScript = function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};
+(function(){
+  if((typeof(device) != 'undefined') && (device.mobile())){
+    var trElement = document.getElementById('hexo-helper-live2d');
+    trElement.parentNode.removeChild(trElement);
+    return;
+  }else
+    if (typeof(device) === 'undefined') console.error('Cannot find current-device script.');
+  loadScript("/live2d/script.js", function(){loadlive2d("live2dcanvas", "/live2d/assets/wanko.model.json", 0.5);});
+})();
+</script>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+  
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">FlyInTheSky's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">OI, 梦开始的地方。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />分类</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-friends">
+          <a href="/friends/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-handshake-o"></i> <br />朋友</a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/sz组合数学/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FlyInTheSky">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FlyInTheSky's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">组合数学 学习笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-17T21:28:00+08:00">2017-07-17</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法笔记/" itemprop="url" rel="index"><span itemprop="name">算法笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/sz组合数学/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/sz组合数学/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/sz组合数学/" class="leancloud_visitors" data-flag-title="组合数学 学习笔记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">+</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 s
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="知识点讲解"><a href="#知识点讲解" class="headerlink" title="知识点讲解"></a>知识点讲解</h1><h2 id="排列组合"><a href="#排列组合" class="headerlink" title="排列组合"></a>排列组合</h2><p><strong>圆周排列</strong><br>从$n$个不同元素中<strong>无重复</strong>地取出$k(1≤k≤n)$个元素排在一个圆周上，称为$n$个不同元素的一个圆周排列，简称<strong>k-圆排列</strong><br>圆周排列个数为<br>$$\frac{A^k_n}{k} = \frac{n!}{k\cdot(n-k)!}$$</p>
+<a id="more"></a>
+<p><strong>1 重复组合</strong><br>从$n$个不同元素中无序但<strong>可重复</strong>取出$k(1≤k≤n)$个元素，称为$n$个不同元素中取出$k$个元素的一个重复组合，简称<strong>k-可重组合</strong><br>重复组合个数为<br>$$C^{k}_{n+k-1}$$</p>
+<p><strong>2 组合数性质</strong><br>$C^k_n = C^{n-k}_n$<br>$C^k_n = C^{k-1}_{n-1} + C^{k}_{n-1}$<br>$C^k_n = C^{k-1}_{n-1} \times n \div k$</p>
+<p><strong>3、求组合数方法</strong><br>1、阶乘 (定义法)<br>2、杨辉三角二维递推 (递推式$C^m_n=C_{n-1}^{m-1}+C_{n-1}^{m}$)<br>3、一维递推 3 个公式 (易从定义式推出)：<br>$C^m_n=\frac{n}{n-m} C^m_{n-1}$<br>$C^m_n=\frac{n-m+1}{m} C^{m-1}_n$<br>$C^m_n = \frac nm C^{m-1}_{n-1}$<br>4、优化：$C^m_n = C^{n-m}_n$</p>
+<hr>
+<h2 id="卡特兰数"><a href="#卡特兰数" class="headerlink" title="卡特兰数"></a>卡特兰数</h2><p><strong>Catalan数</strong><br>递推公式：$f(n)=\sum_{i=0}^{n-1}f(i)f(n-i-1)$(用于乘法原理寻找规律)<br>通项公式：$\text{Catalan}_n=\frac{1}{n+1}C^n_{2n}$<br>性质：$\text{Catalan}_n=C_{2n}^n-C_{2n}^{n-1}$, 证明直接用组合数定义通分即可</p>
+<p><strong>常见题型：</strong></p>
+<p><strong>1</strong></p>
+<p>由$n$个1和$n$个$0$构成$2n$项的数列$a_i$<br>其满足任意前缀$1$个数不比$0$少，这样的数列个数为$\text{Catalan}_n$</p>
+<p><strong>变式1：括号正确匹配序列个数是$\text{Catalan}_n$</strong><br><strong>变式2：$n$个数入栈后的出栈的排列总数是$\text{Catalan}_n$</strong><br><strong>变式3：</strong>对于一个$n \times n$的正方形网格，每次只能向右或者向上移动一格，那么从左下角到右上角所有在副对角线(下图中虚线)右下方的路径总数为$\text{Catalan}_n$<br>变式4：对于集合$[1,n], n \in \text{Z}$，将集合元素两两分为$n$个子集，若任意两个子集都不交叉，那么我们称此划分为一个不交叉划分, 不交叉的划分数就是$\text{Catalan}_n$<br>变式5：$n$层的阶梯切割为$n$个矩形的切法数是$\text{Catalan}_n$</p>
+<p><strong>2</strong></p>
+<p>$dp(i)=dp(i) \cdot dp(n-i-1)$</p>
+<p><strong>变式1</strong>：三角剖分数为$\text{Catalan}_n$<br><strong>变式2</strong>：$2n$个点均匀排列在圆上，两两连线不相交的方案数为$\text{Catalan}_n$<br><strong>变式3</strong>：平面上连接可以形成凸包的$2n$个点分成$2$个一组连成$n$条线段，两两线段之间不相交的情况总数是$\text{Catalan}_n$</p>
+<hr>
+<h2 id="错位排列"><a href="#错位排列" class="headerlink" title="错位排列"></a>错位排列</h2><p><strong>错位排列</strong><br><a href="/Bzoj 4517">Bzoj 4517</a><br>错位排列可以递推出来，设$n$个数的错位排列是$D(n)$，则有<br>$$<br>D(n)=(n-1)(D(n-1)+D(n-2))<br>$$<br>证明：考虑$n$这个数放到了$k$位置，有$n-1$种情况。<br>然后考虑$k$这个数放在哪<br>1、$k$这个数放在$n$位置，那么显然$n,k$全部被排完，变成了$D(n-2)$的局面<br>2、$k$这个数不放在$n$位置，那么现在先不放$k$，然后现在我们已经少了一个$n$数和$k$位置，那么其实$k$数等价于现在的$n$数，变成了$D(n-1)$的局面</p>
+<p>这里还有一个通项式子<br>$$<br>D(n) = n! \left( 1 - \frac{1}{1!} + \frac{1}{2!} - \frac{1}{3!} \cdots + (-1)^n \frac{1}{n!} \right)<br>$$<br>证明即使用<strong>容斥原理</strong>。</p>
+<p>还有一种容斥的方法，即先考虑有几个人站在了原来的位置，然后可以容斥</p>
+<p>即考虑选出人出来在原来的位置，可以得到<br>$$<br>\text{Ans} = \sum_{k = 0}^{n}{(-1)^k\binom{n}{k} (n - k)!}<br>$$</p>
+<h2 id="容斥原理"><a href="#容斥原理" class="headerlink" title="容斥原理"></a>容斥原理</h2><p>容斥基本思想就是题目所求的东西有多个限制，我们只满足或者不满足某些限制，然后其他的不管，然后再进行容斥。</p>
+<h3 id="容斥套路"><a href="#容斥套路" class="headerlink" title="容斥套路"></a>容斥套路</h3><p>1、<code>全部 - 至少一个 + 至少两个 - …… = 一个也没有</code> (也就是最基础的容斥)<br>2、<code>所有 - 一个也没有 = 至少有一个</code> (一些补集转化)<br>3、<code>恰好有 k 个的</code>：二项式反演 (广义容斥)<br>4、与质因子相关的容斥用$\mu$为容斥系数。<br>5、直接求不方便的，<strong>而求至少却很容易的</strong></p>
+<h3 id="最基础的容斥"><a href="#最基础的容斥" class="headerlink" title="最基础的容斥"></a>最基础的容斥</h3><p>即为<code>全部 - 至少一个 + 至少两个 - …… = 一个也没有</code>这样的容斥，是广义容斥恰好有 $k$ 个的$k=0$的特例<br>例题：<a href="/Bzoj4665">Bzoj 4665</a>，多重集的组合数</p>
+<h3 id="广义容斥-二项式反演"><a href="#广义容斥-二项式反演" class="headerlink" title="广义容斥 (二项式反演)"></a>广义容斥 (二项式反演)</h3><p>一般题目是求<code>恰好有 k 个的</code><br>即若有<br>$$<br>F(i)= \sum \limits_{j=i}^{n} C^{i}_{j} \times g(j)<br>$$<br>则有<br>$$<br>g(i)= \sum \limits_{j=i}^{n} (-1)^{j-i} \times C^{i}_{j} \times F(j)<br>$$<br>例题：<a href="/Bzoj3622">Bzoj 3622 已经没有什么好害怕的了</a> ，<a href="/">SDOI spring</a>，<a href="/">CF 285E</a></p>
+<h3 id="容斥系数"><a href="#容斥系数" class="headerlink" title="容斥系数"></a>容斥系数</h3><p>有$n$种属性，若干物品。假设我们可以容易地计算出，$g(S)$表示包含$S$集合的物品个数。且给定$w(k)$表示，当物品拥有$k$个属性时它的价值是多少。求所有物品的价值和。</p>
+<p>我们需要确定一个容斥系数$f(k)$，使得$Ans=\sum \limits_{s\in S}g(s)f(|s|)$。</p>
+<p>同上，考虑令每个物品被算入的贡献等于我们想要的数。即对于一个拥有$k$种属性的物品，需要满足<br>$$<br>\sum_{i=1}^kC_k^if(i)=w(k)<br>$$<br>$f(i)$ 是可以$O(n^2)$递推的。假设已知$f(1)…f(k−1)$<br>$$<br>\sum_{i=1}^kC_k^if(i)=w(k) \Rightarrow f(k)=w(k)-\sum_{i=1}^{k-1}C_k^if(i)<br>$$<br>大部分题中是用$O(n^2)$/手推来找规律算的。</p>
+<p>最基本的容斥原理的$w(k)$即为$[k=0]$</p>
+<p><strong>例题1：</strong><a href="https://acm.uestc.edu.cn/problem/dang-xian-yu-ye-yao-an-zhao-ji-ben-fa/description" target="_blank" rel="external">“玲珑杯” 线上赛 Round#17 B 当咸鱼也要按照基本法</a></p>
+<blockquote>
+<p>给定$m$个数$A_i$和$n$。求$[1,n]$中有多少个数能被奇数个$A_i$整除。<br>$T≤1000$组数据，$n≤10^5$, $m≤15$。</p>
+</blockquote>
+<p>发现$m$很小，可以枚举子集，然后我们很方便求出每个子集在$[1,n]$的整除个数, 然后可以考虑容斥，这里只需要整除个数为奇数的，所以我们可以列出<br>$$<br>\sum_{i=1}^kC_k^if(i)=k \mod 2<br>$$<br>然后可以计算容斥系数。也可以打表后发现容斥系数的规律</p>
+<p><strong>例题2：</strong></p>
+<blockquote>
+<p>求出错位排列中，如果有$k$个人在原来的位置，价值为$w(k)$，求所有排列的价值</p>
+</blockquote>
+<p>$$<br>\sum_{i=1}^kC_k^if(i)=w(k)<br>$$</p>
+<h3 id="mu-函数为容斥系数"><a href="#mu-函数为容斥系数" class="headerlink" title="$\mu$函数为容斥系数"></a>$\mu$函数为容斥系数</h3><p><a href="https://www.lydsy.com/JudgeOnline/problem.php?id=2440" target="_blank" rel="external">Bzoj 2440</a></p>
+<blockquote>
+<p>求区间$[1,n]$不是完全平方数的正整数倍的数的个数。</p>
+</blockquote>
+<p>是完全平方数的正整数倍的数是很好计数的，我们可以考虑容斥。<br>我们发现这个容斥就是用$\mu$作为容斥系数的，具体可以看本博客莫比乌斯反演的部分<br>然后答案就是<br>$$<br>\sum_{i=1}^{\sqrt n} \left \lfloor \frac{n}{i^2} \right \rfloor \times \mu(i)<br>$$</p>
+<p>类似的题还有<a href="https://www.luogu.org/problemnew/show/CF439E" target="_blank" rel="external">Codeforces 439E</a></p>
+<h1 id="计数题技巧"><a href="#计数题技巧" class="headerlink" title="计数题技巧"></a>计数题技巧</h1><h2 id="思考容斥"><a href="#思考容斥" class="headerlink" title="思考容斥"></a>思考容斥</h2><h2 id="按顺序计数，不重不漏"><a href="#按顺序计数，不重不漏" class="headerlink" title="按顺序计数，不重不漏"></a>按顺序计数，不重不漏</h2><p><a href="/loj6185">「Loj 6185」烷基计数</a> (按子树大小)<br><a href="/CH5302">「CH 5302」金字塔</a><br>画烷烃的同分异构体 (枚举直径)</p>
+<h2 id="补集转化"><a href="#补集转化" class="headerlink" title="补集转化"></a>补集转化</h2><p>当正着做不方便时就补集转化。例如一些概率的计算</p>
+<h2 id="DP"><a href="#DP" class="headerlink" title="DP"></a>DP</h2><p>大部分计数题都和DP递推有关</p>
+<h3 id="划分子问题方法"><a href="#划分子问题方法" class="headerlink" title="划分子问题方法"></a>划分子问题方法</h3><p><strong>1、正常方法划分</strong><br>此类问题比较多</p>
+<p><strong>2、以0、1划分</strong><br>1、Catalan数(栈、只向上向右)<br>2、<a href="/poj1737">「poj 1737」Connected Graph</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+	<div>
+	  
+		
+<div style="text-align:center;color: #ccc;font-size:14px;">
+------ 本文结束 ------</div>
+<br/>
+<div style="border: 1px solid black">
+<div style="margin-left:10px">
+<span style="font-weight:blod">版权声明</span>
+<img src="http://blog.flyinthesky.win/pics/sources/cc.png" >
+<br/>
+<p style="font-size: 10px;line-height: 30px"><a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky's blog</a> by <a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky</a> is licensed under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" style="color:#258FC6">Creative Commons BY-NC-ND 4.0 International License</a>.<br/>
+由<a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky</a>创作并维护的<a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky's blog</a>博客采用<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" style="color:#258FC6">创作共用保留署名-非商业-禁止演绎4.0国际许可证</a>。<br/>
+本文首发于<a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky's blog</a> 博客（ <a href="http://blog.flyinthesky.win/" style="color:#258FC6">http://blog.flyinthesky.win/</a> ），版权所有，侵权必究。</p>
+</div>
+</div>
+
+	  
+	</div>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/计数原理/" rel="tag"><i class="fa fa-tag"></i> 计数原理</a>
+          
+            <a href="/tags/组合数学/" rel="tag"><i class="fa fa-tag"></i> 组合数学</a>
+          
+            <a href="/tags/算法笔记/" rel="tag"><i class="fa fa-tag"></i> 算法笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/poj2151/" rel="next" title="poj 2151(概率DP)">
+                <i class="fa fa-chevron-left"></i> poj 2151(概率DP)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/zoj3640/" rel="prev" title="zoj 3640(概率期望DP)">
+                zoj 3640(概率期望DP) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm"
+                alt="FlyInTheSky" />
+            
+              <p class="site-author-name" itemprop="name">FlyInTheSky</p>
+              <p class="site-description motion-element" itemprop="description">自己选择的路，跪着也要走完。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">587</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">144</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+		
+		<font size="3"><b>一言</b></font>
+		<script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+		 <script>
+         $.get('https://v1.hitokoto.cn/?c=a', function (data) {
+            if (typeof data === 'string') data = JSON.parse(data);
+            $('#hitokoto-loader').removeClass('active');
+            $('#hitokoto-content').css('display', '').text(data.hitokoto);
+            if (data.from) {
+              $('#hitokoto-from').css('display', '').text('——' + data.from);
+            }
+          });
+          
+          </script>
+          <div style="font-size: 1em; line-height: 1.5em; display: none; " id="hitokoto-content"></div>
+          <div style="text-align: right; margin-top: 15px; font-size: 0.9em; color: #666; display: none; " id="hitokoto-from"></div>
+
+		
+		<!--<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="220" height="320" src="http://www.missevan.com/albumiframe/379343?autoplay=false&playlist=true"></iframe>-->
+		
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#知识点讲解"><span class="nav-number">1.</span> <span class="nav-text">知识点讲解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#排列组合"><span class="nav-number">1.1.</span> <span class="nav-text">排列组合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#卡特兰数"><span class="nav-number">1.2.</span> <span class="nav-text">卡特兰数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#错位排列"><span class="nav-number">1.3.</span> <span class="nav-text">错位排列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#容斥原理"><span class="nav-number">1.4.</span> <span class="nav-text">容斥原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#容斥套路"><span class="nav-number">1.4.1.</span> <span class="nav-text">容斥套路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最基础的容斥"><span class="nav-number">1.4.2.</span> <span class="nav-text">最基础的容斥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#广义容斥-二项式反演"><span class="nav-number">1.4.3.</span> <span class="nav-text">广义容斥 (二项式反演)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容斥系数"><span class="nav-number">1.4.4.</span> <span class="nav-text">容斥系数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mu-函数为容斥系数"><span class="nav-number">1.4.5.</span> <span class="nav-text">$\mu$函数为容斥系数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#计数题技巧"><span class="nav-number">2.</span> <span class="nav-text">计数题技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#思考容斥"><span class="nav-number">2.1.</span> <span class="nav-text">思考容斥</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#按顺序计数，不重不漏"><span class="nav-number">2.2.</span> <span class="nav-text">按顺序计数，不重不漏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#补集转化"><span class="nav-number">2.3.</span> <span class="nav-text">补集转化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DP"><span class="nav-number">2.4.</span> <span class="nav-text">DP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#划分子问题方法"><span class="nav-number">2.4.1.</span> <span class="nav-text">划分子问题方法</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FlyInTheSky</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.0.3</div>
+
+
+
+  <div class="footer-custom">Hosted by <a target="_blank" href="https://pages.coding.me/">Coding Pages</a></div>
+
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.0.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.0.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.3"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: true,
+        appId: 'HbPrhSjQ6NCUr3zYqcbO4iKU-MdYXbMMI',
+        appKey: 'untdESV1xpzTGEu6IH2lwKOb',
+        placeholder: '写下您dalao对本蒟蒻博文的宝贵评论~(￣▽￣)~* ',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("Ex3VDezHHaHR2GEGMlazQCfC-gzGzoHsz", "u9iJTthJj7R0ieApCMNvyAjO");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  <script src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+    <!--<script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script> --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"messageStyle": "none","tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> 
+
+<script src="https://www.flyinthesky.win/highlight.min.js"></script>
+<script >hljs.initHighlightingOnLoad();</script>
+
+<!-- 代码块复制功能 -->
+<script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+<script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+
+
+</body>
+</html>

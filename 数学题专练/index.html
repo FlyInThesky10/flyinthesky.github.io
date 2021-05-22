@@ -1,0 +1,2448 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico?v=6.0.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=6.0.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico?v=6.0.3">
+
+
+  <link rel="mask-icon" href="/favicon.ico?v=6.0.3" color="#222">
+
+
+  <link rel="manifest" href="/favicon.ico">
+
+
+  <meta name="msapplication-config" content="/favicon.ico" />
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.0.3',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":true,"scrollpercent":false,"onmobile":true},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'T4TYK1DMV0',
+      apiKey: '8ae84ecb094e73f826b093645f9d90bc',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  
+  <meta name="keywords" content="概率DP,组合数学,期望,Lucas," />
+
+
+<meta name="description" content="第1题 LightOJ - 1027 A Dangerous Maze (期望)LightOJ - 1027 A Dangerous Maze题意：小Q在迷宫中，他站在$n$个门前面，每个门只有两个可能，要么在$A_i$时间后，回到原地，要么在$A_i$时间后离开迷宫。每次他都会随机选择一个门，计算他离开的期望时间。解：设当前期望为$E$如果选择了正数时间，那么期望值为$\frac{A_i}{n}">
+<meta name="keywords" content="概率DP,组合数学,期望,Lucas">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NOIP 数学训练">
+<meta property="og:url" content="http://blog.flyinthesky.win/数学题专练/index.html">
+<meta property="og:site_name" content="FlyInTheSky&#39;s blog">
+<meta property="og:description" content="第1题 LightOJ - 1027 A Dangerous Maze (期望)LightOJ - 1027 A Dangerous Maze题意：小Q在迷宫中，他站在$n$个门前面，每个门只有两个可能，要么在$A_i$时间后，回到原地，要么在$A_i$时间后离开迷宫。每次他都会随机选择一个门，计算他离开的期望时间。解：设当前期望为$E$如果选择了正数时间，那么期望值为$\frac{A_i}{n}">
+<meta property="og:updated_time" content="2019-05-12T03:06:11.016Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NOIP 数学训练">
+<meta name="twitter:description" content="第1题 LightOJ - 1027 A Dangerous Maze (期望)LightOJ - 1027 A Dangerous Maze题意：小Q在迷宫中，他站在$n$个门前面，每个门只有两个可能，要么在$A_i$时间后，回到原地，要么在$A_i$时间后离开迷宫。每次他都会随机选择一个门，计算他离开的期望时间。解：设当前期望为$E$如果选择了正数时间，那么期望值为$\frac{A_i}{n}">
+
+
+
+
+
+
+  <link rel="canonical" href="http://blog.flyinthesky.win/数学题专练/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+  <title>NOIP 数学训练 | FlyInTheSky's blog</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5cb42869838f4cfeb9c9b241d7f2a21c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+  <link href="https://www.flyinthesky.win/tomorrow.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.1/google-fonts/fira-mono.css" rel="stylesheet">
+</head>
+
+
+<div id="hexo-helper-live2d">
+  <canvas id="live2dcanvas" width="300" height="600"></canvas>
+</div>
+<style>
+  #live2dcanvas{
+    position: fixed;
+    width: 300px;
+    height: 600px;
+    opacity:0.8;
+    right: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -120px;
+  }
+</style>
+<script type="text/javascript" src="/live2d/device.min.js"></script>
+<script type="text/javascript">
+const loadScript = function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};
+(function(){
+  if((typeof(device) != 'undefined') && (device.mobile())){
+    var trElement = document.getElementById('hexo-helper-live2d');
+    trElement.parentNode.removeChild(trElement);
+    return;
+  }else
+    if (typeof(device) === 'undefined') console.error('Cannot find current-device script.');
+  loadScript("/live2d/script.js", function(){loadlive2d("live2dcanvas", "/live2d/assets/wanko.model.json", 0.5);});
+})();
+</script>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+  
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">FlyInTheSky's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">OI, 梦开始的地方。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />分类</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-friends">
+          <a href="/friends/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-handshake-o"></i> <br />朋友</a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/数学题专练/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FlyInTheSky">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FlyInTheSky's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">NOIP 数学训练</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-10T22:30:00+08:00">2018-07-10</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/比赛/" itemprop="url" rel="index"><span itemprop="name">比赛</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/数学题专练/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/数学题专练/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/数学题专练/" class="leancloud_visitors" data-flag-title="NOIP 数学训练">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">+</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 s
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="第1题-LightOJ-1027-A-Dangerous-Maze-期望"><a href="#第1题-LightOJ-1027-A-Dangerous-Maze-期望" class="headerlink" title="第1题 LightOJ - 1027 A Dangerous Maze (期望)"></a>第1题 LightOJ - 1027 A Dangerous Maze (期望)</h2><p><a href="https://vjudge.net/problem/LightOJ-1027" target="_blank" rel="external">LightOJ - 1027 A Dangerous Maze</a><br>题意：小Q在迷宫中，他站在$n$个门前面，每个门只有两个可能，要么在$A_i$时间后，回到原地，要么在$A_i$时间后离开迷宫。每次他都会随机选择一个门，计算他离开的期望时间。<br>解：设当前期望为$E$<br>如果选择了正数时间，那么期望值为$\frac{A_i}{n}$<br>如果选择了负数时间，那么期望值为$\frac{E-A_i}{n}$，因为浪费了$-A_i$的时间<br>然后让所有负数和为$T_0$，负数个数为$n_0$，正数和为$T_1$，正数个数为$n_1$<br>$E=\frac{T_1}{n}+\frac{n_0E-T_0}{n}$，整理可得$E=\frac{T_1-T_0}{n_1}$，用 GCD 约分一下</p>
+<p>知识点：期望的递归定义在处理无法直接用普通式子表达的时候非常好用，最后化简式子即可。</p>
+<pre><code class="c++">#include&lt;cstdio&gt; 
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;climits&gt;
+#include&lt;cmath&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define db double
+#define fir first
+#define sec second
+#define mp make_pair
+using namespace std;
+
+namespace flyinthesky {
+    int gcd(int a, int b) {
+        return (b == 0) ? a : gcd(b, a % b);
+    }
+    void clean() {}
+    int solve() {
+        int n, K, T0, T1, N1, kase = 0; 
+        cin &gt;&gt; K;
+        clean();
+        while (K--) {
+            T0 = 0, T1 = 0, N1 = 0;
+            ++kase, cin &gt;&gt; n;
+            for (int x, i = 1; i &lt;= n; i++) {
+                cin &gt;&gt; x;
+                if (x &lt; 0) T0 += x; else T1 += x, ++N1;
+            }
+            int x = -T0 + T1, y = N1;
+            if (y == 0) printf(&quot;Case %d: inf\n&quot;, kase); else {
+                int g = gcd(x, y);
+                printf(&quot;Case %d: %d/%d\n&quot;, kase, x / g, y / g);
+            }
+        }
+        return 0; 
+    }
+}
+int main() {
+    flyinthesky::solve();
+    return 0;
+}
+</code></pre>
+<h2 id="第2题-LightOJ-1030-Discovering-Gold-期望DP"><a href="#第2题-LightOJ-1030-Discovering-Gold-期望DP" class="headerlink" title="第2题 LightOJ - 1030 Discovering Gold (期望DP)"></a>第2题 LightOJ - 1030 Discovering Gold (期望DP)</h2><p><a href="https://vjudge.net/problem/LightOJ-1030" target="_blank" rel="external">LightOJ - 1030 Discovering Gold</a><br>题意：有一个直线的金矿，每个点有一定数量的金子；你从$0$开始，每次扔个骰子，扔出几点就走几步，然后把那个点的金子拿走；如果扔出的骰子超出了金矿，就重新扔，知道你站在最后一个点；问拿走金子的期望值是多少<br>解：设$dp(i)$为从$i$到$n$的期望值，则$dp(i)=\frac{1}{x}\sum dp(i + j) + a_i$，其中$x$是不超出金矿的掷骰子次数。初始化$dp(i)=a_i$<br>答案是$dp(1)$。注意本题正推有问题，无法保证$dp(n)$由$1$推来。<br>我们类比<a href="/hdu4405">飞行棋那题</a>，发现那题因为出现了航线所以不能倒推，否则能倒推。并且本题因为不能掷骰子的数大于$n$，所以不能像飞行棋那题一样全部概率为定值，在边缘的概率不一样。<br>知识点：<br>1、要看期望DP的状态是否从无效状态推向有效来确定枚举顺序<br>2、每一步概率和为1，否则有错</p>
+<pre><code class="c++">#include&lt;cstdio&gt; 
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;climits&gt;
+#include&lt;cmath&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define db double
+#define fir first
+#define sec second
+#define mp make_pair
+using namespace std;
+
+int kase = 0;
+
+namespace flyinthesky {
+
+    int n, a[105];
+    db dp[105];
+
+    void clean() {
+        ms(dp, 0);
+    }
+    int solve() {
+        cin &gt;&gt; n;
+        clean();
+        for (int i = 1; i &lt;= n; i++) cin &gt;&gt; a[i], dp[i] = a[i];
+        for (int i = n - 1; i &gt;= 1; i--) {
+            db tmp = 0.0;
+            int tms = 0;
+            for (int j = 1; j &lt;= 6; j++) {
+                if (i + j &lt;= n) tmp += dp[i + j], ++tms;
+            }
+            dp[i] = tmp / (db)tms + a[i];
+        }
+        printf(&quot;Case %d: %.7f\n&quot;, ++kase, dp[1]);
+        return 0; 
+    }
+}
+int main() {
+    int T; cin &gt;&gt; T;
+    while (T--) flyinthesky::solve();
+    return 0;
+}
+</code></pre>
+<h2 id="第3题-Loj-10230-Bzoj-3398-牡牛和牝牛-组合数学"><a href="#第3题-Loj-10230-Bzoj-3398-牡牛和牝牛-组合数学" class="headerlink" title="第3题 Loj 10230/Bzoj 3398 牡牛和牝牛 (组合数学)"></a>第3题 Loj 10230/Bzoj 3398 牡牛和牝牛 (组合数学)</h2><p><a href="https://loj.ac/problem/10230" target="_blank" rel="external">Loj 10230</a><br>题意：见上。<br>解：<br>方法1：DP<br>设$dp(i)$表示$i$位置以牡牛结尾的方案数。<br>那么$dp(i)=\sum^{i-k-1}_{j=1} dp(j)$，使$pre(i)=\sum^{i}_{j=1} dp(j)$，那么原转移方程变为$O(n)$，最后输出$pre(n)$即可。</p>
+<pre><code class="c++">#include&lt;cstdio&gt; 
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;climits&gt;
+#include&lt;cmath&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define db double
+#define fir first
+#define sec second
+#define mp make_pair
+using namespace std;
+
+namespace flyinthesky {
+
+    const LL MO = 5000011;
+
+    LL n, k, dp[100000 + 5], pre[100000 + 5];
+
+    void clean() {
+    }
+    int solve() {
+        cin &gt;&gt; n &gt;&gt; k;
+        clean();
+        pre[0] = dp[0] = 1;
+        for (LL i = 1; i &lt;= n; i++) {
+            dp[i] = pre[max(i - k - 1, 0ll)];
+            pre[i] = (pre[i - 1] + dp[i]) % MO;
+            //cout &lt;&lt; dp[i] &lt;&lt; &quot; &quot; &lt;&lt; pre[i] &lt;&lt; endl;
+        }
+        cout &lt;&lt; pre[n];
+        return 0; 
+    }
+}
+int main() {
+    flyinthesky::solve();
+    return 0;
+}
+</code></pre>
+<p>方法2：排列组合<br>考虑枚举当前方案的牡牛只数$i$，可以知道每个犊牛间一定有$k$个牝牛，所以每次将这固定的$(i-1) \cdot k$个牝牛删除，然后再剩下的牛中选$i$个犊牛，将删除的牝牛加回来显然满足条件。所以答案是$C^{i}_{(i-1) \cdot k}$，因为这个组合数范围大不方便二维求出，我们预处理阶乘和阶乘逆元用定义法求解组合数。</p>
+<pre><code class="c++">#include&lt;cstdio&gt; 
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;climits&gt;
+#include&lt;cmath&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define db double
+#define fir first
+#define sec second
+#define mp make_pair
+using namespace std;
+
+namespace flyinthesky {
+
+    const LL MO = 5000011;
+
+    LL n, k, jc[100000 + 5], jc_inv[100000 + 5];
+
+    LL ksm(LL a, LL b) {
+        LL bs = a % MO, ans = 1ll;
+        while (b) {
+            if (b &amp; 1) ans = (ans * bs) % MO;
+            bs = (bs * bs) % MO;
+            b &gt;&gt;= 1ll;
+        }
+        return ans;
+    }
+    LL c(LL n, LL m) {
+        if (m &gt; n) return 0;
+        LL tmp = jc[n];
+        tmp = (tmp * jc_inv[m]) % MO;
+        tmp = (tmp * jc_inv[n - m]) % MO;
+        return tmp;
+    }
+
+    void clean() {
+    }
+    int solve() {
+        cin &gt;&gt; n &gt;&gt; k;
+        clean();
+        jc[0] = jc[1] = 1ll;
+        jc_inv[0] = jc_inv[1] = 1ll;
+        for (int i = 2; i &lt;= n; i++) {
+            jc[i] = (jc[i - 1] * i) % MO;
+            jc_inv[i] = (jc_inv[i - 1] * ksm(i, MO - 2)) % MO;
+        }
+        int ans = 0ll;
+        for (int i = 1; i &lt;= n; i++) {
+            int tmp = n - (i - 1ll) * k;
+            if (tmp &lt; 0) break ;
+            ans = (ans + c(tmp, i)) % MO;
+        }
+        cout &lt;&lt; ans + 1ll;
+        return 0; 
+    }
+}
+int main() {
+    flyinthesky::solve();
+    return 0;
+}
+</code></pre>
+<p>知识点：<br>1、计数问题可以 1 DP 2 组合数学<br>2、DP 方程如果出现了求前缀DP和，可以用前缀和优化<br>3、排列组合中将定下来的东西删除或者添加不影响答案的东西(插板法求有空的部分)可以帮助解题<br>4、预处理能带入$n$就用$n$，防止 TLE</p>
+<h2 id="第4题-Loj-10231-方程的解-组合数学"><a href="#第4题-Loj-10231-方程的解-组合数学" class="headerlink" title="第4题 Loj 10231 方程的解 (组合数学)"></a>第4题 Loj 10231 方程的解 (组合数学)</h2><p><a href="https://loj.ac/problem/10231" target="_blank" rel="external">Loj 10231</a><br>题意：见上。<br>解：显然插板法求。用快速幂算出$g(x)$，然后答案为$C^{k}_{g(x)}$，注意要高精度。代码没写高精</p>
+<pre><code class="c++">#include&lt;cstdio&gt; 
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;climits&gt;
+#include&lt;cmath&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define db double
+#define fir first
+#define sec second
+#define mp make_pair
+using namespace std;
+
+namespace flyinthesky {
+
+    LL k, x, c[1005][1005];
+
+    LL ksm(LL a, LL b, LL c) {
+        LL bs = a % c, ans = 1ll;
+        while (b) {
+            if (b &amp; 1) ans = (ans * bs) % c;
+            bs = (bs * bs) % c;
+            b &gt;&gt;= 1;
+        }
+        return ans;
+    }
+
+    void clean() {
+        ms(c, 0);
+    }
+    int solve() {
+        clean();
+        cin &gt;&gt; k &gt;&gt; x;
+        for (LL i = 0; i &lt;= 1001; ++i) c[i][i] = c[i][0] = 1;
+        for (LL i = 2; i &lt;= 1001; ++i) {
+            for (LL j = 1; j &lt; i; ++j) c[i][j] = c[i - 1][j] + c[i - 1][j - 1];
+        }
+        /*for (LL i = 0; i &lt;= 10; ++i) {
+            for (LL j = 0; j &lt;= i; ++j) printf(&quot;%I64d%c&quot;, c[i][j], (j == i) ? &#39;\n&#39; : &#39; &#39;);
+        }*/
+        LL gg = ksm(x, x, 1000ll);
+        //cout &lt;&lt; gg &lt;&lt; endl;
+        cout &lt;&lt; c[gg - 1][k - 1];
+        return 0; 
+    }
+}
+int main() {
+    flyinthesky::solve();
+    return 0;
+}
+</code></pre>
+<h2 id="第5题-Loj-10232-车的放置-组合数学"><a href="#第5题-Loj-10232-车的放置-组合数学" class="headerlink" title="第5题 Loj 10232 车的放置 (组合数学)"></a>第5题 Loj 10232 车的放置 (组合数学)</h2><p><a href="https://loj.ac/problem/10232" target="_blank" rel="external">Loj 10232</a><br>题意：见上。<br>解：<br>方法1：排列组合<br>我们先考虑不被切掉一块的方法，很显然是$C^{n}_{k} \cdot A^{k}_{m}$，其中长为$n$, 宽$m$。</p>
+<p>然后我们考虑切一块的方法，我们将它分成两个矩形来处理，然后枚举一个矩形放几个车，设当前枚举到$i$, 则最终答案加上$C^{a}_{i} \cdot A^{i}_{b} \cdot C^{a+c-i}_{k-i} \cdot A^{k - i}_{d}$</p>
+<p>方法2：DP</p>
+<pre><code class="c++">#include&lt;cstdio&gt; 
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;climits&gt;
+#include&lt;cmath&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define db double
+#define fir first
+#define sec second
+#define mp make_pair
+using namespace std;
+
+namespace flyinthesky {
+
+    LL MO = 100000 + 3;
+
+    LL a, b, c, d, k, C[2005][2005];
+
+    void clean() {
+        ms(C, 0);
+    }
+    int solve() {
+        cin &gt;&gt; a &gt;&gt; b &gt;&gt; c &gt;&gt; d &gt;&gt; k;
+        clean();
+        LL sz = a + c;
+        for (LL i = 0; i &lt;= sz; ++i) C[i][i] = C[i][0] = 1;
+        for (LL i = 2; i &lt;= sz; ++i) 
+        for (LL j = 1; j &lt; i; ++j) C[i][j] = (C[i - 1][j] + C[i - 1][j - 1]) % MO;
+
+        /*for (LL i = 0; i &lt;= sz; ++i) 
+        for (LL j = 0; j &lt;= i; ++j) printf(&quot;%I64d%c&quot;, C[i][j], j == i ? &#39;\n&#39; : &#39; &#39;);*/
+
+        LL ans = 0ll;
+        for (LL i = 0; i &lt;= k; ++i) {
+            LL tmp = C[a][i];
+            for (LL j = b; j &gt;= b - i + 1; --j) tmp = (tmp * j) % MO;
+            tmp = (tmp * C[a + c - i][k - i]) % MO;
+            for (LL j = d; j &gt;= d - (k - i) + 1; --j) tmp = (tmp * j) % MO;
+            ans = (ans + tmp) % MO;
+        }
+        cout &lt;&lt; ans;
+        return 0; 
+    }
+}
+int main() {
+    flyinthesky::solve();
+    return 0;
+}
+</code></pre>
+<h2 id="第6题-LightOJ-1038-Race-to-1-Again-期望DP"><a href="#第6题-LightOJ-1038-Race-to-1-Again-期望DP" class="headerlink" title="第6题 LightOJ - 1038 Race to 1 Again (期望DP)"></a>第6题 LightOJ - 1038 Race to 1 Again (期望DP)</h2><p><a href="https://vjudge.net/problem/LightOJ-1038" target="_blank" rel="external">LightOJ - 1038 Race to 1 Again</a><br>题意：给定一个整数$n$, 每次操作可以对当前数进行除以它的某个因子。除以哪个因子是随机的，求把$n$变成$1$的期望步数。<br>解：设$dp(i)$为$i$除到$1$的期望步数。<br>则$dp(i)=\frac{dp(a_1)+dp(a_2)+…+dp(a_n)}{m}+1$，其中$a_n | i$，我们将右边的$dp(i)$拿过来以后式子变为$dp(i)=\frac{dp(a_1)+dp(a_2)+…+dp(a_{n-1})+m}{m-1}$<br>然后DP即可，先进行DP后$O(1)$询问。</p>
+<p>知识点：<br>1、这题使用了记忆化打表的思想<br>2、期望DP式子右边有$dp(i)$就移到左边<br>3、期望DP不要忘了转移花费</p>
+<pre><code class="c++">#include&lt;cstdio&gt; 
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;climits&gt;
+#include&lt;cmath&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define db double
+#define fir first
+#define sec second
+#define mp make_pair
+using namespace std;
+
+namespace flyinthesky {
+
+    int n, p[100005], sz; //p[index] = val, sz is index
+    db dp[100005]; //dp[val] = expected number
+
+    void clean() {
+    }
+    int solve() {
+        clean();
+        dp[1] = 0.0;
+        for (int x = 2; x &lt;= 100000; ++x) {// x is val
+            sz = 0;
+            for (int i = 1; i * i &lt;= x; ++i) { // i is val, x / i is val
+                if (x % i == 0) p[++sz] = i;
+                if (i != (x / i) &amp;&amp; x % (x / i) == 0) p[++sz] = x / i;
+            }
+            for (int i = 1; i &lt;= sz; ++i) dp[x] += dp[p[i]]; // i is index
+            dp[x] += sz, dp[x] /= (db)(sz - 1);
+        }
+        int T, kase = 0; scanf(&quot;%d&quot;, &amp;T);
+        while (T--) {
+            cin &gt;&gt; n;
+            printf(&quot;Case %d: %.8f\n&quot;, ++kase, dp[n]);
+        }
+        return 0; 
+    }
+}
+int main() {
+    flyinthesky::solve();
+    return 0;
+}
+</code></pre>
+<h2 id="第7题-Bzoj-3505-输三角形-组合数学"><a href="#第7题-Bzoj-3505-输三角形-组合数学" class="headerlink" title="第7题 Bzoj 3505 输三角形 (组合数学)"></a>第7题 Bzoj 3505 输三角形 (组合数学)</h2><p><a href="/bzoj3505">Bzoj 3505</a></p>
+<h2 id="第8题-LightOJ-1079-Just-another-Robbery-概率背包DP"><a href="#第8题-LightOJ-1079-Just-another-Robbery-概率背包DP" class="headerlink" title="第8题 LightOJ - 1079 Just another Robbery (概率背包DP)"></a>第8题 LightOJ - 1079 Just another Robbery (概率背包DP)</h2><p>题意：XX想抢银行，当危险率低于$P$的时候才能行动，现在给出每家银行的金钱$m_i$和危险率$p_i$，求最多能获得多少金钱。<br>解：设$dp(i,j)$为前$i$个银行抢$j$元钱的不被抓概率。<br>$dp(i,j)=min(dp(i-1,j-w_i) \cdot (1-p_i))$<br>转移即可<br>知识点：<br>1、设概率求期望<br>2、正难则反思想</p>
+<pre><code class="c++">#include&lt;cstdio&gt; 
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;climits&gt;
+#include&lt;queue&gt;
+#include&lt;cmath&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define db double
+#define fir first
+#define sec second
+#define mp make_pair
+using namespace std;
+
+int kase = 0;
+
+namespace flyinthesky {
+
+    const db INF = 1000000000.0, eps = 1e-9;
+    const int MAXV = 10005;
+
+    db maxP, p[105], dp[10010];
+    int n, w[105];
+
+    void clean() {
+        for (int i = 0; i &lt;= MAXV; ++i) dp[i] = -INF;
+    }
+    int solve() {
+        scanf(&quot;%lf%d&quot;, &amp;maxP, &amp;n);
+        for (int i = 1; i &lt;= n; ++i) scanf(&quot;%d%lf&quot;, &amp;w[i], &amp;p[i]);
+        clean();
+        dp[0] = 1.0;
+        for (int i = 1; i &lt;= n; ++i) {
+            for (int j = MAXV; j &gt;= w[i]; --j) {
+                dp[j] = max(dp[j], dp[j - w[i]] * (1 - p[i]));
+            }
+        }
+        int ans = 0;
+        for (int j = MAXV; j &gt;= 0; --j) {
+            db tmp = 1.0 - dp[j];
+            if (maxP - tmp &gt; -eps) {
+                ans = j; break;
+            }
+        }
+        printf(&quot;Case %d: %d\n&quot;, ++kase, ans);
+        return 0;
+    }
+}
+int main() {
+    int T; scanf(&quot;%d&quot;, &amp;T);
+    while (T--) flyinthesky::solve();
+    return 0;
+}
+</code></pre>
+<h2 id="第9题-LightOJ-1265-Island-of-Survival-期望"><a href="#第9题-LightOJ-1265-Island-of-Survival-期望" class="headerlink" title="第9题 LightOJ - 1265 Island of Survival (期望)"></a>第9题 LightOJ - 1265 Island of Survival (期望)</h2><p><a href="https://vjudge.net/problem/LightOJ-1265" target="_blank" rel="external">LightOJ - 1265 Island of Survival</a><br>题意：有$ t $只老虎，$ d $只鹿，还有一个人，每天都要有两个生物碰面，现在有以下规则：老虎不管碰到谁都吃掉，同类的话就同归于尽。问人存活下来的概率。<br>解：如果老虎有奇数只，那么老虎绝对可以把人吃掉，概率为0<br>如果老虎有偶数只，那么老虎可以两两吃掉，并且人遇到鹿不会死，所以人存活的概率和鹿没关系。<br>所以我们从$t+1$个生物中选1个出来当做幸存者，那么人存活概率为$\frac{1}{t+1}$</p>
+<pre><code class="c++">#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;cstring&gt;
+#define LL long long
+#define db double
+#define ms(i, j) memset(i, j, sizeof i)
+
+using namespace std;
+
+namespace flyinthesky {
+
+    void clean() {
+    }
+    int solve() {
+        clean();
+        int kase = 0, T; scanf(&quot;%d&quot;, &amp;T);
+        while (T--) {
+            int t, d; scanf(&quot;%d%d&quot;, &amp;t, &amp;d);
+            if (t % 2 == 0) printf(&quot;Case %d: %.8f\n&quot;, ++kase, 1.0 / (t + 1.0));
+            else printf(&quot;Case %d: 0\n&quot;, ++kase);
+        }
+        return 0;
+    }
+};
+int main() {
+    flyinthesky::solve();
+    return 0;
+}
+</code></pre>
+<h2 id="第10题-LightOJ-10228-Discovering-Gold-Lucas-定理"><a href="#第10题-LightOJ-10228-Discovering-Gold-Lucas-定理" class="headerlink" title="第10题 LightOJ - 10228 Discovering Gold (Lucas 定理)"></a>第10题 LightOJ - 10228 Discovering Gold (Lucas 定理)</h2><p><a href="https://loj.ac/problem/10228" target="_blank" rel="external">#10228. 「一本通 6.6 例 3」组合</a><br>题意：见上。<br>解：发现 $ m $ 很小，我们用组合数阶乘定义式两边求，即先乘$(n-m+1)$到$n$，再除$m!$。然后因为 $ p $ 不一定和所要求逆元的数互质，所以我们要用 Lucas 定理来求，因为 Lucas 保证了每次的组合数$n, m$小于 $p$，并且$p$为质数，所以不会有不互质的情况。<br>知识点： Lucas 定理可以用来求模数和被求逆元数不互质下的组合数公式。</p>
+<pre><code class="c++">#include&lt;cstdio&gt; 
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;map&gt;
+#include&lt;cmath&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define db double
+#define fir first
+#define sec second
+#define mp make_pair
+using namespace std;
+
+namespace flyinthesky {
+
+    LL n1, m1, p;
+
+    LL ksm(LL a, LL b) {
+        LL bs = a % p, ans = 1ll;
+        while (b) {
+            if (b &amp; 1) ans = (ans * bs) % p;
+            bs = (bs * bs) % p;
+            b &gt;&gt;= 1;
+        }
+        return ans;
+    }
+    LL C(LL n, LL m) {
+        LL ans = 1ll, ni = 1ll;
+        for (LL i = n - m + 1; i &lt;= n; ++i) ans = (ans * i) % p;
+        for (LL i = 2; i &lt;= m; ++i) ni = (ni * ksm(i, p - 2)) % p;
+        return (ans * ni) % p;
+    }
+    LL lucas(LL n, LL m) {
+        if (m == 0) return 1;
+        return (C(n % p, m % p) * lucas(n / p, m / p)) % p;
+    }
+
+    void clean() {
+    }
+    int solve() {
+        clean();
+        cin &gt;&gt; n1 &gt;&gt; m1 &gt;&gt; p;
+        cout &lt;&lt; lucas(n1, m1) &lt;&lt; endl;
+        return 0;
+    }
+}
+int main() {
+    int T; scanf(&quot;%d&quot;, &amp;T);
+    while (T--) flyinthesky::solve();
+    return 0;
+}
+</code></pre>
+<h2 id="第11题-Poj-1845-分治-分解质因数-约数和公式-逆元讨论"><a href="#第11题-Poj-1845-分治-分解质因数-约数和公式-逆元讨论" class="headerlink" title="第11题 Poj 1845 (分治+分解质因数+约数和公式 / 逆元讨论)"></a>第11题 Poj 1845 (分治+分解质因数+约数和公式 / 逆元讨论)</h2><p><a href="http://poj.org/problem?id=1845" target="_blank" rel="external">Poj 1845</a><br>题意：求$A^B$因子和。<br>解：这里主要讲讲等比数列求和方法。<br>可以用逆元，但是模的质数太小可能有倍数关系不存在逆元，但是可以通过同余来化简特判没逆元的情况。<br>也可以在$log(c)$的时间内分治求解, 具体看算法竞赛进阶指南上的解析，注意分治边界特判</p>
+<p>注意$B=0$</p>
+<pre><code class="c++">#include&lt;cstdio&gt; 
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;queue&gt;
+#include&lt;cmath&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define db double
+#define fir first
+#define sec second
+#define mp make_pair
+using namespace std;
+
+namespace flyinthesky {
+
+    const LL MO = 9901;
+
+    LL A, B, pri[50000000 + 5], cnt[50000000 + 5], tot;
+
+    LL ksm(LL a, LL b) {
+        LL bs = a % MO, ans = 1ll;
+        while (b) {
+            if (b &amp; 1) ans = (bs * ans) % MO;
+            bs = (bs * bs) % MO;
+            b &gt;&gt;= 1;
+        }
+        return ans;
+    }
+    LL sum(LL n, LL q) {
+        if (n == 0) return 0;
+        if (n == 1) return q + 1;
+        if (n == 2) return q + 1 + q * q;
+        if (n % 2 == 1) {
+            return (1ll + ksm(q, (n + 1) &gt;&gt; 1)) * sum((n - 1) &gt;&gt; 1, q) % MO;
+        } else {
+            LL qtmp = ksm(q, n &gt;&gt; 1);
+            LL qtmp2 = ksm(q, (n &gt;&gt; 1) + 1);
+            return (qtmp + ((qtmp2 + 1ll) * sum((n &gt;&gt; 1) - 1, q) % MO)) % MO;
+        }
+    }
+
+    void clean() {
+        tot = 0;
+    }
+    int solve() {
+        cin &gt;&gt; A &gt;&gt; B;
+        if (B == 0) return cout &lt;&lt; 1 &lt;&lt; endl, 0;
+        clean();
+        for (LL i = 2; i * i &lt;= A; ++i) {
+            if (A % i == 0) {
+                pri[++tot] = i;
+                while (A % i == 0) A /= i, ++cnt[tot];
+            }
+        }
+        if (A != 1) ++cnt[++tot], pri[tot] = A;
+        LL ans = 1ll;
+        for (LL i = 1; i &lt;= tot; ++i) {
+            ans = (ans * sum(cnt[i] * B, pri[i])) % MO;
+        }
+        cout &lt;&lt; ans;
+        return 0;
+    }
+}
+int main() {
+    flyinthesky::solve();
+    return 0;
+}
+</code></pre>
+<h2 id="第12题-P1365-WJMZBMR打osu-Easy"><a href="#第12题-P1365-WJMZBMR打osu-Easy" class="headerlink" title="第12题 P1365 WJMZBMR打osu! / Easy"></a>第12题 P1365 WJMZBMR打osu! / Easy</h2><p><a href="https://www.luogu.org/problemnew/show/P1365" target="_blank" rel="external">WJMZBMR打osu! / Easy</a></p>
+<p>利用两个数组DP，期望值计算</p>
+<pre><code class="c++">#include&lt;cstdio&gt; 
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;cmath&gt;
+#include&lt;map&gt;
+#include&lt;queue&gt;
+#include&lt;set&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define db double
+#define fir first
+#define sec second
+#define mp make_pair
+using namespace std;
+
+namespace flyinthesky {
+
+    int n;
+    db f[300000 + 5], g[300000 + 5];
+    char s[300000 + 5];
+
+    void clean() {
+    }
+    int solve() {
+
+        clean();
+        cin &gt;&gt; n;
+        scanf(&quot;%s&quot;, s + 1);
+        for (int i = 1; i &lt;= n; ++i) {
+            if (s[i] == &#39;o&#39;) 
+                f[i] = f[i - 1] + 2.0 * g[i - 1] + 1.0, g[i] = g[i - 1] + 1.0;
+            else if (s[i] == &#39;x&#39;)
+                f[i] = f[i - 1], g[i] = 0.0;
+            else 
+                f[i] = f[i - 1] + g[i - 1] + 0.5, g[i] = (g[i - 1] + 1) / 2.0;
+        }
+
+        printf(&quot;%.4f\n&quot;, f[n]);
+
+        return 0;
+    } 
+}
+int main() {
+    flyinthesky::solve();
+    return 0;
+}
+</code></pre>
+<h2 id="第13题-CF-1154-G-Minimum-Possible-LCM"><a href="#第13题-CF-1154-G-Minimum-Possible-LCM" class="headerlink" title="第13题 CF 1154 G. Minimum Possible LCM"></a>第13题 CF 1154 G. Minimum Possible LCM</h2><p><a href="http://codeforces.com/contest/1154/problem/G" target="_blank" rel="external">CF 1154 G. Minimum Possible LCM</a></p>
+<p>可以枚举因数$d$，然后$O(n\ln n)$去找，然后算第一个和第二个的$\text{lcm}$即可，具体可以容易证明。</p>
+<pre><code class="c++">#include&lt;cstdio&gt; 
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;cmath&gt;
+#include&lt;map&gt;
+#include&lt;queue&gt;
+#include&lt;set&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define db double
+#define fir first
+#define sec second
+#define mp make_pair
+using namespace std;
+
+namespace flyinthesky {
+
+    const int MAXN = 1000000 + 5;
+
+    LL n, a[MAXN], vis[10000000 + 5], ans = 1e18;
+    LL g1, g2;
+
+    LL gcd(LL a, LL b) {return b != 0 ? gcd(b, a % b) : a;}
+    LL lcm(LL a, LL b) {return a * b / gcd(a, b);}
+
+    void clean() {
+    }
+    int solve() {
+
+        clean();
+        cin &gt;&gt; n;
+        for (LL i = 1; i &lt;= n; ++i) {
+            scanf(&quot;%lld&quot;, &amp;a[i]);
+            if (vis[a[i]]) {
+                if (ans &gt; a[i]) ans = a[i], g1 = vis[a[i]], g2 = i;
+            }
+            vis[a[i]] = i;
+        }
+
+        for (LL d = 1; d &lt;= 10000000; ++d) {
+            if (d &gt;= ans) break ;
+            LL h1 = 0, h2 = 0;
+            for (LL j = d; j &lt;= 10000000; j += d) {
+                if (vis[j]) {
+                    if (!h1) h1 = j; else if (!h2) h2 = j; else break;
+                }
+            }
+            if (h1 &amp;&amp; h2) {
+                if (lcm(h1, h2) &lt; ans) ans = lcm(h1, h2), g1 = vis[h1], g2 = vis[h2];
+            }
+        }
+
+        if (g1 &gt; g2) swap(g1, g2);
+        cout &lt;&lt; g1 &lt;&lt; &quot; &quot; &lt;&lt; g2 &lt;&lt; endl;
+
+        return 0;
+    } 
+}
+int main() {
+    flyinthesky::solve();
+    return 0;
+}
+</code></pre>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+	<div>
+	  
+		
+<div style="text-align:center;color: #ccc;font-size:14px;">
+------ 本文结束 ------</div>
+<br/>
+<div style="border: 1px solid black">
+<div style="margin-left:10px">
+<span style="font-weight:blod">版权声明</span>
+<img src="http://blog.flyinthesky.win/pics/sources/cc.png" >
+<br/>
+<p style="font-size: 10px;line-height: 30px"><a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky's blog</a> by <a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky</a> is licensed under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" style="color:#258FC6">Creative Commons BY-NC-ND 4.0 International License</a>.<br/>
+由<a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky</a>创作并维护的<a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky's blog</a>博客采用<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" style="color:#258FC6">创作共用保留署名-非商业-禁止演绎4.0国际许可证</a>。<br/>
+本文首发于<a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky's blog</a> 博客（ <a href="http://blog.flyinthesky.win/" style="color:#258FC6">http://blog.flyinthesky.win/</a> ），版权所有，侵权必究。</p>
+</div>
+</div>
+
+	  
+	</div>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/概率DP/" rel="tag"><i class="fa fa-tag"></i> 概率DP</a>
+          
+            <a href="/tags/组合数学/" rel="tag"><i class="fa fa-tag"></i> 组合数学</a>
+          
+            <a href="/tags/期望/" rel="tag"><i class="fa fa-tag"></i> 期望</a>
+          
+            <a href="/tags/Lucas/" rel="tag"><i class="fa fa-tag"></i> Lucas</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/贪心题专练/" rel="next" title="NOIP 贪心训练">
+                <i class="fa fa-chevron-left"></i> NOIP 贪心训练
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/搜索题专练/" rel="prev" title="NOIP 搜索题训练">
+                NOIP 搜索题训练 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm"
+                alt="FlyInTheSky" />
+            
+              <p class="site-author-name" itemprop="name">FlyInTheSky</p>
+              <p class="site-description motion-element" itemprop="description">自己选择的路，跪着也要走完。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">587</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">144</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+		
+		<font size="3"><b>一言</b></font>
+		<script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+		 <script>
+         $.get('https://v1.hitokoto.cn/?c=a', function (data) {
+            if (typeof data === 'string') data = JSON.parse(data);
+            $('#hitokoto-loader').removeClass('active');
+            $('#hitokoto-content').css('display', '').text(data.hitokoto);
+            if (data.from) {
+              $('#hitokoto-from').css('display', '').text('——' + data.from);
+            }
+          });
+          
+          </script>
+          <div style="font-size: 1em; line-height: 1.5em; display: none; " id="hitokoto-content"></div>
+          <div style="text-align: right; margin-top: 15px; font-size: 0.9em; color: #666; display: none; " id="hitokoto-from"></div>
+
+		
+		<!--<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="220" height="320" src="http://www.missevan.com/albumiframe/379343?autoplay=false&playlist=true"></iframe>-->
+		
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第1题-LightOJ-1027-A-Dangerous-Maze-期望"><span class="nav-number">1.</span> <span class="nav-text">第1题 LightOJ - 1027 A Dangerous Maze (期望)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第2题-LightOJ-1030-Discovering-Gold-期望DP"><span class="nav-number">2.</span> <span class="nav-text">第2题 LightOJ - 1030 Discovering Gold (期望DP)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第3题-Loj-10230-Bzoj-3398-牡牛和牝牛-组合数学"><span class="nav-number">3.</span> <span class="nav-text">第3题 Loj 10230/Bzoj 3398 牡牛和牝牛 (组合数学)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第4题-Loj-10231-方程的解-组合数学"><span class="nav-number">4.</span> <span class="nav-text">第4题 Loj 10231 方程的解 (组合数学)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第5题-Loj-10232-车的放置-组合数学"><span class="nav-number">5.</span> <span class="nav-text">第5题 Loj 10232 车的放置 (组合数学)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第6题-LightOJ-1038-Race-to-1-Again-期望DP"><span class="nav-number">6.</span> <span class="nav-text">第6题 LightOJ - 1038 Race to 1 Again (期望DP)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第7题-Bzoj-3505-输三角形-组合数学"><span class="nav-number">7.</span> <span class="nav-text">第7题 Bzoj 3505 输三角形 (组合数学)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第8题-LightOJ-1079-Just-another-Robbery-概率背包DP"><span class="nav-number">8.</span> <span class="nav-text">第8题 LightOJ - 1079 Just another Robbery (概率背包DP)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第9题-LightOJ-1265-Island-of-Survival-期望"><span class="nav-number">9.</span> <span class="nav-text">第9题 LightOJ - 1265 Island of Survival (期望)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第10题-LightOJ-10228-Discovering-Gold-Lucas-定理"><span class="nav-number">10.</span> <span class="nav-text">第10题 LightOJ - 10228 Discovering Gold (Lucas 定理)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第11题-Poj-1845-分治-分解质因数-约数和公式-逆元讨论"><span class="nav-number">11.</span> <span class="nav-text">第11题 Poj 1845 (分治+分解质因数+约数和公式 / 逆元讨论)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第12题-P1365-WJMZBMR打osu-Easy"><span class="nav-number">12.</span> <span class="nav-text">第12题 P1365 WJMZBMR打osu! / Easy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第13题-CF-1154-G-Minimum-Possible-LCM"><span class="nav-number">13.</span> <span class="nav-text">第13题 CF 1154 G. Minimum Possible LCM</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FlyInTheSky</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.0.3</div>
+
+
+
+  <div class="footer-custom">Hosted by <a target="_blank" href="https://pages.coding.me/">Coding Pages</a></div>
+
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.0.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.0.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.3"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: true,
+        appId: 'HbPrhSjQ6NCUr3zYqcbO4iKU-MdYXbMMI',
+        appKey: 'untdESV1xpzTGEu6IH2lwKOb',
+        placeholder: '写下您dalao对本蒟蒻博文的宝贵评论~(￣▽￣)~* ',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("Ex3VDezHHaHR2GEGMlazQCfC-gzGzoHsz", "u9iJTthJj7R0ieApCMNvyAjO");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  <script src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+    <!--<script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script> --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"messageStyle": "none","tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> 
+
+<script src="https://www.flyinthesky.win/highlight.min.js"></script>
+<script >hljs.initHighlightingOnLoad();</script>
+
+<!-- 代码块复制功能 -->
+<script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+<script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+
+
+</body>
+</html>

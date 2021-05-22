@@ -1,0 +1,1825 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico?v=6.0.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=6.0.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico?v=6.0.3">
+
+
+  <link rel="mask-icon" href="/favicon.ico?v=6.0.3" color="#222">
+
+
+  <link rel="manifest" href="/favicon.ico">
+
+
+  <meta name="msapplication-config" content="/favicon.ico" />
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.0.3',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":true,"scrollpercent":false,"onmobile":true},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'T4TYK1DMV0',
+      apiKey: '8ae84ecb094e73f826b093645f9d90bc',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  
+  <meta name="keywords" content="FlyInTheSky, oi, oier, noip, noi, 题解, 信息学, 信息学竞赛, 竞赛" />
+
+
+<meta name="description" content="平行相似如图1中的(1)，$AB∥CD$，则$△ABO∽△DCO$(“8”形)如图1中的(2)，$AB∥CD$，则$△OAB∽△OCD$(“A”形)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初中数学相似三角形(平面几何)做题笔记">
+<meta property="og:url" content="http://blog.flyinthesky.win/whk数学相似三角形/index.html">
+<meta property="og:site_name" content="FlyInTheSky&#39;s blog">
+<meta property="og:description" content="平行相似如图1中的(1)，$AB∥CD$，则$△ABO∽△DCO$(“8”形)如图1中的(2)，$AB∥CD$，则$△OAB∽△OCD$(“A”形)">
+<meta property="og:image" content="http://blog.flyinthesky.win/pics/相似三角形/1.jpg">
+<meta property="og:image" content="http://blog.flyinthesky.win/pics/相似三角形/2.jpg">
+<meta property="og:image" content="http://blog.flyinthesky.win/pics/相似三角形/3.jpg">
+<meta property="og:image" content="http://blog.flyinthesky.win/pics/相似三角形/4.jpg">
+<meta property="og:image" content="http://blog.flyinthesky.win/pics/相似三角形/5.jpg">
+<meta property="og:image" content="http://blog.flyinthesky.win/pics/相似三角形/6.jpg">
+<meta property="og:image" content="http://blog.flyinthesky.win/pics/相似三角形/7.jpg">
+<meta property="og:image" content="http://blog.flyinthesky.win/pics/相似三角形/8.jpg">
+<meta property="og:image" content="http://blog.flyinthesky.win/pics/相似三角形/9.jpg">
+<meta property="og:image" content="http://blog.flyinthesky.win/pics/相似三角形/11.jpg">
+<meta property="og:image" content="http://blog.flyinthesky.win/pics/相似三角形/13.jpg">
+<meta property="og:updated_time" content="2019-09-12T11:51:33.512Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="初中数学相似三角形(平面几何)做题笔记">
+<meta name="twitter:description" content="平行相似如图1中的(1)，$AB∥CD$，则$△ABO∽△DCO$(“8”形)如图1中的(2)，$AB∥CD$，则$△OAB∽△OCD$(“A”形)">
+<meta name="twitter:image" content="http://blog.flyinthesky.win/pics/相似三角形/1.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="http://blog.flyinthesky.win/whk数学相似三角形/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+  <title>初中数学相似三角形(平面几何)做题笔记 | FlyInTheSky's blog</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5cb42869838f4cfeb9c9b241d7f2a21c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+  <link href="https://www.flyinthesky.win/tomorrow.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.1/google-fonts/fira-mono.css" rel="stylesheet">
+</head>
+
+
+<div id="hexo-helper-live2d">
+  <canvas id="live2dcanvas" width="300" height="600"></canvas>
+</div>
+<style>
+  #live2dcanvas{
+    position: fixed;
+    width: 300px;
+    height: 600px;
+    opacity:0.8;
+    right: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -120px;
+  }
+</style>
+<script type="text/javascript" src="/live2d/device.min.js"></script>
+<script type="text/javascript">
+const loadScript = function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};
+(function(){
+  if((typeof(device) != 'undefined') && (device.mobile())){
+    var trElement = document.getElementById('hexo-helper-live2d');
+    trElement.parentNode.removeChild(trElement);
+    return;
+  }else
+    if (typeof(device) === 'undefined') console.error('Cannot find current-device script.');
+  loadScript("/live2d/script.js", function(){loadlive2d("live2dcanvas", "/live2d/assets/wanko.model.json", 0.5);});
+})();
+</script>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+  
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">FlyInTheSky's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">OI, 梦开始的地方。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />分类</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-friends">
+          <a href="/friends/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-handshake-o"></i> <br />朋友</a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/whk数学相似三角形/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FlyInTheSky">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FlyInTheSky's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">初中数学相似三角形(平面几何)做题笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-23T13:36:00+08:00">2017-01-23</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/文化课/" itemprop="url" rel="index"><span itemprop="name">文化课</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/whk数学相似三角形/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/whk数学相似三角形/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/whk数学相似三角形/" class="leancloud_visitors" data-flag-title="初中数学相似三角形(平面几何)做题笔记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">+</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 s
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="平行相似"><a href="#平行相似" class="headerlink" title="平行相似"></a><strong>平行相似</strong></h2><p>如图1中的(1)，$AB∥CD$，则$△ABO∽△DCO$(“8”形)<br>如图1中的(2)，$AB∥CD$，则$△OAB∽△OCD$(“A”形)<br><img src="../pics/相似三角形/1.jpg" alt="Markdown"></p>
+<a id="more"></a>
+<hr>
+<h2 id="非平行的相似情况"><a href="#非平行的相似情况" class="headerlink" title="非平行的相似情况"></a><strong>非平行的相似情况</strong></h2><p>如图2中的(1), $∠A$为公共角，可证明另一角相等或夹边分别成比例即可相似(斜”A”形)<br>如图2中的(2), $∠A$为公共角，可证明另一角相等或夹边分别成比例即可相似(斜”A”形)<br>如图2中的(3), $∠AOB$与$∠COD$为对顶角，可证明另一角相等或夹边分别成比例即可相似(斜”8”形)<br>如图2中的(4), $∠BAC$与$∠DAE$为旋转对应角，可证明另一角相等或夹边分别成比例即可相似(旋转形)<br>如图2中的(5), $∠A$为公共角，可证明另一角相等或夹边分别成比例即可相似(飞机形)<br>如图2中的(6), $∠D=∠C$, 则${AB}^2=AD \cdot BC$(飞机形)<br>如图2中的(7), $∠CAB=∠BAD$, 则${AB}^2=AD \cdot AC$(旋转形)<br><img src="../pics/相似三角形/2.jpg" alt="Markdown"></p>
+<hr>
+<h2 id="构造平行线"><a href="#构造平行线" class="headerlink" title="构造平行线"></a><strong>构造平行线</strong></h2><blockquote>
+<p>如图3中的(1), $E$是$AC$中点，$B$是$DC$中点，求$\frac{AO}{OB}$</p>
+</blockquote>
+<p>​    解：过$B$点作$BF∥AC$交$DE$与$F$，然后可得$△FOB∽△EOA$，根据中点相关知识可求证</p>
+<blockquote>
+<p>如图3中的(2), $AE:EC=1:3$，$B$是$DC$中点，求$\frac{AO}{OB}$</p>
+</blockquote>
+<p>​    解：过$B$点作$BF∥AC$交$DE$与$F$，然后可得$△FOB∽△EOA$，根据中点、比例相关知识可求证</p>
+<blockquote>
+<p>如图3中的(3), $O$是$△ABC$的重心，求$\frac{AO}{OF}$</p>
+</blockquote>
+<p>​    解：连接$DF$，可得$DF∥AC$，然后可得$△DOF∽△COA$，根据中点相关知识可求证</p>
+<blockquote>
+<p>如图3中的(4), $D,E$是$BC$的三等分点，$F$是$AC$中点，求$BH:HG:GF$(此类问题大多数是某线段等于另两条线段长，然后再探究另两条线段的比例关系)</p>
+</blockquote>
+<p>​    解：连接$FE$，可得两个中位线(中点+三等分点=两个中位线，可以把三等分点分开看)。然后得到$△ACD∽△FCE，△BHD∽△BGE$，根据相关知识解答即可。<br><strong>(基本原则，作平行线交酱油线(与已知线段与结论线段无关的一条)，即可解决问题)</strong><br><img src="../pics/相似三角形/3.jpg" alt="Markdown"></p>
+<hr>
+<h2 id="矩形折叠"><a href="#矩形折叠" class="headerlink" title="矩形折叠"></a><strong>矩形折叠</strong></h2><blockquote>
+<p>如图4，$ABCD$是矩形，$BD$为对角线，将$B$对折到$D$，折痕为$EF$</p>
+</blockquote>
+<p>则$BO=OD，EO=FO，BF=ED，BE=DF，EF⊥BD$(四边形$EDFB$为菱形)<br><img src="../pics/相似三角形/4.jpg" alt="Markdown"></p>
+<hr>
+<h2 id="圆与射影定理"><a href="#圆与射影定理" class="headerlink" title="圆与射影定理"></a><strong>圆与射影定理</strong></h2><p>如图5中的(1)，$BD$为$⊙O$的直径，$AD⊥BC$，则形成了射影图<br>如图5中的(1)，$AD,BD$为$⊙O$的切线，交$⊙O$于$A,B$，连接$AB，OD$，则$AB⊥CD$,则形成了两个相同的射影图<br><img src="../pics/相似三角形/5.jpg" alt="Markdown"></p>
+<hr>
+<h2 id="一线三等角"><a href="#一线三等角" class="headerlink" title="一线三等角"></a><strong>一线三等角</strong></h2><p>如图6中的(1)，$∠B=∠ACD=∠E$，则$△ABC∽△CDE$(外角知识可证明(基本图形))<br>如图6中的(2)，$△ABC$为等腰三角形，$∠B=∠EDF$，则$△EBD∽△DCF$(外角知识可证明)<br><img src="../pics/相似三角形/6.jpg" alt="Markdown"></p>
+<hr>
+<h2 id="射影定理"><a href="#射影定理" class="headerlink" title="射影定理"></a><strong>射影定理</strong></h2><p>如图7中的(2)，$Rt△ABC$中$AD⊥BC$, 则有射影定理：<br>$AD^2=BD \cdot DC$<br>$AB^2=BC \cdot BD$<br>$AC^2=BC \cdot DC$<br>如图7中的(1)(3)，若$∠BAC=∠BDA$或者$∠B=∠DAC$，则也能构成<strong>一部分</strong>射影定理图<br><img src="../pics/相似三角形/7.jpg" alt="Markdown"></p>
+<hr>
+<h2 id="求最大值-最小值"><a href="#求最大值-最小值" class="headerlink" title="求最大值/最小值"></a><strong>求最大值/最小值</strong></h2><blockquote>
+<p>设某边为$x$, 某边为$y$，求$x-y$的最大值</p>
+</blockquote>
+<p>可以联系到求二次函数最大值，因为相似的比例式转化为乘积式可能产生$y=kx^2$<br>例题：典中点P49 t5</p>
+<blockquote>
+<p>求$XX+XX$最小。</p>
+</blockquote>
+<p>可以联系到轴对称(核心是三角形两边之和大于第三边和两点之间线段最短)，作对称点即可做</p>
+<hr>
+<h2 id="圆中的相似问题"><a href="#圆中的相似问题" class="headerlink" title="圆中的相似问题"></a><strong>圆中的相似问题</strong></h2><h3 id="在圆中给出直径-半径-长和另一边长，求某一边长。-给出圆中线段求另一线段"><a href="#在圆中给出直径-半径-长和另一边长，求某一边长。-给出圆中线段求另一线段" class="headerlink" title="在圆中给出直径(半径)长和另一边长，求某一边长。(给出圆中线段求另一线段)"></a>在圆中给出直径(半径)长和另一边长，求某一边长。<strong>(给出圆中线段求另一线段)</strong></h3><p>解：一般连接直径所对圆周角，然后算这条连边长，然后相似三角形建立关系求解<br>例题：典中点P49 t1，典中点P49 t2，典中点P49 t6，典中点P50 t9</p>
+<h3 id="圆中边、角的转化"><a href="#圆中边、角的转化" class="headerlink" title="圆中边、角的转化"></a>圆中<strong>边、角的转化</strong></h3><p>边：<br>(1)半径转化：设半径为$r$，找等量关系求出$r$。<br>  例题：典中点P50 t11<br>(2)矩形转化：构造矩形，用矩形对边相等转化边。<br>  <strong>技巧：如果原题目中出现了1.垂直、2.垂径、3.切线，则可以考虑作垂直或者垂径。</strong><br>  例题：典中点P50 t8，典中点P50 t11<br>角：<br>(1)圆周角：同弧所对圆周角相等。<br>  例题：典中点P49 t3，典中点P50 t10<br>(2)弦切角等于所夹弧的圆周角</p>
+<h3 id="圆中解题技巧"><a href="#圆中解题技巧" class="headerlink" title="圆中解题技巧"></a>圆中<strong>解题技巧</strong></h3><p>(1)垂径定理：作弦垂线、连弦中点，可构造中点或者垂直<br>  例题：典中点P50 t11<br>(2)作直径</p>
+<h3 id="圆中常见模型"><a href="#圆中常见模型" class="headerlink" title="圆中常见模型"></a>圆中<strong>常见模型</strong></h3><p>(1)弦切角等于所夹弧的圆周角<br>(2)相交弦定理<br>(3)相交弦定理推论<br>(4)切割线定理<br>(5)割线定理</p>
+<hr>
+<h2 id="相似三角形高的性质"><a href="#相似三角形高的性质" class="headerlink" title="相似三角形高的性质"></a><strong>相似三角形高的性质</strong></h2><p>如图8(1)，已知$DE,BC$长以及梯形$BCED$，可以求出$S△BOC，S△DOE$的大小(相似三角形高的比例等于相似比，所以图中$\frac{HO}{OG}=\frac{DE}{BC}$，然后可以通过梯形面积和上底下底求梯形高，即可解决)，也可以求$S△DOB,S△OEC$, 并且这两个三角形面积是相等的(同底等高减$S△DOE$即可证明)<br>如图8(3)，$D,E$是中点，则<br>$\frac{S△DOE}{S△BOC}=\frac{1}{4}$<br>$\frac{S△ADE}{S△ABC}=\frac{1}{4}$<br>$\frac{S△ADE}{S_{四边形}BDEC}=\frac{1}{3}$<br>$\frac{S△DOE}{S△ADE}=\frac{1}{3}$($DE$等底，$\frac{AI}{HO}=\frac13$)<br>如图8(2)，$DE:BC=1:3$，则仍然有以上的规律，只是答案不同<br>如图8(4)，$EFHG$为矩形，$AD$为$△ABC$的高，则可以利用相似解许多问题(比如$四边形EFHG$如何为正方形/$四边形EFHG$面积最大问题)<br><img src="../pics/相似三角形/8.jpg" alt="Markdown"></p>
+<hr>
+<h2 id="相似三角形与反比例函数"><a href="#相似三角形与反比例函数" class="headerlink" title="相似三角形与反比例函数"></a><strong>相似三角形与反比例函数</strong></h2><p>如图9，$y=\frac kx$在第一象限，$Rt△ABO$中，$∠ABO=90°$，则可以得到$S△AOD=S_{梯形CEBA}$(根据反比例函数$k$的几何含义和面积差相关知识可得$S△COF=S_{四边形FEBD}$。)<br>此问题可以运用相似三角形求面积比/线段比。<br><img src="../pics/相似三角形/9.jpg" alt="Markdown"></p>
+<hr>
+<h2 id="相似三角形解题步骤"><a href="#相似三角形解题步骤" class="headerlink" title="相似三角形解题步骤"></a><strong>相似三角形解题步骤</strong></h2><p>明确题目<br>1、求证比例式相等/乘积式相等<br>  1、直接得出(三点定型，此处可能定出一个不存在线段，但三点不共线，即可以构造三角形)<br>  2、转化线段<br>  3、求中间比、两次相似(乘积式可以等乘积带换(通常是一条边的平方))<br>  4、构造相似三角形<br>2、求几个比例式的和(分母化为相同，转化线段)<br>  1、通过相似三角形/转化线段使分母化为相同<br>  2、找分子与分母的关系<br>3、求比例式的值/乘积式的值<br>  1、根据已知值顺藤摸瓜，找相似</p>
+<hr>
+<h2 id="三线合一、垂直平分线的性质"><a href="#三线合一、垂直平分线的性质" class="headerlink" title="三线合一、垂直平分线的性质"></a><strong>三线合一、垂直平分线的性质</strong></h2><h3 id="连垂直平分线上的线段得到相等-有时是等边-等腰三角形，也能构造"><a href="#连垂直平分线上的线段得到相等-有时是等边-等腰三角形，也能构造" class="headerlink" title="连垂直平分线上的线段得到相等(有时是等边/等腰三角形，也能构造)"></a>连垂直平分线上的线段得到相等(有时是等边/等腰三角形，也能构造)</h3><p>如图10(1).<br>例题：典中点P58 t5, 典中点P59 t11, 典中点P59 t12</p>
+<h3 id="有垂直-中点-角平分线，则有垂直平分线"><a href="#有垂直-中点-角平分线，则有垂直平分线" class="headerlink" title="有垂直/中点/角平分线，则有垂直平分线"></a>有垂直/中点/角平分线，则有垂直平分线</h3><p>例题：典中点P64 t6</p>
+<h3 id="有等腰-等边三角形可以作斜边的高，构造高和角平分线"><a href="#有等腰-等边三角形可以作斜边的高，构造高和角平分线" class="headerlink" title="有等腰/等边三角形可以作斜边的高，构造高和角平分线"></a>有等腰/等边三角形可以作斜边的高，构造高和角平分线</h3><p>例题：典中点P64 t6</p>
+<h3 id="等腰直角三角形底角为-45°-，作斜边的高形成两个等腰直角三角形"><a href="#等腰直角三角形底角为-45°-，作斜边的高形成两个等腰直角三角形" class="headerlink" title="等腰直角三角形底角为$45°$，作斜边的高形成两个等腰直角三角形"></a>等腰直角三角形底角为$45°$，作斜边的高形成两个等腰直角三角形</h3><p>例题：典中点P62 t5</p>
+<hr>
+<h2 id="角平分线的性质"><a href="#角平分线的性质" class="headerlink" title="角平分线的性质"></a><strong>角平分线的性质</strong></h2><h3 id="角平分线-平行线-等腰三角形-构造等腰1"><a href="#角平分线-平行线-等腰三角形-构造等腰1" class="headerlink" title="角平分线+平行线=等腰三角形(构造等腰1)"></a><strong>角平分线+平行线=等腰三角形(构造等腰1)</strong></h3><p>如图11(1).这个公式还能反过来用，比如已知平行和等腰求角平分线，已知角平分线和等腰求平行等。这也是证明切线的常用定理。<br>例题：典中点P61 t4</p>
+<h3 id="角平分线-角两边上的任意一个垂直-构造相等-全等"><a href="#角平分线-角两边上的任意一个垂直-构造相等-全等" class="headerlink" title="角平分线+角两边上的任意一个垂直(构造相等/全等)"></a>角平分线+角两边上的任意一个垂直(构造相等/全等)</h3><p>如图11(2).作另一个垂直，则这两条垂线长度相同，且形成两个全等三角形$△APO≌△BPO$</p>
+<h3 id="角平分线-平分线上的任意一个垂直-构造等腰2-全等"><a href="#角平分线-平分线上的任意一个垂直-构造等腰2-全等" class="headerlink" title="角平分线+平分线上的任意一个垂直(构造等腰2/全等)"></a>角平分线+平分线上的任意一个垂直(构造等腰2/全等)</h3><p>如图11(3).作另一个垂直，则这两条垂线长度相同，且形成两个全等三角形$△APO≌△BPO$，且$△AOB$等腰</p>
+<h3 id="截取线段-构造全等"><a href="#截取线段-构造全等" class="headerlink" title="截取线段(构造全等)"></a>截取线段(构造全等)</h3><p>如图11(4).在$OB$上截取$OB=OA$，则形成两个全等三角形$△APO≌△BPO$</p>
+<h3 id="双垂直-角平分线-等腰三角形-等腰"><a href="#双垂直-角平分线-等腰三角形-等腰" class="headerlink" title="双垂直+角平分线=等腰三角形(等腰)"></a><strong>双垂直+角平分线=等腰三角形(等腰)</strong></h3><p>本题无一致的模型，但注意到只要有了两个垂直+角平分线，就能通过倒角得到等腰三角形。</p>
+<p><img src="../pics/相似三角形/11.jpg" alt="Markdown"></p>
+<hr>
+<h2 id="三角函数的代换关系"><a href="#三角函数的代换关系" class="headerlink" title="三角函数的代换关系"></a><strong>三角函数的代换关系</strong></h2><p>1、$cosA=sinB, cosB=sinA$<br>2、$sin^2A+cos^2A=1, sin^2A+sin^2B=1$(构造完全平方式的诀窍)<br>3、$sinA=cosA \cdot tanA$<br>4、$tanA \cdot tanB=1$<br>5、两个直角边关系$tan$<br>6、一个直角边，一个斜边关系$sin，cos$</p>
+<h2 id="三角函数解题方法-求三角函数"><a href="#三角函数解题方法-求三角函数" class="headerlink" title="三角函数解题方法(求三角函数)"></a><strong>三角函数解题方法(求三角函数)</strong></h2><h3 id="直接求"><a href="#直接求" class="headerlink" title="直接求"></a>直接求</h3><h3 id="转角"><a href="#转角" class="headerlink" title="转角"></a>转角</h3><p>  (1) 在圆中转到直径上<br>  (2) 平行/垂直/等腰转角<br>  (3) 相似转角</p>
+<h3 id="补角"><a href="#补角" class="headerlink" title="补角"></a>补角</h3><p>  基本方法是作垂直。<br>  有6种基本方法，如图13.</p>
+<p><img src="../pics/相似三角形/13.jpg" alt="Markdown"></p>
+<h2 id="面积"><a href="#面积" class="headerlink" title="面积"></a><strong>面积</strong></h2><h3 id="面积法求高"><a href="#面积法求高" class="headerlink" title="面积法求高"></a>面积法求高</h3><p>$h=\frac{S_{△}}{a}$</p>
+<h3 id="底边比求面积"><a href="#底边比求面积" class="headerlink" title="底边比求面积"></a>底边比求面积</h3><p>$S_1:S_2=a_1:a_2$</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+	<div>
+	  
+		
+<div style="text-align:center;color: #ccc;font-size:14px;">
+------ 本文结束 ------</div>
+<br/>
+<div style="border: 1px solid black">
+<div style="margin-left:10px">
+<span style="font-weight:blod">版权声明</span>
+<img src="http://blog.flyinthesky.win/pics/sources/cc.png" >
+<br/>
+<p style="font-size: 10px;line-height: 30px"><a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky's blog</a> by <a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky</a> is licensed under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" style="color:#258FC6">Creative Commons BY-NC-ND 4.0 International License</a>.<br/>
+由<a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky</a>创作并维护的<a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky's blog</a>博客采用<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" style="color:#258FC6">创作共用保留署名-非商业-禁止演绎4.0国际许可证</a>。<br/>
+本文首发于<a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky's blog</a> 博客（ <a href="http://blog.flyinthesky.win/" style="color:#258FC6">http://blog.flyinthesky.win/</a> ），版权所有，侵权必究。</p>
+</div>
+</div>
+
+	  
+	</div>
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/sz后缀数组/" rel="next" title="后缀数组 学习笔记">
+                <i class="fa fa-chevron-left"></i> 后缀数组 学习笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/whk英语高级词汇/" rel="prev" title="英语高级词汇合集">
+                英语高级词汇合集 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm"
+                alt="FlyInTheSky" />
+            
+              <p class="site-author-name" itemprop="name">FlyInTheSky</p>
+              <p class="site-description motion-element" itemprop="description">自己选择的路，跪着也要走完。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">587</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">144</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+		
+		<font size="3"><b>一言</b></font>
+		<script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+		 <script>
+         $.get('https://v1.hitokoto.cn/?c=a', function (data) {
+            if (typeof data === 'string') data = JSON.parse(data);
+            $('#hitokoto-loader').removeClass('active');
+            $('#hitokoto-content').css('display', '').text(data.hitokoto);
+            if (data.from) {
+              $('#hitokoto-from').css('display', '').text('——' + data.from);
+            }
+          });
+          
+          </script>
+          <div style="font-size: 1em; line-height: 1.5em; display: none; " id="hitokoto-content"></div>
+          <div style="text-align: right; margin-top: 15px; font-size: 0.9em; color: #666; display: none; " id="hitokoto-from"></div>
+
+		
+		<!--<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="220" height="320" src="http://www.missevan.com/albumiframe/379343?autoplay=false&playlist=true"></iframe>-->
+		
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#平行相似"><span class="nav-number">1.</span> <span class="nav-text">平行相似</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非平行的相似情况"><span class="nav-number">2.</span> <span class="nav-text">非平行的相似情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构造平行线"><span class="nav-number">3.</span> <span class="nav-text">构造平行线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩形折叠"><span class="nav-number">4.</span> <span class="nav-text">矩形折叠</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#圆与射影定理"><span class="nav-number">5.</span> <span class="nav-text">圆与射影定理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一线三等角"><span class="nav-number">6.</span> <span class="nav-text">一线三等角</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#射影定理"><span class="nav-number">7.</span> <span class="nav-text">射影定理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#求最大值-最小值"><span class="nav-number">8.</span> <span class="nav-text">求最大值/最小值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#圆中的相似问题"><span class="nav-number">9.</span> <span class="nav-text">圆中的相似问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在圆中给出直径-半径-长和另一边长，求某一边长。-给出圆中线段求另一线段"><span class="nav-number">9.1.</span> <span class="nav-text">在圆中给出直径(半径)长和另一边长，求某一边长。(给出圆中线段求另一线段)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#圆中边、角的转化"><span class="nav-number">9.2.</span> <span class="nav-text">圆中边、角的转化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#圆中解题技巧"><span class="nav-number">9.3.</span> <span class="nav-text">圆中解题技巧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#圆中常见模型"><span class="nav-number">9.4.</span> <span class="nav-text">圆中常见模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相似三角形高的性质"><span class="nav-number">10.</span> <span class="nav-text">相似三角形高的性质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相似三角形与反比例函数"><span class="nav-number">11.</span> <span class="nav-text">相似三角形与反比例函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相似三角形解题步骤"><span class="nav-number">12.</span> <span class="nav-text">相似三角形解题步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三线合一、垂直平分线的性质"><span class="nav-number">13.</span> <span class="nav-text">三线合一、垂直平分线的性质</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#连垂直平分线上的线段得到相等-有时是等边-等腰三角形，也能构造"><span class="nav-number">13.1.</span> <span class="nav-text">连垂直平分线上的线段得到相等(有时是等边/等腰三角形，也能构造)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有垂直-中点-角平分线，则有垂直平分线"><span class="nav-number">13.2.</span> <span class="nav-text">有垂直/中点/角平分线，则有垂直平分线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有等腰-等边三角形可以作斜边的高，构造高和角平分线"><span class="nav-number">13.3.</span> <span class="nav-text">有等腰/等边三角形可以作斜边的高，构造高和角平分线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#等腰直角三角形底角为-45°-，作斜边的高形成两个等腰直角三角形"><span class="nav-number">13.4.</span> <span class="nav-text">等腰直角三角形底角为$45°$，作斜边的高形成两个等腰直角三角形</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#角平分线的性质"><span class="nav-number">14.</span> <span class="nav-text">角平分线的性质</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#角平分线-平行线-等腰三角形-构造等腰1"><span class="nav-number">14.1.</span> <span class="nav-text">角平分线+平行线=等腰三角形(构造等腰1)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#角平分线-角两边上的任意一个垂直-构造相等-全等"><span class="nav-number">14.2.</span> <span class="nav-text">角平分线+角两边上的任意一个垂直(构造相等/全等)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#角平分线-平分线上的任意一个垂直-构造等腰2-全等"><span class="nav-number">14.3.</span> <span class="nav-text">角平分线+平分线上的任意一个垂直(构造等腰2/全等)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#截取线段-构造全等"><span class="nav-number">14.4.</span> <span class="nav-text">截取线段(构造全等)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双垂直-角平分线-等腰三角形-等腰"><span class="nav-number">14.5.</span> <span class="nav-text">双垂直+角平分线=等腰三角形(等腰)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三角函数的代换关系"><span class="nav-number">15.</span> <span class="nav-text">三角函数的代换关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三角函数解题方法-求三角函数"><span class="nav-number">16.</span> <span class="nav-text">三角函数解题方法(求三角函数)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#直接求"><span class="nav-number">16.1.</span> <span class="nav-text">直接求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#转角"><span class="nav-number">16.2.</span> <span class="nav-text">转角</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#补角"><span class="nav-number">16.3.</span> <span class="nav-text">补角</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面积"><span class="nav-number">17.</span> <span class="nav-text">面积</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#面积法求高"><span class="nav-number">17.1.</span> <span class="nav-text">面积法求高</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#底边比求面积"><span class="nav-number">17.2.</span> <span class="nav-text">底边比求面积</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FlyInTheSky</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.0.3</div>
+
+
+
+  <div class="footer-custom">Hosted by <a target="_blank" href="https://pages.coding.me/">Coding Pages</a></div>
+
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.0.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.0.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.3"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: true,
+        appId: 'HbPrhSjQ6NCUr3zYqcbO4iKU-MdYXbMMI',
+        appKey: 'untdESV1xpzTGEu6IH2lwKOb',
+        placeholder: '写下您dalao对本蒟蒻博文的宝贵评论~(￣▽￣)~* ',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("Ex3VDezHHaHR2GEGMlazQCfC-gzGzoHsz", "u9iJTthJj7R0ieApCMNvyAjO");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  <script src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+    <!--<script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script> --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"messageStyle": "none","tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> 
+
+<script src="https://www.flyinthesky.win/highlight.min.js"></script>
+<script >hljs.initHighlightingOnLoad();</script>
+
+<!-- 代码块复制功能 -->
+<script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+<script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+
+
+</body>
+</html>

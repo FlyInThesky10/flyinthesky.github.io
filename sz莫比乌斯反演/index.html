@@ -1,0 +1,1978 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico?v=6.0.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=6.0.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico?v=6.0.3">
+
+
+  <link rel="mask-icon" href="/favicon.ico?v=6.0.3" color="#222">
+
+
+  <link rel="manifest" href="/favicon.ico">
+
+
+  <meta name="msapplication-config" content="/favicon.ico" />
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.0.3',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":true,"scrollpercent":false,"onmobile":true},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'T4TYK1DMV0',
+      apiKey: '8ae84ecb094e73f826b093645f9d90bc',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  
+  <meta name="keywords" content="莫比乌斯反演,杜教筛,Dirichlet卷积,算法笔记,整除分块," />
+
+
+<meta name="description" content="模板及讲解整数分块 求 $\sum_{i=1}^n \lfloor \frac ni \rfloor$。  显然可以暴力$O(n)$求。但是这里可以$O(\sqrt n)$ 求。 结论：对于所有的 $\lfloor \frac ni \rfloor$ 都是一段连续的块，并且块的端点可以被枚举。假设当前在 $i$ 处，那么 $\lfloor \frac ni \rfloor$的最后一个值在$\lfl">
+<meta name="keywords" content="莫比乌斯反演,杜教筛,Dirichlet卷积,算法笔记,整除分块">
+<meta property="og:type" content="article">
+<meta property="og:title" content="莫比乌斯反演 学习笔记">
+<meta property="og:url" content="http://blog.flyinthesky.win/sz莫比乌斯反演/index.html">
+<meta property="og:site_name" content="FlyInTheSky&#39;s blog">
+<meta property="og:description" content="模板及讲解整数分块 求 $\sum_{i=1}^n \lfloor \frac ni \rfloor$。  显然可以暴力$O(n)$求。但是这里可以$O(\sqrt n)$ 求。 结论：对于所有的 $\lfloor \frac ni \rfloor$ 都是一段连续的块，并且块的端点可以被枚举。假设当前在 $i$ 处，那么 $\lfloor \frac ni \rfloor$的最后一个值在$\lfl">
+<meta property="og:updated_time" content="2019-02-02T09:10:40.313Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="莫比乌斯反演 学习笔记">
+<meta name="twitter:description" content="模板及讲解整数分块 求 $\sum_{i=1}^n \lfloor \frac ni \rfloor$。  显然可以暴力$O(n)$求。但是这里可以$O(\sqrt n)$ 求。 结论：对于所有的 $\lfloor \frac ni \rfloor$ 都是一段连续的块，并且块的端点可以被枚举。假设当前在 $i$ 处，那么 $\lfloor \frac ni \rfloor$的最后一个值在$\lfl">
+
+
+
+
+
+
+  <link rel="canonical" href="http://blog.flyinthesky.win/sz莫比乌斯反演/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+  <title>莫比乌斯反演 学习笔记 | FlyInTheSky's blog</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5cb42869838f4cfeb9c9b241d7f2a21c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+  <link href="https://www.flyinthesky.win/tomorrow.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.1/google-fonts/fira-mono.css" rel="stylesheet">
+</head>
+
+
+<div id="hexo-helper-live2d">
+  <canvas id="live2dcanvas" width="300" height="600"></canvas>
+</div>
+<style>
+  #live2dcanvas{
+    position: fixed;
+    width: 300px;
+    height: 600px;
+    opacity:0.8;
+    right: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -120px;
+  }
+</style>
+<script type="text/javascript" src="/live2d/device.min.js"></script>
+<script type="text/javascript">
+const loadScript = function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};
+(function(){
+  if((typeof(device) != 'undefined') && (device.mobile())){
+    var trElement = document.getElementById('hexo-helper-live2d');
+    trElement.parentNode.removeChild(trElement);
+    return;
+  }else
+    if (typeof(device) === 'undefined') console.error('Cannot find current-device script.');
+  loadScript("/live2d/script.js", function(){loadlive2d("live2dcanvas", "/live2d/assets/wanko.model.json", 0.5);});
+})();
+</script>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+  
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">FlyInTheSky's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">OI, 梦开始的地方。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />分类</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-friends">
+          <a href="/friends/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-handshake-o"></i> <br />朋友</a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/sz莫比乌斯反演/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FlyInTheSky">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FlyInTheSky's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">莫比乌斯反演 学习笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-13T19:55:00+08:00">2018-11-13</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法笔记/" itemprop="url" rel="index"><span itemprop="name">算法笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/sz莫比乌斯反演/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/sz莫比乌斯反演/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/sz莫比乌斯反演/" class="leancloud_visitors" data-flag-title="莫比乌斯反演 学习笔记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">+</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 s
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="模板及讲解"><a href="#模板及讲解" class="headerlink" title="模板及讲解"></a>模板及讲解</h1><h2 id="整数分块"><a href="#整数分块" class="headerlink" title="整数分块"></a>整数分块</h2><blockquote>
+<p>求 $\sum_{i=1}^n \lfloor \frac ni \rfloor$。</p>
+</blockquote>
+<p>显然可以暴力$O(n)$求。但是这里可以$O(\sqrt n)$ 求。</p>
+<p><strong>结论：</strong>对于所有的 $\lfloor \frac ni \rfloor$ 都是一段连续的块，并且块的端点可以被枚举。假设当前在 $i$ 处，那么 $\lfloor \frac ni \rfloor$的最后一个值在$\lfloor \frac{n}{\lfloor \frac ni \rfloor} \rfloor$</p>
+<p><strong>证明：</strong>设$\lfloor \frac ni \rfloor = \lfloor \frac n{i’} \rfloor=k$，并且$i’$为最大的位置。<br>设$i+d=i’$，$n=ik+p,n=(i+d)k+p’$<br>可得$p’=p-dk$，则$d_{max}= \lfloor \frac pk \rfloor$<br>那么$i’=i+d_{max}$<br>$$<br>=i+ \left \lfloor \frac pk \right \rfloor=i+\left\lfloor \frac {n\%i}{\left\lfloor \frac ni \right\rfloor} \right\rfloor=\left\lfloor i+ \frac {n\%i}{\left\lfloor \frac ni \right\rfloor} \right\rfloor=\left\lfloor \frac {i \cdot \left\lfloor \frac ni \right\rfloor}{\left\lfloor \frac ni \right\rfloor}+ \left\lfloor \frac {n\%i}{\left\lfloor \frac ni \right\rfloor} \right \rfloor \right\rfloor<br>$$</p>
+<p>$$<br>= \left\lfloor \frac {i \cdot \left\lfloor \frac ni \right\rfloor+n-\left\lfloor \frac ni \right\rfloor \cdot i}{\left\lfloor \frac ni \right\rfloor} \right\rfloor= \left\lfloor \frac {n}{\left\lfloor \frac ni \right\rfloor} \right\rfloor<br>$$</p>
+<p>得证。<br>易得$\lfloor \frac ni \rfloor$取值不超过$2\sqrt n$ 个，所以复杂度为$O(\sqrt n)$。</p>
+<p>例题：<a href="https://www.lydsy.com/JudgeOnline/problem.php?id=1968" target="_blank" rel="external">Bzoj 1968</a></p>
+<pre><code class="c++">LL l = 1, r, ans = 0ll;
+while (l &lt;= n) {
+    r = (n / (n / l));
+    ans += (r - l + 1ll) * (n / l);
+    l = r + 1ll;
+}
+</code></pre>
+<a id="more"></a>
+<p><a href="https://www.lydsy.com/JudgeOnline/problem.php?id=1257" target="_blank" rel="external">Bzoj 1257</a></p>
+<blockquote>
+<p>给出 $n, k$，求$\sum_{i=1}^n k \mod i$</p>
+</blockquote>
+<p>$k \mod i= k -i \cdot \lfloor \frac ki \rfloor$，则$\sum_{i=1}^n k \mod i= \sum_{i=1}^n k -i \cdot \lfloor \frac ki \rfloor=nk-\sum^{n}_{i=1} i \cdot \lfloor \frac ki \rfloor$</p>
+<p>发现右边是整除分块的形式，所以加一个等差数列求和公式计算即可。注意此题要判断一下$n,k$的大小。复杂度$O(\sqrt n)$</p>
+<pre><code class="c++">LL ans = 0ll, l = 1, r;
+if (n &gt; k) ans += (n - k) * k, n = k;
+ans += n * k;
+while (l &lt;= n) {
+    r = min(n, (k / (k / l)));
+    ans -= (l + r) * (r - l + 1ll) / 2ll * (k / l);
+    l = r + 1ll;
+}
+</code></pre>
+<p>此题有<a href="https://www.luogu.org/problemnew/show/T48568" target="_blank" rel="external">升级版</a>,<a href="LuoguNOIP2018">Blog</a>，$T(T \leq 10^6)$组询问$n(n \leq 10^6)$。此时用整除分块会炸。考虑$i \cdot \lfloor \frac ki \rfloor$的意义就是因数和。所以线性筛因数和即可。预处理前缀和后$O(1)$ 处理询问。</p>
+<h2 id="线性筛积性函数"><a href="#线性筛积性函数" class="headerlink" title="线性筛积性函数"></a>线性筛积性函数</h2><p><strong>线性筛积性函数考虑两个</strong><br>第一个是$f(p), p$为质数是的取值怎么$O(1)$算<br>第二个是$f(p^x), p$为质数是的取值怎么$O(1)$算，也就是说我们需要从$f(p^x)$转到$f(p^{x+1})$怎么求</p>
+<p>第一个：在某数为质数时需要$O(1)$算出函数值<br>第二个：线性筛是用最小质因数去筛数，所以对于被筛的数在$p|i$时只需要考虑$f(p^x)$转到$f(p^{x+1})$怎么求<br>而$gcd(i,p)=1$时利用积性函数性质进行求解即可。</p>
+<h2 id="莫比乌斯函数"><a href="#莫比乌斯函数" class="headerlink" title="莫比乌斯函数"></a>莫比乌斯函数</h2><p>若 $i=p_1^{a_1}p_2^{a_2}\cdots p_k^{a_k}$，那么有莫比乌斯函数</p>
+<p>$$<br>\mu(i)=<br>\begin{cases}<br>1&amp;,i=1 \\<br>(-1)^k&amp;,\forall a_k=1 \\<br>0&amp;,\exists a_k\gt1<br>\end{cases}<br>$$</p>
+<h3 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h3><p><strong>1、莫比乌斯函数是积性函数</strong></p>
+<p>$μ(a)μ(b)=μ(ab),a⊥b$</p>
+<p>运用此性质可以线性筛莫比乌斯函数。</p>
+<p><strong>2</strong></p>
+<p>$$<br>\sum_{d\mid n}\mu(d) = [n = 1]​<br>$$</p>
+<p><strong>证明：</strong>(二项式定理)</p>
+<p>设$n$有$k$种因子。则</p>
+<p>$$<br>\sum_{d\mid n}\mu(d)=\sum_{i=0}^kC^i_k(-1)^i1^{k-r}=[n=1]<br>$$</p>
+<h3 id="线性筛莫比乌斯函数"><a href="#线性筛莫比乌斯函数" class="headerlink" title="线性筛莫比乌斯函数"></a>线性筛莫比乌斯函数</h3><p>时间复杂度 $ O(n) $。<br>有更优秀的杜教筛。</p>
+<pre><code class="c++">mu[1] = 1, vis[1] = 1; // mu[1] = 1
+for (int i = 2; i &lt;= n; ++i) {
+    if (!vis[i]) pri[++tot] = i, mu[i] = -1; // 奇数个 mu[i] = -1
+    for (int j = 1; j &lt;= tot &amp;&amp; (LL)i * (LL)pri[j] &lt;= (LL)n; ++j) {
+        vis[i * pri[j]] = 1;
+        if (i % pri[j] == 0) {
+          mu[i * pri[j]] = 0;  // 一个质因子多个 mu[i] = 0
+          break;
+        } else mu[i * pri[j]] = -mu[i]; // 积性函数
+    }
+}
+</code></pre>
+<h2 id="莫比乌斯反演"><a href="#莫比乌斯反演" class="headerlink" title="莫比乌斯反演"></a>莫比乌斯反演</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>$g(n)$和$f(n)$是定义在非负整数集合上的两个函数</p>
+<p>1、当$$g(n)=\sum_{d|n}f(d)$$</p>
+<p>那么有莫比乌斯反演</p>
+<p>$$<br>f(n)=\sum_{d|n}\mu(d)g(\frac{n}{d})<br>$$</p>
+<p>2、当$g(i)=\sum^{\frac ni}_{d=1}f(d \cdot i)$</p>
+<p>那么有莫比乌斯反演</p>
+<p>$$<br>f(i)=\sum_{d=1}^{\frac ni}g(d \cdot i)\mu(d)<br>$$</p>
+<h3 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h3><p>$$<br>\sum_{d|n}\mu(d)g(\frac{n}{d})=\sum_{d|n}\mu(d)\sum_{i|\frac{n}{d}}f(i)=\sum_{i|n}f(i)\sum_{d|\frac{n}{i}}\mu(d)=f(n)<br>$$</p>
+<p>证明都是用将 $\mu(k)$ 提后然后根据<strong>性质1</strong>判断。</p>
+<h3 id="变形"><a href="#变形" class="headerlink" title="变形"></a>变形</h3><h4 id="欧拉函数变形"><a href="#欧拉函数变形" class="headerlink" title="欧拉函数变形"></a>欧拉函数变形</h4><p>$$<br>\varphi(n)=\sum_{i=1}^n[\gcd(i,n)=1]=\sum_{i=1}^n\sum_{k\mid i,k\mid n}\mu(k)=\sum_{k\mid n}\mu(k)\lfloor\frac nk\rfloor<br>$$</p>
+<h3 id="运用"><a href="#运用" class="headerlink" title="运用"></a>运用</h3><h4 id="求-gcd-k-的个数"><a href="#求-gcd-k-的个数" class="headerlink" title="求 $\gcd = k$ 的个数"></a>求 $\gcd = k$ 的个数</h4><p>例题：<a href="/bzoj2301">Bzoj 2301</a><br>题意：给定$a, b, c, d, k$, 求<br>$$<br>\sum_{i=a}^{b} \sum_{j=c}^{d} [\gcd(i,j)=k]<br>$$</p>
+<p>(下面默认$n \leq m$, 不满足则交换)<br>解：<br>我们可以将答案分成几个部分求解，然后$ans=f(b,d)-f(a-1,d)-f(b,c-1)+f(a-1,c-1)$<br>依题意设出$f(k)$为$gcd(i,j)=k$的个数$(1 \leq i \leq n, 1 \leq j \leq n)$<br>但是这个并不好求，看见两个求和符号，我们可以想到用莫比乌斯反演来求解。<br>显然用变形后的两个式子，我们就可以设$g(k)$为$k|gcd(i,j)$的个数$(1 \leq i \leq n, 1 \leq j \leq n)$<br>$g(k)$非常好算，$g(k)=\lfloor \frac n{k} \rfloor \lfloor \frac m{k} \rfloor$<br>而显然$g(k)=\sum_{d=1}^{\lfloor \frac nk \rfloor} f(ki)$<br>那么可以莫比乌斯反演<br>$$<br>f(k)=\sum_{d=1}^{\lfloor \frac nk \rfloor} \mu(d) \lfloor \frac n{kd} \rfloor \lfloor \frac m{kd} \rfloor<br>$$<br>换元$\lfloor \frac nk \rfloor$，整除分块即可。</p>
+<p>注意有$n,m$的整除分块是取两者最小值，复杂度也是有保证的。</p>
+<h4 id="求-gcd-i-j-的和"><a href="#求-gcd-i-j-的和" class="headerlink" title="求 $\gcd(i,j)$ 的和"></a>求 $\gcd(i,j)$ 的和</h4><p>例题：<a href="/Bzoj2005">Bzoj 2005</a><br>题意：<br>给定$n,m$，求<br>$$<br>\sum_{i=1}^n\sum_{j=1}^m \gcd(i,j)<br>$$</p>
+<p>按照套路反演以后得到</p>
+<p>$$<br>\sum_{d=1}^n d \sum_{i=1}^{\lfloor \frac nd \rfloor} \mu(i) \lfloor \frac n{di} \rfloor  \lfloor \frac m{di}\rfloor<br>$$</p>
+<p>然后我们设$T=di​$，则</p>
+<p>$$<br>\sum_{T=1}^n \lfloor \frac nT \rfloor \lfloor \frac mT \rfloor \sum_{d|T} \mu(d)  \lfloor \frac Tk \rfloor<br>$$</p>
+<p>设$h(T)=\sum_{d|T} \mu(d)  \lfloor \frac Tk \rfloor$，则可以线性筛。</p>
+<p>也可以发现这就是欧拉函数，直接筛欧拉函数即可。</p>
+<h4 id="求-gcd-i-j-k-的和"><a href="#求-gcd-i-j-k-的和" class="headerlink" title="求 $\gcd(i,j)^k$ 的和"></a>求 $\gcd(i,j)^k$ 的和</h4><p>例题：<a href="/bzoj4407">BZOJ 4407</a><br>题意：<br>给定$n,m,k$，求<br>$$<br>\sum_{i=1}^n\sum_{j=1}^m \gcd(i,j)^k \mod (10^9+7)<br>$$</p>
+<p>按照套路反演以后得到</p>
+<p>$$<br>\sum_{d=1}^n d^k \sum_{i=1}^{\lfloor \frac nd \rfloor} \mu(i) \lfloor \frac n{di} \rfloor  \lfloor \frac m{di}\rfloor<br>$$</p>
+<p>此时我们发现可以分块套分块达到复杂度$O(n)$单次询问。<br>但是还是不够，那么<strong>继续变形</strong></p>
+<p>设$T=di$，则</p>
+<p>$$<br>\sum_{T=1}^n \lfloor \frac nT \rfloor \lfloor \frac mT \rfloor \sum_{d|T} d^k \mu(\frac Td)<br>$$</p>
+<p>设$f(T)=\sum_{d|T}d^k \mu(\frac Td)$，发现$d^k$和$\mu(k)$都是积性函数，所以乘积也是积性函数，所以我们可以线性筛$O(n)$算这个积性函数值。</p>
+<p>如何线性筛？<br><strong>线性筛积性函数考虑两个</strong><br>第一个是$f(p), p$为质数时的取值怎么$O(1)$算<br>第二个是$f(p^x), p$为质数时的取值怎么$O(1)$算，也就是说我们需要从$f(p^x)$转到$f(p^{x+1})$怎么求</p>
+<p>考虑将$T$质因数分解，那么对于每个$p_i$</p>
+<p>$$<br>f(p_i^{x_i})=\sum_{d|p_i^{x_i}}d^k\mu(\frac{p_i^{x_i}}d)<br>$$</p>
+<p>因为有$\mu$的存在，只需要考虑$d=p_i^{x_i}$和$d=p_i^{x_i-1}$的情况，则原式化为</p>
+<p>$$<br>f(p_i^{x_i})=\mu(p_i) \cdot p_i^{k(x_i-1)} + \mu(1) \cdot p_i^{x_ik}<br>$$</p>
+<p>即</p>
+<p>$$<br>f(p_i^{x_i}) = p_i^{x_ik} - p_i^{k(x_i-1)}<br>$$</p>
+<p>$$<br>f(p_i^{x_i}) = p_i^{k(x_i-1)}(p_i^k-1)<br>$$</p>
+<p>这个式子可以方便解决$f(p^x), p$为质数时的取值</p>
+<p>对于第一个，$f(p)=\mu(1) \cdot p^k + \mu(p) \cdot 1^k=p^k-1$</p>
+<p>那么这样就可以线筛了。</p>
+<h4 id="求-operatorname-lcm-i-j-的和"><a href="#求-operatorname-lcm-i-j-的和" class="headerlink" title="求 $\operatorname{lcm}(i,j)$ 的和"></a>求 $\operatorname{lcm}(i,j)$ 的和</h4><p>例题：<a href="/bzoj2154">BZOJ 2154</a><br>题意：给定$n, m$，求<br>$$<br>\sum_{i=1}^n \sum_{j=1}^m \operatorname{lcm}(i, j)<br>$$</p>
+<p>化为$\gcd$式子<br>$$<br>\sum_{d=1}^n d \sum_{i=1}^{n}\sum_{j=1}^{m}\frac{ij}{\gcd(i,j)} \\<br>\sum_{d=1}^n d \sum_{i=1}^{\lfloor \frac nd \rfloor}\sum_{j=1}^{\lfloor \frac md \rfloor}ij \cdot [\gcd(i,j)=1]<br>$$<br>设<br>$$<br>f(n,m)=\sum_{i=1}^n \sum_{j=1}^m ij \cdot [\gcd(i,j)=1] \\<br>=\sum_{d=1}^n \sum_{d|i} \sum_{d|j} \mu(d) \cdot d^2 \sum_{i=1}^{\lfloor \frac nd \rfloor}\sum_{j=1}^{\lfloor \frac md \rfloor}ij<br>$$<br>设 (两个等差数列相乘)<br>$$<br>g(n,m)=\sum_{i=1}^n \sum_{j=1}^m ij =\frac{n(n+1)}{2} \times \frac{m(m+1)}{2}<br>$$<br>则<br>$$<br>f(n,m)=\sum_{d=1}^n \mu(d) \cdot d^2 \cdot g(\lfloor \frac nd \rfloor, \lfloor \frac md \rfloor)<br>$$<br>即原式为<br>$$<br>\sum_{d=1}^m d \cdot f(\lfloor \frac nd \rfloor, \lfloor \frac md \rfloor)<br>$$</p>
+<p>计算$f(n,m)$时整除分块，计算答案时整除分块，时间复杂度$O(n+m)$</p>
+<h4 id="求-f-gcd-i-j-的和"><a href="#求-f-gcd-i-j-的和" class="headerlink" title="求$f(gcd(i,j))$的和"></a>求$f(gcd(i,j))$的和</h4><p>例题：<a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3529" target="_blank" rel="external">BZOJ 3529</a><br>题意：给定多组$n,m,a$，设$d_1(n)$为$n$约数和，求<br>$$<br>\sum_{i=1}^n \sum_{j=1}^m d_1(\gcd(i, j))<br>$$<br>并且满足$d_1(\gcd(i, j)) \leq a$</p>
+<p>不考虑$a$的限制，枚举约数<br>$$<br>\sum_{d=1}^n \sum_{i=1}^n \sum_{j=1}^m d_1(d)[gcd(i,j)=d])<br>$$<br>发现$d_1(d)$与$i,j$无关，移到前面<br>$$<br>\sum_{d=1}^n d_1(d) \sum_{i=1}^n \sum_{j=1}^m [gcd(i,j)=d])<br>$$<br>将后面用反演套路化简，得<br>$$<br>\sum_{d=1}^n d_1(d) \sum_{k=1}^{\lfloor \frac nd \rfloor} \mu(k) \lfloor \frac n{kd} \rfloor \lfloor \frac m{kd} \rfloor<br>$$<br>设$T=kd$，则<br>$$<br>\sum_{T=1}^n \lfloor \frac nT \rfloor \lfloor \frac mT \rfloor \sum_{d|T}d_1(d) \mu(\frac Td)<br>$$<br>如果没有$a$的限制，则线性筛后面的函数即可。<br>考虑$a$的限制。<br>只有$d_1(x) \leq a$的才会有贡献。<br>所以将<strong>$d_1(x)$从小到大排序</strong>，将询问离线后按$a$<strong>从小到大排序</strong><br>每次按照$a$的单增补齐到$a$，补齐即枚举$x$的倍数进行增加。<br>维护一个单调修改区间查值的数据结构，用树状数组维护之。<br>时间复杂度：$O(n\log ^2 n + q \sqrt n \log n)$</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>莫比乌斯反演一般是<br>1、<strong>两个求和符号</strong><br>2、用反演公式设出与所求的那个函数符合的函数，然后<strong>导出基本式子</strong><br>3、用技巧(换元、内层外移、观察、莫比乌斯函数容斥性等)来<strong>化简式子</strong><br>4、最后的答案<strong>整除分块</strong>，必要时将与外层枚举变量无关的式子<strong>证明是积性函数</strong>来<strong>线性筛</strong>，<strong>无法证明则打表验证，</strong>重点关注<strong>质数，质数的幂</strong>的值</p>
+<p>莫比乌斯反演的套路<br>1、<strong>换元</strong>，比如设$T=kd$<br>2、<strong>内层外移</strong> (换元后、枚举约数$\Leftrightarrow$直接枚举)<br>3、设<strong>新函数</strong>线性筛/反演/处理：比如设$h(T)=\sum_{d|T} \mu(d)  \lfloor \frac nk \rfloor$<br>4、<strong>观察</strong>法：一般是观察$\mu$的取值造成的影响<br>5、化布尔式为$\mu$式子 (例子：$[n=1] \Leftrightarrow \sum_{d|n} \mu(d)$)<br>6、构造$[\gcd(i,j)=k]$反演</p>
+<h2 id="Dirichlet-卷积"><a href="#Dirichlet-卷积" class="headerlink" title="Dirichlet 卷积"></a>Dirichlet 卷积</h2><h3 id="常见的完全积性函数"><a href="#常见的完全积性函数" class="headerlink" title="常见的完全积性函数"></a>常见的完全积性函数</h3><p>1、$\epsilon(x)$：Dirichlet卷积的乘法单位元，完全积性。$\epsilon(x) = [x = 1]$<br>2、$I(n)$：恒等函数，完全积性。$I(n)=1$<br>3、$id(n)$：单位函数，完全积性。$id(n)=n$<br>4、$id^k(n)$：幂函数，完全积性。$id^k(n)=n^k$</p>
+<h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><p>数论函数$f$和$g$的<strong>Dirichlet卷积</strong>定义为<br>$$<br>(f∗g)(n)=\sum_{d|n}f(d) g(\frac nd)<br>$$</p>
+<p>满足<strong>交换律、结合律、分配律</strong>，证明此处略去。</p>
+<h3 id="性质-1"><a href="#性质-1" class="headerlink" title="性质"></a>性质</h3><p>1、如果 $f$ 和 $g$ 均为<strong>积性函数</strong>，那么 $f∗g$ 一定也为<strong>积性函数</strong>。</p>
+<p>2、任何数论函数$f$卷上$I$代表$\sum\limits_{d|n} f(d)$，卷上$id$代表$\sum\limits_{d|n} f(d) \cdot \frac di $，$id^k$类似</p>
+<p>3、任何数论函数$f$卷上$\epsilon$还是原函数$f$，所以就验证了$\epsilon$是单位元。</p>
+<p>4、$\mu * I = \epsilon$</p>
+<blockquote>
+<p>根据$\sum \limits_{d|n} {\mu(d)} = [n =1]$即可证明。</p>
+</blockquote>
+<p>5、$\varphi * I = id$</p>
+<blockquote>
+<p>根据$\sum \limits_{d | n} {\varphi(d) = n}$即可证明。</p>
+</blockquote>
+<p>6、$\varphi = id * \mu$    <strong>($\mu$与$\varphi$关系)</strong></p>
+<blockquote>
+<p>由$\varphi * I = id$，两边卷$\mu$<br>$$\varphi * I * \mu = id * \mu$$<br>则<br>$$\varphi = id * \mu$$</p>
+</blockquote>
+<p>7、$\frac{\varphi(n)}{n} = \sum \limits_{d | n} {\frac{\mu(d)}{d}}$   <strong>($\mu$与$\varphi$关系)</strong></p>
+<blockquote>
+<p>由$\varphi = id * \mu$<br>$$\varphi(n) = \sum \limits_{d | n} {\mu(d) \times \frac{n}{d}}$$<br>将两边同时除以 $n$<br>$$\frac{\varphi(n)}{n} = \sum \limits_{d | n} {\frac{\mu(d)}{d}}$$</p>
+</blockquote>
+<h3 id="证明莫比乌斯反演"><a href="#证明莫比乌斯反演" class="headerlink" title="证明莫比乌斯反演"></a>证明莫比乌斯反演</h3><p>根据定义<br>$$<br>f = g * I<br>$$<br>两边卷上$\mu$<br>$$<br>f * \mu = g * I * \mu<br>$$<br>由$\mu * I = \epsilon$<br>$$<br>f * \mu = g * \epsilon \\<br>g = f * \mu<br>$$<br>得证。</p>
+<h2 id="杜教筛"><a href="#杜教筛" class="headerlink" title="杜教筛"></a>杜教筛</h2><p>模板题：<a href="https://www.luogu.org/problemnew/show/P4213" target="_blank" rel="external">Bzoj 3944 杜教筛Sum</a><br>给定一个正整数$n$，求<br>$$<br>\sum_{i=1}^n \varphi(i) \\<br>\sum_{i=1}^n \mu(i)<br>$$</p>
+<p>设$f$是我们要求前缀和的积性函数，设$S(n)=\sum_{i=1}^n$<br>找一个$g$卷上$f$<br>$$<br>\sum_{i=1}^n (f * g)(n)<br>$$<br>Dirichlet 卷积定义转化<br>$$<br>\sum_{i=1}^n \sum_{d|i} f(d)g(\frac id)<br>$$<br>先枚举$d$<br>$$<br>\sum_{d=1}^n g(d) \sum_{i=1}^{\lfloor \frac nd \rfloor} f(i)<br>$$<br>用$S$改写<br>$$<br>\sum_{d=1}^n g(d)S(\lfloor \frac nd \rfloor)<br>$$<br>考虑 (两个前缀和相减)<br>$$<br>g(1)S(n)=\sum_{i=1}^n(f * g)(n) - \sum_{i=2}^n g(i)S(\lfloor \frac ni \rfloor)<br>$$<br>那么找到一个合适的$g$，能快速求出$f * g$的前缀和，则就能递归+整除分块快速求出$f$的前缀和。</p>
+<p>这个算法复杂度$O(n^{\frac 34})$<br>预处理出前$m=n^{\frac 23}$个前缀和，可以使复杂度变为$O(n^{\frac 23})$<br>(这个也不是限定死的，可以尽量往大开)</p>
+<p>1、求$\sum\limits_{i=1}^n \varphi(i)$</p>
+<p>由$\varphi * I = id$，得<br>$$<br>\sum_{i=1}^n \varphi(i)=\frac{n(n + 1)}{2}-\sum_{i=2}^n \varphi(\lfloor \frac ni \rfloor)<br>$$</p>
+<p>2、求$\sum\limits_{i=1}^n \mu(i)$</p>
+<p>由$\mu * I = \epsilon$，得<br>$$<br>\sum_{i=1}^n \mu(i)=1-\sum_{i=2}^n \mu(\lfloor \frac ni \rfloor)<br>$$</p>
+<pre><code class="c++">#include&lt;cstdio&gt; 
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;map&gt;
+#include&lt;string&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define db long double
+#define fir first
+#define sec second
+#define mp make_pair
+using namespace std;
+
+
+namespace flyinthesky {
+
+    const LL N = 5000000;
+
+    int vis[N + 5], pri[400000 + 5], tot;
+    LL mu[N + 5], phi[N + 5];
+    LL T;
+    map&lt;int, LL &gt; ansphi, ansmu;
+
+    LL getphi(int n) {
+        if (n &lt;= N) return phi[n];
+        if (ansphi[n]) return ansphi[n];
+        LL ret = 1ll * n * (n + 1ll) / 2ll;
+        int l = 2;
+        while (l &lt;= n) {
+            int r = n / (n / l);
+            ret -= 1ll * (r - l + 1ll) * getphi(n / l);
+            if (r == 2147483647) break ;
+            l = r + 1;
+        }
+        return ansphi[n] = ret;
+    }
+    LL getmu(int n) {
+        if (n &lt;= N) return mu[n];
+        if (ansmu[n]) return ansmu[n];
+        LL ret = 1ll; // ²»ÊÇ [n=1] 
+        int l = 2;
+        while (l &lt;= n) {
+            int r = n / (n / l);
+            ret -= 1ll * (r - l + 1ll) * getmu(n / l);
+            if (r == 2147483647) break ;
+            l = r + 1;
+        }
+        return ansmu[n] = ret;
+    }
+
+    void init() {
+        ms(vis, 0), ms(pri, 0), tot = 0, ms(mu, 0), ms(phi, 0);
+        mu[1] = 1, phi[1] = 1;
+        for (int i = 2; i &lt;= N; ++i) {
+            if (!vis[i]) pri[++tot] = i, mu[i] = -1, phi[i] = i - 1;
+            for (int j = 1; j &lt;= tot &amp;&amp; 1ll * pri[j] * i &lt;= 1ll * N; ++j) {
+                vis[pri[j] * i] = 1;
+                if (i % pri[j] == 0) {
+                    mu[i * pri[j]] = 0;
+                    phi[i * pri[j]] = phi[i] * pri[j];
+                    break ;
+                } else mu[i * pri[j]] = mu[i] * mu[pri[j]], phi[i * pri[j]] = phi[i] * phi[pri[j]];
+            }
+        }
+        for (int i = 2; i &lt;= N; ++i) mu[i] += mu[i - 1], phi[i] += phi[i - 1];
+    }
+    void clean() {
+    }
+    int solve() {
+
+        clean();
+        scanf(&quot;%lld&quot;, &amp;T);
+        while (T--) {
+            LL n; scanf(&quot;%lld&quot;, &amp;n);
+            printf(&quot;%lld %lld\n&quot;, getphi(n), getmu(n));
+        }
+
+        return 0;
+    }
+}
+int main() {
+    flyinthesky::init();
+    flyinthesky::solve();
+    return 0;
+}
+</code></pre>
+<h1 id="常见题型"><a href="#常见题型" class="headerlink" title="常见题型"></a>常见题型</h1>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+	<div>
+	  
+		
+<div style="text-align:center;color: #ccc;font-size:14px;">
+------ 本文结束 ------</div>
+<br/>
+<div style="border: 1px solid black">
+<div style="margin-left:10px">
+<span style="font-weight:blod">版权声明</span>
+<img src="http://blog.flyinthesky.win/pics/sources/cc.png" >
+<br/>
+<p style="font-size: 10px;line-height: 30px"><a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky's blog</a> by <a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky</a> is licensed under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" style="color:#258FC6">Creative Commons BY-NC-ND 4.0 International License</a>.<br/>
+由<a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky</a>创作并维护的<a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky's blog</a>博客采用<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" style="color:#258FC6">创作共用保留署名-非商业-禁止演绎4.0国际许可证</a>。<br/>
+本文首发于<a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky's blog</a> 博客（ <a href="http://blog.flyinthesky.win/" style="color:#258FC6">http://blog.flyinthesky.win/</a> ），版权所有，侵权必究。</p>
+</div>
+</div>
+
+	  
+	</div>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/莫比乌斯反演/" rel="tag"><i class="fa fa-tag"></i> 莫比乌斯反演</a>
+          
+            <a href="/tags/杜教筛/" rel="tag"><i class="fa fa-tag"></i> 杜教筛</a>
+          
+            <a href="/tags/Dirichlet卷积/" rel="tag"><i class="fa fa-tag"></i> Dirichlet卷积</a>
+          
+            <a href="/tags/算法笔记/" rel="tag"><i class="fa fa-tag"></i> 算法笔记</a>
+          
+            <a href="/tags/整除分块/" rel="tag"><i class="fa fa-tag"></i> 整除分块</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/sz欧拉函数/" rel="next" title="欧拉函数 学习笔记">
+                <i class="fa fa-chevron-left"></i> 欧拉函数 学习笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Codeforces1076D/" rel="prev" title="Codeforces 1076E(DFS+离线+线段树)">
+                Codeforces 1076E(DFS+离线+线段树) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm"
+                alt="FlyInTheSky" />
+            
+              <p class="site-author-name" itemprop="name">FlyInTheSky</p>
+              <p class="site-description motion-element" itemprop="description">自己选择的路，跪着也要走完。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">587</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">144</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+		
+		<font size="3"><b>一言</b></font>
+		<script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+		 <script>
+         $.get('https://v1.hitokoto.cn/?c=a', function (data) {
+            if (typeof data === 'string') data = JSON.parse(data);
+            $('#hitokoto-loader').removeClass('active');
+            $('#hitokoto-content').css('display', '').text(data.hitokoto);
+            if (data.from) {
+              $('#hitokoto-from').css('display', '').text('——' + data.from);
+            }
+          });
+          
+          </script>
+          <div style="font-size: 1em; line-height: 1.5em; display: none; " id="hitokoto-content"></div>
+          <div style="text-align: right; margin-top: 15px; font-size: 0.9em; color: #666; display: none; " id="hitokoto-from"></div>
+
+		
+		<!--<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="220" height="320" src="http://www.missevan.com/albumiframe/379343?autoplay=false&playlist=true"></iframe>-->
+		
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#模板及讲解"><span class="nav-number">1.</span> <span class="nav-text">模板及讲解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#整数分块"><span class="nav-number">1.1.</span> <span class="nav-text">整数分块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线性筛积性函数"><span class="nav-number">1.2.</span> <span class="nav-text">线性筛积性函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#莫比乌斯函数"><span class="nav-number">1.3.</span> <span class="nav-text">莫比乌斯函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#性质"><span class="nav-number">1.3.1.</span> <span class="nav-text">性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线性筛莫比乌斯函数"><span class="nav-number">1.3.2.</span> <span class="nav-text">线性筛莫比乌斯函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#莫比乌斯反演"><span class="nav-number">1.4.</span> <span class="nav-text">莫比乌斯反演</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义"><span class="nav-number">1.4.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#证明"><span class="nav-number">1.4.2.</span> <span class="nav-text">证明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变形"><span class="nav-number">1.4.3.</span> <span class="nav-text">变形</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#欧拉函数变形"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">欧拉函数变形</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运用"><span class="nav-number">1.4.4.</span> <span class="nav-text">运用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#求-gcd-k-的个数"><span class="nav-number">1.4.4.1.</span> <span class="nav-text">求 $\gcd = k$ 的个数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#求-gcd-i-j-的和"><span class="nav-number">1.4.4.2.</span> <span class="nav-text">求 $\gcd(i,j)$ 的和</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#求-gcd-i-j-k-的和"><span class="nav-number">1.4.4.3.</span> <span class="nav-text">求 $\gcd(i,j)^k$ 的和</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#求-operatorname-lcm-i-j-的和"><span class="nav-number">1.4.4.4.</span> <span class="nav-text">求 $\operatorname{lcm}(i,j)$ 的和</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#求-f-gcd-i-j-的和"><span class="nav-number">1.4.4.5.</span> <span class="nav-text">求$f(gcd(i,j))$的和</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.4.5.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dirichlet-卷积"><span class="nav-number">1.5.</span> <span class="nav-text">Dirichlet 卷积</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见的完全积性函数"><span class="nav-number">1.5.1.</span> <span class="nav-text">常见的完全积性函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义-1"><span class="nav-number">1.5.2.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#性质-1"><span class="nav-number">1.5.3.</span> <span class="nav-text">性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#证明莫比乌斯反演"><span class="nav-number">1.5.4.</span> <span class="nav-text">证明莫比乌斯反演</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#杜教筛"><span class="nav-number">1.6.</span> <span class="nav-text">杜教筛</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常见题型"><span class="nav-number">2.</span> <span class="nav-text">常见题型</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FlyInTheSky</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.0.3</div>
+
+
+
+  <div class="footer-custom">Hosted by <a target="_blank" href="https://pages.coding.me/">Coding Pages</a></div>
+
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.0.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.0.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.3"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: true,
+        appId: 'HbPrhSjQ6NCUr3zYqcbO4iKU-MdYXbMMI',
+        appKey: 'untdESV1xpzTGEu6IH2lwKOb',
+        placeholder: '写下您dalao对本蒟蒻博文的宝贵评论~(￣▽￣)~* ',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("Ex3VDezHHaHR2GEGMlazQCfC-gzGzoHsz", "u9iJTthJj7R0ieApCMNvyAjO");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  <script src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+    <!--<script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script> --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"messageStyle": "none","tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> 
+
+<script src="https://www.flyinthesky.win/highlight.min.js"></script>
+<script >hljs.initHighlightingOnLoad();</script>
+
+<!-- 代码块复制功能 -->
+<script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+<script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+
+
+</body>
+</html>

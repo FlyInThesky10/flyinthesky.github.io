@@ -1,0 +1,2447 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico?v=6.0.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=6.0.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico?v=6.0.3">
+
+
+  <link rel="mask-icon" href="/favicon.ico?v=6.0.3" color="#222">
+
+
+  <link rel="manifest" href="/favicon.ico">
+
+
+  <meta name="msapplication-config" content="/favicon.ico" />
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.0.3',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":true,"scrollpercent":false,"onmobile":true},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'T4TYK1DMV0',
+      apiKey: '8ae84ecb094e73f826b093645f9d90bc',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  
+  <meta name="keywords" content="DP,状压DP,区间DP,博弈论," />
+
+
+<meta name="description" content="第1题 Luogu P2734 游戏 A GameLuogu P2734 游戏 A Game题意：有一个序列，有两个玩家，每个玩家用最优策略在两端拿数，求先手拿到数字和的最大值。解：由于两个玩家都采取最优策略，我们设$dp(i,j)$为区间$[i,j]$先手能得到的最优解。然后方程为$dp(i,j)=max(sum(i,j) - dp(i + 1, j), sum(i,j)-dp(i,j-1))$">
+<meta name="keywords" content="DP,状压DP,区间DP,博弈论">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DP题训练">
+<meta property="og:url" content="http://blog.flyinthesky.win/动归题专练/index.html">
+<meta property="og:site_name" content="FlyInTheSky&#39;s blog">
+<meta property="og:description" content="第1题 Luogu P2734 游戏 A GameLuogu P2734 游戏 A Game题意：有一个序列，有两个玩家，每个玩家用最优策略在两端拿数，求先手拿到数字和的最大值。解：由于两个玩家都采取最优策略，我们设$dp(i,j)$为区间$[i,j]$先手能得到的最优解。然后方程为$dp(i,j)=max(sum(i,j) - dp(i + 1, j), sum(i,j)-dp(i,j-1))$">
+<meta property="og:updated_time" content="2019-05-15T14:13:51.096Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DP题训练">
+<meta name="twitter:description" content="第1题 Luogu P2734 游戏 A GameLuogu P2734 游戏 A Game题意：有一个序列，有两个玩家，每个玩家用最优策略在两端拿数，求先手拿到数字和的最大值。解：由于两个玩家都采取最优策略，我们设$dp(i,j)$为区间$[i,j]$先手能得到的最优解。然后方程为$dp(i,j)=max(sum(i,j) - dp(i + 1, j), sum(i,j)-dp(i,j-1))$">
+
+
+
+
+
+
+  <link rel="canonical" href="http://blog.flyinthesky.win/动归题专练/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+  <title>DP题训练 | FlyInTheSky's blog</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5cb42869838f4cfeb9c9b241d7f2a21c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+  <link href="https://www.flyinthesky.win/tomorrow.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.1/google-fonts/fira-mono.css" rel="stylesheet">
+</head>
+
+
+<div id="hexo-helper-live2d">
+  <canvas id="live2dcanvas" width="300" height="600"></canvas>
+</div>
+<style>
+  #live2dcanvas{
+    position: fixed;
+    width: 300px;
+    height: 600px;
+    opacity:0.8;
+    right: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -120px;
+  }
+</style>
+<script type="text/javascript" src="/live2d/device.min.js"></script>
+<script type="text/javascript">
+const loadScript = function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};
+(function(){
+  if((typeof(device) != 'undefined') && (device.mobile())){
+    var trElement = document.getElementById('hexo-helper-live2d');
+    trElement.parentNode.removeChild(trElement);
+    return;
+  }else
+    if (typeof(device) === 'undefined') console.error('Cannot find current-device script.');
+  loadScript("/live2d/script.js", function(){loadlive2d("live2dcanvas", "/live2d/assets/wanko.model.json", 0.5);});
+})();
+</script>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+  
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">FlyInTheSky's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">OI, 梦开始的地方。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />分类</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-friends">
+          <a href="/friends/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-handshake-o"></i> <br />朋友</a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/动归题专练/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FlyInTheSky">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FlyInTheSky's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">DP题训练</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-10T22:30:00+08:00">2018-07-10</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/比赛/" itemprop="url" rel="index"><span itemprop="name">比赛</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/动归题专练/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/动归题专练/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/动归题专练/" class="leancloud_visitors" data-flag-title="DP题训练">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">+</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 s
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="第1题-Luogu-P2734-游戏-A-Game"><a href="#第1题-Luogu-P2734-游戏-A-Game" class="headerlink" title="第1题 Luogu P2734 游戏 A Game"></a>第1题 Luogu P2734 游戏 A Game</h2><p><a href="https://www.luogu.org/problemnew/show/P2734" target="_blank" rel="external">Luogu P2734 游戏 A Game</a><br>题意：有一个序列，有两个玩家，每个玩家用最优策略在两端拿数，求先手拿到数字和的最大值。<br>解：由于两个玩家都采取最优策略，我们设$dp(i,j)$为<strong>区间$[i,j]$先手能得到的最优解</strong>。然后方程为$dp(i,j)=max(sum(i,j) - dp(i + 1, j), sum(i,j)-dp(i,j-1))$。$sum$是这一段的和。原理是区间DP的原理，整个区间$[i,j]$的先手，在$(i,j],[i,j)$是后手，$dp(i + 1, j), dp(i,j-1)$是$(i,j],[i,j)$的先手最优值</p>
+<pre><code class="c++">#include&lt;cstdio&gt; 
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;cmath&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define db double
+using namespace std;
+int n, a[105], dp[105][105], sum[105][105];
+void clean() {
+    ms(dp, 0);
+}
+int solve() {
+    clean();
+    for (int i = 1; i &lt;= n; i++) scanf(&quot;%d&quot;, &amp;a[i]), dp[i][i] = a[i];
+    for (int i = 1; i &lt;= n; i++) {
+        sum[i][i] = a[i];
+        for (int j = i + 1; j &lt;= n; j++) sum[i][j] = sum[i][j - 1] + a[j];
+    }
+    for (int i = n; i; i--) {
+        for (int j = i + 1; j &lt;= n; j++) {
+            dp[i][j] = max(sum[i][j] - dp[i + 1][j], sum[i][j] - dp[i][j - 1]);
+        }
+    }
+    printf(&quot;%d %d\n&quot;, dp[1][n], sum[1][n] - dp[1][n]);
+    return 0;
+}
+int main() {
+    scanf(&quot;%d&quot;, &amp;n), solve();
+    return 0;
+}
+</code></pre>
+<a id="more"></a>
+<h2 id="第2题-Luogu-P3800-Power收集"><a href="#第2题-Luogu-P3800-Power收集" class="headerlink" title="第2题 Luogu P3800 Power收集"></a>第2题 Luogu P3800 Power收集</h2><p><a href="https://www.luogu.org/problemnew/show/P3800" target="_blank" rel="external">Luogu P3800 Power收集</a><br>题意：$N$行$M$列的格子，某些点有一些权值，每秒钟可以左右移动至多$T$个单位长度(瞬间完成)，每秒必须向下走一行(不能折返)，求一条路径使得权值和最大<br>解：朴素的DP是$O(n^3)$的，无法通过测试，我们将有权值的点按横坐标排序，然后设$dp(i)$为第$i$个权值点的最优解，那么就有 $dp(i)=dp(j)+v(i)$当且仅当$j$能移动到$i$位置，$v(i)$为$i$权值点的权值<br>然后初始化第一层的值就行</p>
+<pre><code class="c++">#include&lt;cstdio&gt; 
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define db double
+using namespace std;
+struct data {
+    int x, y, v, dp;
+    bool operator &lt; (const data &amp;b) const {
+        return x &lt; b.x;
+    }
+}v[4000 + 5];
+int n, m, k, t;
+int abss(int x) {return x &gt; 0 ? x : -x;}
+void clean() {}
+int solve() {
+    clean();
+    for (int i = 1; i &lt;= k; i++) scanf(&quot;%d%d%d&quot;, &amp;v[i].x, &amp;v[i].y, &amp;v[i].v), v[i].dp = 0;
+    sort(v + 1, v + 1 + k);
+    for (int i = 1; ; i++) if (v[i].x != v[i - 1].x &amp;&amp; i != 1) break; else v[i].dp = v[i].v;
+    for (int i = 1; i &lt;= k; i++) 
+    for (int j = 0; j &lt; i; j++) 
+    if (abss(v[i].y - v[j].y) &lt;= t * (v[i].x - v[j].x)) v[i].dp = max(v[i].dp, v[j].dp + v[i].v);
+    int ans = 0;
+    for (int i = 1; i &lt;= k; i++) ans = max(ans, v[i].dp);
+    printf(&quot;%d\n&quot;, ans);
+    return 0;
+}
+int main() {
+    scanf(&quot;%d%d%d%d&quot;, &amp;n, &amp;m, &amp;k, &amp;t), solve();
+    return 0;
+}
+</code></pre>
+<h2 id="第3题-Luogu-P2889-挤奶的时间Milking-Time"><a href="#第3题-Luogu-P2889-挤奶的时间Milking-Time" class="headerlink" title="第3题 Luogu P2889 挤奶的时间Milking Time"></a>第3题 Luogu P2889 挤奶的时间Milking Time</h2><p><a href="https://www.luogu.org/problemnew/show/P2889" target="_blank" rel="external">Luogu P2889 挤奶的时间Milking Time</a><br>题意：有$m$个区间，区间有一个权值，现在要选择一些区间使得权值和最大，选取的每两个区间之间不能覆盖且距离为$r$<br>解：区间按右端点排序，消除后效性，设$dp(i)$为$i$前$i$个区间的最优值，转移方程<br>$$dp(i)=max(dp(j)+e(i)|x_i-r \geq y_j)$$</p>
+<pre><code class="c++">#include&lt;cstdio&gt; 
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;map&gt;
+#include&lt;cmath&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define db double
+using namespace std;
+struct data {
+    int x, y, v;
+    bool operator &lt; (const data &amp;b) const {
+        return y &lt; b.y;
+    }
+}inv[1005]; 
+int n, m, r, dp[1005];
+void clean() {
+    ms(dp, 0);
+}
+int solve() {
+    clean(); 
+    for (int i = 1; i &lt;= m; i++) scanf(&quot;%d%d%d&quot;, &amp;inv[i].x, &amp;inv[i].y, &amp;inv[i].v);
+    sort(inv + 1, inv + 1 + m);
+
+    for (int i = 1; i &lt;= m; i++) dp[i] = inv[i].v;
+    for (int i = 1; i &lt;= m; i++) 
+    for (int j = 1; j &lt; i; j++) 
+    if (inv[i].x - r &gt;= inv[j].y) dp[i] = max(dp[i], dp[j] + inv[i].v);
+    else dp[i] = max(dp[i], dp[j]);
+
+    printf(&quot;%d\n&quot;, dp[m]);
+    return 0;
+}
+int main() {
+    scanf(&quot;%d%d%d&quot;, &amp;n, &amp;m, &amp;r), solve();
+    return 0;
+}
+</code></pre>
+<h2 id="第4题-Luogu-P2233-HNOI2002-公交车路线"><a href="#第4题-Luogu-P2233-HNOI2002-公交车路线" class="headerlink" title="第4题 Luogu P2233 [HNOI2002]公交车路线"></a>第4题 Luogu P2233 [HNOI2002]公交车路线</h2><p><a href="https://www.luogu.org/problemnew/show/P2233" target="_blank" rel="external">Luogu P2233 [HNOI2002]公交车路线</a></p>
+<p>题意：有一个ABCDEFGH组成的环，求A到E路程为$n$的方案数，要求到达E之前不能到达E<br>解：遇到环就拆成链，在E点切开，那么成了一条链FGHABCD，到达E点路径总数等于F点和D点的路径总数，把链节点抽象为数字点，设$dp(i,j)$为$j$路程后到$i$点的方案数，则$dp(i,j)=dp(i+1, j-1), dp(i - 1,j-1)$，初始化$dp(4, 0)$为1(从1开始标号)。</p>
+<pre><code class="c++">#include&lt;cstdio&gt; 
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;map&gt;
+#include&lt;cmath&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define db double
+using namespace std;
+const int MO = 1000;
+int n, dp[8][2];
+void clean() {}
+int solve() {
+    clean();
+    dp[4][0] = 1;
+    int pos = 0;
+    for (int i = 1; i &lt; n; i++) {
+        pos ^= 1;
+        for (int j = 1; j &lt;= 7; j++) dp[j][pos] = (dp[j - 1][pos ^ 1] + dp[j + 1][pos ^ 1]) % MO;
+    }
+    printf(&quot;%d\n&quot;, (dp[1][pos] + dp[7][pos]) % MO);
+    return 0;
+}
+int main() {
+    scanf(&quot;%d&quot;, &amp;n), solve();
+    return 0;
+}
+</code></pre>
+<h2 id="第5题-Luogu-P1373-小a和uim之大逃离"><a href="#第5题-Luogu-P1373-小a和uim之大逃离" class="headerlink" title="第5题 Luogu P1373 小a和uim之大逃离"></a>第5题 Luogu P1373 小a和uim之大逃离</h2><p><a href="https://www.luogu.org/problemnew/show/P1373" target="_blank" rel="external">Luogu P1373 小a和uim之大逃离</a><br>题意：见上。<br>解：设$dp(x,y,i,0/1)$为在$(x,y)$小a比uim多$i$毒液的方案数，转移看代码。<br>知识点：差值状态 DP ，读题要勾画重点</p>
+<pre><code class="c++">#include&lt;cstdio&gt; 
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;bitset&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define db double
+
+const int MAXN = 800 + 5, MO = 1000000007;
+
+int n, m, k, a[MAXN][MAXN], dp[MAXN][MAXN][17][2];
+
+void clean() {
+    ms(dp, 0);
+}
+int solve() {
+    clean();
+    k++;
+    for (int i = 1; i &lt;= n; i++) 
+    for (int j = 1; j &lt;= m; j++) scanf(&quot;%d&quot;, &amp;a[i][j]), dp[i][j][a[i][j] % k][0] = 1;
+
+    int ans = 0;
+    for (int x = 1; x &lt;= n; x++) {
+        for (int y = 1; y &lt;= m; y++) {
+            for (int i = 0; i &lt; k; i++) {
+                dp[x][y][i][0] = (dp[x][y][i][0] + dp[x - 1][y][((i - a[x][y]) % k + k) % k][1]) % MO;
+                dp[x][y][i][0] = (dp[x][y][i][0] + dp[x][y - 1][((i - a[x][y]) % k + k) % k][1]) % MO;
+                dp[x][y][i][1] = (dp[x][y][i][1] + dp[x - 1][y][((i + a[x][y]) % k + k) % k][0]) % MO;
+                dp[x][y][i][1] = (dp[x][y][i][1] + dp[x][y - 1][((i + a[x][y]) % k + k) % k][0]) % MO;
+                if (i == 0) ans = (ans + dp[x][y][0][1]) % MO;
+                //printf(&quot;x=%d y=%d i=%d k=0 dp=%d&quot;, x, y, i, dp[x][y][i][0]); if (i == 0) printf(&quot;&amp;&amp;&amp;\n&quot;); else printf(&quot;\n&quot;);
+                //printf(&quot;x=%d y=%d i=%d k=1 dp=%d&quot;, x, y, i, dp[x][y][i][1]); if (i == 0) printf(&quot;&amp;&amp;&amp;\n&quot;); else printf(&quot;\n&quot;);
+            }
+        }
+    }
+
+    printf(&quot;%d\n&quot;, ans);
+    return 0;
+}
+int main() {
+    scanf(&quot;%d%d%d&quot;, &amp;n, &amp;m, &amp;k), solve();
+    return 0;
+}
+</code></pre>
+<h2 id="第6题-Luogu-P1435-回文字串"><a href="#第6题-Luogu-P1435-回文字串" class="headerlink" title="第6题 Luogu P1435 回文字串"></a>第6题 Luogu P1435 回文字串</h2><p><a href="https://www.luogu.org/problemnew/show/P1435" target="_blank" rel="external">Luogu P1435 回文字串</a><br>题意：有一个串需要添加最少的字符使得它变为回文串。<br>解：<br>1、区间DP。设$dp(i,j)$为区间$[i,j]$变回文的最小值。<br>转移$dp(i,j)=min(dp(i+1,j-1)|s_i=s_j, dp(i+1,j)+1,dp(i,j - 1)+1)$，直接记忆化搜索即可。(不要忘了直接返回记忆化搜索已经算完的值)<br>2、因为回文串正读倒读一样，所以正反做公共子序列可以找出回文串部分，然后其余部分就是需要增加来对称的。<br>代码用方法1。</p>
+<pre><code class="c++">#include&lt;cstdio&gt; 
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;queue&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define db double
+
+const int MAXN = 1000 + 5, INF = 1000000000;
+
+int n, dp[MAXN][MAXN];
+char s[MAXN];
+
+int DP(int i, int j) {
+    if (dp[i][j] != INF) return dp[i][j];//别忘了这一步 
+    if (i == j) return dp[i][j] = 0;
+    if (i &gt; j) return 0;
+    int ret = INF;
+    if (s[i] == s[j]) ret = std::min(ret, DP(i + 1, j - 1));
+    ret = std::min(ret, std::min(DP(i + 1, j) + 1, DP(i, j - 1) + 1)); 
+    return dp[i][j] = ret;
+}
+void clean() {
+    for (int i = 0; i &lt;= 1001; i++)
+    for (int j = 0; j &lt;= 1001; j++) dp[i][j] = INF;
+}
+int solve() {
+    clean();
+    n = strlen(s + 1);
+    DP(1, n);
+    printf(&quot;%d\n&quot;, dp[1][n]);
+    return 0;
+}
+int main() {
+    scanf(&quot;%s&quot;, s + 1), solve();
+    return 0;
+}
+</code></pre>
+<h2 id="第7题-Luogu-P1220-关路灯"><a href="#第7题-Luogu-P1220-关路灯" class="headerlink" title="第7题 Luogu P1220 关路灯"></a>第7题 Luogu P1220 关路灯</h2><p><a href="https://www.luogu.org/problemnew/show/P1220" target="_blank" rel="external">P1220 关路灯</a><br>题意：有$n$盏路灯，老张在$m$处，求老上关完所有电灯的最小所需的功率数。<br>解：这题看似不满足后效性，但是可以当做区间DP来做。<br>知识点：如果前…的状态不好用就用区间状态。<br>代码：</p>
+<pre><code class="c++">#include&lt;cstdio&gt; 
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;set&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define db double
+
+const int INF = 1000000000;
+
+int n, c, dp[55][55][2], xi[55], pi[55];
+
+int abss(int x) {return x &gt; 0 ? x : -x;}
+
+int cal(int i, int j, int x, int y) {
+    return abss(xi[i] - xi[j]) * (pi[x] + pi[n] - pi[y - 1]);
+}
+int DP(int i, int j, int k) {
+    if (dp[i][j][k] != INF) return dp[i][j][k];
+    if (i == j &amp;&amp; i == c) return 0;
+    if (i &gt;= j) return INF;
+    if (k == 0) dp[i][j][k] = std::min(DP(i + 1, j, 0) + cal(i, i + 1, i, j + 1), DP(i + 1, j, 1) + cal(i, j, i, j + 1));
+    else dp[i][j][k] = std::min(DP(i, j - 1, 0) + cal(i, j, i - 1, j), DP(i, j - 1, 1) + cal(j - 1, j, i - 1, j));
+    return dp[i][j][k];
+}
+
+void clean() {
+    for (int i = 0; i &lt;= 51; i++)
+    for (int j = 0; j &lt;= 51; j++) dp[i][j][0] = dp[i][j][1] = INF;
+}
+int solve() {
+    clean();
+    for (int i = 1; i &lt;= n; i++) scanf(&quot;%d%d&quot;, &amp;xi[i], &amp;pi[i]), pi[i] += pi[i - 1];
+    DP(1, n, 0), DP(1, n, 1);
+    /*for (int i = 1; i &lt;= n; i++) 
+    for (int j = 1; j &lt;= n; j++) 
+    for (int k = 0; k &lt; 2; k++) printf(&quot;i=%d, j=%d, k=%d, dp=%d\n&quot;, i, j, k, dp[i][j][k]);*/
+    printf(&quot;%d\n&quot;, std::min(dp[1][n][0], dp[1][n][1]));
+    return 0;
+}
+int main() {
+    scanf(&quot;%d%d&quot;, &amp;n, &amp;c), solve();
+    return 0;
+}
+</code></pre>
+<h2 id="第8题-NOIP-2003-加分二叉树"><a href="#第8题-NOIP-2003-加分二叉树" class="headerlink" title="第8题 NOIP 2003 加分二叉树"></a>第8题 NOIP 2003 加分二叉树</h2><p><a href="https://www.luogu.org/problemnew/show/P1040" target="_blank" rel="external">NOIP 2003 加分二叉树</a><br>题意：见上。<br>解：中序遍历可以将树分开，如果其中一个点是根，那么区间左边就是他的左子树，右边就是他的右子树。所以这题就是一个 区间DP。DP时记录最终是哪个中间值使他最优，递归地分解区间输出前序遍历即可。<br>知识点：中序遍历可以将树分开，如果其中一个点是根，那么区间左边就是他的左子树，右边就是他的右子树。<br>代码：</p>
+<pre><code class="c++">#include&lt;cstdio&gt; 
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;bitset&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define db double
+
+LL n, dp[35][35], a[35], pre[35][35];
+
+LL DP(LL i, LL j) {
+    if (dp[i][j] &gt;= 0ll) return dp[i][j];
+    if (i &gt; j) return 1ll;
+    if (i == j) return pre[i][j] = i, dp[i][j] = a[i];
+    for (LL k = i; k &lt;= j; k++) 
+    if (dp[i][j] &lt; DP(i, k - 1ll) * DP(k + 1ll, j) + a[k]) dp[i][j] = DP(i, k - 1ll) * DP(k + 1ll, j) + a[k], pre[i][j] = k;
+    return dp[i][j];
+}
+
+void print(LL x, LL y) {
+    if (pre[x][y]) printf(&quot;%lld &quot;, pre[x][y]);
+    if (x &gt;= y) return ;
+    print(x, pre[x][y] - 1);
+    print(pre[x][y] + 1, y);
+}
+
+void clean() {
+    ms(dp, -1);
+} 
+int solve() {
+    clean();
+    for (LL i = 1; i &lt;= n; i++) scanf(&quot;%lld&quot;, &amp;a[i]);
+    DP(1ll, n);
+    printf(&quot;%lld\n&quot;, dp[1][n]);
+    print(1, n);
+    return 0;
+}
+int main() {
+    scanf(&quot;%lld&quot;, &amp;n), solve();
+    return 0;
+}
+</code></pre>
+<h2 id="第9题-Luogu-P1736-创意吃鱼法-amp-P1387-最大正方形"><a href="#第9题-Luogu-P1736-创意吃鱼法-amp-P1387-最大正方形" class="headerlink" title="第9题 Luogu P1736 创意吃鱼法&amp;P1387 最大正方形"></a>第9题 Luogu P1736 创意吃鱼法&amp;P1387 最大正方形</h2><p><a href="https://www.luogu.org/problemnew/show/P1040" target="_blank" rel="external">Luogu P1736 创意吃鱼法</a><br><a href="https://www.luogu.org/problemnew/show/P1387" target="_blank" rel="external">P1387 最大正方形</a><br>题意：见上。<br>解(最大正方形)：这题求一个最大的1正方形(对角线或全部)，设$dp(i,j)$为以$(i,j)$为右下顶点的最大1正方形边长，转移$dp(i,j)=min(dp(i-1,j-1), dp(i-1,j), dp(i,j-1))+1$, 并且$a(i,j)=1$。<br>创意吃鱼法这题与上面一题非常相似，只有预处理即可替换DP方程就能做出来了。</p>
+<h2 id="第10题-Bzoj-1057"><a href="#第10题-Bzoj-1057" class="headerlink" title="第10题 Bzoj 1057"></a>第10题 Bzoj 1057</h2><p><a href="/Bzoj1057">Bzoj 1057</a></p>
+<h2 id="第11题-Hdu-1024"><a href="#第11题-Hdu-1024" class="headerlink" title="第11题 Hdu 1024"></a>第11题 Hdu 1024</h2><p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1024" target="_blank" rel="external">Hdu 1024</a><br>题意：$m$子段和的最大值。<br>解：设$dp(j,i)$为分了$j$段，前$i$个数的最大值。(状态方便滚动数组)<br>那么转移$dp(j,i)=max(dp(j-1,k)|0 \leq k \leq i - 1)$<br>初始化$dp(0,0)=0, othewise=-INF$<br>求最大值时可以由上一层用数组存上一层的最大值，然后在这一层直接用。<br>知识点：用数组存上一层的最大值/最小值很好用，求 LCIS 也利用了类似的方法。</p>
+<pre><code class="c++">#include&lt;cstdio&gt;
+#include&lt;algorithm&gt;
+#include&lt;cstring&gt;
+#include&lt;limits.h&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define ULL unsigned long long
+#define db double
+
+const int MAXN = 1000000 + 5, INF = 2000000000;
+
+int n, m, a[MAXN], dp[MAXN], whw[MAXN];
+
+void clean() {
+}
+int solve() {
+    clean();
+    for (int i = 1; i &lt;= n; i++) scanf(&quot;%d&quot;, &amp;a[i]), dp[i] = -INF;
+
+    dp[0] = 0;
+    for (int i = 0; i &lt;= n; i++) {
+        whw[i] = std::max(dp[i], -INF);
+        if (i - 1 &gt;= 0) whw[i] = std::max(whw[i], whw[i - 1]);
+    }
+
+    int ans = -INF;
+    for (int j = 1; j &lt;= m; j++) {
+    //    printf(&quot;j=%d\n&quot;, j);
+        for (int i = 1; i &lt;= n; i++) {
+            dp[i] = std::max(whw[i - 1] + a[i], dp[i - 1] + a[i]);
+            //printf(&quot;i=%d, dp[i]=%d, whw[i - 1]=%d, dp[i - 1]=%d\n&quot;, i, dp[i], whw[i - 1], dp[i - 1]);
+            if (j == m) ans = std::max(ans, dp[i]);
+        }
+        dp[0] = -INF;
+        for (int i = 0; i &lt;= n; i++) {
+            whw[i] = std::max(dp[i], -INF);
+            if (i - 1 &gt;= 0) whw[i] = std::max(whw[i], whw[i - 1]);
+        }
+
+    }
+    printf(&quot;%d\n&quot;, ans);
+    return 0;
+}
+int main() {
+    while (scanf(&quot;%d%d&quot;, &amp;m, &amp;n) == 2) solve();
+    return 0;
+}
+</code></pre>
+<h2 id="第12题-Hdu-1069"><a href="#第12题-Hdu-1069" class="headerlink" title="第12题 Hdu 1069"></a>第12题 Hdu 1069</h2><p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1069" target="_blank" rel="external">Hdu 1069</a><br>题意：给出一些长方体，然后让你把他堆成塔，要求下面的塔的要比上面的塔大（长和宽），而且每一种长方体的数量都是无限的。<br>解：发现本题就是一个二维上升序列。我们对于每个长方形设 DP 状态。设$dp(i)$为以$i$长方形为顶的最高值。但是长方体的数量都是无限怎么办？我们发现长方形其实是有限的，最多选取 $ 6 $ 种。其中因为长宽可互换，只用存 $ 3 $ 种即可，在转移时讨论一下即可。转移就：</p>
+<pre><code class="c++">if (blk[i].mj &lt; blk[j].mj &amp;&amp; ((blk[i].x &lt; blk[j].x &amp;&amp; blk[i].y &lt; blk[j].y) || (blk[i].x &lt; blk[j].y &amp;&amp; blk[i].y &lt; blk[j].x))) dp[i] = max(dp[i], dp[j] + blk[i].z);
+</code></pre>
+<p>初始化所有<code>dp[i] = blk[i].z</code><br>知识点：对于无穷，我们尝试化成有限。(复杂化简单)<br>序列上升问题与 DP 有关。<br>排序后 DP。</p>
+<pre><code class="c++">#include&lt;cstdio&gt;
+#include&lt;algorithm&gt;
+#include&lt;cstring&gt;
+#include&lt;limits.h&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define ULL unsigned long long
+#define db double
+
+const int MAXN = 35;
+
+struct data {
+    int x, y, z, mj;
+    bool operator &lt; (const data &amp;b) const {return mj &gt; b.mj;}
+}blk[MAXN * 3];
+
+int kase = 0, n, cnt, dp[MAXN * 3];
+
+inline void ins(int a, int b, int c) {blk[++cnt] = (data){a, b, c, a * b};}
+
+void clean() {
+    ms(dp, 0), cnt = 0;
+}
+int solve() {
+    clean();
+    for (int a, b, c, i = 1; i &lt;= n; i++) scanf(&quot;%d%d%d&quot;, &amp;a, &amp;b, &amp;c), ins(b, c, a), ins(a, c, b), ins(a, b, c);
+    std::sort(blk + 1, blk + 1 + 3 * n);
+    for (int i = 1; i &lt;= 3 * n; i++) dp[i] = blk[i].z;
+    for (int i = 2; i &lt;= 3 * n; i++) 
+    for (int j = 1; j &lt; i; j++) if (blk[i].mj &lt; blk[j].mj &amp;&amp; ((blk[i].x &lt; blk[j].x &amp;&amp; blk[i].y &lt; blk[j].y) || (blk[i].x &lt; blk[j].y &amp;&amp; blk[i].y &lt; blk[j].x))) dp[i] = std::max(dp[i], dp[j] + blk[i].z);
+    int ans = 0;
+    for (int i = 1; i &lt;= 3 * n; i++) ans = std::max(dp[i], ans);
+    printf(&quot;Case %d: maximum height = %d\n&quot;, kase, ans);
+    return 0;
+}
+int main() {
+    while (scanf(&quot;%d&quot;, &amp;n) == 1 &amp;&amp; n) kase++, solve();
+    return 0;
+}
+</code></pre>
+<h2 id="第13题-Hdu-1074"><a href="#第13题-Hdu-1074" class="headerlink" title="第13题 Hdu 1074"></a>第13题 Hdu 1074</h2><p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1074" target="_blank" rel="external">Hdu 1074</a><br>题意：主人公有$n$门功课要做，每门功课做完需要一定的时间，而且每门功课有一个最后期限，如果该门功课延后一天交就得扣一分，而且每做一门功课主人公就一定把它做完为止，不会中途停下来再去做其他的。问怎样安排可使扣的分最少，如果有多组解，输出字典序最小的。<br>解：贪心是错的。本题数据范围小，并且是最优化问题，可以考虑状压。状压维护当前已经完成的功课。然后根据状态转移来更新答案。具体可以看代码注释。<br>知识点：<br>状压条件<br>1、数据范围小<br>2、原题是最优化/计数问题<br>3、顺序相对给出序列一般不单调/或者是维护集合<br>代码：</p>
+<pre><code class="c++">#include&lt;cstdio&gt;
+#include&lt;algorithm&gt;
+#include&lt;cstring&gt;
+#include&lt;limits.h&gt;
+#include&lt;stack&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define ULL unsigned long long
+#define db double
+
+int n, dl[20], len[20];
+char s[20][105];
+std::stack&lt;int &gt; stk;
+
+int dp[(1 &lt;&lt; 20) + 5], dp_tm[(1 &lt;&lt; 20) + 5], dp_lst[(1 &lt;&lt; 20) + 5], dp_sub[(1 &lt;&lt; 20) + 5];
+//dp 是最优的扣分值， dp_tm 是在最优的扣分值下的用掉的时间，dp_lst 表示当前状态由哪个状态转移过来，dp_sub 表示当前状态是做了某门科目后得到的状态
+void clean() {
+}
+int solve() {
+    clean();
+    for (int i = 1; i &lt;= n; i++) scanf(&quot;%s%d%d&quot;, s[i] + 1, &amp;dl[i], &amp;len[i]);
+
+    ms(dp, 67), dp[0] = 0, dp_tm[0] = dp_lst[0] = dp_sub[0] = 0;
+
+    for (int st = 1; st &lt; (1 &lt;&lt; n); st++) {
+        for (int i = n; i; i--) {
+            if ((1 &lt;&lt; (i - 1)) &amp; st) {
+                int nst = st - (1 &lt;&lt; (i - 1));
+                int val = std::max(0, dp_tm[nst] + len[i] - dl[i]);//会扣的分
+                if (dp[nst] + val &lt; dp[st]) {
+                    dp[st] = dp[nst] + val;
+                    dp_lst[st] = nst, dp_sub[st] = i, dp_tm[st] = dp_tm[nst] + len[i];
+                }
+                //if (st == 5 &amp;&amp; i == 3) printf(&quot;nst=%d, dp[nst]=%d, val=%d, dp[st]=%d\n&quot;, nst, dp[nst], val, dp[st]);
+            }
+        }
+    }
+    //倒序输出
+    for (int st = (1 &lt;&lt; n) - 1; st != 0; st = dp_lst[st]) stk.push(dp_sub[st]);
+    printf(&quot;%d\n&quot;, dp[(1 &lt;&lt; n) - 1]);
+    while (!stk.empty()) printf(&quot;%s\n&quot;, s[stk.top()] + 1), stk.pop();
+    return 0;
+}
+int main() {
+    int T; scanf(&quot;%d&quot;, &amp;T);
+    while (T--) scanf(&quot;%d&quot;, &amp;n), solve();
+    return 0;
+}
+</code></pre>
+<h2 id="第14题-Luogu-P2893-USACO08FEB-修路Making-the-Grade"><a href="#第14题-Luogu-P2893-USACO08FEB-修路Making-the-Grade" class="headerlink" title="第14题 Luogu P2893 [USACO08FEB]修路Making the Grade"></a>第14题 Luogu P2893 [USACO08FEB]修路Making the Grade</h2><p><a href="https://www.luogu.org/problemnew/show/P2893" target="_blank" rel="external">Luogu P2893 修路Making the Grade</a><br>题意：农夫约翰想改造一条路，原来的路的每一段海拔是$A_i$，修理后是$B_i$，花费$|A_i – B_i|$。我们要求修好的路是单调不升或者单调不降的。求最小花费。<br>解：设$dp(i,j)$为前$i$条路符合上升并且第$i$条路海拔为$j$的最优花费<br>然后$dp(i,j)=min(dp(i-1,k)+|j-A_i| | 1 \leq k \leq j)$<br>这样是$O(n^3)$的，然后发现$dp(i-1,k)$与$j$无关所以可以在上一层预处理一下变成$O(n^2)$<br>知识点：<br>1、一道题一时调试不出来可以放一下，然后之后来调估计就马上调出来了<br>2、用数组可以求出上一层的最值优化DP<br>3、花费有时候也可以表示在状态上<br>代码：</p>
+<pre><code class="c++">#include&lt;cstdio&gt; 
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;climits&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define db double
+
+const LL MAXN = 2000 + 5;
+
+std::vector&lt;LL &gt; vec;
+LL n, whw, a[MAXN], b[MAXN], dp[MAXN][MAXN], gg[MAXN];
+
+inline LL abss(LL x) {return x &gt; 0 ? x : -x;}
+
+void clean() {
+    for (LL i = 0; i &lt;= n; i++) 
+    for (LL j = 0; j &lt;= n; j++) dp[i][j] = LONG_LONG_MAX / 2;
+    for (LL i = 0; i &lt;= n; i++) gg[i] = LONG_LONG_MAX / 2;
+}
+int solve() {
+    clean();
+    for (LL i = 1; i &lt;= n; i++) scanf(&quot;%lld&quot;, &amp;a[i]), vec.push_back(a[i]);
+    std::sort(vec.begin(), vec.end()), whw = std::unique(vec.begin(), vec.end()) - vec.begin();
+    for (LL i = 1; i &lt;= n; i++) b[i] = lower_bound(vec.begin(), vec.end(), a[i]) - vec.begin() + 1;
+    LL ans = LONG_LONG_MAX / 2;
+    dp[0][0] = 0;
+    for (LL j = 1; j &lt;= whw; j++) gg[j] = 0;
+    for (LL i = 1; i &lt;= n; i++) {
+        for (LL j = 1; j &lt;= whw; j++) {
+            dp[i][j] = gg[j] + abss(vec[j - 1] - a[i]);
+            gg[j] = std::min(gg[j - 1], dp[i][j]);
+            if (i == n) ans = std::min(ans, dp[i][j]);
+        }
+    }
+    std::cout &lt;&lt; ans;
+    return 0; 
+}
+int main() {
+    scanf(&quot;%lld&quot;, &amp;n), solve();
+    return 0;
+}
+</code></pre>
+<h2 id="第15题-Luogu-P2340-奶牛会展"><a href="#第15题-Luogu-P2340-奶牛会展" class="headerlink" title="第15题 Luogu P2340 奶牛会展"></a>第15题 Luogu P2340 奶牛会展</h2><p><a href="https://www.luogu.org/problemnew/show/P2340" target="_blank" rel="external">Luogu P2340 奶牛会展</a><br>题意：见上。<br>我先没想背包，想到一个状态是$dp(PrefixCows, IQ, EQ)=max(IQ+EQ)$，显然GG，而且很奇怪<br>发现这个状态记录$EQ$是无用的，所以可以$dp(PrefixCows, IQ)=max(EQ)$，然后转移发现就是在做背包，滚动数组优化空间，时间很紧张所以看命过不过吧。</p>
+<h2 id="第16题-Loj-10153-二叉苹果树"><a href="#第16题-Loj-10153-二叉苹果树" class="headerlink" title="第16题 Loj 10153 二叉苹果树"></a>第16题 Loj 10153 二叉苹果树</h2><p><a href="https://loj.ac/problem/10153" target="_blank" rel="external">Loj 10153 二叉苹果树</a><br>题意：见上。<br>解：设$dp(u,i)$为$u$点子树中选了$i$条边的最大值，做个简单背包即可。<br>代码：</p>
+<pre><code class="c++">#include&lt;cstdio&gt; 
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;stack&gt;
+#include&lt;set&gt;
+#include&lt;queue&gt;
+#include&lt;climits&gt;
+#include&lt;cmath&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define db double
+
+using namespace std;
+
+namespace flyinthesky {  
+
+    const int MAXN = 100 + 5;
+
+    struct edge {int u, v, w, nxt;} ed[MAXN * 2];
+
+    int n, q, en, hd[MAXN], dp[MAXN][MAXN];
+
+    void ins(int x, int y, int w) {ed[++en] = (edge){x, y, w, hd[x]}, hd[x] = en;}
+
+    int dfs(int u, int i, int fa) {
+        if (dp[u][i] &gt;= 0) return dp[u][i];
+        int lc = -1, rc = -1;
+        int lv = 0, rv = 0;
+        for (int o = hd[u]; o &gt; 0; o = ed[o].nxt) if (ed[o].v != fa) {
+            if (lc == -1) lc = ed[o].v, lv = ed[o].w; else if (rc == -1) rc = ed[o].v, rv = ed[o].w;
+        }
+        dp[u][i] = 0;
+        if (lc == -1 &amp;&amp; rc == -1) return dp[u][i];
+        if (i - 1 &gt;= 0) dp[u][i] = max(dp[u][i], dfs(lc, i - 1, u) + lv);
+        if (i - 1 &gt;= 0) dp[u][i] = max(dp[u][i], dfs(rc, i - 1, u) + rv);
+        for (int j = 0; j &lt;= i - 2; ++j) dp[u][i] = max(dp[u][i], dfs(lc, j, u) + dfs(rc, i - 2 - j, u) + lv + rv);
+        return dp[u][i];
+    }
+
+    void clean() {
+        en = 0, ms(hd, -1), ms(dp, -1);
+    }
+    int solve() {
+        scanf(&quot;%d%d&quot;, &amp;n, &amp;q);
+        clean();
+        for (int x, y, w, i = 1; i &lt; n; ++i) scanf(&quot;%d%d%d&quot;, &amp;x, &amp;y, &amp;w), ins(x, y, w), ins(y, x, w);
+        dfs(1, q, 0);
+        printf(&quot;%d\n&quot;, dp[1][q]);
+        return 0; 
+    }
+}
+int main() {
+    flyinthesky::solve();
+    return 0;
+}
+</code></pre>
+<h2 id="第17题-51nod-1007-正整数分组"><a href="#第17题-51nod-1007-正整数分组" class="headerlink" title="第17题 51nod 1007 正整数分组"></a>第17题 51nod 1007 正整数分组</h2><p><a href="http://www.51nod.com/Challenge/Problem.html#!#problemId=1007" target="_blank" rel="external">51nod 1007 正整数分组</a><br>题意：见上。<br>刚开始想贪心来着。好像行不通。<br>最优化问题，DP。<br>两种DP：<br>1、由于一组数肯定要逼近$\frac 12 sum$，所以用$\frac 12 sum$当容量跑背包即可<br>2、设$dp(i, x)$为前$i$个数差值为$x$是否存在。转移显然。</p>
+<h2 id="第18题-Hdu-5256-序列变换"><a href="#第18题-Hdu-5256-序列变换" class="headerlink" title="第18题 Hdu 5256 序列变换"></a>第18题 Hdu 5256 序列变换</h2><p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=5256" target="_blank" rel="external">Hdu 5256 序列变换</a><br>题意：求将一个序列改成严格单调的最小次数。<br>解：答案为序列$a_i-i$的不严格单调的最小次数，有一个对应的思想。<br>不严格单调的最小次数为$n-LIS$。<br>注意二分的 <code>upper_bound</code></p>
+<pre><code class="c++">#include&lt;cstdio&gt; 
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;set&gt;
+#include&lt;cmath&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define db double
+#define fir first
+#define sec second
+#define mp make_pair
+using namespace std;
+
+int kse = 0;
+
+namespace flyinthesky {
+
+    int n, A[100000 + 5], b[100000 + 5], cnt;
+
+    void clean() {
+        cnt = 1;
+        for (int i = 0; i &lt;= 100001; ++i) b[i] = -1000000000;
+    }
+    int solve() {
+        clean();
+        scanf(&quot;%d&quot;, &amp;n);
+        for (int i = 1; i &lt;= n; ++i) scanf(&quot;%d&quot;, &amp;A[i]), A[i] -= i;
+        b[1] = A[1];
+        for (int i = 2; i &lt;= n; ++i) {
+            if (A[i] &gt;= b[cnt]) b[++cnt] = A[i];
+            else {
+                int pos = upper_bound(b + 1, b + 1 + cnt, A[i]) - b;
+                b[pos] = A[i];
+            }
+        }
+        printf(&quot;Case #%d:\n%d\n&quot;, ++kse, n - cnt);
+        return 0;
+    }
+}
+int main() {
+    int T; scanf(&quot;%d&quot;, &amp;T);
+    while (T--) flyinthesky::solve();
+    return 0;
+}
+</code></pre>
+<h2 id="第19题-CodeForces-E-Palindrome-less-Arrays"><a href="#第19题-CodeForces-E-Palindrome-less-Arrays" class="headerlink" title="第19题 CodeForces E. Palindrome-less Arrays"></a>第19题 CodeForces E. Palindrome-less Arrays</h2><p><a href="http://codeforces.com/problemset/problem/1140/E" target="_blank" rel="external">E. Palindrome-less Arrays</a></p>
+<p>发现等价于不存在三长度的回文串，奇偶分离后就是一个求相邻数不同的方案数。<br>对于整段$-1$求解即可。<br>容易写出一个$O(nk)$的DP，但是这里可以更简单。<br>设$dp(i,0/1)$表示当前有$i$个$-1$, 两边不等 / 等。<br>转移以后算就行。注意两边$-1$的特判</p>
+<pre><code class="c++">#include&lt;cstdio&gt; 
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;cmath&gt;
+#include&lt;map&gt;
+#include&lt;queue&gt;
+#include&lt;set&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define db double
+#define fir first
+#define sec second
+#define mp make_pair
+using namespace std;
+
+namespace flyinthesky {
+
+    const LL MO = 998244353, MAXN = 200000 + 5;
+
+    LL ksm(LL a, LL b) {
+        LL ret = 1, bs = a;
+        while (b) {
+            if (b &amp; 1) ret = (ret * bs) % MO;
+            bs = (bs * bs) % MO;
+            b &gt;&gt;= 1;
+        }
+        return ret;
+    }
+
+    LL n, k, a[MAXN], b[MAXN], tota, totb, dp[MAXN][2];
+
+    LL gg(LL *arr, LL n) {
+        LL l, r;
+        for (l = 1; l &lt;= n &amp;&amp; arr[l] == -1; ++l) ;
+        if (l == n + 1) return ksm(k - 1, n - 1) * k % MO;
+        for (r = n; r &gt;= 1 &amp;&amp; arr[r] == -1; --r) ;
+        LL ret = 1;
+        ret = ret * ksm(k - 1, l - 1) % MO;
+        ret = ret * ksm(k - 1, n - r) % MO;
+        LL lst = l;
+        for (LL i = l + 1; i &lt;= r; ++i) {
+            if (arr[i] != -1) {
+                ret = (ret * dp[i - lst - 1][arr[i] == arr[lst]]) % MO;
+                lst = i;
+            }
+        }
+        return ret;
+    }
+
+    void clean() {
+    }
+    int solve() {
+
+        clean();
+        cin &gt;&gt; n &gt;&gt; k;
+        for (LL x, i = 1; i &lt;= n; ++i) {
+            scanf(&quot;%lld&quot;, &amp;x);
+            if (i % 2) a[++tota] = x; else b[++totb] = x;
+        }
+        dp[0][0] = 1, dp[0][1] = 0;
+        for (LL i = 1; i &lt;= n; ++i) {
+            dp[i][0] = (dp[i - 1][0] * (k - 2) % MO + dp[i - 1][1]) % MO;
+            dp[i][1] = dp[i - 1][0] * (k - 1) % MO; // (k - 1) 下面
+        }
+
+        printf(&quot;%lld\n&quot;, (gg(a, tota) * gg(b, totb)) % MO);
+
+        return 0;
+    } 
+}
+int main() {
+    flyinthesky::solve();
+    return 0;
+}
+</code></pre>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+	<div>
+	  
+		
+<div style="text-align:center;color: #ccc;font-size:14px;">
+------ 本文结束 ------</div>
+<br/>
+<div style="border: 1px solid black">
+<div style="margin-left:10px">
+<span style="font-weight:blod">版权声明</span>
+<img src="http://blog.flyinthesky.win/pics/sources/cc.png" >
+<br/>
+<p style="font-size: 10px;line-height: 30px"><a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky's blog</a> by <a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky</a> is licensed under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" style="color:#258FC6">Creative Commons BY-NC-ND 4.0 International License</a>.<br/>
+由<a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky</a>创作并维护的<a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky's blog</a>博客采用<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" style="color:#258FC6">创作共用保留署名-非商业-禁止演绎4.0国际许可证</a>。<br/>
+本文首发于<a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky's blog</a> 博客（ <a href="http://blog.flyinthesky.win/" style="color:#258FC6">http://blog.flyinthesky.win/</a> ），版权所有，侵权必究。</p>
+</div>
+</div>
+
+	  
+	</div>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/DP/" rel="tag"><i class="fa fa-tag"></i> DP</a>
+          
+            <a href="/tags/状压DP/" rel="tag"><i class="fa fa-tag"></i> 状压DP</a>
+          
+            <a href="/tags/区间DP/" rel="tag"><i class="fa fa-tag"></i> 区间DP</a>
+          
+            <a href="/tags/博弈论/" rel="tag"><i class="fa fa-tag"></i> 博弈论</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/搜索题专练/" rel="next" title="NOIP 搜索题训练">
+                <i class="fa fa-chevron-left"></i> NOIP 搜索题训练
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/poj2417/" rel="prev" title="poj 2417(BSGS)">
+                poj 2417(BSGS) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm"
+                alt="FlyInTheSky" />
+            
+              <p class="site-author-name" itemprop="name">FlyInTheSky</p>
+              <p class="site-description motion-element" itemprop="description">自己选择的路，跪着也要走完。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">587</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">144</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+		
+		<font size="3"><b>一言</b></font>
+		<script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+		 <script>
+         $.get('https://v1.hitokoto.cn/?c=a', function (data) {
+            if (typeof data === 'string') data = JSON.parse(data);
+            $('#hitokoto-loader').removeClass('active');
+            $('#hitokoto-content').css('display', '').text(data.hitokoto);
+            if (data.from) {
+              $('#hitokoto-from').css('display', '').text('——' + data.from);
+            }
+          });
+          
+          </script>
+          <div style="font-size: 1em; line-height: 1.5em; display: none; " id="hitokoto-content"></div>
+          <div style="text-align: right; margin-top: 15px; font-size: 0.9em; color: #666; display: none; " id="hitokoto-from"></div>
+
+		
+		<!--<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="220" height="320" src="http://www.missevan.com/albumiframe/379343?autoplay=false&playlist=true"></iframe>-->
+		
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第1题-Luogu-P2734-游戏-A-Game"><span class="nav-number">1.</span> <span class="nav-text">第1题 Luogu P2734 游戏 A Game</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第2题-Luogu-P3800-Power收集"><span class="nav-number">2.</span> <span class="nav-text">第2题 Luogu P3800 Power收集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第3题-Luogu-P2889-挤奶的时间Milking-Time"><span class="nav-number">3.</span> <span class="nav-text">第3题 Luogu P2889 挤奶的时间Milking Time</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第4题-Luogu-P2233-HNOI2002-公交车路线"><span class="nav-number">4.</span> <span class="nav-text">第4题 Luogu P2233 [HNOI2002]公交车路线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第5题-Luogu-P1373-小a和uim之大逃离"><span class="nav-number">5.</span> <span class="nav-text">第5题 Luogu P1373 小a和uim之大逃离</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第6题-Luogu-P1435-回文字串"><span class="nav-number">6.</span> <span class="nav-text">第6题 Luogu P1435 回文字串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第7题-Luogu-P1220-关路灯"><span class="nav-number">7.</span> <span class="nav-text">第7题 Luogu P1220 关路灯</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第8题-NOIP-2003-加分二叉树"><span class="nav-number">8.</span> <span class="nav-text">第8题 NOIP 2003 加分二叉树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第9题-Luogu-P1736-创意吃鱼法-amp-P1387-最大正方形"><span class="nav-number">9.</span> <span class="nav-text">第9题 Luogu P1736 创意吃鱼法&P1387 最大正方形</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第10题-Bzoj-1057"><span class="nav-number">10.</span> <span class="nav-text">第10题 Bzoj 1057</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第11题-Hdu-1024"><span class="nav-number">11.</span> <span class="nav-text">第11题 Hdu 1024</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第12题-Hdu-1069"><span class="nav-number">12.</span> <span class="nav-text">第12题 Hdu 1069</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第13题-Hdu-1074"><span class="nav-number">13.</span> <span class="nav-text">第13题 Hdu 1074</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第14题-Luogu-P2893-USACO08FEB-修路Making-the-Grade"><span class="nav-number">14.</span> <span class="nav-text">第14题 Luogu P2893 [USACO08FEB]修路Making the Grade</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第15题-Luogu-P2340-奶牛会展"><span class="nav-number">15.</span> <span class="nav-text">第15题 Luogu P2340 奶牛会展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第16题-Loj-10153-二叉苹果树"><span class="nav-number">16.</span> <span class="nav-text">第16题 Loj 10153 二叉苹果树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第17题-51nod-1007-正整数分组"><span class="nav-number">17.</span> <span class="nav-text">第17题 51nod 1007 正整数分组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第18题-Hdu-5256-序列变换"><span class="nav-number">18.</span> <span class="nav-text">第18题 Hdu 5256 序列变换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第19题-CodeForces-E-Palindrome-less-Arrays"><span class="nav-number">19.</span> <span class="nav-text">第19题 CodeForces E. Palindrome-less Arrays</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FlyInTheSky</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.0.3</div>
+
+
+
+  <div class="footer-custom">Hosted by <a target="_blank" href="https://pages.coding.me/">Coding Pages</a></div>
+
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.0.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.0.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.3"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: true,
+        appId: 'HbPrhSjQ6NCUr3zYqcbO4iKU-MdYXbMMI',
+        appKey: 'untdESV1xpzTGEu6IH2lwKOb',
+        placeholder: '写下您dalao对本蒟蒻博文的宝贵评论~(￣▽￣)~* ',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("Ex3VDezHHaHR2GEGMlazQCfC-gzGzoHsz", "u9iJTthJj7R0ieApCMNvyAjO");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  <script src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+    <!--<script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script> --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"messageStyle": "none","tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> 
+
+<script src="https://www.flyinthesky.win/highlight.min.js"></script>
+<script >hljs.initHighlightingOnLoad();</script>
+
+<!-- 代码块复制功能 -->
+<script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+<script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+
+
+</body>
+</html>

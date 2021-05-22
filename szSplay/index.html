@@ -1,0 +1,2411 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico?v=6.0.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=6.0.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico?v=6.0.3">
+
+
+  <link rel="mask-icon" href="/favicon.ico?v=6.0.3" color="#222">
+
+
+  <link rel="manifest" href="/favicon.ico">
+
+
+  <meta name="msapplication-config" content="/favicon.ico" />
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.0.3',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":true,"scrollpercent":false,"onmobile":true},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'T4TYK1DMV0',
+      apiKey: '8ae84ecb094e73f826b093645f9d90bc',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  
+  <meta name="keywords" content="Splay,算法笔记," />
+
+
+<meta name="description" content="模板及讲解SplaySplay 就是平衡树。 Splay 的原理例题 (不涉及区间操作)：Bzoj 3224 需要建立一个虚节点 0 作为初始根，加入一个正无穷和负无穷免除边界困扰。(类似 set) 核心操作：  void rotate(int x)：对 $x$ 进行旋转操作 void splay(int x, int gl = 0)：将 $x$ rotate 到 $gl$ 的孩子  辅助操作：">
+<meta name="keywords" content="Splay,算法笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Splay 学习笔记">
+<meta property="og:url" content="http://blog.flyinthesky.win/szSplay/index.html">
+<meta property="og:site_name" content="FlyInTheSky&#39;s blog">
+<meta property="og:description" content="模板及讲解SplaySplay 就是平衡树。 Splay 的原理例题 (不涉及区间操作)：Bzoj 3224 需要建立一个虚节点 0 作为初始根，加入一个正无穷和负无穷免除边界困扰。(类似 set) 核心操作：  void rotate(int x)：对 $x$ 进行旋转操作 void splay(int x, int gl = 0)：将 $x$ rotate 到 $gl$ 的孩子  辅助操作：">
+<meta property="og:image" content="http://blog.flyinthesky.win/pics/Splay/rotate1.png">
+<meta property="og:image" content="http://blog.flyinthesky.win/pics/Splay/rotate2.png">
+<meta property="og:image" content="http://blog.flyinthesky.win/pics/Splay/rotate3.png">
+<meta property="og:image" content="http://blog.flyinthesky.win/pics/Splay/rotate4.png">
+<meta property="og:image" content="http://blog.flyinthesky.win/pics/Splay/rotate5.png">
+<meta property="og:image" content="http://blog.flyinthesky.win/pics/Splay/remove.png">
+<meta property="og:image" content="http://blog.flyinthesky.win/pics/Splay/selectInterval.png">
+<meta property="og:image" content="https://www.lydsy.com/JudgeOnline/upload/201802/111(2">
+<meta property="og:updated_time" content="2019-03-14T12:39:33.159Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Splay 学习笔记">
+<meta name="twitter:description" content="模板及讲解SplaySplay 就是平衡树。 Splay 的原理例题 (不涉及区间操作)：Bzoj 3224 需要建立一个虚节点 0 作为初始根，加入一个正无穷和负无穷免除边界困扰。(类似 set) 核心操作：  void rotate(int x)：对 $x$ 进行旋转操作 void splay(int x, int gl = 0)：将 $x$ rotate 到 $gl$ 的孩子  辅助操作：">
+<meta name="twitter:image" content="http://blog.flyinthesky.win/pics/Splay/rotate1.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://blog.flyinthesky.win/szSplay/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+  <title>Splay 学习笔记 | FlyInTheSky's blog</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5cb42869838f4cfeb9c9b241d7f2a21c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+  <link href="https://www.flyinthesky.win/tomorrow.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.1/google-fonts/fira-mono.css" rel="stylesheet">
+</head>
+
+
+<div id="hexo-helper-live2d">
+  <canvas id="live2dcanvas" width="300" height="600"></canvas>
+</div>
+<style>
+  #live2dcanvas{
+    position: fixed;
+    width: 300px;
+    height: 600px;
+    opacity:0.8;
+    right: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -120px;
+  }
+</style>
+<script type="text/javascript" src="/live2d/device.min.js"></script>
+<script type="text/javascript">
+const loadScript = function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};
+(function(){
+  if((typeof(device) != 'undefined') && (device.mobile())){
+    var trElement = document.getElementById('hexo-helper-live2d');
+    trElement.parentNode.removeChild(trElement);
+    return;
+  }else
+    if (typeof(device) === 'undefined') console.error('Cannot find current-device script.');
+  loadScript("/live2d/script.js", function(){loadlive2d("live2dcanvas", "/live2d/assets/wanko.model.json", 0.5);});
+})();
+</script>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+  
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">FlyInTheSky's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">OI, 梦开始的地方。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />分类</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-friends">
+          <a href="/friends/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-handshake-o"></i> <br />朋友</a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/szSplay/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FlyInTheSky">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FlyInTheSky's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Splay 学习笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-08T16:58:00+08:00">2018-12-08</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法笔记/" itemprop="url" rel="index"><span itemprop="name">算法笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/szSplay/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/szSplay/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/szSplay/" class="leancloud_visitors" data-flag-title="Splay 学习笔记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">+</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 s
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="模板及讲解"><a href="#模板及讲解" class="headerlink" title="模板及讲解"></a>模板及讲解</h1><h2 id="Splay"><a href="#Splay" class="headerlink" title="Splay"></a>Splay</h2><p>Splay 就是平衡树。</p>
+<h2 id="Splay-的原理"><a href="#Splay-的原理" class="headerlink" title="Splay 的原理"></a>Splay 的原理</h2><p>例题 (不涉及区间操作)：<a href="/bzoj3224">Bzoj 3224</a></p>
+<p><strong>需要建立一个虚节点 0 作为初始根，加入一个正无穷和负无穷免除边界困扰。(类似 <code>set</code>)</strong></p>
+<p><strong>核心操作：</strong></p>
+<ul>
+<li><code>void rotate(int x)</code>：对 $x$ 进行旋转操作</li>
+<li><code>void splay(int x, int gl = 0)</code>：将 $x$ <code>rotate</code> 到 $gl$ 的孩子</li>
+</ul>
+<p><strong>辅助操作：</strong></p>
+<ul>
+<li><code>bool rel(int x)</code>：返回 $x$ 在 $fa[x]$ 中的左右位置</li>
+<li><code>void pushup(int x)</code>：维护 $x$ 点信息 (更新)</li>
+</ul>
+<p><strong>实现操作：</strong></p>
+<ul>
+<li><code>void insert(int x)</code>：插入一个值为 $x$ 的节点<strong>并转到根</strong> </li>
+<li><code>void find(int x)</code>：找一个值为 $x$ 的节点<strong>转到根</strong>，不存在则返回当前数的前驱或后继</li>
+<li><code>int kth(int k)</code>：找值第 $k$ 大数</li>
+<li><code>int rnk(int x)</code>：值 $x$ 的排名</li>
+<li><code>int pre(int x)</code>：值前驱</li>
+<li><code>int succ(int x)</code>：值后继</li>
+<li><code>void remove(int x)</code>：删除一个值为 $x$ 的节点，若点还存在，<strong>转到根</strong><a id="more"></a>
+<h3 id="辅助操作实现"><a href="#辅助操作实现" class="headerlink" title="辅助操作实现"></a>辅助操作实现</h3></li>
+</ul>
+<pre><code class="c++">bool rel(int x) {return ch[fa[x]][1] == x;} // x 点在父亲点的位置 (x 点是不是父亲点的右孩子) 
+void pushup(int x) {siz[x] = siz[ch[x][0]] + siz[ch[x][1]] + cnt[x];}
+</code></pre>
+<h3 id="核心操作实现"><a href="#核心操作实现" class="headerlink" title="核心操作实现"></a>核心操作实现</h3><p><strong>rotate：</strong></p>
+<blockquote>
+<p>对 $x$ 进行旋转操作。</p>
+</blockquote>
+<p>Splay使用旋转保持平衡。Splay旋转后，中序遍历和Splay的合法性不变。<strong>但是信息要重新合并</strong></p>
+<p>图一为原树，图二为旋转完的树。<br>绿边为新增边，红边为删除边，蓝边为存在边。</p>
+<p><img src="..\pics\Splay\rotate1.png" alt="Markdown"><br><img src="..\pics\Splay\rotate2.png" alt="Markdown"><br><img src="..\pics\Splay\rotate3.png" alt="Markdown"><br><img src="..\pics\Splay\rotate4.png" alt="Markdown"><br><img src="..\pics\Splay\rotate5.png" alt="Markdown"></p>
+<pre><code class="c++">void rotate(int x) { // 旋转操作 
+    int y = fa[x], z = fa[y], k = rel(x), w = ch[x][k ^ 1];
+    ch[z][rel(y)] = x, fa[x] = z; // 将爷爷节点与自己相连 
+    ch[y][k] = w, fa[w] = y; // 将自己的孩子给父节点
+    ch[x][k ^ 1] = y, fa[y] = x; // 将父节点接到自己孩子
+    pushup(y), pushup(x); // 破坏了结构记得 pushup 
+}
+</code></pre>
+<p><strong>splay：</strong></p>
+<blockquote>
+<p>将 $x$ <code>rotate</code> 到 $gl$ 的孩子</p>
+</blockquote>
+<p>将某个点通过 <code>rotate</code> 转到某个点的孩子。<br>容易想到一直 <code>rotate</code> 然后判断，这是单旋splay。但是这样由于一条单链旋转完以后还是单链，会被卡。<br>所以我们尝试优化，如果当前自身点、父亲节点、爷爷节点三点一线，则先选择父亲节点，再选择本节点。</p>
+<pre><code class="c++">void splay(int x, int gl = 0) { // splay 操作 -&gt; 将 x 节点转到 gl 节点孩子 ，并且可以用作更新信息 
+    while (fa[x] != gl) { // 一直旋转到目标节点的儿子
+        int y = fa[x], z = fa[y];
+        if (z != gl) { // 爷爷节点不是目标节点，否则直接旋转 
+            if (rel(x) == rel(y)) rotate(y); else rotate(x); // 自身、父亲、爷爷三点一线，则先旋转父亲节点 
+        }
+        rotate(x); // 旋转自身 
+    }
+    if (!gl) rt = x; // 如果旋转到根则更新 rt 
+}
+</code></pre>
+<h3 id="实现操作实现"><a href="#实现操作实现" class="headerlink" title="实现操作实现"></a>实现操作实现</h3><p><strong>insert：</strong></p>
+<blockquote>
+<p>插入一个值为 $x$ 的节点<strong>并转到根</strong> </p>
+</blockquote>
+<p>从根走下去找这个数应该在的位置，然后如果存在则增加计数器，否则新建节点。<br>注意将节点转到根，这样才能更新沿路的信息，并且保证了复杂度。</p>
+<pre><code class="c++">void insert(int x) { // 插入一个值为 x 的节点并转到根 
+    int cur = rt, p = 0; // cur 当前节点， p 为 cur 父亲 
+    while (cur &amp;&amp; val[cur] != x) p = cur, cur = ch[cur][x &gt; val[cur]]; // 找插入位置 
+    if (cur) ++cnt[cur]; else { // 找到插入位置，如果已经有数则 cnt 加一即可，否则新建节点 
+       cur = ++ncnt;
+       val[cur] = x, fa[cur] = p, ch[cur][0] = ch[cur][1] = 0, cnt[cur] = siz[cur] = 1;
+       ch[p][x &gt; val[p]] = cur;
+    }
+    splay(cur); // splay 到根，以免加入节点后拉出一条链 + 更新信息 
+}
+</code></pre>
+<p><strong>find：</strong></p>
+<blockquote>
+<p>找一个值为 $x$ 的节点<strong>转到根</strong>，不存在则返回当前数的前驱或后继</p>
+</blockquote>
+<p>从根走下去找这个数应该在的位置，找不到则返回的是前驱或后继。(无法确定，分类讨论即可)</p>
+<pre><code class="c++">void find(int x) { // 找一个值为 x 的节点转到根，不存在则返回当前数的前驱或后继 
+    int cur = rt;
+    while (ch[cur][x &gt; val[cur]] &amp;&amp; val[cur] != x) cur = ch[cur][x &gt; val[cur]];
+    splay(cur);  
+}
+</code></pre>
+<p><strong>kth：</strong></p>
+<blockquote>
+<p>找值第 $k$ 大数</p>
+</blockquote>
+<p>从根走下去找，很经典的问题，注意当前根节点的<code>cnt</code>值</p>
+<pre><code class="c++">int kth(int k) { // 找值第 k 大数 
+    int cur = rt;
+    while (1) {
+        if (k &lt;= siz[ch[cur][0]]) cur = ch[cur][0]; 
+        else if (k &gt; siz[ch[cur][0]] + cnt[cur]) k -= siz[ch[cur][0]] + cnt[cur], cur = ch[cur][1];
+        else return cur;
+    }
+}
+</code></pre>
+<p><strong>rnk: </strong></p>
+<blockquote>
+<p>值 $x$ 的排名</p>
+</blockquote>
+<p>先将值为 $x$ 的点转到根，根节点的左子树大小即为该值排名，不加一因为有虚节点。</p>
+<pre><code class="c++">int rnk(int x) { // 值 x 的排名 
+    find(x); // splay 值为 x 的节点到根后左子树的大小即为值 x 排名 
+    return siz[ch[rt][0]]; 
+}
+</code></pre>
+<p><strong>pre: </strong></p>
+<blockquote>
+<p>值前驱</p>
+</blockquote>
+<p>先将值为 $x$ 的节点 splay 到根, 再找根左子树最右边的值即为前驱<br>注意不存在 $x$ 值节点时判一下根节点大小</p>
+<pre><code class="c++">int pre(int x) { // 值前驱 
+    find(x); // 先将值为 x 的节点 splay 到根 
+    if (val[rt] &lt; x) return rt; // 找不到这样的节点则直接返回根 
+    int cur = ch[rt][0]; // 找根左子树最右边的值即为前驱 
+    while (ch[cur][1]) cur = ch[cur][1];
+    return cur;
+}
+</code></pre>
+<p><strong>succ: </strong></p>
+<blockquote>
+<p>值后继</p>
+</blockquote>
+<p>先将值为 $x$ 的节点 splay 到根, 再找根右子树最左边的值即为后继<br>注意不存在 $x$ 值节点时判一下根节点大小</p>
+<pre><code class="c++">int succ(int x) { // 值后继 
+    find(x); // 先将值为 x 的节点 splay 到根  
+    if (val[rt] &gt; x) return rt; // 找不到这样的节点则直接返回根 
+    int cur = ch[rt][1]; // 找根右子树最左边的值即为前驱 
+    while (ch[cur][0]) cur = ch[cur][0];
+    return cur;
+}
+</code></pre>
+<p><strong>remove: </strong></p>
+<blockquote>
+<p>删除一个值为 $x$ 的节点，若点还存在，<strong>转到根</strong></p>
+</blockquote>
+<p>将前驱转到根，后继转到根的右孩子，然后删除，如果当前节点次数多于1将他splay到根，否则维护前驱、后继的信息。<br>为什么可以这样做看图即可。</p>
+<p><img src="..\pics\Splay\remove.png" alt="Markdown"></p>
+<pre><code class="c++">void remove(int x) { // 删除一个值为 x 的节点 
+    int last = pre(x), next = succ(x);
+    splay(last), splay(next, last); // 前驱转到根，后继转到根的右孩子 
+    int del = ch[next][0];
+    if (cnt[del] &gt; 1) --cnt[del], splay(del); else ch[next][0] = 0, pushup(next), pushup(last);
+    // 记得信息的更新上传 
+}
+</code></pre>
+<p><a href="/bzoj3224">Bzoj 3224</a>完整代码：</p>
+<pre><code class="c++">#include&lt;cstdio&gt; 
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;queue&gt;
+#include&lt;vector&gt;
+#include&lt;utility&gt;
+#include&lt;cmath&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define db double
+#define fir first
+#define sec second
+#define mp make_pair
+using namespace std;
+
+namespace flyinthesky {
+
+    const int MAXN = 200005, INF = 2000000005;
+
+    int ch[MAXN][2], fa[MAXN], val[MAXN], cnt[MAXN], siz[MAXN], ncnt, rt, n;
+    // splay 数组，父亲节点，节点值，节点值个数，节点子树大小，节点总数，根 
+
+    bool rel(int x) {return ch[fa[x]][1] == x;} // x 点在父亲点的位置 (x 点是不是父亲点的右孩子) 
+    void pushup(int x) {siz[x] = siz[ch[x][0]] + siz[ch[x][1]] + cnt[x];}
+    void rotate(int x) { // 旋转操作 
+        int y = fa[x], z = fa[y], k = rel(x), w = ch[x][k ^ 1];
+        ch[z][rel(y)] = x, fa[x] = z; // 将爷爷节点与自己相连 
+        ch[y][k] = w, fa[w] = y; // 将自己的孩子给父节点
+        ch[x][k ^ 1] = y, fa[y] = x; // 将父节点接到自己孩子
+        pushup(y), pushup(x); // 破坏了结构记得 pushup 
+    }
+    void splay(int x, int gl = 0) { // splay 操作 -&gt; 将 x 节点转到 gl 节点孩子 ，并且可以用作更新信息 
+        while (fa[x] != gl) { // 一直旋转到目标节点的儿子
+            int y = fa[x], z = fa[y];
+            if (z != gl) { // 爷爷节点不是目标节点，否则直接旋转 
+                if (rel(x) == rel(y)) rotate(y); else rotate(x); // 自身、父亲、爷爷三点一线，则先旋转父亲节点 
+            }
+            rotate(x); // 旋转自身 
+        }
+        if (!gl) rt = x; // 如果旋转到根则更新 rt 
+    }
+    void insert(int x) { // 插入一个值为 x 的节点并转到根 
+        int cur = rt, p = 0; // cur 当前节点， p 为 cur 父亲 
+        while (cur &amp;&amp; val[cur] != x) p = cur, cur = ch[cur][x &gt; val[cur]]; // 找插入位置 
+        if (cur) ++cnt[cur]; else { // 找到插入位置，如果已经有数则 cnt 加一即可，否则新建节点 
+            cur = ++ncnt;
+            val[cur] = x, fa[cur] = p, ch[cur][0] = ch[cur][1] = 0, cnt[cur] = siz[cur] = 1;
+            ch[p][x &gt; val[p]] = cur;
+        }
+        splay(cur); // splay 到根，以免加入节点后拉出一条链 + 更新信息 
+    }
+    void find(int x) { // 找一个值为 x 的节点转到根，不存在则返回当前数的前驱或后继 
+        int cur = rt;
+        while (ch[cur][x &gt; val[cur]] &amp;&amp; val[cur] != x) cur = ch[cur][x &gt; val[cur]];
+        splay(cur);  
+    }
+    int kth(int k) { // 找值第 k 大数 
+        int cur = rt;
+        while (1) {
+            if (k &lt;= siz[ch[cur][0]]) cur = ch[cur][0]; 
+            else if (k &gt; siz[ch[cur][0]] + cnt[cur]) k -= siz[ch[cur][0]] + cnt[cur], cur = ch[cur][1];
+            else return cur;
+        }
+    }
+    int rnk(int x) { // 值 x 的排名 
+        find(x); // splay 值为 x 的节点到根后左子树的大小即为值 x 排名 
+        return siz[ch[rt][0]]; 
+    }
+    int pre(int x) { // 值前驱 
+        find(x); // 先将值为 x 的节点 splay 到根 
+        if (val[rt] &lt; x) return rt; // 找不到这样的节点则直接返回根 
+        int cur = ch[rt][0]; // 找根左子树最右边的值即为前驱 
+        while (ch[cur][1]) cur = ch[cur][1];
+        return cur;
+    }
+    int succ(int x) { // 值后继 
+        find(x); // 先将值为 x 的节点 splay 到根  
+        if (val[rt] &gt; x) return rt; // 找不到这样的节点则直接返回根 
+        int cur = ch[rt][1]; // 找根右子树最左边的值即为前驱 
+        while (ch[cur][0]) cur = ch[cur][0];
+        return cur;
+    }
+    void remove(int x) { // 删除一个值为 x 的节点 
+        int last = pre(x), next = succ(x);
+        splay(last), splay(next, last); // 前驱转到根，后继转到根的右孩子 
+        int del = ch[next][0];
+        if (cnt[del] &gt; 1) --cnt[del], splay(del); else ch[next][0] = 0, pushup(next), pushup(last);
+        // 记得信息的更新上传 
+    }
+
+    void clean() {
+        ms(fa, 0), ms(cnt, 0), ms(val, 0), ms(siz, 0), rt = ncnt = 0;
+    }
+    int solve() {
+        clean();
+        scanf(&quot;%d&quot;, &amp;n);
+        insert(INF), insert(-INF);  // 插入最大最小值 
+        while (n--) {
+            int opt, x;
+            scanf(&quot;%d%d&quot;, &amp;opt, &amp;x);
+            switch (opt) {
+                case 1: insert(x); break ;
+                case 2: remove(x); break ;
+                case 3: printf(&quot;%d\n&quot;, rnk(x)); break ;
+                case 4: printf(&quot;%d\n&quot;, val[kth(x + 1)]); break ;
+                case 5: printf(&quot;%d\n&quot;, val[pre(x)]); break ;
+                case 6: printf(&quot;%d\n&quot;, val[succ(x)]); break ;
+            }
+        }
+        return 0; 
+    }
+}
+int main() {
+    flyinthesky::solve();
+    return 0;
+}
+</code></pre>
+<p>写时注意：<br>1、<code>splay</code>中不要忘记写换根 <code>if (gl == 0) rt = x;</code><br>2、<code>splay</code>中最后一个<code>rotate(x)</code>写在判断外面<br>3、<code>rotate</code>中<code>rel(x)</code>一定要预处理，因为之后会被改变<br>4、<code>insert</code>中不要忘记转到根，<code>remove</code>中不要忘记转到根+更新信息<br>5、<code>insert</code> 和 <code>find</code> 中<code>while</code>注意判断中的 $val$ 怎么写<br>6、<code>kth</code>中<code>if (k &lt;= siz[ch[cur][0]])</code>的<code>&lt;=</code></p>
+<h2 id="Splay-维护区间序列"><a href="#Splay-维护区间序列" class="headerlink" title="Splay 维护区间序列"></a>Splay 维护区间序列</h2><p>例题：<a href="/Bzoj3223">Bzoj 3223</a></p>
+<blockquote>
+<p>给定$n$长数组$a_i$，$m$次操作翻转区间$[l,r]$<br>$n,m \leq 10^5。$</p>
+</blockquote>
+<p>本题是<strong>维护序列</strong>，与上面的不同。我们将序列值存在 $val$ 中，<strong>舍弃二叉排序树的性质</strong>，保留中序遍历，中序遍历对应原数组，显然 Splay 中 $x$ 点为$[x,x]$，左子树为$[1, x)$，右子树为$(x, n]$，则 Splay 中求得的 $k$ 大值为序列 $k$ 位置的值，区间类似。<br>由于<strong>旋转操作不影响中序遍历</strong>，所以这样的问题可以用 splay 来完成。<br>我们可以运用线段树中lazy的技巧来做splay的区间信息维护。</p>
+<p><strong>标记下放</strong></p>
+<pre><code class="c++">void pushdown(int x) {
+  if (lazy[x]) swap(ch[x][0], ch[x][1]), lazy[ch[x][0]] ^= 1, lazy[ch[x][1]] ^= 1, lazy[x] = 0;
+}
+</code></pre>
+<p><strong>选择单点</strong><br>本题不需要，其实序列的单点位置就是第$k$大<br><strong>选择区间</strong><br>将$l-1$大的位置找出来，$r+1$大的位置找出来<br>将$l-1$大的位置转到根，$l-1$大的位置转到根的孩子，则$r+1$大的位置的左孩子是区间$[l,r]$<br><img src="..\pics\Splay\selectInterval.png" alt=""></p>
+<pre><code class="c++">void rev(int l, int r) {
+    int lb = kth(l), rb = kth(r + 2); // 无穷小虚节点在最前面，所以加一
+    splay(lb), splay(rb, lb);
+    lazy[ch[rb][0]] ^= 1;
+}
+</code></pre>
+<p><strong>输出答案</strong><br>由于中序遍历始终有序，直接中序遍历即可</p>
+<pre><code class="c++">void print(int x) {
+    pushdown(x);
+    if (ch[x][0]) print(ch[x][0]);
+    if (1 &lt;= val[x] &amp;&amp; val[x] &lt;= n) printf(&quot;%d &quot;, val[x]);
+    if (ch[x][1]) print(ch[x][1]);
+}
+</code></pre>
+<p><strong>标记下放注意事项</strong><br>1、调用<code>rel(x)</code>之前一定要<code>pushdown(x)</code><br>2、调用<code>ch[x][0/1]</code>之前一定要<code>pushdown(x)</code><br>3、splay 维护区间不要用 <code>insert</code><br><strong>建树</strong><br>因为没有二叉排序树性质，无法根据权值大小建树。<br>所以增加一个函数，每次取$mid=\frac{l+r}2$点作根然后遍历两边建点。<br>最后返回根节点的编号</p>
+<pre><code class="c++">int build(int p, int l, int r) {
+    int mid = (l + r) &gt;&gt; 1;
+    if (l &gt; r) return 0;
+    int cur = ++ncnt;
+    ch[cur][0] = ch[cur][1] = 0, fa[cur] = p, siz[cur] = 1, val[cur] = mid - 1;
+    if (l == r) return cur;
+    ch[cur][0] = build(cur, l, mid - 1), ch[cur][1] = build(cur, mid + 1, r); 
+    pushup(cur);
+    return cur;
+}
+</code></pre>
+<p><a href="/bzoj3223">Bzoj 3223</a>完整代码：</p>
+<pre><code class="c++">#include&lt;cstdio&gt; 
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;queue&gt;
+#include&lt;vector&gt;
+#include&lt;utility&gt;
+#include&lt;cmath&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define db double
+#define fir first
+#define sec second
+#define mp make_pair
+using namespace std;
+namespace flyinthesky {
+    const int MAXN = 100000 + 5;
+
+    int n, m;
+    int ch[MAXN][2], val[MAXN], siz[MAXN], fa[MAXN], lazy[MAXN], ncnt, rt;
+    bool rel(int x) {return ch[fa[x]][1] == x;}
+    void pushup(int x) {siz[x] = siz[ch[x][0]] + siz[ch[x][1]] + 1;}
+    void pushdown(int x) {if (lazy[x]) swap(ch[x][0], ch[x][1]), lazy[ch[x][0]] ^= 1, lazy[ch[x][1]] ^= 1, lazy[x] = 0;}
+    void rotate(int x) {
+        pushdown(fa[x]), pushdown(x);
+        int y = fa[x], z = fa[y], k = rel(x), w = ch[x][k ^ 1];
+        ch[z][rel(y)] = x, fa[x] = z;
+        ch[y][k] = w, fa[w] = y;
+        ch[x][k ^ 1] = y, fa[y] = x;
+        pushup(y), pushup(x);
+    }
+    void splay(int x, int gl = 0) {
+        while (fa[x] != gl) {
+            pushdown(fa[x]);
+            pushdown(x);
+            int y = fa[x], z = fa[y];
+            if (z != gl) {
+                if (rel(x) == rel(y)) rotate(y); else rotate(x);
+            } 
+            rotate(x);
+        }
+        if (gl == 0) rt = x;
+    }
+    int build(int p, int l, int r) {
+        int mid = (l + r) &gt;&gt; 1;
+        if (l &gt; r) return 0;
+        int cur = ++ncnt;
+        ch[cur][0] = ch[cur][1] = 0, fa[cur] = p, siz[cur] = 1, val[cur] = mid - 1;
+        if (l == r) return cur;
+        ch[cur][0] = build(cur, l, mid - 1), ch[cur][1] = build(cur, mid + 1, r); 
+        pushup(cur);
+        return cur;
+    }
+    int kth(int k) {
+        int cur = rt;
+        while (1) {
+            pushdown(cur);
+            if (k &lt;= siz[ch[cur][0]]) cur = ch[cur][0];
+            else if (k &gt; siz[ch[cur][0]] + 1) k -= siz[ch[cur][0]] + 1, cur = ch[cur][1];
+            else return cur;
+        }
+    }
+    void rev(int l, int r) {
+        int lb = kth(l), rb = kth(r + 2);
+        splay(lb), splay(rb, lb);
+        lazy[ch[rb][0]] ^= 1;
+    }
+    void print(int x) {
+        pushdown(x);
+        if (ch[x][0]) print(ch[x][0]);
+        if (1 &lt;= val[x] &amp;&amp; val[x] &lt;= n) printf(&quot;%d &quot;, val[x]);
+        if (ch[x][1]) print(ch[x][1]);
+    }
+    void clean() {
+        ms(ch, 0), ms(val, 0), ms(siz, 0), ms(fa, 0), ms(lazy, 0), ncnt = rt = 0;
+    }
+    int solve() {
+        clean();
+        scanf(&quot;%d%d&quot;, &amp;n, &amp;m);
+        //for (int i = 0; i &lt;= n + 1; ++i) insert(i); 维护区间不要用 insert，本题碰巧权值与下标一样
+        rt = build(0, 1, n + 2); // [1, n + 2] 避免与 0 冲突
+        while (m--) {
+            int l, r; scanf(&quot;%d%d&quot;, &amp;l, &amp;r);
+            rev(l, r);
+        }
+        print(rt);
+        return 0; 
+    }
+}
+int main() {
+    flyinthesky::solve();
+    return 0;
+}
+</code></pre>
+<h2 id="Splay-维护区间序列终极例题"><a href="#Splay-维护区间序列终极例题" class="headerlink" title="Splay 维护区间序列终极例题"></a>Splay 维护区间序列终极例题</h2><p><a href="/Bzoj1500">Bzoj 1500</a></p>
+<blockquote>
+<p>请写一个程序，要求维护一个数列，支持以下 $6$ 种操作：<br>请注意，格式栏中的下划线表示实际输入文件中的空格<br><img src="https://www.lydsy.com/JudgeOnline/upload/201802/111(2" alt="">.png)</p>
+</blockquote>
+<p>Splay 可以用来维护区间的信息，则可以像线段树一样打标记。<br>上一题只有翻转标记，而这一题多了很多标记</p>
+<p>我们维护$sum, ls, rs, gss$分别为区间和、最大前缀和、最大后缀和，最长字段和。<br>标记$lazy, upd$分别为翻转标记和更新标记。</p>
+<p><strong>初始化</strong><br>注意字段和一定要选一个元素</p>
+<pre><code class="c++">val[cur] = v, sum[cur] = v, ls[cur] = rs[cur] = max(0, v), gss[cur] = v, upd[cur] = lazy[cur] = 0;
+</code></pre>
+<p><strong>pushup</strong><br>注意 splay 上每个点有 $val$，要记得加上</p>
+<pre><code class="c++">void pushup(int x) {
+    int l = ch[x][0], r = ch[x][1];
+    siz[x] = siz[l] + siz[r] + 1;
+    sum[x] = sum[l] + sum[r] + val[x];
+    ls[x] = max(ls[l], sum[l] + val[x] + ls[r]);
+    rs[x] = max(rs[r], sum[r] + val[x] + rs[l]);
+    gss[x] = max(rs[l] + val[x] + ls[r], max(gss[l], gss[r]));
+}
+</code></pre>
+<p><strong>pushdown</strong><br>注意如果当前又有更新标记又有翻转标记，则只用更新。而翻转需要将<code>ls,rs</code>一同翻转，显然。</p>
+<pre><code class="c++">void pushdown(int x) {
+    int l = ch[x][0], r = ch[x][1];
+    if (upd[x]) {
+       if (l) val[l] = val[x], upd[l] = 1, sum[l] = val[x] * siz[l], ls[l] = rs[l] = max(sum[l], 0), gss[l] = max(val[x], sum[l]);
+        if (r) val[r] = val[x], upd[r] = 1, sum[r] = val[x] * siz[r], ls[r] = rs[r] = max(sum[r], 0), gss[r] = max(val[x], sum[r]);
+        upd[x] = lazy[x] = 0;
+    }
+    if (lazy[x]) {
+        lazy[l] ^= 1, lazy[r] ^= 1;
+        swap(ch[l][0], ch[l][1]), swap(ch[r][0], ch[r][1]);
+        swap(ls[l], rs[l]), swap(ls[r], rs[r]); // 注意
+        lazy[x] = 0;
+    }
+}
+</code></pre>
+<p><strong>修改操作</strong><br>注意如果翻转时当前有更新标记，则不需要打翻转标记，注意标时即改。</p>
+<pre><code class="c++">void rev(int l, int r) {
+    int lb = kth(l), rb = kth(r + 2);
+    splay(lb), splay(rb, lb);
+    int gg = ch[rb][0];
+    if (!upd[gg]) lazy[gg] ^= 1, swap(ch[gg][0], ch[gg][1]), swap(ls[gg], rs[gg]), pushup(rb), pushup(lb);
+}
+void update(int l, int r, int v) {
+    int lb = kth(l), rb = kth(r + 2);
+    splay(lb), splay(rb, lb);
+    int gg = ch[rb][0];
+    upd[gg] = 1, val[gg] = v, sum[gg] = v * siz[gg], ls[gg] = rs[gg] = max(sum[gg], 0), gss[gg] = max(v, sum[gg]);
+    pushup(rb), pushup(lb);
+}
+</code></pre>
+<p><strong>辣鸡清理</strong><br>本题卡内存，所以要把删除后的节点编号用队列存起来然后之后新建节点时可以用。</p>
+<pre><code class="c++">void recycle(int x) { // 清理辣鸡
+    if (ch[x][0]) recycle(ch[x][0]);
+    if (ch[x][1]) recycle(ch[x][1]);
+    q.push(x);
+}
+int newNode(int v) { // 新建节点
+    int cur;
+    if (q.empty()) cur = ++ncnt; else cur = q.front(), q.pop();
+    ch[cur][0] = ch[cur][1] = 0, fa[cur] = 0, siz[cur] = 1, val[cur] = v, sum[cur] = v, upd[cur] = lazy[cur] = 0, ls[cur] = rs[cur] = max(0, v), gss[cur] = v;
+    return cur;
+}
+void remove(int l, int r) { // 删除节点
+    int lb = kth(l), rb = kth(r + 2);
+    splay(lb), splay(rb, lb);
+    recycle(ch[rb][0]), ch[rb][0] = 0; // 调用
+    pushup(rb), pushup(lb);
+}
+</code></pre>
+<p>插入：新建一棵 splay 插到原树上<br>删除：提取区间以后打删除标记，注意卡内存用辣鸡回收优化<br>修改：提取区间以后打标记，<strong>注意这里标记都是标时即改</strong><br>翻转：提取区间以后打标记，若有修改标记则无需做任何事情<br>求和：提取区间输出区间和<br>求最长字段和：维护 $ls, rs$分别表示左起最长区间和，右起最长区间和。<br>则可以通过维护得到。</p>
+<p>完整代码</p>
+<pre><code class="c++">#include&lt;cstdio&gt; 
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;queue&gt;
+#include&lt;cmath&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define db double
+#define fir first
+#define sec second
+#define mp make_pair
+using namespace std;
+
+namespace flyinthesky {
+
+    const int MAXN = 1000000 + 5, INF = 1000000000;
+
+    int n, m, arr[MAXN];
+    int ch[MAXN][2], fa[MAXN], siz[MAXN], val[MAXN], ls[MAXN], rs[MAXN], gss[MAXN], sum[MAXN], lazy[MAXN], upd[MAXN], rt, ncnt;
+    char s[10];
+
+    queue&lt;int &gt; q;
+
+    int rel(int x) {return ch[fa[x]][1] == x;}
+    void pushup(int x) {
+        int l = ch[x][0], r = ch[x][1];
+        siz[x] = siz[l] + siz[r] + 1;
+        ls[x] = max(ls[l], sum[l] + ls[r] + val[x]);
+        rs[x] = max(rs[r], sum[r] + rs[l] + val[x]);
+        sum[x] = sum[l] + sum[r] + val[x];
+        gss[x] = max(max(gss[l], gss[r]), rs[l] + ls[r] + val[x]);
+    }
+    void pushdown(int x) {
+        int l = ch[x][0], r = ch[x][1];
+        if (upd[x]) {
+            upd[l] = upd[r] = 1;
+            if (l) val[l] = val[x], sum[l] = val[x] * siz[l], ls[l] = rs[l] = max(sum[l], 0), gss[l] = max(sum[l], val[x]);
+            if (r) val[r] = val[x], sum[r] = val[x] * siz[r], ls[r] = rs[r] = max(sum[r], 0), gss[r] = max(sum[r], val[x]);
+            upd[x] = lazy[x] = 0;
+        }
+        if (lazy[x]) {
+            lazy[l] ^= 1, lazy[r] ^= 1;
+            swap(ch[l][0], ch[l][1]), swap(ch[r][0], ch[r][1]);
+            swap(ls[l], rs[l]), swap(ls[r], rs[r]);
+            lazy[x] = 0;
+        }
+    }
+    void rotate(int x) {
+        pushdown(fa[x]), pushdown(x);
+        int y = fa[x], z = fa[y], k = rel(x), w = ch[x][k ^ 1];
+        ch[z][rel(y)] = x, fa[x] = z;
+        ch[y][k] = w, fa[w] = y;
+        ch[x][k ^ 1] = y, fa[y] = x;
+        pushup(y), pushup(x);
+    }
+    void splay(int x, int gl = 0) {
+        while (fa[x] != gl) {
+            pushdown(fa[x]), pushdown(x);
+            int y = fa[x], z = fa[y];
+            if (z != gl) {
+                if (rel(x) == rel(y)) rotate(y); else rotate(x);
+            }
+            rotate(x);
+        }
+        if (!gl) rt = x;
+    }
+    int kth(int k) {
+        int cur = rt;
+        while (1) {
+            pushdown(cur);
+            if (k &lt;= siz[ch[cur][0]]) cur = ch[cur][0];
+            else if (k &gt; siz[ch[cur][0]] + 1) k -= siz[ch[cur][0]] + 1, cur = ch[cur][1];
+            else return cur;
+        }
+    }
+    int newNode(int v) {
+        int cur;
+        if (q.empty()) cur = ++ncnt; else cur = q.front(), q.pop();
+        ch[cur][0] = ch[cur][1] = 0, fa[cur] = 0, siz[cur] = 1, val[cur] = v, ls[cur] = rs[cur] = max(v, 0), gss[cur] = sum[cur] = v, lazy[cur] = upd[cur] = 0;
+        return cur;
+    }
+    int build(int l, int r) {
+        if (l &gt; r) return 0;
+        int mid = (l + r) &gt;&gt; 1, cur = newNode(arr[mid]);
+        if (l == r) return cur;
+        if ((ch[cur][0] = build(l, mid - 1))) fa[ch[cur][0]] = cur;
+        if ((ch[cur][1] = build(mid + 1, r))) fa[ch[cur][1]] = cur;
+        pushup(cur);
+        return cur;
+    }
+    void recycle(int x) {
+        if (ch[x][0]) recycle(ch[x][0]);
+        if (ch[x][1]) recycle(ch[x][1]);
+        q.push(x);
+    }
+    void insert(int x, int gg) {
+        int lb = kth(x + 1), rb = kth(x + 2);
+        splay(lb), splay(rb, lb);
+        fa[gg] = rb, ch[rb][0] = gg; // important
+        pushup(rb), pushup(lb);
+    }
+    void remove(int l, int r) {
+        int lb = kth(l), rb = kth(r + 2);
+        splay(lb), splay(rb, lb);
+        int del = ch[rb][0];
+        recycle(del), ch[rb][0] = 0;
+        pushup(rb), pushup(lb);
+    } 
+    void rev(int l, int r) {
+        int lb = kth(l), rb = kth(r + 2);
+        splay(lb), splay(rb, lb);
+        int gg = ch[rb][0];
+        if (!upd[gg]) lazy[gg] ^= 1, swap(ch[gg][0], ch[gg][1]), swap(ls[gg], rs[gg]), pushup(rb), pushup(lb);
+    }
+    void update(int l, int r, int v) {
+        int lb = kth(l), rb = kth(r + 2);
+        splay(lb), splay(rb, lb);
+        int gg = ch[rb][0];
+        upd[gg] = 1, val[gg] = v, sum[gg] = v * siz[gg], ls[gg] = rs[gg] = max(0, sum[gg]), gss[gg] = max(v, sum[gg]);
+        pushup(rb), pushup(lb);
+    }
+    int qsum(int l, int r) {
+        int lb = kth(l), rb = kth(r + 2);
+        splay(lb), splay(rb, lb);
+        return sum[ch[rb][0]];
+    }
+    int qmax() {return gss[rt];}
+
+    void clean() {
+        rt = ncnt = 0;
+        ms(ch, 0), ms(fa, 0), ms(siz, 0), ms(val, 0), ms(ls, 0), ms(rs, 0), ms(gss, 0), ms(sum, 0), ms(lazy, 0), ms(upd, 0);
+        gss[0] = val[0] = -INF;
+    }
+    int solve() {
+        clean();
+        scanf(&quot;%d%d&quot;, &amp;n, &amp;m);
+        for (int i = 1; i &lt;= n; ++i) scanf(&quot;%d&quot;, &amp;arr[i + 1]);
+        arr[1] = arr[n + 2] = -INF, rt = build(1, n + 2);
+        while (m--) {
+            scanf(&quot;%s&quot;, s);
+            if (s[0] == &#39;I&#39;) { // insert
+                int pos, tot; scanf(&quot;%d%d&quot;, &amp;pos, &amp;tot);
+                for (int i = 1; i &lt;= tot; ++i) scanf(&quot;%d&quot;, &amp;arr[i]);
+                insert(pos, build(1, tot));
+            }
+            if (s[0] == &#39;D&#39;) { // delete
+                int pos, tot; scanf(&quot;%d%d&quot;, &amp;pos, &amp;tot);
+                remove(pos, pos + tot - 1);
+            }
+            if (s[0] == &#39;M&#39; &amp;&amp; s[5] == &#39;S&#39;) { // update
+                int pos, tot, c; scanf(&quot;%d%d%d&quot;, &amp;pos, &amp;tot, &amp;c);
+                update(pos, pos + tot - 1, c);
+            }
+            if (s[0] == &#39;R&#39;) { // rev
+                int pos, tot; scanf(&quot;%d%d&quot;, &amp;pos, &amp;tot);
+                rev(pos, pos + tot - 1);
+            }
+            if (s[0] == &#39;G&#39;) { // qsum
+                int pos, tot; scanf(&quot;%d%d&quot;, &amp;pos, &amp;tot);
+                printf(&quot;%d\n&quot;, qsum(pos, pos + tot - 1));
+            }
+            if (s[0] == &#39;M&#39; &amp;&amp; s[4] == &#39;S&#39;) { // qmax
+                printf(&quot;%d\n&quot;, qmax());
+            }
+        }
+        return 0;
+    }
+}
+int main() {
+    flyinthesky::solve();
+    return 0;
+}
+</code></pre>
+<p>写时注意：<br>1、检查每个函数是否 <code>pushup</code>、<code>pushdown</code><br>2、对维护值进行修改等时，对照变量数组列表先数有没有漏，再看标记维护有没有错<br>3、序列区间最好都建在 $[1,n+2]$，避免与$0$冲突，加上虚节点非常有用<br>4、维护序列一定要用$build​$函数</p>
+<h1 id="常见题型"><a href="#常见题型" class="headerlink" title="常见题型"></a>常见题型</h1><p><strong>1、名次树</strong><br><a href="/Luogu3765">Luogu3765</a></p>
+<p><strong>2、Splay森林</strong><br><a href="/bzoj2733">Bzoj 2733</a></p>
+<p><strong>3、维护序列</strong><br><a href="/bzoj1500">Bzoj 1500</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+	<div>
+	  
+		
+<div style="text-align:center;color: #ccc;font-size:14px;">
+------ 本文结束 ------</div>
+<br/>
+<div style="border: 1px solid black">
+<div style="margin-left:10px">
+<span style="font-weight:blod">版权声明</span>
+<img src="http://blog.flyinthesky.win/pics/sources/cc.png" >
+<br/>
+<p style="font-size: 10px;line-height: 30px"><a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky's blog</a> by <a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky</a> is licensed under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" style="color:#258FC6">Creative Commons BY-NC-ND 4.0 International License</a>.<br/>
+由<a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky</a>创作并维护的<a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky's blog</a>博客采用<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" style="color:#258FC6">创作共用保留署名-非商业-禁止演绎4.0国际许可证</a>。<br/>
+本文首发于<a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky's blog</a> 博客（ <a href="http://blog.flyinthesky.win/" style="color:#258FC6">http://blog.flyinthesky.win/</a> ），版权所有，侵权必究。</p>
+</div>
+</div>
+
+	  
+	</div>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Splay/" rel="tag"><i class="fa fa-tag"></i> Splay</a>
+          
+            <a href="/tags/算法笔记/" rel="tag"><i class="fa fa-tag"></i> 算法笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/poj3764/" rel="next" title="poj 3764(Trie维护二进制数+Xor)">
+                <i class="fa fa-chevron-left"></i> poj 3764(Trie维护二进制数+Xor)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/sz计算几何/" rel="prev" title="计算几何 学习笔记">
+                计算几何 学习笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm"
+                alt="FlyInTheSky" />
+            
+              <p class="site-author-name" itemprop="name">FlyInTheSky</p>
+              <p class="site-description motion-element" itemprop="description">自己选择的路，跪着也要走完。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">587</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">144</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+		
+		<font size="3"><b>一言</b></font>
+		<script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+		 <script>
+         $.get('https://v1.hitokoto.cn/?c=a', function (data) {
+            if (typeof data === 'string') data = JSON.parse(data);
+            $('#hitokoto-loader').removeClass('active');
+            $('#hitokoto-content').css('display', '').text(data.hitokoto);
+            if (data.from) {
+              $('#hitokoto-from').css('display', '').text('——' + data.from);
+            }
+          });
+          
+          </script>
+          <div style="font-size: 1em; line-height: 1.5em; display: none; " id="hitokoto-content"></div>
+          <div style="text-align: right; margin-top: 15px; font-size: 0.9em; color: #666; display: none; " id="hitokoto-from"></div>
+
+		
+		<!--<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="220" height="320" src="http://www.missevan.com/albumiframe/379343?autoplay=false&playlist=true"></iframe>-->
+		
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#模板及讲解"><span class="nav-number">1.</span> <span class="nav-text">模板及讲解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Splay"><span class="nav-number">1.1.</span> <span class="nav-text">Splay</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Splay-的原理"><span class="nav-number">1.2.</span> <span class="nav-text">Splay 的原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#辅助操作实现"><span class="nav-number">1.2.1.</span> <span class="nav-text">辅助操作实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#核心操作实现"><span class="nav-number">1.2.2.</span> <span class="nav-text">核心操作实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现操作实现"><span class="nav-number">1.2.3.</span> <span class="nav-text">实现操作实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Splay-维护区间序列"><span class="nav-number">1.3.</span> <span class="nav-text">Splay 维护区间序列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Splay-维护区间序列终极例题"><span class="nav-number">1.4.</span> <span class="nav-text">Splay 维护区间序列终极例题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常见题型"><span class="nav-number">2.</span> <span class="nav-text">常见题型</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FlyInTheSky</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.0.3</div>
+
+
+
+  <div class="footer-custom">Hosted by <a target="_blank" href="https://pages.coding.me/">Coding Pages</a></div>
+
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.0.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.0.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.3"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: true,
+        appId: 'HbPrhSjQ6NCUr3zYqcbO4iKU-MdYXbMMI',
+        appKey: 'untdESV1xpzTGEu6IH2lwKOb',
+        placeholder: '写下您dalao对本蒟蒻博文的宝贵评论~(￣▽￣)~* ',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("Ex3VDezHHaHR2GEGMlazQCfC-gzGzoHsz", "u9iJTthJj7R0ieApCMNvyAjO");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  <script src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+    <!--<script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script> --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"messageStyle": "none","tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> 
+
+<script src="https://www.flyinthesky.win/highlight.min.js"></script>
+<script >hljs.initHighlightingOnLoad();</script>
+
+<!-- 代码块复制功能 -->
+<script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+<script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+
+
+</body>
+</html>

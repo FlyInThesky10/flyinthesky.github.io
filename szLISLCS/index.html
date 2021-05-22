@@ -1,0 +1,1928 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico?v=6.0.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=6.0.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico?v=6.0.3">
+
+
+  <link rel="mask-icon" href="/favicon.ico?v=6.0.3" color="#222">
+
+
+  <link rel="manifest" href="/favicon.ico">
+
+
+  <meta name="msapplication-config" content="/favicon.ico" />
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.0.3',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":true,"scrollpercent":false,"onmobile":true},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'T4TYK1DMV0',
+      apiKey: '8ae84ecb094e73f826b093645f9d90bc',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  
+  <meta name="keywords" content="算法笔记," />
+
+
+<meta name="description" content="例题及讲解LIS最长上升子序列 (Longest Increasing Subsequence，LIS)，一个数列中最长的单调递增的子序列。 例如 1 2 5 8 8 2 9 的 LIS 为 1 2 5 8 9，长度为 5. 模板题：Hdu 1257  某国发展出一种导弹拦截系统，它的第一发炮弹能够到达任意的高度，以后每一发炮弹都不能超过前一发的高度，给你一个导弹依此飞来的高度序列，请帮助计算一下">
+<meta name="keywords" content="算法笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LCS &amp; LIS 学习笔记">
+<meta property="og:url" content="http://blog.flyinthesky.win/szLISLCS/index.html">
+<meta property="og:site_name" content="FlyInTheSky&#39;s blog">
+<meta property="og:description" content="例题及讲解LIS最长上升子序列 (Longest Increasing Subsequence，LIS)，一个数列中最长的单调递增的子序列。 例如 1 2 5 8 8 2 9 的 LIS 为 1 2 5 8 9，长度为 5. 模板题：Hdu 1257  某国发展出一种导弹拦截系统，它的第一发炮弹能够到达任意的高度，以后每一发炮弹都不能超过前一发的高度，给你一个导弹依此飞来的高度序列，请帮助计算一下">
+<meta property="og:updated_time" content="2018-12-30T05:08:25.506Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LCS &amp; LIS 学习笔记">
+<meta name="twitter:description" content="例题及讲解LIS最长上升子序列 (Longest Increasing Subsequence，LIS)，一个数列中最长的单调递增的子序列。 例如 1 2 5 8 8 2 9 的 LIS 为 1 2 5 8 9，长度为 5. 模板题：Hdu 1257  某国发展出一种导弹拦截系统，它的第一发炮弹能够到达任意的高度，以后每一发炮弹都不能超过前一发的高度，给你一个导弹依此飞来的高度序列，请帮助计算一下">
+
+
+
+
+
+
+  <link rel="canonical" href="http://blog.flyinthesky.win/szLISLCS/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+  <title>LCS & LIS 学习笔记 | FlyInTheSky's blog</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5cb42869838f4cfeb9c9b241d7f2a21c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+  <link href="https://www.flyinthesky.win/tomorrow.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.1/google-fonts/fira-mono.css" rel="stylesheet">
+</head>
+
+
+<div id="hexo-helper-live2d">
+  <canvas id="live2dcanvas" width="300" height="600"></canvas>
+</div>
+<style>
+  #live2dcanvas{
+    position: fixed;
+    width: 300px;
+    height: 600px;
+    opacity:0.8;
+    right: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -120px;
+  }
+</style>
+<script type="text/javascript" src="/live2d/device.min.js"></script>
+<script type="text/javascript">
+const loadScript = function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};
+(function(){
+  if((typeof(device) != 'undefined') && (device.mobile())){
+    var trElement = document.getElementById('hexo-helper-live2d');
+    trElement.parentNode.removeChild(trElement);
+    return;
+  }else
+    if (typeof(device) === 'undefined') console.error('Cannot find current-device script.');
+  loadScript("/live2d/script.js", function(){loadlive2d("live2dcanvas", "/live2d/assets/wanko.model.json", 0.5);});
+})();
+</script>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+  
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">FlyInTheSky's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">OI, 梦开始的地方。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />分类</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-friends">
+          <a href="/friends/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-handshake-o"></i> <br />朋友</a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/szLISLCS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FlyInTheSky">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FlyInTheSky's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">LCS & LIS 学习笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-22T20:54:00+08:00">2018-10-22</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法笔记/" itemprop="url" rel="index"><span itemprop="name">算法笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/szLISLCS/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/szLISLCS/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/szLISLCS/" class="leancloud_visitors" data-flag-title="LCS & LIS 学习笔记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">+</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 s
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="例题及讲解"><a href="#例题及讲解" class="headerlink" title="例题及讲解"></a>例题及讲解</h1><h2 id="LIS"><a href="#LIS" class="headerlink" title="LIS"></a>LIS</h2><p>最长上升子序列 (Longest Increasing Subsequence，LIS)，一个数列中<strong>最长</strong>的<strong>单调递增</strong>的<strong>子序列</strong>。</p>
+<p>例如 1 2 5 8 8 2 9 的 LIS 为 1 2 5 8 9，长度为 5.</p>
+<p>模板题：<a href="http://acm.hdu.edu.cn/showproblem.php?pid=1257" target="_blank" rel="external">Hdu 1257</a></p>
+<blockquote>
+<p>某国发展出一种导弹拦截系统，它的第一发炮弹能够到达任意的高度，以后每一发炮弹都不能超过前一发的高度，给你一个导弹依此飞来的高度序列，请帮助计算一下最少需要多少套拦截系统.</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="O-n-2-DP-解法"><a href="#O-n-2-DP-解法" class="headerlink" title="$O(n^2)$ DP 解法"></a>$O(n^2)$ DP 解法</h3><p>设 $ dp(i) $ 为前 $ i $ 个数以 $ i $ 结尾的 LIS 长度。</p>
+<p>则 $ dp(i) = max(dp(j)+1|1 \leq j &lt; i, a_j &lt; a_i) $， $ a_i $ 为原数列。</p>
+<p>初始化 $ dp(i) = 1 $，因为此时为一个数的最长上升子序列</p>
+<p>代码(未编译)：</p>
+<pre><code class="c++">for (int i = 1; i &lt;= n; ++i)
+for (int j = 1; j &lt; i; ++j) if (a[i] &gt; a[j]) dp[i] = max(dp[i], dp[j] + 1);
+</code></pre>
+<p>注意答案不是 $ dp(n) $，而是 $ max(dp(i)|1 \leq i \leq n) $</p>
+<p>此做法时间复杂度为 $ O(n^2) $.</p>
+<p>对于 <a href="http://acm.hdu.edu.cn/showproblem.php?pid=1257" target="_blank" rel="external">Hdu 1257</a> 的解法，我们只需要求出序列的最长上升子序列即可，因为有几个上升子序列就说明要开多少套拦截系统。最长上升子序列中必然不可能两个数用一个系统。</p>
+<h3 id="O-nlogn-数据结构优化-DP-解法"><a href="#O-nlogn-数据结构优化-DP-解法" class="headerlink" title="$O(nlogn)$ 数据结构优化 DP 解法"></a>$O(nlogn)$ 数据结构优化 DP 解法</h3><p>例题：<a href="http://acm.hdu.edu.cn/showproblem.php?pid=1950" target="_blank" rel="external">Hdu 1950</a></p>
+<blockquote>
+<p>$ T $ 组数据询问，每个询问包含一个 $ n $ 长序列，求 LIS。 ( $ n \leq 40000 $ )</p>
+</blockquote>
+<p>原状态不能快速求出 LIS，我们试着换状态。</p>
+<p>设 $ dp(x) $ 为以 $ x $ 值结尾的 LIS 长度。</p>
+<p>则每次顺序扫描，$ dp(a_i) = max(dp(x)|x &lt; a_i) $， $ a_i $ 为原序列</p>
+<p>然后，我们观察 $ max(dp(x)|x &lt; a_i) $，发现这个可以开一个数据结构维护 $ a_i $ 的值域来 $ O(logn) $ 求解。</p>
+<p>具体解法是，顺序扫描 $ a_i $ ，每次在数据结构中查询值域区间 $ [0, a_i) $ (有可能有的题目值域会出现负数，所有数加上一个大正数即可，适当调整左端点的值)的最大值 $ x $，然后直接转移 $ dp(a_i) = x + 1 $。之后再将数据结构中 $ a_i $ 的位置修改为 $ dp(a_i) $。</p>
+<p>参考代码 (使用线段树维护区间最大值)：</p>
+<pre><code class="c++">// 线段树维护区间最大值
+int ans = 0;
+for (int i = 1; i &lt;= n; i++) {
+    dp[a[i]] = query(1, 0, MAXN, 0, a[i]) + 1; 
+    ans = max(ans, dp[a[i]]); // 答案是所有的，不是一个 dp 值
+    update(1, 0, MAXN, a[i], dp[a[i]]); 
+}
+</code></pre>
+<p>此做法时间复杂度为 $ O(nlogn) $.</p>
+<p>当然这个做法可以用树状数组来替换，代码会更简洁一些.</p>
+<h3 id="O-nlogn-贪心二分做法"><a href="#O-nlogn-贪心二分做法" class="headerlink" title="$O(nlogn)$ 贪心二分做法"></a>$O(nlogn)$ 贪心二分做法</h3><p>我们开一个数组 $ b $，当前长度为 $ len $。</p>
+<p>然后我们顺序把 $a$ 数组(原序列)的数加入数组 $ b $</p>
+<p>如果当前 $ a_i &gt; b_{len}$，那么直接将 $ a_i $ 插入 $ b $, 即 $ b_{len + 1} = a_i$</p>
+<p>否则在 $ b $ 中找到一个数比 $ a_i $ 刚刚大一点的数，然后将这个位置用 $ a_i $ 替换掉。</p>
+<p>此时 $ len $ 是 LCS 的长度。</p>
+<p>假如我们有 2 5 4 8 3 4 5 这个序列，那么我们操作是</p>
+<p>2 加入 $ b $, 此时 $ b = 2 $<br>5 加入 $ b $, 此时 $ b = 2, 5 $<br>4 加入 $ b $, 此时 $ b = 2, 4 $<br>8 加入 $ b $, 此时 $ b = 2, 4, 8 $<br>3 加入 $ b $, 此时 $ b = 2, 3, 8 $<br>4 加入 $ b $, 此时 $ b = 2, 3, 4 $<br>5 加入 $ b $, 此时 $ b = 2, 3, 4, 5 $</p>
+<p>此时 $ len = 4 $ 为 LIS 长度。 注意 $ b $ 不是 LIS，</p>
+<p>为什么是对的呢？</p>
+<p>其实每次操作的 $ len $ 相当于当前找到的 LIS。每次如果当前数 $ a_i $ 比 $ b $ 中所有数都大，那么这个 $ a_i $ 可以对当前答案产生 $ 1 $ 的贡献。反之，就可以将这个数替换掉 $ b $ 中的某个数，使得 $ b $ 中的数保持单调递增但是整体尽量最小，以便于后面的数加入产生贡献。</p>
+<p>参考代码</p>
+<pre><code class="c++">    int n, a[40005], b[40005], len;
+
+    void clean() {
+        ms(b, 0), len = 0;
+    }
+    int solve() { 
+        scanf(&quot;%d&quot;, &amp;n);
+        clean();
+        for (int i = 1; i &lt;= n; ++i) scanf(&quot;%d&quot;, &amp;a[i]);
+        b[1] = a[1], len = 1;
+        for (int i = 2; i &lt;= n; ++i) {
+            if (a[i] &gt; b[len]) b[++len] = a[i];
+            else {
+                int p = upper_bound(b + 1, b + 1 + len, a[i]) - b; // 注意 upper_bound
+                b[p] = a[i];
+            }
+        }
+        printf(&quot;%d\n&quot;, len);
+        return 0; 
+    }
+</code></pre>
+<p>此做法时间复杂度为 $ O(nlogn) $.</p>
+<h2 id="LCS"><a href="#LCS" class="headerlink" title="LCS"></a>LCS</h2><p>最长公共子序列 (Longest Common Subsequence，LCS)，即两个或两个以上数列中最长的公共子序列。</p>
+<p>例如 1 2 5 8 8 2 9 和 1 3 5 8 9 9 9 的 LCS 为 1 5 8 9</p>
+<p>模板题：<a href="http://acm.hdu.edu.cn/showproblem.php?pid=1159" target="_blank" rel="external">Hdu 1159</a></p>
+<blockquote>
+<p>求两个字符串的最长公共子串。</p>
+</blockquote>
+<h3 id="O-n-2-DP-解法-1"><a href="#O-n-2-DP-解法-1" class="headerlink" title="$O(n^2)$ DP 解法"></a>$O(n^2)$ DP 解法</h3><p>设 $ dp(i, j) $ 为第一个序列匹配到 $ i $，第二个序列匹配到 $ j $ 的 LCS 长度。</p>
+<p>$ dp(i, j) = dp(i - 1, j - 1) + 1$，当且仅当 $ a_i=b_j $ (两个原序列)<br>$ dp(i, j) = max(dp(i - 1, j), dp(i, j - 1))$，当且仅当 $ a_i \ne b_j $</p>
+<p>代码(未编译)：</p>
+<pre><code class="c++">for (int i = 1; i &lt;= lena; ++i)
+for (int j = 1; j &lt;= lenb; ++j) {
+    if (a[i] == b[j]) dp[i][j] = dp[i - 1][j - 1] + 1;
+    else dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
+}
+</code></pre>
+<p>此做法时间复杂度为 $ O(n^2) $.</p>
+<h3 id="O-nlogn-解法"><a href="#O-nlogn-解法" class="headerlink" title="$O(nlogn)$ 解法"></a>$O(nlogn)$ 解法</h3><p>在所有数不相同或者排列的情况下能够完成 LCS 转化为 LIS 从而 $ O(nlogn) $ 时间复杂度求解，见下面综合中的 LCS 转 LIS。</p>
+<p>如果有相同数也可以做，但是非常麻烦。</p>
+<h3 id="求-LCS-的方案"><a href="#求-LCS-的方案" class="headerlink" title="求 LCS 的方案"></a>求 LCS 的方案</h3><p>例题：<a href="https://www.luogu.org/problemnew/show/P2516" target="_blank" rel="external">luogu 2516</a></p>
+<blockquote>
+<p>对给定的两个字符序列，求出他们最长的公共子序列长度，以及最长公共子序列个数。</p>
+</blockquote>
+<p>第一问就是前面提到的 $ O(n^2) $的算法，主要看第二问</p>
+<p>对于第二问，我们当前第一问的 DP 状态是 $ dp(i, j) $ 表示第一个串匹配到 $ i $，第二个串匹配到 $ j $ 的最长公共子序列。</p>
+<p>然后我们再加一个数组 $ g(i, j) $ 表示第一个串匹配到 $ i $，第二个串匹配到 $ j $ 的最长公共子序列方案数。</p>
+<p>对于这个数组的转移：</p>
+<p>当 $ a_i = b_j $ 时，方案数加上$ g(i-1,j-1) $ 如果当前的 DP 值等于 $ dp(i-1, j) $ 或 $ dp(i, j-1) $，那么加上这些方案数，我们发现这个并不会重复</p>
+<p>否则如果当前的 DP 值等于 $ dp(i-1, j) $ 或 $ dp(i, j-1) $，那么加上这些方案数。但是如果当前还等于 $ dp(i-1, j-1) $，说明 $ a_i ,  b_j $ 没做贡献，两个 LCS 均是从$i-1,j-1$的位置转移而来，减掉$ g(i-1,j-1) $即可。</p>
+<p>注意开滚动数组，这种题目很容易就 MLE 爆 0 了 </p>
+<p>这种求方案数的方法很好，利用了一些容斥知识</p>
+<p>代码：</p>
+<pre><code class="c++">for (int i = 0; i &lt;= lb; ++i) g[cur ^ 1][i] = 1; //cur 表示滚动数组当前的位置，可以理解为 i。 cur ^ 1 为对称位置，可以理解为 i - 1。
+    for (int i = 1; i &lt;= la; ++i) {
+        for (int j = 0; j &lt;= lb; ++j) dp[cur][j] = 0, g[cur][j] = 0;
+        g[cur][0] = 1;
+        for (int j = 1; j &lt;= lb; ++j) {
+            dp[cur][j] = max(dp[cur ^ 1][j], dp[cur][j - 1]);
+            if (a[i] == b[j]) {
+                dp[cur][j] = dp[cur ^ 1][j - 1] + 1;
+                g[cur][j] = g[cur ^ 1][j - 1];
+                if (dp[cur][j] == dp[cur ^ 1][j]) g[cur][j] = (g[cur][j] + g[cur ^ 1][j]) % MO;
+                if (dp[cur][j] == dp[cur][j - 1]) g[cur][j] = (g[cur][j] + g[cur][j - 1]) % MO;
+                } else {
+                if (dp[cur][j] == dp[cur ^ 1][j]) g[cur][j] = (g[cur][j] + g[cur ^ 1][j]) % MO;
+                if (dp[cur][j] == dp[cur][j - 1]) g[cur][j] = (g[cur][j] + g[cur][j - 1]) % MO;
+                if (dp[cur][j] == dp[cur ^ 1][j - 1]) g[cur][j] = (g[cur][j] - g[cur ^ 1][j - 1] + MO) % MO;
+            }
+        }
+    }
+    cur ^= 1;
+}
+printf(&quot;%d\n%d\n&quot;, dp[cur ^ 1][lb], g[cur ^ 1][lb]);
+</code></pre>
+<h2 id="综合"><a href="#综合" class="headerlink" title="综合"></a>综合</h2><h3 id="LIS-转-LCS"><a href="#LIS-转-LCS" class="headerlink" title="LIS 转 LCS"></a>LIS 转 LCS</h3><p>LIS 问题在<strong>数字不重复情况下</strong>可以转化为 LCS 问题来求解。</p>
+<p>具体方法是把原数组 $ a $ 增序排序后得到 $ b $，然后 $ a, b $ 的 LCS 长度就是原序列 $ a $ 的 LIS 长度。 </p>
+<p>例如 1 2 5 8 2 9 排序后为 1 2 2 5 8 9，两个序列 LCS 为 1 2 5 8 9</p>
+<p>因为 $ LIS $ 是单调递增的，而排序后的数组也是单调递增的，所以两个串的 LCS 就是 LIS。</p>
+<p>将问题互化了一下，两个算法都可以 $ O(n^2) $ 完成。可能在有的题目中会用到。</p>
+<h3 id="LCS-转-LIS"><a href="#LCS-转-LIS" class="headerlink" title="LCS 转 LIS"></a>LCS 转 LIS</h3><p>考虑所有数不相同或者排列的情况下能够完成 LCS 转化为 LIS 。</p>
+<p>例题：<a href="https://www.luogu.org/problemnew/show/P1439" target="_blank" rel="external">Luogu 1439</a></p>
+<blockquote>
+<p>给出$1-n$的两个排列$P_1$和$P_2$，求它们的最长公共子序列</p>
+</blockquote>
+<p>这里只有排列，说明了什么？我们可以找到第二个序列每个元素在第一个序列的位置，那么我们用一个 <code>map</code> 来进行映射处理 (也就是找到“第二个序列每个元素在第一个序列的位置”)</p>
+<p>例如：</p>
+<p>3 4 2 1 5 和 1 3 4 5 2，“第二个序列每个元素在第一个序列的位置”(“对应序列”)序列为 4 1 2 5 3</p>
+<p>然后我们可以观察发现 4 1 2 5 3 的 LIS 即为 LCS。</p>
+<p>这个结论是正确的。</p>
+<p>我们可以想想，“第二个序列每个元素在第一个序列的位置”序列是按照第二个序列的顺序来排的，也就是说这个序列第一个数 4 表示的是第二个序列第一个数在第一个序列的位置，而不是第二个数的。然后我们知道在第一个序列中求得的 LCS 子序列从左到右序号一定是递增的，所以在按第二个序列数排的“对应序列”中找 LIS 就可以找出两个序列的 LCS。因为第二个序列求得的 LCS 子序列从左到右序号也一定是递增的。</p>
+<p>就相当于固定了第二个序列中元素的顺序，然后根据第一个序列中元素顺序来求一个交。</p>
+<p>代码：</p>
+<pre><code class="c++">for (int i = 1; i &lt;= n; ++i) scanf(&quot;%d&quot;, &amp;a[i]), ma[a[i]] = i;//ma 为 map
+for (int i = 1; i &lt;= n; ++i) scanf(&quot;%d&quot;, &amp;b[i]);
+for (int i = 1; i &lt;= n; ++i) b[i] = ma[b[i]];
+tax[1] = b[1], len = 1;
+for (int i = 2; i &lt;= n; ++i) {
+    if (b[i] &gt; tax[len]) tax[++len] = b[i]; else {
+       int p = lower_bound(tax + 1, tax + 1 + len, b[i]) - tax;
+       tax[p] = b[i];
+    }
+}
+printf(&quot;%d\n&quot;, len);
+</code></pre>
+<p>对于有重复数的，我们也能做，但是代码非常复杂。。<br>假如有 1 2 3 1 4 和 2 3 1 1 4，我们将“第二个序列每个元素在第一个序列的位置”(“对应序列”)序列的元素修改为一个集合，即比如第二个序列 1 对应两个位置，为 $(1, 4)$，然后根据这个来得到“对应序列”(上面例子的“对应序列”：2 3 1 4 1 4 5)，拆开集合的大括号继续做即可，注意可能有的数字对于空集的情况，代码太难写也没找到题就放这里读者有兴趣可以写写~</p>
+<h3 id="LCIS"><a href="#LCIS" class="headerlink" title="LCIS"></a>LCIS</h3><p>顾名思义，LCIS 就是最长公共上升子序列。</p>
+<p>例题：<a href="http://www.joyoi.cn/problem/tyvj-1071" target="_blank" rel="external">tyvj 1071</a></p>
+<blockquote>
+<p>求两个序列的最长公共上升子序列。</p>
+</blockquote>
+<p>我们可以设 $ dp(i, j) $ 为 $ a $ 序列匹配到 $ i $ 位置， $ b $ 序列匹配到 $ j $ 位置，以 $ b_j $ 结尾的 LCIS</p>
+<p>参考代码：</p>
+<pre><code class="c++">for (int i = 1; i &lt;= n; ++i) {
+    int k = 0;
+    for (int j = 1; j &lt;= n; ++j) {
+        if (a[i] == b[j]) f[j] = max(f[j], f[k]+1), ans = max(ans, f[j]); else {
+            if (b[j] &lt; a[i] &amp;&amp; f[j] &gt; f[k]) k = j;
+        }
+    }
+}
+</code></pre>
+<h2 id="一些题目"><a href="#一些题目" class="headerlink" title="一些题目"></a>一些题目</h2><h2 id="LIS-序列更改问题相关"><a href="#LIS-序列更改问题相关" class="headerlink" title="LIS 序列更改问题相关"></a>LIS 序列更改问题相关</h2><p>1、例题：[Poj 3666]</p>
+<blockquote>
+<p>给出一个数列$A_i$，求构造$B_i$使得$B_i$单调且$\sum_{i=1}^n |A_i - B_i|$最小, 只需要求出最小值。</p>
+</blockquote>
+<p>2、例题：[Hdu 5256]</p>
+<blockquote>
+<p>求将一个序列改成严格单调的最小次数。</p>
+</blockquote>
+<p>先考虑不严格的情况。答案为$n-LIS$的长度 </p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+	<div>
+	  
+		
+<div style="text-align:center;color: #ccc;font-size:14px;">
+------ 本文结束 ------</div>
+<br/>
+<div style="border: 1px solid black">
+<div style="margin-left:10px">
+<span style="font-weight:blod">版权声明</span>
+<img src="http://blog.flyinthesky.win/pics/sources/cc.png" >
+<br/>
+<p style="font-size: 10px;line-height: 30px"><a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky's blog</a> by <a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky</a> is licensed under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" style="color:#258FC6">Creative Commons BY-NC-ND 4.0 International License</a>.<br/>
+由<a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky</a>创作并维护的<a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky's blog</a>博客采用<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" style="color:#258FC6">创作共用保留署名-非商业-禁止演绎4.0国际许可证</a>。<br/>
+本文首发于<a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky's blog</a> 博客（ <a href="http://blog.flyinthesky.win/" style="color:#258FC6">http://blog.flyinthesky.win/</a> ），版权所有，侵权必究。</p>
+</div>
+</div>
+
+	  
+	</div>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法笔记/" rel="tag"><i class="fa fa-tag"></i> 算法笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/bzoj1857/" rel="next" title="「Bzoj 1857」「Scoi2010」传送带 (三分套三分)">
+                <i class="fa fa-chevron-left"></i> 「Bzoj 1857」「Scoi2010」传送带 (三分套三分)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/bzoj2423/" rel="prev" title="「Bzoj 2423」「HAOI2010」最长公共子序列 (DP最长公共子序列)">
+                「Bzoj 2423」「HAOI2010」最长公共子序列 (DP最长公共子序列) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm"
+                alt="FlyInTheSky" />
+            
+              <p class="site-author-name" itemprop="name">FlyInTheSky</p>
+              <p class="site-description motion-element" itemprop="description">自己选择的路，跪着也要走完。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">587</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">144</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+		
+		<font size="3"><b>一言</b></font>
+		<script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+		 <script>
+         $.get('https://v1.hitokoto.cn/?c=a', function (data) {
+            if (typeof data === 'string') data = JSON.parse(data);
+            $('#hitokoto-loader').removeClass('active');
+            $('#hitokoto-content').css('display', '').text(data.hitokoto);
+            if (data.from) {
+              $('#hitokoto-from').css('display', '').text('——' + data.from);
+            }
+          });
+          
+          </script>
+          <div style="font-size: 1em; line-height: 1.5em; display: none; " id="hitokoto-content"></div>
+          <div style="text-align: right; margin-top: 15px; font-size: 0.9em; color: #666; display: none; " id="hitokoto-from"></div>
+
+		
+		<!--<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="220" height="320" src="http://www.missevan.com/albumiframe/379343?autoplay=false&playlist=true"></iframe>-->
+		
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#例题及讲解"><span class="nav-number">1.</span> <span class="nav-text">例题及讲解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#LIS"><span class="nav-number">1.1.</span> <span class="nav-text">LIS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#O-n-2-DP-解法"><span class="nav-number">1.1.1.</span> <span class="nav-text">$O(n^2)$ DP 解法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#O-nlogn-数据结构优化-DP-解法"><span class="nav-number">1.1.2.</span> <span class="nav-text">$O(nlogn)$ 数据结构优化 DP 解法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#O-nlogn-贪心二分做法"><span class="nav-number">1.1.3.</span> <span class="nav-text">$O(nlogn)$ 贪心二分做法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LCS"><span class="nav-number">1.2.</span> <span class="nav-text">LCS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#O-n-2-DP-解法-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">$O(n^2)$ DP 解法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#O-nlogn-解法"><span class="nav-number">1.2.2.</span> <span class="nav-text">$O(nlogn)$ 解法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#求-LCS-的方案"><span class="nav-number">1.2.3.</span> <span class="nav-text">求 LCS 的方案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#综合"><span class="nav-number">1.3.</span> <span class="nav-text">综合</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LIS-转-LCS"><span class="nav-number">1.3.1.</span> <span class="nav-text">LIS 转 LCS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LCS-转-LIS"><span class="nav-number">1.3.2.</span> <span class="nav-text">LCS 转 LIS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LCIS"><span class="nav-number">1.3.3.</span> <span class="nav-text">LCIS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些题目"><span class="nav-number">1.4.</span> <span class="nav-text">一些题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LIS-序列更改问题相关"><span class="nav-number">1.5.</span> <span class="nav-text">LIS 序列更改问题相关</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FlyInTheSky</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.0.3</div>
+
+
+
+  <div class="footer-custom">Hosted by <a target="_blank" href="https://pages.coding.me/">Coding Pages</a></div>
+
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.0.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.0.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.3"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: true,
+        appId: 'HbPrhSjQ6NCUr3zYqcbO4iKU-MdYXbMMI',
+        appKey: 'untdESV1xpzTGEu6IH2lwKOb',
+        placeholder: '写下您dalao对本蒟蒻博文的宝贵评论~(￣▽￣)~* ',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("Ex3VDezHHaHR2GEGMlazQCfC-gzGzoHsz", "u9iJTthJj7R0ieApCMNvyAjO");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  <script src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+    <!--<script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script> --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"messageStyle": "none","tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> 
+
+<script src="https://www.flyinthesky.win/highlight.min.js"></script>
+<script >hljs.initHighlightingOnLoad();</script>
+
+<!-- 代码块复制功能 -->
+<script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+<script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+
+
+</body>
+</html>

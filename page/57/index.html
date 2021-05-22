@@ -1,0 +1,3408 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico?v=6.0.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=6.0.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico?v=6.0.3">
+
+
+  <link rel="mask-icon" href="/favicon.ico?v=6.0.3" color="#222">
+
+
+  <link rel="manifest" href="/favicon.ico">
+
+
+  <meta name="msapplication-config" content="/favicon.ico" />
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.0.3',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":true,"scrollpercent":false,"onmobile":true},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'T4TYK1DMV0',
+      apiKey: '8ae84ecb094e73f826b093645f9d90bc',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  
+  <meta name="keywords" content="FlyInTheSky, oi, oier, noip, noi, 题解, 信息学, 信息学竞赛, 竞赛" />
+
+
+<meta name="description" content="自己选择的路，跪着也要走完。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="FlyInTheSky&#39;s blog">
+<meta property="og:url" content="http://blog.flyinthesky.win/page/57/index.html">
+<meta property="og:site_name" content="FlyInTheSky&#39;s blog">
+<meta property="og:description" content="自己选择的路，跪着也要走完。">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="FlyInTheSky&#39;s blog">
+<meta name="twitter:description" content="自己选择的路，跪着也要走完。">
+
+
+
+
+
+
+  <link rel="canonical" href="http://blog.flyinthesky.win/page/57/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+  <title>FlyInTheSky's blog</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5cb42869838f4cfeb9c9b241d7f2a21c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+  <link href="https://www.flyinthesky.win/tomorrow.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.1/google-fonts/fira-mono.css" rel="stylesheet">
+</head>
+
+
+<div id="hexo-helper-live2d">
+  <canvas id="live2dcanvas" width="300" height="600"></canvas>
+</div>
+<style>
+  #live2dcanvas{
+    position: fixed;
+    width: 300px;
+    height: 600px;
+    opacity:0.8;
+    right: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -120px;
+  }
+</style>
+<script type="text/javascript" src="/live2d/device.min.js"></script>
+<script type="text/javascript">
+const loadScript = function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};
+(function(){
+  if((typeof(device) != 'undefined') && (device.mobile())){
+    var trElement = document.getElementById('hexo-helper-live2d');
+    trElement.parentNode.removeChild(trElement);
+    return;
+  }else
+    if (typeof(device) === 'undefined') console.error('Cannot find current-device script.');
+  loadScript("/live2d/script.js", function(){loadlive2d("live2dcanvas", "/live2d/assets/wanko.model.json", 0.5);});
+})();
+</script>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+  
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">FlyInTheSky's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">OI, 梦开始的地方。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />分类</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-friends">
+          <a href="/friends/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-handshake-o"></i> <br />朋友</a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/hdu1542/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FlyInTheSky">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FlyInTheSky's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/hdu1542/" itemprop="url">「Hdu 1542」Atlantis  (线段树 + 扫描线)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-10T00:00:00+08:00">2017-02-10</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Hdu/" itemprop="url" rel="index"><span itemprop="name">Hdu</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/hdu1542/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/hdu1542/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/hdu1542/" class="leancloud_visitors" data-flag-title="「Hdu 1542」Atlantis  (线段树 + 扫描线)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">+</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 s
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1542" target="_blank" rel="external">Hdu 1542</a><br>线段树离散化以后进行扫描线求面积并。</p>
+<p>具体就是用一条平行于$y$轴的直线自左向右地扫过去，然后每次扫到一个整块长方形记录面积。<br>记录方法是，一个矩形分成左右两个边，左边在线段树中增加，右边在线段树中减少。则当前线段树中的所有大于0的数的个数即为当前长方形的一边。另一边为当前边横坐标减去前一条边的横坐标。</p>
+<p>需要离散化。</p>
+<p>这里维护的线段树很特殊，只需要查询根节点的和，则在线段树直接维护离散前的数据长度，记录一下区间覆盖次数，大于0则有值，否则没有。<strong>注意线段树里面每个点维护的是第几段的覆盖次数。</strong></p>
+<p><a href="http://www.cnblogs.com/scau20110726/archive/2013/03/21/2972808.html" target="_blank" rel="external">http://www.cnblogs.com/scau20110726/archive/2013/03/21/2972808.html</a><br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/hdu1542/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+	<div>
+	  
+	</div>
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/hdu2087/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FlyInTheSky">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FlyInTheSky's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/hdu2087/" itemprop="url">Hdu 2087(KMP)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-08T00:00:00+08:00">2017-02-08</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Hdu/" itemprop="url" rel="index"><span itemprop="name">Hdu</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/hdu2087/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/hdu2087/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/hdu2087/" class="leancloud_visitors" data-flag-title="Hdu 2087(KMP)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">+</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 s
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=2087" target="_blank" rel="external">Hdu 2087</a><br>KMP即可。注意不可重叠，用一个$last$记录上一个不重复匹配成功的位置，之后如果匹配成功，记当前位置为$i$，如果$i-last&gt;模式串长度$，即匹配成功，更新$last$<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/hdu2087/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+	<div>
+	  
+	</div>
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/hdu2222/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FlyInTheSky">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FlyInTheSky's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/hdu2222/" itemprop="url">Hdu 2222(AC自动机)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-07T00:00:00+08:00">2017-02-07</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Hdu/" itemprop="url" rel="index"><span itemprop="name">Hdu</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/hdu2222/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/hdu2222/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/hdu2222/" class="leancloud_visitors" data-flag-title="Hdu 2222(AC自动机)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">+</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 s
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=2222" target="_blank" rel="external">Hdu 2222</a><br>AC自动机模板题，注意重复关键字的处理<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/hdu2222/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+	<div>
+	  
+	</div>
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/bzoj1823/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FlyInTheSky">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FlyInTheSky's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/bzoj1823/" itemprop="url">「Bzoj 1823」「JSOI2010」满汉全席 (2-SAT)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-06T00:00:00+08:00">2017-02-06</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Bzoj/" itemprop="url" rel="index"><span itemprop="name">Bzoj</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/bzoj1823/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/bzoj1823/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/bzoj1823/" class="leancloud_visitors" data-flag-title="「Bzoj 1823」「JSOI2010」满汉全席 (2-SAT)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">+</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 s
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=1823" target="_blank" rel="external">BZOJ 1823</a><br>经典2-SAT模型，注意输入<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/bzoj1823/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+	<div>
+	  
+	</div>
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/bzoj2199/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FlyInTheSky">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FlyInTheSky's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/bzoj2199/" itemprop="url">Bzoj 2199(2-SAT)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-04T00:00:00+08:00">2017-02-04</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Bzoj/" itemprop="url" rel="index"><span itemprop="name">Bzoj</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/bzoj2199/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/bzoj2199/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/bzoj2199/" class="leancloud_visitors" data-flag-title="Bzoj 2199(2-SAT)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">+</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 s
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=2199" target="_blank" rel="external">BZOJ 2199</a><br><a href="https://www.luogu.org/problem/show?pid=3007" target="_blank" rel="external">luogu免权限地址</a><br>2-SAT模板题，用2-SAT建图后，枚举每个议案能否通过<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/bzoj2199/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+	<div>
+	  
+	</div>
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/bzoj1593/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FlyInTheSky">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FlyInTheSky's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/bzoj1593/" itemprop="url">「Bzoj 1593」「Usaco2008 Feb」Hotel 旅馆(线段树)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-26T00:00:00+08:00">2017-01-26</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Bzoj/" itemprop="url" rel="index"><span itemprop="name">Bzoj</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/bzoj1593/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/bzoj1593/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/bzoj1593/" class="leancloud_visitors" data-flag-title="「Bzoj 1593」「Usaco2008 Feb」Hotel 旅馆(线段树)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">+</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 s
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=1593" target="_blank" rel="external">BZOJ 1593</a><br><a href="https://www.luogu.org/problem/show?pid=2894" target="_blank" rel="external">luogu免权限地址</a><br>线段树记录4个信息：<br>lm: 左端点开始最长连续空区间<br>rm: 右端点开始最长连续空区间<br>sum:整个区间最长连续空区间<br>lazy:lazy标记 (-1:没有标记 0:空区间 1:满区间)<br>具体请看代码<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/bzoj1593/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+	<div>
+	  
+	</div>
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/bzoj2060/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FlyInTheSky">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FlyInTheSky's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/bzoj2060/" itemprop="url">Bzoj 2060(树形DP)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-24T00:00:00+08:00">2017-01-24</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Bzoj/" itemprop="url" rel="index"><span itemprop="name">Bzoj</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/bzoj2060/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/bzoj2060/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/bzoj2060/" class="leancloud_visitors" data-flag-title="Bzoj 2060(树形DP)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">+</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 s
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>(BZOJ 2060)[<a href="http://www.lydsy.com/JudgeOnline/problem.php?id=2060" target="_blank" rel="external">http://www.lydsy.com/JudgeOnline/problem.php?id=2060</a>]<br><a href="https://www.luogu.org/problem/show?pid=2996" target="_blank" rel="external">luogu免权限地址</a><br>设状态$f[i][0]$为$i$点不访问，$f[i][1]$为$i$点访问</p>
+<p>$f[u][1] +=  f[v][0] $  u点要访问，(u,v)有连边<br>$f[u][0] +=  max(f[v][0], f[v][1]) $ u点不访问，(u,v)有连边<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/bzoj2060/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+	<div>
+	  
+	</div>
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/whk英语高级词汇/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FlyInTheSky">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FlyInTheSky's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/whk英语高级词汇/" itemprop="url">英语高级词汇合集</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-23T13:55:00+08:00">2017-01-23</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/文化课/" itemprop="url" rel="index"><span itemprop="name">文化课</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/whk英语高级词汇/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/whk英语高级词汇/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/whk英语高级词汇/" class="leancloud_visitors" data-flag-title="英语高级词汇合集">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">+</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 s
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="like-love改be-fond-of"><a href="#like-love改be-fond-of" class="headerlink" title="like/love改be fond of"></a>like/love改be fond of</h1><p>like/love = be fond of</p>
+<blockquote>
+<p>例句1：I <strong>like</strong> the book. = <strong>I’ m fond of</strong> the book.<br>例句2：I <strong>like to</strong> coding. = <strong>I’m fond of</strong> coding.</p>
+</blockquote>
+<h1 id="be-in改be-located-in"><a href="#be-in改be-located-in" class="headerlink" title="be in改be located in"></a>be in改be located in</h1><p>be in = be located in</p>
+<blockquote>
+<p>例句：Guangdong <strong>is in</strong> China. = Guangdong <strong>is located in</strong> China.</p>
+</blockquote>
+<h1 id="want改desire-be-dying-to-do"><a href="#want改desire-be-dying-to-do" class="headerlink" title="want改desire / be dying to do"></a>want改desire / be dying to do</h1><p>want to do sth. = desire to do sth.<br>want sth. = desire (for) sth.</p>
+<blockquote>
+<p>例句1：I <strong>want to swim</strong>. = I <strong>desire to swim</strong>.<br>例句2：I <strong>want some fish</strong>. = I <strong>desire (for) some fish</strong>.</p>
+</blockquote>
+<h1 id="spend改devote"><a href="#spend改devote" class="headerlink" title="spend改devote"></a>spend改devote</h1><p>sb. spend time/money (in) doing sth. = sb. devote time/money to doing sth.<br>sb. spend time/money on sth. = sb. devote time/money to sth.</p>
+<blockquote>
+<p>例句1：I <strong>spent two hours (in) coding</strong>. = I <strong>devoted two hours to coding</strong>.<br>例句2：I <strong>spent two hours on the movie</strong> called Your Name. = I <strong>devoted two hours to the movie </strong>called Your Name.</p>
+</blockquote>
+<h1 id="because-of改due-to"><a href="#because-of改due-to" class="headerlink" title="because of改due to"></a>because of改due to</h1><p>because of = due to</p>
+<blockquote>
+<p>例句：The sports meeting was put off <strong>because of</strong> the rain. = The sports meeting was put off  <strong>due to </strong>the rain.</p>
+</blockquote>
+<h1 id="as-soon-as改on"><a href="#as-soon-as改on" class="headerlink" title="as soon as改on"></a>as soon as改on</h1><p>on …(从句的动名词复合结构), (主句) = as soon as (从句), (主句)</p>
+<blockquote>
+<p>例句：<strong>As soon as</strong> I look for my bag, he comes in. = <strong>On my looking for my bag</strong>, he comes in.</p>
+</blockquote>
+<h1 id="be-adj-改be-of-n"><a href="#be-adj-改be-of-n" class="headerlink" title="be adj.改be of n."></a>be adj.改be of n.</h1><p>be adj. = be of n.</p>
+<blockquote>
+<p>例句：The book <strong>is useful to</strong> me. = The book <strong>is of great use to</strong> me.</p>
+</blockquote>
+<h1 id="have-to-do改can’-t-but-do-can’-t-help-but-do"><a href="#have-to-do改can’-t-but-do-can’-t-help-but-do" class="headerlink" title="have to do改can’ t but do/ can’ t help but do"></a>have to do改can’ t but do/ can’ t help but do</h1><p>have to do = can’ t but do/ can’ t help but do</p>
+<blockquote>
+<p>例句1：I <strong>have to do</strong> my homework. = I <strong>can’t but do</strong> my homework.<br>例句2：I <strong>have to do</strong> my homework. = I <strong>can’ t help but do</strong> my homework.</p>
+</blockquote>
+<h1 id="usually改more-often-than-not"><a href="#usually改more-often-than-not" class="headerlink" title="usually改more often than not"></a>usually改more often than not</h1><p>usually = more often than not(句首)</p>
+<blockquote>
+<p>例句：I <strong>usually</strong> do my homework first. = <strong>More often than not</strong>, I do my homework.</p>
+</blockquote>
+<h1 id="most-of改the-majority-of"><a href="#most-of改the-majority-of" class="headerlink" title="most of改the majority of"></a>most of改the majority of</h1><p>most of = the majority of</p>
+<blockquote>
+<p>例句：<strong>Most of</strong> the students are good. = <strong>The majority of</strong> the students are good.</p>
+</blockquote>
+<h1 id="help改do-sb-a-favor-to-do"><a href="#help改do-sb-a-favor-to-do" class="headerlink" title="help改do sb. a favor to do"></a>help改do sb. a favor to do</h1><p>help = do sb. a favor to do</p>
+<blockquote>
+<p>例句：Can you <strong>help me</strong>? = Can you <strong>do me a favor</strong>?</p>
+</blockquote>
+<h1 id="as-a-result改as-a-consequence"><a href="#as-a-result改as-a-consequence" class="headerlink" title="as a result改as a consequence"></a>as a result改as a consequence</h1><p>as a result = as a consequence</p>
+<blockquote>
+<p>例句：<strong>As a result</strong>, it is a joke. = <strong>As a consequence</strong>, it is a joke.</p>
+</blockquote>
+<h1 id="all-kinds-of-different-kinds-of改various"><a href="#all-kinds-of-different-kinds-of改various" class="headerlink" title="all kinds of / different kinds of改various"></a>all kinds of / different kinds of改various</h1><p>variety-&gt;diversity</p>
+<h1 id="with-be-good-at改-equipped-with-blessed-with-armed-with"><a href="#with-be-good-at改-equipped-with-blessed-with-armed-with" class="headerlink" title="with / be good at改 equipped with / blessed with / armed with"></a>with / be good at改 equipped with / blessed with / armed with</h1><h1 id="be-good-at-改-have-a-good-command-of-sth"><a href="#be-good-at-改-have-a-good-command-of-sth" class="headerlink" title="be good at 改 have a good command of sth"></a>be good at 改 have a good command of sth</h1><h1 id="fight-for-改-struggle-for"><a href="#fight-for-改-struggle-for" class="headerlink" title="fight for 改 struggle for"></a>fight for 改 struggle for</h1><h1 id="be-worth-doing-改-be-worthwhile-to-do"><a href="#be-worth-doing-改-be-worthwhile-to-do" class="headerlink" title="be worth doing 改 be worthwhile to do"></a>be worth doing 改 be worthwhile to do</h1><h1 id="see-sb-do-sth-改-observe-sb-do-sth"><a href="#see-sb-do-sth-改-observe-sb-do-sth" class="headerlink" title="see sb. do sth. 改 observe sb. do sth."></a>see sb. do sth. 改 observe sb. do sth.</h1><h1 id="take-part-in-改-get-involved-in-participate-in"><a href="#take-part-in-改-get-involved-in-participate-in" class="headerlink" title="take part in 改 get involved in / participate in"></a>take part in 改 get involved in / participate in</h1><h1 id="a-lot-of-改-a-variety-of-a-great-deal-of-a-diversity-of"><a href="#a-lot-of-改-a-variety-of-a-great-deal-of-a-diversity-of" class="headerlink" title="a lot of 改 a variety of / a great deal of / a diversity of"></a>a lot of 改 a variety of / a great deal of / a diversity of</h1><h1 id="traditional-改-conventional"><a href="#traditional-改-conventional" class="headerlink" title="traditional 改 conventional"></a>traditional 改 conventional</h1><h1 id="have-faith-in-sb"><a href="#have-faith-in-sb" class="headerlink" title="*have faith in sb.*"></a>*have faith in sb.*</h1><h1 id="for-one-thing-…-and-for-another-thing"><a href="#for-one-thing-…-and-for-another-thing" class="headerlink" title="*for one thing, … , and for another thing*"></a>*for one thing, … , and for another thing*</h1><h1 id="attract-sb-改-appeal-to-sb"><a href="#attract-sb-改-appeal-to-sb" class="headerlink" title="attract sb. 改 appeal to sb."></a>attract sb. 改 appeal to sb.</h1><h1 id="focus-on-改-concentrate-on"><a href="#focus-on-改-concentrate-on" class="headerlink" title="focus on 改 concentrate on"></a>focus on 改 concentrate on</h1><h1 id="decide-to-do-改-aim-to-do-with-the-intent-of-doing-with-the-aim-of"><a href="#decide-to-do-改-aim-to-do-with-the-intent-of-doing-with-the-aim-of" class="headerlink" title="decide to do 改 aim to do /  with the intent of doing / with the aim of"></a>decide to do 改 aim to do /  with the intent of doing / with the aim of</h1><h1 id="sadly-改-to-one’s-sorrow"><a href="#sadly-改-to-one’s-sorrow" class="headerlink" title="sadly 改 to one’s sorrow"></a>sadly 改 to one’s sorrow</h1><h1 id="special-改-in-particular"><a href="#special-改-in-particular" class="headerlink" title="special 改 in particular"></a>special 改 in particular</h1><h1 id="poper-改-suitable-appropriate"><a href="#poper-改-suitable-appropriate" class="headerlink" title="poper 改 suitable / appropriate"></a>poper 改 suitable / appropriate</h1><h1 id="be-addicted-to"><a href="#be-addicted-to" class="headerlink" title="*be addicted to*"></a>*be addicted to*</h1><h1 id="in-fact-改-as-a-matter-of-fact"><a href="#in-fact-改-as-a-matter-of-fact" class="headerlink" title="in fact 改 as a matter of fact"></a>in fact 改 as a matter of fact</h1><h1 id="deserve-sb-…"><a href="#deserve-sb-…" class="headerlink" title="*deserve sb. …*"></a>*deserve sb. …*</h1><h1 id="some-…-others-…-still-others-…"><a href="#some-…-others-…-still-others-…" class="headerlink" title="*some … ; others … ; still others …*"></a>*some … ; others … ; still others …*</h1><h1 id="control-改-regulate"><a href="#control-改-regulate" class="headerlink" title="control 改 regulate"></a>control 改 regulate</h1><h1 id="put-stress-on-sth-stress-that-…"><a href="#put-stress-on-sth-stress-that-…" class="headerlink" title="*put stress on sth. / stress that …*"></a>*put stress on sth. / stress that …*</h1><h1 id="form-the-habit-of-doing"><a href="#form-the-habit-of-doing" class="headerlink" title="*form the habit of doing*"></a>*form the habit of doing*</h1><h1 id="with-the-help-of-改-with-the-assistance-of"><a href="#with-the-help-of-改-with-the-assistance-of" class="headerlink" title="with the help of 改 with the assistance of"></a>with the help of 改 with the assistance of</h1><h1 id="especially-…"><a href="#especially-…" class="headerlink" title="*especially …*"></a>*especially …*</h1><h1 id="in-terms-of-sth"><a href="#in-terms-of-sth" class="headerlink" title="*in terms of sth.*"></a>*in terms of sth.*</h1><h1 id="lead-to-改-result-in-result-from"><a href="#lead-to-改-result-in-result-from" class="headerlink" title="lead to 改 result in / result from"></a>lead to 改 result in / result from</h1><h1 id="promise-to-do-改-commit-to-doing"><a href="#promise-to-do-改-commit-to-doing" class="headerlink" title="promise to do 改 commit to doing"></a>promise to do 改 commit to doing</h1><h1 id="control-one’s-excitment-改-contain-one’s-excitment"><a href="#control-one’s-excitment-改-contain-one’s-excitment" class="headerlink" title="control one’s excitment 改 contain one’s excitment"></a>control one’s excitment 改 contain one’s excitment</h1><h1 id="attached-to-email-is-…"><a href="#attached-to-email-is-…" class="headerlink" title="*attached to email is …*"></a>*attached to email is …*</h1><h1 id="credit-…-with-praise-…-for"><a href="#credit-…-with-praise-…-for" class="headerlink" title="credit … with = praise … for"></a>credit … with = praise … for</h1><h1 id="It-suddenly-dawn-on-sb-occur-to-sb"><a href="#It-suddenly-dawn-on-sb-occur-to-sb" class="headerlink" title="*It suddenly dawn on sb. / occur to sb.*"></a>*It suddenly dawn on sb. / occur to sb.*</h1><h1 id="try-to-do-改-Make-all-effort-to-do-sth-spare-no-effort-to-do-sth"><a href="#try-to-do-改-Make-all-effort-to-do-sth-spare-no-effort-to-do-sth" class="headerlink" title="try to do 改 Make all effort to do sth. = spare no effort to do sth."></a>try to do 改 Make all effort to do sth. = spare no effort to do sth.</h1><h1 id="spend-time-doing-改-employ-time-doing"><a href="#spend-time-doing-改-employ-time-doing" class="headerlink" title="spend time doing 改 employ time doing"></a>spend time doing 改 employ time doing</h1><h1 id="extend-apology-gratitude-congratulations-invitation-to-sb"><a href="#extend-apology-gratitude-congratulations-invitation-to-sb" class="headerlink" title="*extend apology/gratitude/congratulations/invitation to sb.*"></a>*extend apology/gratitude/congratulations/invitation to sb.*</h1><h1 id="With-one’s-eye-fixed-on-sth"><a href="#With-one’s-eye-fixed-on-sth" class="headerlink" title="*With one’s eye fixed on sth.*"></a>*With one’s eye fixed on sth.*</h1><h1 id="vary-in-sth-from-…-to-…"><a href="#vary-in-sth-from-…-to-…" class="headerlink" title="*vary in sth. from … to …*"></a>*vary in sth. from … to …*</h1><p>range from … to ..</p>
+<h1 id="enough-改-adequate"><a href="#enough-改-adequate" class="headerlink" title="enough 改 adequate"></a>enough 改 adequate</h1><h1 id="解释-改-illustrate"><a href="#解释-改-illustrate" class="headerlink" title="解释 改 illustrate"></a>解释 改 illustrate</h1><h1 id="by-means-of"><a href="#by-means-of" class="headerlink" title="*by means of*"></a>*by means of*</h1><h1 id="be-different-from-改-be-distinct-from"><a href="#be-different-from-改-be-distinct-from" class="headerlink" title="be different from 改 be distinct from"></a>be different from 改 be <strong>distinct</strong> from</h1><h1 id="in-the-majority-in-the-minority"><a href="#in-the-majority-in-the-minority" class="headerlink" title="*in the majority / in the minority*"></a>*in the majority / in the minority*</h1><h1 id="have-nothing-to-do-with-改-have-no-relevance-to-有关：be-relevant-to"><a href="#have-nothing-to-do-with-改-have-no-relevance-to-有关：be-relevant-to" class="headerlink" title="have nothing to do with 改 have no relevance to 有关：be relevant to"></a>have nothing to do with 改 have no relevance to 有关：be relevant to</h1><h1 id="come-into-operation"><a href="#come-into-operation" class="headerlink" title="*come into operation*"></a>*come into operation*</h1><h1 id="hear-sb-out"><a href="#hear-sb-out" class="headerlink" title="*hear sb. out*"></a>*hear sb. out*</h1><h1 id="express-改-convey"><a href="#express-改-convey" class="headerlink" title="express 改 convey"></a>express 改 convey</h1><h1 id="develop-改-cultivate"><a href="#develop-改-cultivate" class="headerlink" title="develop 改 cultivate"></a>develop 改 cultivate</h1><h1 id="ordinary-改-average"><a href="#ordinary-改-average" class="headerlink" title="ordinary 改 average"></a>ordinary 改 average</h1><h1 id="be-rich-in-改-be-abundant-in"><a href="#be-rich-in-改-be-abundant-in" class="headerlink" title="be rich in 改 be abundant in"></a>be rich in 改 be abundant in</h1><h1 id="serious-改-severe"><a href="#serious-改-severe" class="headerlink" title="serious 改 severe"></a>serious 改 severe</h1><h1 id="finally-改-eventually"><a href="#finally-改-eventually" class="headerlink" title="finally 改 eventually"></a>finally 改 eventually</h1><h1 id="be-tried-of-改-be-fed-up-with"><a href="#be-tried-of-改-be-fed-up-with" class="headerlink" title="be tried of 改 be fed up with"></a>be tried of 改 be fed up with</h1><h1 id="during-改-in-the-course-of"><a href="#during-改-in-the-course-of" class="headerlink" title="during 改 in the course of"></a>during 改 in the course of</h1><h1 id="add-up-to-改-amount-to"><a href="#add-up-to-改-amount-to" class="headerlink" title="add up to 改 amount to"></a>add up to 改 amount to</h1><h1 id="be-coming-soon-改-be-approaching"><a href="#be-coming-soon-改-be-approaching" class="headerlink" title="be coming soon 改 be approaching"></a>be coming soon 改 be approaching</h1><h1 id="remember-sth-改-keep-sth-in-mind"><a href="#remember-sth-改-keep-sth-in-mind" class="headerlink" title="remember sth. 改 keep sth. in mind"></a>remember sth. 改 keep sth. in mind</h1><h1 id="affect-改-have-an-impact-on"><a href="#affect-改-have-an-impact-on" class="headerlink" title="affect 改 have an impact on"></a>affect 改 have an impact on</h1><h1 id="refuse-to-do-改-decline-to-do"><a href="#refuse-to-do-改-decline-to-do" class="headerlink" title="refuse to do 改 decline to do"></a>refuse to do 改 decline to do</h1><h1 id="use-改-make-use-of"><a href="#use-改-make-use-of" class="headerlink" title="use 改 make use of"></a>use 改 make use of</h1><h1 id="sth-occur-to-sb"><a href="#sth-occur-to-sb" class="headerlink" title="*sth. occur to sb.*"></a>*sth. occur to sb.*</h1><h1 id="increase-raise-improve-改-promote"><a href="#increase-raise-improve-改-promote" class="headerlink" title="increase raise improve 改 promote"></a>increase raise improve 改 promote</h1><h1 id="put-forward-suggestions"><a href="#put-forward-suggestions" class="headerlink" title="*put forward suggestions*"></a>*put forward suggestions*</h1><h1 id="be-good-for-改-be-beneficial-to"><a href="#be-good-for-改-be-beneficial-to" class="headerlink" title="be good for 改 be beneficial to"></a>be good for 改 be beneficial to</h1><h1 id="It’s-known-that…-改-It’s-universally-acknowledged-that-…"><a href="#It’s-known-that…-改-It’s-universally-acknowledged-that-…" class="headerlink" title="It’s known that… 改 It’s universally acknowledged that …"></a>It’s known that… 改 It’s universally acknowledged that …</h1><h1 id="be-different-from-改-be-in-contradiction-to-with"><a href="#be-different-from-改-be-in-contradiction-to-with" class="headerlink" title="be different from 改 be in contradiction to/with"></a>be different from 改 be in contradiction to/with</h1><h1 id="be-occupied-with-sth"><a href="#be-occupied-with-sth" class="headerlink" title="*be occupied with sth.*"></a>*be occupied with sth.*</h1><h1 id="in-abundance-an-abundance-of"><a href="#in-abundance-an-abundance-of" class="headerlink" title="*in abundance / an abundance of*"></a>*in abundance / an abundance of*</h1><h1 id="in-vain"><a href="#in-vain" class="headerlink" title="*in vain*"></a>*in vain*</h1><h1 id="strike-…-into-one’s-heart"><a href="#strike-…-into-one’s-heart" class="headerlink" title="*strike … into one’s heart*"></a>*strike … into one’s heart*</h1><h1 id="can’t-resist-doing-sth"><a href="#can’t-resist-doing-sth" class="headerlink" title="*can’t resist doing sth.*"></a>*can’t resist doing sth.*</h1><h1 id="owe-sth-to-sb-owe-it-to-sb-that"><a href="#owe-sth-to-sb-owe-it-to-sb-that" class="headerlink" title="*owe sth. to sb. / owe it to sb that*"></a>*owe sth. to sb. / owe it to sb that*</h1><h1 id="Then-came-the-adj-news-that-…"><a href="#Then-came-the-adj-news-that-…" class="headerlink" title="*Then came the adj. news that …*"></a>*Then came the adj. news that …*</h1><h1 id="seize-an-opportunity"><a href="#seize-an-opportunity" class="headerlink" title="*seize an opportunity*"></a>*seize an opportunity*</h1><h1 id="seize-sb-by-the-arm"><a href="#seize-sb-by-the-arm" class="headerlink" title="*seize sb. by the arm*"></a>*seize sb. by the arm*</h1>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+	<div>
+	  
+	</div>
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/whk数学相似三角形/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FlyInTheSky">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FlyInTheSky's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/whk数学相似三角形/" itemprop="url">初中数学相似三角形(平面几何)做题笔记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-23T13:36:00+08:00">2017-01-23</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/文化课/" itemprop="url" rel="index"><span itemprop="name">文化课</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/whk数学相似三角形/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/whk数学相似三角形/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/whk数学相似三角形/" class="leancloud_visitors" data-flag-title="初中数学相似三角形(平面几何)做题笔记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">+</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 s
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="平行相似"><a href="#平行相似" class="headerlink" title="平行相似"></a><strong>平行相似</strong></h2><p>如图1中的(1)，$AB∥CD$，则$△ABO∽△DCO$(“8”形)<br>如图1中的(2)，$AB∥CD$，则$△OAB∽△OCD$(“A”形)<br><img src="../pics/相似三角形/1.jpg" alt="Markdown"></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/whk数学相似三角形/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+	<div>
+	  
+	</div>
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/sz后缀数组/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FlyInTheSky">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FlyInTheSky's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/sz后缀数组/" itemprop="url">后缀数组 学习笔记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-27T00:00:00+08:00">2016-11-27</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法笔记/" itemprop="url" rel="index"><span itemprop="name">算法笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/sz后缀数组/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/sz后缀数组/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/sz后缀数组/" class="leancloud_visitors" data-flag-title="后缀数组 学习笔记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">+</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 s
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="模板及讲解"><a href="#模板及讲解" class="headerlink" title="模板及讲解"></a>模板及讲解</h1><h2 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h2><p>1、字符串中的子串可以表示为后缀的前缀，即后缀的LCP。</p>
+<h2 id="模板、代码"><a href="#模板、代码" class="headerlink" title="模板、代码"></a>模板、代码</h2><p>解决字符串的有力工具。<br>直接上代码，注释讲解(此题为<a href="http://uoj.ac/problem/35" target="_blank" rel="external">uoj #35</a>)<br><strong>(注意：下标都是从0开始)</strong></p>
+<pre><code class="c++">#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;vector&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define FN2 &quot;uoj35&quot; 
+using namespace std;
+
+const int MAXN = 1000000 + 5;
+
+char ch[MAXN];
+int a[MAXN], n, m;
+//ch为输入字符串，a为处理后的整数原串 
+int SA[MAXN], rk[MAXN], tp[MAXN], tax[MAXN], height[MAXN];
+/*
+    SA[i]: 排名第i的后缀的位置(下标是后缀排名)
+     rk[i]: 第i个后缀的排名
+    tp[i]: 排名为i的第二关键字的第一关键字的位置 (下标是第二关键字排名)
+    tax[i]:基数排序的桶
+    height[i]: 排名为i, i-1后缀的最长公共前缀 
+*/
+bool cmp(int *f, int i, int k) {return f[SA[i-1]]==f[SA[i]]&amp;&amp;f[SA[i-1]+k]==f[SA[i]+k];} //要判断两个字符串是否完全相等 
+void build() {//构造后缀数组 
+    int i, p;
+    for (int i=0;i&lt;m;i++) tax[i] = 0;
+    for (int i=0;i&lt;n;i++) tax[rk[i]=a[i]]++;
+    for (int i=0;i&lt;m;i++) tax[i] += tax[i-1];
+    for (int i=n-1;i&gt;=0;i--) SA[--tax[rk[i]]] = i;//基数排序排第一轮
+
+    for (int k=1;k&lt;=n;k*=2) {
+        p = 0;
+        for (int i=n-k;i&lt;n;i++) tp[p++] = i;//(n-k)~(n-1)无第二关键字，所以排序应该排在前面
+        for (int i=0;i&lt;n;i++) if (SA[i]&gt;=k) tp[p++] = SA[i] - k;
+        //只有SA[i]&gt;=k的SA[i]才是第二关键字的位置 
+        //从图中可以看出第一关键字和第二关键字的位置相差k，故SA[i] - k 
+        for (int i=0;i&lt;m;i++) tax[i] = 0;
+        for (int i=0;i&lt;n;i++) tax[rk[tp[i]]]++;//x[tp[i]]相等于排名第i的第二关键字的第一关键字的排名 
+        for (int i=1;i&lt;m;i++) tax[i] += tax[i-1];
+        for (int i=n-1;i&gt;=0;i--) SA[--tax[rk[tp[i]]]] = tp[i];//保证了第一关键字的顺序再排第二关键字 
+        //基数排序第一关键字(rank[i]的数值)和第二关键字(tp[i]的下标) 
+        swap(rk, tp);//此时tp没用，暂存上一轮rank的值
+        p = 0, rk[SA[0]] = 0;//sa[0]一定是添加的字符0, 排名一定是0
+        for (int i=1;i&lt;n;i++) rk[SA[i]] = cmp(tp, i, k) ? p : ++p;
+        //算排名第i的数的rank，按sa顺序能够保证rank的正确性，但是要cmp判断与上一个字符串相等的情况 
+        if (++p&gt;=n) break;//剪枝，已经没有重复元素 
+        m = p; 
+    }
+}
+void getH() {//算height 
+    int i, j, k = 0;//k是比i-1前一名的后缀
+    for (int i=0;i&lt;n;i++) {//H[0], H[1], H[2] ...的顺序计算 
+        if (k) k--;//从k-1开始比较 ,运用结论H[i]&gt;=H[i-1]-1, 最长公共前缀的长度至少是k-1(k = H[i-1])
+        j = SA[rk[i]-1]; //前一名的后缀位置 
+        while(ch[i+k] == ch[j+k]) k++; //往后比较 
+        height[rk[i]] = k;  //更新答案 
+    }
+}
+void init() {
+    int i;
+    n = strlen(ch) + 1, m = 128;
+    for (int i=0;i&lt;n-1;i++) a[i] = ch[i];//处理原字符串 
+    a[n - 1] = 0;//补末尾的0 
+}
+void solve() {
+    int i;
+    build(); 
+    getH();
+    for (int i=1;i&lt;n;i++) printf(&quot;%d &quot;, SA[i]+1);//输出范围1~n-1 
+    printf(&quot;\n&quot;);
+    for (int i=2;i&lt;n;i++) printf(&quot;%d &quot;, height[i]);
+}
+int main() {
+    scanf(&quot;%s&quot;, ch), init(), solve();
+    return 0;
+}
+</code></pre>
+<p>从1开始的SA (不用补0)：</p>
+<pre><code class="c++">#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;vector&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define FN2 &quot;uoj35&quot; 
+using namespace std;
+
+const int MAXN = 1000000 + 5;
+
+char ch[MAXN];
+int a[MAXN], n, m;
+//ch为输入字符串，a为处理后的整数原串 
+int SA[MAXN], rk[MAXN], tp[MAXN], tax[MAXN], height[MAXN];
+/*
+    SA[i]: 排名第i的后缀的位置(下标是后缀排名)
+     rk[i]: 第i个后缀的排名
+    tp[i]: 排名为i的第二关键字的第一关键字的位置 (下标是第二关键字排名)
+    tax[i]:基数排序的桶
+    height[i]: 排名为i, i-1后缀的最长公共前缀 
+*/
+void build() {//构造后缀数组 
+    for (int i = 1; i &lt;= m; ++i) tax[i] = 0;
+    for (int i = 1; i &lt;= n; ++i) tax[rk[i] = a[i]]++;
+    for (int i = 1; i &lt;= m; ++i) tax[i] += tax[i - 1];
+    for (int i = n; i &gt;= 1; --i) SA[tax[rk[i]]--] = i;//基数排序排第一轮
+
+    for (int k = 1; k &lt;= n; k *= 2) {
+        int p = 0;
+        for (int i = n - k + 1; i &lt;= n; i++) tp[++p] = i;//(n-k)~(n-1)无第二关键字，所以排序应该排在前面
+        for (int i = 1; i &lt;= n; i++) if (SA[i] &gt; k) tp[++p] = SA[i] - k;
+        //只有SA[i]&gt;=k的SA[i]才是第二关键字的位置 
+        //从图中可以看出第一关键字和第二关键字的位置相差k，故SA[i] - k 
+        for (int i = 1; i &lt;= m; ++i) tax[i] = 0;
+        for (int i = 1; i &lt;= n; ++i) tax[rk[tp[i]]]++;//x[tp[i]]相等于排名第i的第二关键字的第一关键字的排名 
+        for (int i = 1; i &lt;= m; ++i) tax[i] += tax[i - 1];
+        for (int i = n; i &gt;= 1; --i) SA[tax[rk[tp[i]]]--] = tp[i];//保证了第一关键字的顺序再排第二关键字 
+        //基数排序第一关键字(rank[i]的数值)和第二关键字(tp[i]的下标) 
+        swap(rk, tp);//此时tp没用，暂存上一轮rank的值
+        p = 1, rk[SA[1]] = 1;
+        for (int i = 2; i &lt;= n; ++i) 
+            rk[SA[i]] = (tp[SA[i]] == tp[SA[i - 1]] &amp;&amp; tp[SA[i] + k] == tp[SA[i - 1] + k]) ? p : ++p;
+        //算排名第i的数的rank，按sa顺序能够保证rank的正确性，但是要cmp判断与上一个字符串相等的情况 
+        if (p &gt;= n) break;//剪枝，已经没有重复元素 
+        m = p; 
+    }
+}
+void getH() {//算height 
+    int k = 0;//k是比i-1前一名的后缀
+    for (int i = 1; i &lt;= n; ++i) {//H[0], H[1], H[2] ...的顺序计算 
+        if (k) k--;//从k-1开始比较 ,运用结论H[i]&gt;=H[i-1]-1, 最长公共前缀的长度至少是k-1(k = H[i-1])
+        int j = SA[rk[i] - 1]; //前一名的后缀位置 
+        while(ch[i + k] == ch[j + k]) k++; //往后比较 
+        height[rk[i]] = k;  //更新答案 
+    }
+}
+void solve() {
+    n = strlen(ch + 1), m = 256;
+    for (int i = 1; i &lt;= n; ++i) a[i] = ch[i];//处理原字符串 
+    build(); 
+    getH();
+    for (int i = 1; i &lt;= n; ++i) printf(&quot;%d &quot;, SA[i]); 
+    printf(&quot;\n&quot;);
+    for (int i = 2; i &lt;= n; ++i) printf(&quot;%d &quot;, height[i]);
+}
+int main() {
+    scanf(&quot;%s&quot;, ch + 1), solve();
+    return 0;
+}
+</code></pre>
+<p>写时注意：<br>1、不要将字符对应到0<br>2、不同字符串之间一定要用不同字符连接<br>3、用不同字符串连接字符串后注意空间开大</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/sz后缀数组/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+	<div>
+	  
+	</div>
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/56/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/56/">56</a><span class="page-number current">57</span><a class="page-number" href="/page/58/">58</a><a class="page-number" href="/page/59/">59</a><a class="extend next" rel="next" href="/page/58/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm"
+                alt="FlyInTheSky" />
+            
+              <p class="site-author-name" itemprop="name">FlyInTheSky</p>
+              <p class="site-description motion-element" itemprop="description">自己选择的路，跪着也要走完。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">587</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">144</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+		
+		<font size="3"><b>一言</b></font>
+		<script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+		 <script>
+         $.get('https://v1.hitokoto.cn/?c=a', function (data) {
+            if (typeof data === 'string') data = JSON.parse(data);
+            $('#hitokoto-loader').removeClass('active');
+            $('#hitokoto-content').css('display', '').text(data.hitokoto);
+            if (data.from) {
+              $('#hitokoto-from').css('display', '').text('——' + data.from);
+            }
+          });
+          
+          </script>
+          <div style="font-size: 1em; line-height: 1.5em; display: none; " id="hitokoto-content"></div>
+          <div style="text-align: right; margin-top: 15px; font-size: 0.9em; color: #666; display: none; " id="hitokoto-from"></div>
+
+		
+		<!--<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="220" height="320" src="http://www.missevan.com/albumiframe/379343?autoplay=false&playlist=true"></iframe>-->
+		
+      </section>
+
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FlyInTheSky</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.0.3</div>
+
+
+
+  <div class="footer-custom">Hosted by <a target="_blank" href="https://pages.coding.me/">Coding Pages</a></div>
+
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.0.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.0.3"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.3"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: true,
+        appId: 'HbPrhSjQ6NCUr3zYqcbO4iKU-MdYXbMMI',
+        appKey: 'untdESV1xpzTGEu6IH2lwKOb',
+        placeholder: '写下您dalao对本蒟蒻博文的宝贵评论~(￣▽￣)~* ',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("Ex3VDezHHaHR2GEGMlazQCfC-gzGzoHsz", "u9iJTthJj7R0ieApCMNvyAjO");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  <script src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+    <!--<script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script> --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"messageStyle": "none","tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> 
+
+<script src="https://www.flyinthesky.win/highlight.min.js"></script>
+<script >hljs.initHighlightingOnLoad();</script>
+
+<!-- 代码块复制功能 -->
+<script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+<script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+
+
+</body>
+</html>

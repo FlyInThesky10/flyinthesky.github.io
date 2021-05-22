@@ -1,0 +1,2055 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico?v=6.0.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=6.0.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico?v=6.0.3">
+
+
+  <link rel="mask-icon" href="/favicon.ico?v=6.0.3" color="#222">
+
+
+  <link rel="manifest" href="/favicon.ico">
+
+
+  <meta name="msapplication-config" content="/favicon.ico" />
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.0.3',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":true,"scrollpercent":false,"onmobile":true},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'T4TYK1DMV0',
+      apiKey: '8ae84ecb094e73f826b093645f9d90bc',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  
+  <meta name="keywords" content="莫队,算法笔记," />
+
+
+<meta name="description" content="模板及讲解莫队是什么莫(膜)队是离线处理区间问题的一大武器，由莫队发明，其核心为最优化分块思想排序，用已知区间推区间的算法。 莫队解决什么问题1、无修改或者修改不苛刻2、离线3、能用很小的复杂度从$[l,r]$转移到$[l-1, r], [l, r-1], [l+1, r], [l, r+1]$，例如$O(1), O(logn)$ 莫队的实现例题：Bzoj 1878  HH 有一串由各种漂亮的贝壳">
+<meta name="keywords" content="莫队,算法笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="莫队算法 学习笔记">
+<meta property="og:url" content="http://blog.flyinthesky.win/sz莫队算法/index.html">
+<meta property="og:site_name" content="FlyInTheSky&#39;s blog">
+<meta property="og:description" content="模板及讲解莫队是什么莫(膜)队是离线处理区间问题的一大武器，由莫队发明，其核心为最优化分块思想排序，用已知区间推区间的算法。 莫队解决什么问题1、无修改或者修改不苛刻2、离线3、能用很小的复杂度从$[l,r]$转移到$[l-1, r], [l, r-1], [l+1, r], [l, r+1]$，例如$O(1), O(logn)$ 莫队的实现例题：Bzoj 1878  HH 有一串由各种漂亮的贝壳">
+<meta property="og:updated_time" content="2018-12-27T13:58:16.350Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="莫队算法 学习笔记">
+<meta name="twitter:description" content="模板及讲解莫队是什么莫(膜)队是离线处理区间问题的一大武器，由莫队发明，其核心为最优化分块思想排序，用已知区间推区间的算法。 莫队解决什么问题1、无修改或者修改不苛刻2、离线3、能用很小的复杂度从$[l,r]$转移到$[l-1, r], [l, r-1], [l+1, r], [l, r+1]$，例如$O(1), O(logn)$ 莫队的实现例题：Bzoj 1878  HH 有一串由各种漂亮的贝壳">
+
+
+
+
+
+
+  <link rel="canonical" href="http://blog.flyinthesky.win/sz莫队算法/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+  <title>莫队算法 学习笔记 | FlyInTheSky's blog</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5cb42869838f4cfeb9c9b241d7f2a21c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+  <link href="https://www.flyinthesky.win/tomorrow.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.1/google-fonts/fira-mono.css" rel="stylesheet">
+</head>
+
+
+<div id="hexo-helper-live2d">
+  <canvas id="live2dcanvas" width="300" height="600"></canvas>
+</div>
+<style>
+  #live2dcanvas{
+    position: fixed;
+    width: 300px;
+    height: 600px;
+    opacity:0.8;
+    right: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -120px;
+  }
+</style>
+<script type="text/javascript" src="/live2d/device.min.js"></script>
+<script type="text/javascript">
+const loadScript = function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};
+(function(){
+  if((typeof(device) != 'undefined') && (device.mobile())){
+    var trElement = document.getElementById('hexo-helper-live2d');
+    trElement.parentNode.removeChild(trElement);
+    return;
+  }else
+    if (typeof(device) === 'undefined') console.error('Cannot find current-device script.');
+  loadScript("/live2d/script.js", function(){loadlive2d("live2dcanvas", "/live2d/assets/wanko.model.json", 0.5);});
+})();
+</script>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+  
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">FlyInTheSky's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">OI, 梦开始的地方。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />分类</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-friends">
+          <a href="/friends/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-handshake-o"></i> <br />朋友</a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/sz莫队算法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FlyInTheSky">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FlyInTheSky's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">莫队算法 学习笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-13T14:58:00+08:00">2018-02-13</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法笔记/" itemprop="url" rel="index"><span itemprop="name">算法笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/sz莫队算法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/sz莫队算法/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/sz莫队算法/" class="leancloud_visitors" data-flag-title="莫队算法 学习笔记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">+</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 s
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="模板及讲解"><a href="#模板及讲解" class="headerlink" title="模板及讲解"></a>模板及讲解</h1><h2 id="莫队是什么"><a href="#莫队是什么" class="headerlink" title="莫队是什么"></a>莫队是什么</h2><p>莫(膜)队是<strong>离线</strong>处理区间问题的一大武器，由莫队发明，其核心为最优化分块思想排序，用已知区间推区间的算法。</p>
+<h2 id="莫队解决什么问题"><a href="#莫队解决什么问题" class="headerlink" title="莫队解决什么问题"></a>莫队解决什么问题</h2><p>1、无修改或者修改不苛刻<br>2、离线<br>3、能用很小的复杂度从$[l,r]$转移到$[l-1, r], [l, r-1], [l+1, r], [l, r+1]$，例如$O(1), O(logn)$</p>
+<h2 id="莫队的实现"><a href="#莫队的实现" class="headerlink" title="莫队的实现"></a>莫队的实现</h2><p>例题：<a href="/bzoj1878">Bzoj 1878</a></p>
+<blockquote>
+<p>HH 有一串由各种漂亮的贝壳组成的项链。HH 相信不同的贝壳会带来好运，所以每次散步完后，他都会随意取出一段贝壳，思考它们所表达的含义。HH 不断地收集新的贝壳，因此，他的项链变得越来越长。有一天，他突然提出了一个问题：某一段贝壳中，包含了多少种不同的贝壳？这个问题很难回答……因为项链实在是太长了。于是，他只好求助睿智的你，来解决这个问题。</p>
+</blockquote>
+<h3 id="暴力"><a href="#暴力" class="headerlink" title="暴力"></a>暴力</h3><p>暴力是显然$O(n^2)$的，我们想想暴力是否会有很多重复的计算，比如说<br>$[1, 6]$和$[2,7]$，暴力会算$11$次，而实际需要那么多次吗？当然不需要，我们直接在询问$[1, 6]$基础上删掉$1$处的贡献，增加$7$处的贡献就可以得到，只用算$8$次。这就是莫队的思想。<br><a id="more"></a></p>
+<h3 id="暴力优化"><a href="#暴力优化" class="headerlink" title="暴力优化"></a>暴力优化</h3><p>我们尝试把询问区间离线按$l$排序，则会有一定的优化，但是看下面的例子：<br>$[1, 100], [2, 4], [3, 101]$<br>这会使得当前右边界时大时小，影响效率。<br>怎么办？我们可以取一下平均，$l$不最优，$r$不最优，但总体最优的情况。</p>
+<h3 id="莫队"><a href="#莫队" class="headerlink" title="莫队"></a>莫队</h3><p>我们把询问数组分块，分成$n / \sqrt n$块，然后进行以下的排序：</p>
+<pre><code class="c++">bool cmp1(const query &amp;a, const query &amp;b) {//莫队排序 
+    if (bl[a.l] == bl[b.l]) return a.r &lt; b.r;
+    return bl[a.l] &lt; bl[b.l];
+}
+</code></pre>
+<p>其中$bl[i]$表示$i$所在的块。化作文字即为：把一个个块看作整体则$l$有序，块中$r$有序。<br>这样就能达到比较”好”的复杂度，但是这个复杂度是什么呢？</p>
+<h3 id="复杂度证明"><a href="#复杂度证明" class="headerlink" title="复杂度证明"></a>复杂度证明</h3><p>对于$l$: 如果下一个询问区间$l$不在这个块里，则需要最多$2 \times \sqrt n$次<br>对于$r$: $r$在一个块里单调递增，所以$r$在每个块中最多$n$次，有$n / \sqrt n$个块，所以最多需要$n \times n / \sqrt n$次</p>
+<p>综上所述，莫队算法的复杂度为$O(n\sqrt n)​$</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p><a href="/bzoj1878">Bzoj 1878</a>的代码：</p>
+<pre><code class="c++">#include&lt;cstdio&gt;
+#include&lt;algorithm&gt;
+#include&lt;cstring&gt;
+#include&lt;vector&gt;
+#include&lt;queue&gt;
+#include&lt;cmath&gt;
+using namespace std;
+#define ms(i, j) memset(i, j, sizeof i)
+#define ll long long
+const int MAXN = 1000000 + 5;
+int m, n, totblo, ai[MAXN], bl[MAXN];
+struct query {
+    int l, r, id, ans;//询问左边界，右边界，第几个询问，答案 
+}q[MAXN];
+bool cmp1(const query &amp;a, const query &amp;b) {//莫队排序 
+    if (bl[a.l] == bl[b.l]) return a.r &lt; b.r;
+    return bl[a.l] &lt; bl[b.l];
+}
+bool cmp2(const query &amp;a, const query &amp;b) {
+    return a.id &lt; b.id;
+}
+int nl, nr, nans, tax[MAXN];//当前l位置，当前r位置，当前答案，桶 
+void clean() {nl = nr = nans = 0, ms(tax, 0);}
+void adjust(int x, int add) {
+    if (tax[ai[x]] == 0 &amp;&amp; add == 1) nans++;
+    tax[ai[x]] += add;
+    if (tax[ai[x]] == 0 &amp;&amp; add == -1) nans--;
+    /*一定要指明add
+    否则 对于询问区间1 3后询问5 8 会炸 
+    */
+}
+int solve() {
+    clean();
+    totblo = sqrt(n);
+    for (int i = 1; i &lt;= n; i++) {
+        scanf(&quot;%d&quot;, &amp;ai[i]);
+        bl[i] = (i - 1) / totblo + 1;
+    }
+    scanf(&quot;%d&quot;, &amp;m);
+    for (int i = 1; i &lt;= m; i++) {
+        scanf(&quot;%d%d&quot;, &amp;q[i].l, &amp;q[i].r);
+        q[i].id = i;
+    }
+    sort(q + 1, q + 1 + m, cmp1);
+    nl = 1, nr = 0;
+    for (int i = 1; i &lt;= m; i++) {
+        while (nl &lt; q[i].l) adjust(nl    , -1), nl++;
+        while (nl &gt; q[i].l) adjust(nl - 1, +1), nl--;
+        while (nr &lt; q[i].r) adjust(nr + 1, +1), nr++;
+        while (nr &gt; q[i].r) adjust(nr    , -1), nr--;
+        q[i].ans = nans;//进行调整 
+    }
+    sort(q + 1, q + 1 + m, cmp2);
+    for (int i = 1; i &lt;= m; i++) printf(&quot;%d\n&quot;, q[i].ans);
+    return 0;
+}
+int main() {
+    scanf(&quot;%d&quot;, &amp;n), solve();
+    return 0;
+}
+</code></pre>
+<p>注意：莫队的扩充区间放在缩小区间前可以避免出现某些问题，比如</p>
+<pre><code class="c++">while (nl &lt; q[i].l) adjust(nl    , -1), nl++;
+while (nl &gt; q[i].l) adjust(nl - 1, +1), nl--;
+while (nr &lt; q[i].r) adjust(nr + 1, +1), nr++;
+while (nr &gt; q[i].r) adjust(nr    , -1), nr--;
+</code></pre>
+<p>改为</p>
+<pre><code class="c++">while (nl &lt; q[i].l) adjust(nl    , -1), nl++;
+while (nr &lt; q[i].r) adjust(nr + 1, +1), nr++;
+while (nl &gt; q[i].l) adjust(nl - 1, +1), nl--;
+while (nr &gt; q[i].r) adjust(nr    , -1), nr--;
+</code></pre>
+<h2 id="带修莫队"><a href="#带修莫队" class="headerlink" title="带修莫队"></a>带修莫队</h2><p>例题：<a href="/bzoj2120">Bzoj 2120</a></p>
+<blockquote>
+<p>墨墨购买了一套N支彩色画笔（其中有些颜色可能相同），摆成一排，你需要回答墨墨的提问。墨墨会像你发布如下指令： 1、 Q L R代表询问你从第L支画笔到第R支画笔中共有几种不同颜色的画笔。 2、 R P Col 把第P支画笔替换为颜色Col。为了满足墨墨的要求，你知道你需要干什么了吗？</p>
+</blockquote>
+<p>大意：多个区间询问，询问$[l,r]$中颜色的种类数。可以单点修改颜色</p>
+<p>莫队怎么支持修改？我们可以引入一个时间$t$, 来记录某个询问是顺序修改了几次后的。<br>然后就可以按照莫队的思路，根据$t$不断地更新/回退修改，以达到目的。但是直接改复杂度不能保证，所以我们要用以下排序方法：</p>
+<pre><code class="c++">bool cmp1(const query &amp;a, const query &amp;b) {//莫队带修排序 
+    if (bl[a.l] == bl[b.l]) 
+        return (bl[a.r] == bl[b.r] ? a.t &lt; b.t : a.r &lt; b.r);
+    return bl[a.l] &lt; bl[b.l];
+}
+</code></pre>
+<p>这样就能保证复杂度了。</p>
+<h3 id="复杂度证明-1"><a href="#复杂度证明-1" class="headerlink" title="复杂度证明"></a>复杂度证明</h3><p>($totblo$为块长，不等于$\sqrt n$)<br>对于$l$和$r$，与不带修得莫队相同。<br>对于$t$: 考虑有几个单调段，假设最坏情况每个块中的$t$都不单调，则会有$(n / totblo)^2$个单调段，每个单调段互相转移的时间是$O(n)$，所以最后的复杂度为$O(n(n / totblo)^2)$</p>
+<p>综上所述，在$totblo=n^{\frac23}$时带修莫队算法的复杂度为$O(n^{\frac53})$，一般能过$10000$及以下的数据(只比暴力好一点点)。</p>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><p><a href="/bzoj2120">Bzoj 2120</a>的代码：</p>
+<pre><code class="c++">#include&lt;cstdio&gt;
+#include&lt;algorithm&gt;
+#include&lt;cstring&gt;
+#include&lt;vector&gt;
+#include&lt;queue&gt;
+#include&lt;cmath&gt;
+using namespace std;
+#define ms(i, j) memset(i, j, sizeof i)
+#define ll long long
+const int MAXN = 10000 + 5;
+int n, m, bl[MAXN], totblo, n_q, n_u, ai[MAXN], oai[MAXN], ans[MAXN], lst[MAXN], tax[1000000 + 5];
+//n_q, n_u分别为q，u数组大小(询问，修改个数)
+//oai为原数组，lst为该位置现在的值是哪个修改修改的(没有修改为0) 
+//tax为桶 
+struct query {//询问 
+    int l, r, t, id;
+    //t为时间戳 
+    bool operator &lt; (const query &amp;b) const {//带修莫队排序 
+        if (bl[l] == bl[b.l]) 
+            return (bl[r] == bl[b.r] ? t &lt; b.t : r &lt; b.r);
+        return bl[l] &lt; bl[b.l];
+    }
+}q[MAXN];
+struct update {//修改 
+    int p, col, lst;//位置、颜色、上一个该位置(p)的修改 (没有修改为0) 
+}u[MAXN];
+int nt, nl, nr, nans;
+void clean() {
+    n_q = n_u = 0;
+    ms(tax, 0);
+}
+void adjust(int x, int add) {
+    tax[ai[x]] += add;
+    if (add == 1 &amp;&amp; tax[ai[x]] == 1) nans++;
+    if (add == -1 &amp;&amp; tax[ai[x]] == 0) nans--;
+}
+void update_update(int type, int id, int x) {
+    //1撤销，2更新 
+    if (type == 1) {
+        if (nl &lt;= x &amp;&amp; x &lt;= nr) adjust(x, -1);//nl &lt;= x &amp;&amp; x &lt;= nr才adjust!!!!!  
+        if (u[id].lst == 0) ai[x] = oai[x]; else ai[x] = u[u[id].lst].col;
+        if (nl &lt;= x &amp;&amp; x &lt;= nr) adjust(x, +1);//nl &lt;= x &amp;&amp; x &lt;= nr才adjust!!!!! 
+        lst[x] = u[id].lst;
+    } else {
+        u[id].lst = lst[x];
+        lst[x] = id;
+        if (nl &lt;= x &amp;&amp; x &lt;= nr) adjust(x, -1);//nl &lt;= x &amp;&amp; x &lt;= nr才adjust!!!!! 
+        ai[x] = u[id].col;
+        if (nl &lt;= x &amp;&amp; x &lt;= nr) adjust(x, +1);//nl &lt;= x &amp;&amp; x &lt;= nr才adjust!!!!! 
+    }
+}
+int solve() {
+    clean();
+    totblo = pow(n, 0.66666666);
+    for (int i = 1; i &lt;= n; i++) scanf(&quot;%d&quot;, &amp;ai[i]), oai[i] = ai[i];
+    for (int i = 1; i &lt;= m; i++) {
+        char opt[10];
+        scanf(&quot;%s&quot;, opt);
+        if (opt[0] == &#39;Q&#39;) {
+            n_q++;
+            q[n_q].id = n_q, q[n_q].t = n_u;
+            scanf(&quot;%d%d&quot;, &amp;q[n_q].l, &amp;q[n_q].r);
+        } else {
+            n_u++, lst[n_u] = 0, u[n_u].lst = 0;
+            scanf(&quot;%d%d&quot;, &amp;u[n_u].p, &amp;u[n_u].col);
+        }
+    }
+    sort(q + 1, q + 1 + n_q);
+    nt = 0, nl = 1, nr = 0, nans = 0;
+    for (int i = 1; i &lt;= n_q; i++) {
+        while (nt &gt; q[i].t) update_update(1, nt, u[nt].p), nt--;//撤销
+        while (nt &lt; q[i].t) update_update(2, nt + 1, u[nt + 1].p), nt++;//更新 
+
+        while (nl &lt; q[i].l) adjust(nl    , -1), nl++;
+        while (nl &gt; q[i].l) adjust(nl - 1, +1), nl--;
+        while (nr &lt; q[i].r) adjust(nr + 1, +1), nr++;
+        while (nr &gt; q[i].r) adjust(nr    , -1), nr--;
+
+        ans[q[i].id] = nans;
+    }
+    for (int i = 1; i &lt;= n_q; i++) printf(&quot;%d\n&quot;, ans[i]);
+    return 0;
+}
+int main() {
+    scanf(&quot;%d%d&quot;, &amp;n, &amp;m), solve();
+    return 0;
+}
+/*
+不判 nl &lt;= x &amp;&amp; x &lt;= nr WA的数据 
+6 8
+1 2 3 4 5 5
+R 4 4
+R 2 3
+Q 1 4
+R 1 2
+Q 1 4
+R 3 5
+R 5 8
+Q 1 4
+*/
+</code></pre>
+<h2 id="树上莫队"><a href="#树上莫队" class="headerlink" title="树上莫队"></a>树上莫队</h2><p>例题：<a href="/spoj-COT2">SPOJ COT2</a></p>
+<blockquote>
+<p>给一棵树，每个点有一个权值。多次询问路径$(u, v)$上有多少个权值不同的点。</p>
+</blockquote>
+<p><a href="http://codeforces.com/blog/entry/43230" target="_blank" rel="external">树上莫队的资料</a><br>考虑树上莫队。难点在于怎么将树搬到序列中。将树的括号序求出来，树的括号序就是维护一个序列，这个序列是dfs这棵树时，每个节点在dfs到的时候将本身加入序列，然后离开该节点(返回父节点)也将本身加入序列的一个序列(具体可以看资料，有图解)。<br>我们设$st,ed$分别为某个点最开始在序列出现位置和最后出现在序列的位置。对于一条路径$(u,v)$(这里$st_u \leq st_v$)：<br>如果$LCA=u$，那么路径信息就是$st_u$到$st_v$之间一段中出现次数为奇数次的点的信息。<br>否则，路径就是$ed_u$到$st_v$之间一段中出现次数为奇数次的点。注意这一段并不包含LCA，要手动加上。<br>然后就是注意莫队转移的时候的方法，用奇偶性判断这个节点出现几次，只考虑奇偶性。奇数就可以让记录权值出现次数的数组加一，反之减一。</p>
+<pre><code class="c++">#include&lt;cstdio&gt; 
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;cmath&gt;
+#include&lt;vector&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define db double
+using namespace std;
+const int MAXN = 40000 + 5, logs = 18;
+int n, m, whw, blolen, bl[MAXN * 2], ai[MAXN], st[MAXN], ed[MAXN], T[MAXN * 2], tax[MAXN], sz;
+int dep[MAXN], vis[MAXN], nl, nr, nans, pre[MAXN][22], ans[100000 + 5];
+vector&lt;int&gt; G[MAXN];
+struct data {
+    int l, r, u, v, id, lca;
+    bool operator &lt; (const data &amp;b) const {
+        if (bl[l] == bl[b.l]) return r &lt; b.r;
+        return bl[l] &lt; bl[b.l];
+    }
+}xw[100000 + 5];
+void dfs(int u, int pa) {
+    dep[u] = dep[pa] + 1, T[++sz] = u, st[u] = sz, pre[u][0] = pa;
+    for (int i = 1; i &lt;= logs; i++) pre[u][i] = pre[pre[u][i - 1]][i - 1];
+    for (int i = 0; i &lt; (int)G[u].size(); i++) {
+        int v = G[u][i];
+        if (v != pa) dfs(v, u);
+    }
+    T[++sz] = u, ed[u] = sz;
+}
+void ins(int a, int b) {G[a].push_back(b), G[b].push_back(a);}
+int LCA(int a, int b) {
+    if (dep[a] &lt; dep[b]) swap(a, b);
+    for (int i = logs; i &gt;= 0; i--) if (dep[pre[a][i]] &gt;= dep[b]) a = pre[a][i];
+    if (a == b) return a;
+    for (int i = logs; i &gt;= 0; i--) if (pre[a][i] != pre[b][i]) a = pre[a][i], b = pre[b][i];
+    return pre[a][0];
+}
+void adjust(int x) {
+    tax[T[x]] = 1 - tax[T[x]];
+    if (tax[T[x]] % 2) {
+        vis[ai[T[x]]]++;
+        if (vis[ai[T[x]]] == 1) nans++;
+    } else {
+        vis[ai[T[x]]]--;
+        if (vis[ai[T[x]]] == 0) nans--;
+    }
+}
+void clean() {
+    ms(dep, 0), sz = 0;
+}
+int solve() {
+    clean(); 
+    blolen = (int)sqrt(2 * n);
+    for (int i = 1; i &lt;= n; i++) scanf(&quot;%d&quot;, &amp;ai[i]), tax[i] = ai[i];
+    for (int i = 1; i &lt;= 2 * n; i++) bl[i] = (i - 1) / blolen + 1;
+    sort(tax + 1, tax + 1 + n), whw = unique(tax + 1, tax + 1 + n) - tax - 1;
+    for (int i = 1; i &lt;= n; i++) ai[i] = lower_bound(tax + 1, tax + 1 + whw, ai[i]) - tax;
+    for (int u, v, i = 1; i &lt; n; i++) scanf(&quot;%d%d&quot;, &amp;u, &amp;v), ins(u, v);
+    dfs(1, 0);
+    for (int i = 1; i &lt;= m; i++) scanf(&quot;%d%d&quot;, &amp;xw[i].u, &amp;xw[i].v), xw[i].id = i, xw[i].lca = LCA(xw[i].u, xw[i].v); 
+    for (int i = 1; i &lt;= m; i++) {
+        if (st[xw[i].u] &gt; st[xw[i].v]) swap(xw[i].u, xw[i].v);
+        if (xw[i].lca != xw[i].u) xw[i].l = ed[xw[i].u], xw[i].r = st[xw[i].v];
+        else xw[i].l = st[xw[i].u], xw[i].r = st[xw[i].v];
+    }//转到括号序上
+    sort(xw + 1, xw + 1 + m);
+    ms(tax, 0), ms(vis, 0), nl = 1, nr = 0, nans = 0;
+    for (int i = 1; i &lt;= m; i++) {
+        while (nl &lt; xw[i].l) adjust(nl), nl++;
+        while (nl &gt; xw[i].l) adjust(nl - 1), nl--;
+        while (nr &lt; xw[i].r) adjust(nr + 1), nr++;
+        while (nr &gt; xw[i].r) adjust(nr), nr--;
+        ans[xw[i].id] = nans;
+        if (xw[i].lca != xw[i].u) {
+            if (vis[ai[xw[i].lca]] == 0) ans[xw[i].id]++;//加上LCA
+        }
+    }
+    for (int i = 1; i &lt;= m; i++) printf(&quot;%d\n&quot;, ans[i]);
+    return 0; 
+}
+int main() {
+    scanf(&quot;%d%d&quot;, &amp;n, &amp;m), solve();
+    return 0;
+}
+</code></pre>
+<h2 id="回滚莫队"><a href="#回滚莫队" class="headerlink" title="回滚莫队"></a>回滚莫队</h2><p>用于一些不方便删除或者添加更新答案的离线区间题目。比如<a href="/bzoj4241">Bzoj 4241</a></p>
+<blockquote>
+<p>有一个长度为$n$的序列，有$m$个询问，每次询问$[l, r]$内每个数值乘以该数值出现次数的最大值。</p>
+</blockquote>
+<p>由于删除更新答案不方便，那么这里可以用回滚莫队。按照原莫队方法排序，那么左端点在一块的询问就到了一起，并且右端点单调递增，右端点只有增加，考虑左端点。要使得左端点只能增加，我们把所有在一个块的左端点的询问一起处理，都将莫队中的左端点移到块最右边，每次查询的时候就从最右边开始向左延伸，记录答案，然后再回退到块最右边，这样就避免了删除。一个块处理完后，因为右端点会有删除的情况，所以直接抛弃之前的所有答案，重新从新询问开始记录答案。对于左右端点在同块的询问，直接暴力即可。<br>时间复杂度分析：<br>1、对于左右端点在同块的询问，其时间复杂度最坏为$O(m\sqrt n)$<br>2、在同块中处理时，右端点单调递增，最多增加$n$次，复杂度$O(n\sqrt n)$。左端点回滚，由于在块中，最多滚动$\sqrt n$次，复杂度$O(m\sqrt n)$。<br>3、对于左端点不同块之间的转换，清除记录数组时间复杂度$O(n\sqrt n)$<br>由于$m,n$同级，所有算法复杂度为$O(n\sqrt n)$</p>
+<h1 id="常见题型"><a href="#常见题型" class="headerlink" title="常见题型"></a>常见题型</h1><p><strong>1、维护区间离线，无修改</strong><br>Q：维护区间离线无修改<br>解：见讲解的莫队实现<br>例题：<a href="/bzoj1878">Bzoj 1878</a><br><strong>2、维护区间离线，有简单修改(带修莫队)</strong><br>Q：维护区间离线有简单修改<br>解：见讲解的带修莫队实现<br>例题：<a href="/bzoj2120">Bzoj 2120</a><br><strong>3、维护树离线(树上莫队)</strong><br>Q：见讲解<br>解：见讲解<br>例题：<a href="/spoj-COT2">SPOJ COT2</a><br><strong>4、维护区间离线，删除/添加更新答案不方便(回滚莫队)</strong><br>Q：见讲解<br>解：见讲解<br>例题：<a href="/bzoj4241">Bzoj 4241</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+	<div>
+	  
+		
+<div style="text-align:center;color: #ccc;font-size:14px;">
+------ 本文结束 ------</div>
+<br/>
+<div style="border: 1px solid black">
+<div style="margin-left:10px">
+<span style="font-weight:blod">版权声明</span>
+<img src="http://blog.flyinthesky.win/pics/sources/cc.png" >
+<br/>
+<p style="font-size: 10px;line-height: 30px"><a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky's blog</a> by <a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky</a> is licensed under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" style="color:#258FC6">Creative Commons BY-NC-ND 4.0 International License</a>.<br/>
+由<a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky</a>创作并维护的<a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky's blog</a>博客采用<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" style="color:#258FC6">创作共用保留署名-非商业-禁止演绎4.0国际许可证</a>。<br/>
+本文首发于<a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky's blog</a> 博客（ <a href="http://blog.flyinthesky.win/" style="color:#258FC6">http://blog.flyinthesky.win/</a> ），版权所有，侵权必究。</p>
+</div>
+</div>
+
+	  
+	</div>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/莫队/" rel="tag"><i class="fa fa-tag"></i> 莫队</a>
+          
+            <a href="/tags/算法笔记/" rel="tag"><i class="fa fa-tag"></i> 算法笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/whk集合与函数/" rel="next" title="高中数学集合与函数做题笔记">
+                <i class="fa fa-chevron-left"></i> 高中数学集合与函数做题笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/bzoj2120/" rel="prev" title="Bzoj 2120(带修莫队)">
+                Bzoj 2120(带修莫队) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm"
+                alt="FlyInTheSky" />
+            
+              <p class="site-author-name" itemprop="name">FlyInTheSky</p>
+              <p class="site-description motion-element" itemprop="description">自己选择的路，跪着也要走完。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">587</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">144</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+		
+		<font size="3"><b>一言</b></font>
+		<script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+		 <script>
+         $.get('https://v1.hitokoto.cn/?c=a', function (data) {
+            if (typeof data === 'string') data = JSON.parse(data);
+            $('#hitokoto-loader').removeClass('active');
+            $('#hitokoto-content').css('display', '').text(data.hitokoto);
+            if (data.from) {
+              $('#hitokoto-from').css('display', '').text('——' + data.from);
+            }
+          });
+          
+          </script>
+          <div style="font-size: 1em; line-height: 1.5em; display: none; " id="hitokoto-content"></div>
+          <div style="text-align: right; margin-top: 15px; font-size: 0.9em; color: #666; display: none; " id="hitokoto-from"></div>
+
+		
+		<!--<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="220" height="320" src="http://www.missevan.com/albumiframe/379343?autoplay=false&playlist=true"></iframe>-->
+		
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#模板及讲解"><span class="nav-number">1.</span> <span class="nav-text">模板及讲解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#莫队是什么"><span class="nav-number">1.1.</span> <span class="nav-text">莫队是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#莫队解决什么问题"><span class="nav-number">1.2.</span> <span class="nav-text">莫队解决什么问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#莫队的实现"><span class="nav-number">1.3.</span> <span class="nav-text">莫队的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#暴力"><span class="nav-number">1.3.1.</span> <span class="nav-text">暴力</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#暴力优化"><span class="nav-number">1.3.2.</span> <span class="nav-text">暴力优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#莫队"><span class="nav-number">1.3.3.</span> <span class="nav-text">莫队</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复杂度证明"><span class="nav-number">1.3.4.</span> <span class="nav-text">复杂度证明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">1.3.5.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#带修莫队"><span class="nav-number">1.4.</span> <span class="nav-text">带修莫队</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#复杂度证明-1"><span class="nav-number">1.4.1.</span> <span class="nav-text">复杂度证明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-1"><span class="nav-number">1.4.2.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#树上莫队"><span class="nav-number">1.5.</span> <span class="nav-text">树上莫队</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回滚莫队"><span class="nav-number">1.6.</span> <span class="nav-text">回滚莫队</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常见题型"><span class="nav-number">2.</span> <span class="nav-text">常见题型</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FlyInTheSky</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.0.3</div>
+
+
+
+  <div class="footer-custom">Hosted by <a target="_blank" href="https://pages.coding.me/">Coding Pages</a></div>
+
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.0.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.0.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.3"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: true,
+        appId: 'HbPrhSjQ6NCUr3zYqcbO4iKU-MdYXbMMI',
+        appKey: 'untdESV1xpzTGEu6IH2lwKOb',
+        placeholder: '写下您dalao对本蒟蒻博文的宝贵评论~(￣▽￣)~* ',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("Ex3VDezHHaHR2GEGMlazQCfC-gzGzoHsz", "u9iJTthJj7R0ieApCMNvyAjO");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  <script src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+    <!--<script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script> --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"messageStyle": "none","tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> 
+
+<script src="https://www.flyinthesky.win/highlight.min.js"></script>
+<script >hljs.initHighlightingOnLoad();</script>
+
+<!-- 代码块复制功能 -->
+<script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+<script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+
+
+</body>
+</html>

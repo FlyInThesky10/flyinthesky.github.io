@@ -1,0 +1,3356 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico?v=6.0.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=6.0.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico?v=6.0.3">
+
+
+  <link rel="mask-icon" href="/favicon.ico?v=6.0.3" color="#222">
+
+
+  <link rel="manifest" href="/favicon.ico">
+
+
+  <meta name="msapplication-config" content="/favicon.ico" />
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.0.3',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":true,"scrollpercent":false,"onmobile":true},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'T4TYK1DMV0',
+      apiKey: '8ae84ecb094e73f826b093645f9d90bc',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  
+  <meta name="keywords" content="DFS,STL," />
+
+
+<meta name="description" content="第1题 NOIP2010 引水入城 (DFS+贪心)NOIP2010 引水入城题意：见上。解：对第一行每个点 DFS 求出这个点可以覆盖最后一行的区间，然后对这些区间做最小完全区间覆盖$O(n^2)$即可。剪枝：如果第一行左右有比他高的，这个点不用继续搜索。Hack 点：如果n=1直接特判。知识点：本题提供了一个思路，不需要枚举第一行设置的状态(1位置放、2位置不放……)，而是单独枚举每一种情况然">
+<meta name="keywords" content="DFS,STL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NOIP 搜索题训练">
+<meta property="og:url" content="http://blog.flyinthesky.win/搜索题专练/index.html">
+<meta property="og:site_name" content="FlyInTheSky&#39;s blog">
+<meta property="og:description" content="第1题 NOIP2010 引水入城 (DFS+贪心)NOIP2010 引水入城题意：见上。解：对第一行每个点 DFS 求出这个点可以覆盖最后一行的区间，然后对这些区间做最小完全区间覆盖$O(n^2)$即可。剪枝：如果第一行左右有比他高的，这个点不用继续搜索。Hack 点：如果n=1直接特判。知识点：本题提供了一个思路，不需要枚举第一行设置的状态(1位置放、2位置不放……)，而是单独枚举每一种情况然">
+<meta property="og:updated_time" content="2018-12-16T07:28:01.554Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NOIP 搜索题训练">
+<meta name="twitter:description" content="第1题 NOIP2010 引水入城 (DFS+贪心)NOIP2010 引水入城题意：见上。解：对第一行每个点 DFS 求出这个点可以覆盖最后一行的区间，然后对这些区间做最小完全区间覆盖$O(n^2)$即可。剪枝：如果第一行左右有比他高的，这个点不用继续搜索。Hack 点：如果n=1直接特判。知识点：本题提供了一个思路，不需要枚举第一行设置的状态(1位置放、2位置不放……)，而是单独枚举每一种情况然">
+
+
+
+
+
+
+  <link rel="canonical" href="http://blog.flyinthesky.win/搜索题专练/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+  <title>NOIP 搜索题训练 | FlyInTheSky's blog</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5cb42869838f4cfeb9c9b241d7f2a21c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+  <link href="https://www.flyinthesky.win/tomorrow.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.1/google-fonts/fira-mono.css" rel="stylesheet">
+</head>
+
+
+<div id="hexo-helper-live2d">
+  <canvas id="live2dcanvas" width="300" height="600"></canvas>
+</div>
+<style>
+  #live2dcanvas{
+    position: fixed;
+    width: 300px;
+    height: 600px;
+    opacity:0.8;
+    right: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -120px;
+  }
+</style>
+<script type="text/javascript" src="/live2d/device.min.js"></script>
+<script type="text/javascript">
+const loadScript = function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};
+(function(){
+  if((typeof(device) != 'undefined') && (device.mobile())){
+    var trElement = document.getElementById('hexo-helper-live2d');
+    trElement.parentNode.removeChild(trElement);
+    return;
+  }else
+    if (typeof(device) === 'undefined') console.error('Cannot find current-device script.');
+  loadScript("/live2d/script.js", function(){loadlive2d("live2dcanvas", "/live2d/assets/wanko.model.json", 0.5);});
+})();
+</script>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+  
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">FlyInTheSky's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">OI, 梦开始的地方。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />分类</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-friends">
+          <a href="/friends/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-handshake-o"></i> <br />朋友</a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/搜索题专练/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FlyInTheSky">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FlyInTheSky's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">NOIP 搜索题训练</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-10T22:30:00+08:00">2018-07-10</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/比赛/" itemprop="url" rel="index"><span itemprop="name">比赛</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/搜索题专练/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/搜索题专练/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/搜索题专练/" class="leancloud_visitors" data-flag-title="NOIP 搜索题训练">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">+</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 s
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="第1题-NOIP2010-引水入城-DFS-贪心"><a href="#第1题-NOIP2010-引水入城-DFS-贪心" class="headerlink" title="第1题 NOIP2010 引水入城 (DFS+贪心)"></a>第1题 NOIP2010 引水入城 (DFS+贪心)</h2><p><a href="https://www.luogu.org/problemnew/show/P1514" target="_blank" rel="external">NOIP2010 引水入城</a><br>题意：见上。<br>解：对第一行每个点 DFS 求出这个点可以覆盖最后一行的区间，然后对这些区间做最小完全区间覆盖$O(n^2)$即可。剪枝：如果第一行左右有比他高的，这个点不用继续搜索。Hack 点：如果n=1直接特判。<br>知识点：本题提供了一个思路，不需要枚举第一行设置的状态(1位置放、2位置不放……)，而是单独枚举每一种情况然后再进行操作。对于这种$n=500$规模的题目好用。</p>
+<pre><code class="c++">#include&lt;cstdio&gt; 
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define db double
+
+const int MAXN = 500 + 10, INF = 1000000000;
+const int dx[4] = {1, 0, -1, 0};
+const int dy[4] = {0, 1, 0, -1};
+
+int n, m, ans, ll[MAXN], rr[MAXN], h[MAXN][MAXN], vis[MAXN][MAXN];
+
+void dfs(int x, int y, int k) {
+    if (x == n) ll[k] = std::min(ll[k], y), rr[k] = std::max(rr[k], y);
+    for (int i = 0; i &lt; 4; i++) {
+        int tx = x + dx[i], ty = y + dy[i];
+        if (tx &gt; 0 &amp;&amp; ty &gt; 0 &amp;&amp; tx &lt;= n &amp;&amp; ty &lt;= m &amp;&amp; vis[tx][ty] != k &amp;&amp; h[tx][ty] &lt; h[x][y]) vis[tx][ty] = k, dfs(tx, ty, k);
+    }
+}
+
+void clean() {
+    ms(vis, 0);
+}
+int solve() {
+    clean();
+    for (int i = 1; i &lt;= n; i++) 
+    for (int j = 1; j &lt;= m; j++) scanf(&quot;%d&quot;, &amp;h[i][j]);
+
+    int gg = 0;
+    for (int i = 1; i &lt;= m; i++) if (!(h[1][i - 1] &gt; h[1][i] || h[1][i + 1] &gt; h[1][i])) ll[i] = INF, rr[i] = -INF, dfs(1, i, i), gg++;
+    if (n == 1) return printf(&quot;1\n%d\n&quot;, gg), 0;
+
+    //for (int i = 1; i &lt;= m; i++) printf(&quot;i=%d l=%d r=%d\n&quot;, i, ll[i], rr[i]);
+    int ans = 0;
+    for (int i = 1; i &lt;= m; i++) if (vis[n][i]) ans++;
+    if (ans != m) return printf(&quot;0\n%d\n&quot;, m - ans), 0;
+
+    ans = 0;
+    int e = 0;
+    while (e &lt; m) {
+        int mks = 0;
+        for (int i = 1; i &lt;= m; i++) if (ll[i] &lt;= e + 1 &amp;&amp; rr[i] &gt; mks &amp;&amp; rr[i] &gt; e) mks = rr[i];
+        ans++, e = mks;
+    }
+    printf(&quot;1\n%d\n&quot;, ans);
+
+    return 0;
+}
+int main() {
+    scanf(&quot;%d%d&quot;, &amp;n, &amp;m), solve();
+    return 0;
+}
+</code></pre>
+<a id="more"></a>
+<h2 id="第2题-Luogu-P1441-砝码称重-DFS-DP"><a href="#第2题-Luogu-P1441-砝码称重-DFS-DP" class="headerlink" title="第2题 Luogu P1441 砝码称重 (DFS+DP)"></a>第2题 Luogu P1441 砝码称重 (DFS+DP)</h2><p><a href="https://www.luogu.org/problemnew/show/P1441" target="_blank" rel="external">Luogu P1441 砝码称重</a><br>题意：见上。<br>解：DFS 枚举$C^m_n$种去砝码方案，再用普通的 01背包 判存在性即可。这复杂度在爆炸边缘QAQ……<br>我们尝试用<code>bitset</code>优化</p>
+<pre><code class="c++">std::bitset&lt;2048 &gt; dp;
+dp[0] = 1;
+for (int i = 1; i &lt;= n; i++) {
+    if (vis[i]) continue;
+    dp |= dp &lt;&lt; a[i];
+}
+</code></pre>
+<p><code>dp |= dp &lt;&lt; a[i]</code>等同于 01 背包第二重循环。<code>dp &lt;&lt; a[i]</code>相当于将方案$dp(j-a_i)$的全部加上了$a_i$后的新方案集合。<br>知识点：这种储存二进制/状态的题目就可以用 bitset 水过去。</p>
+<pre><code class="c++">#include&lt;cstdio&gt; 
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;bitset&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define db double
+
+int n, m, a[25], vis[25], ans, sum;
+
+void dfs(int u, int b) {
+    if (b &gt;= m) {
+        std::bitset&lt;2048 &gt; dp;
+        dp[0] = 1;
+        for (int i = 1; i &lt;= n; i++) {
+            if (vis[i]) continue;
+            dp |= dp &lt;&lt; a[i];
+        }
+        ans = std::max(ans, (int)dp.count() - 1);
+        return ;
+    }
+    if (u == n + 1) return ;
+    dfs(u + 1, b);
+    vis[u] = 1, dfs(u + 1, b + 1), vis[u] = 0;
+}
+
+void clean() {
+    sum = 0, ms(vis, 0);
+}
+int solve() {
+    clean();
+    for (int i = 1; i &lt;= n; i++) scanf(&quot;%d&quot;, &amp;a[i]), sum += a[i];
+    dfs(1, 0);
+    printf(&quot;%d\n&quot;, ans);
+    return 0;
+}
+int main() {
+    scanf(&quot;%d%d&quot;, &amp;n, &amp;m), solve();
+    return 0;
+}
+</code></pre>
+<h2 id="第3题-Luogu-P1242-新汉诺塔"><a href="#第3题-Luogu-P1242-新汉诺塔" class="headerlink" title="第3题 Luogu P1242 新汉诺塔"></a>第3题 Luogu P1242 新汉诺塔</h2><p><a href="https://www.luogu.org/problemnew/show/P1242" target="_blank" rel="external">Luogu P1242 新汉诺塔</a><br>题意：见上。<br>解：移动一个大盘必须将所有比他小的盘移到不是这个大盘的目标柱中，因为这样大盘才能移到目标柱去。这样 DFS 即可。注意在移动过程中同一根柱子里就不需要再移动了<br>知识点：写 DFS 要注意合法性。<br>代码：</p>
+<pre><code class="c++">#include&lt;cstdio&gt; 
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;bitset&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define db double
+
+int n, cnt, s[3][50], pos[50], gl[50];
+
+void mve(int i, int fr, int t) {
+    printf(&quot;move %d from %c to %c\n&quot;, i, fr + &#39;A&#39;, t + &#39;A&#39;), cnt++;
+    s[fr][0]--, pos[i] = t, s[t][++s[t][0]] = i;
+}
+void dfs(int i, int fr, int t, int hp) {
+    if (fr == t) return ;//不要漏，在同一根柱子里就不用移动 
+    for (int j = i - 1; j; j--) dfs(j, pos[j], hp, 3 - pos[j] - hp);
+    mve(i, fr, t);
+}
+
+void clean() {
+    cnt = 0;
+} 
+int solve() {
+    clean();
+    if(n == 3) {
+        printf(&quot;move 3 from A to B\nmove 1 from C to B\nmove 2 from C to A\nmove 1 from B to A\nmove 3 from B to C\n5\n&quot;);
+        exit(0);
+    }
+    for (int i = 0; i &lt; 3; i++) {
+        scanf(&quot;%d&quot;, &amp;s[i][0]);
+        for (int j = 1; j &lt;= s[i][0]; j++) scanf(&quot;%d&quot;, &amp;s[i][j]), pos[s[i][j]] = i;
+    }
+    for (int len, i = 0; i &lt; 3; i++) {
+        scanf(&quot;%d&quot;, &amp;len);
+        for (int x, j = 1; j &lt;= len; j++) scanf(&quot;%d&quot;, &amp;x), gl[x] = i;
+    }
+    for (int i = n; i; i--) if (pos[i] != gl[i]) dfs(i, pos[i], gl[i], 3 - pos[i] - gl[i]);
+    printf(&quot;%d\n&quot;, cnt);
+    return 0;
+}
+int main() {
+    scanf(&quot;%d&quot;, &amp;n), solve();
+    return 0;
+}
+</code></pre>
+<h2 id="第4题-NOIP2009-靶形数独-DFS按位，枚举顺序优化"><a href="#第4题-NOIP2009-靶形数独-DFS按位，枚举顺序优化" class="headerlink" title="第4题 NOIP2009 靶形数独 (DFS按位，枚举顺序优化)"></a>第4题 NOIP2009 靶形数独 (DFS按位，枚举顺序优化)</h2><p><a href="https://www.luogu.org/problemnew/show/P1074" target="_blank" rel="external">NOIP2009 靶形数独</a><br>题意：见上。<br>解：暴力 dfs 即可。<br>优化方法：1、倒搜 2、从9到1枚举 3、先填空格少的(代码没用这种方法，所以TLE了一个点)</p>
+<pre><code class="c++">#include&lt;cstdio&gt; 
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;vector&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define db double
+
+const int sco[11][11] = {
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 6, 6, 6, 6, 6, 6, 6, 6, 6},
+    {0, 6, 7, 7, 7, 7, 7, 7, 7, 6},
+    {0, 6, 7, 8, 8, 8, 8, 8, 7, 6},
+    {0, 6, 7, 8, 9, 9, 9, 8, 7, 6},
+    {0, 6, 7, 8, 9,10, 9, 8, 7, 6},
+    {0, 6, 7, 8, 9, 9, 9, 8, 7, 6},
+    {0, 6, 7, 8, 8, 8, 8, 8, 7, 6},
+    {0, 6, 7, 7, 7, 7, 7, 7, 7, 6},
+    {0, 6, 6, 6, 6, 6, 6, 6, 6, 6}
+};
+
+int flag = 0, ans = 0, a[11][11], blg[11][11], hang[11][11], lie[11][11], gong[11][11];
+
+inline int max(int x, int y) {return x &gt; y ? x : y;}
+
+void dfs(int x, int y, int tot) {
+    if (x == 0) {
+        ans = max(ans, tot), flag = 1;
+        return ;
+    }
+    int tx = x, ty = y + 1;
+    if (ty &gt; 9) --tx, ty = 1;
+    if (a[x][y]) dfs(tx, ty, tot + a[x][y] * sco[x][y]);
+    for (int i = 9; i &gt;= 1; --i) {
+        if (!hang[x][i] &amp;&amp; !lie[y][i] &amp;&amp; !gong[blg[x][y]][i]) {
+            hang[x][i] = lie[y][i] = gong[blg[x][y]][i] = 1;
+            dfs(tx, ty, tot + i * sco[x][y]);
+            hang[x][i] = lie[y][i] = gong[blg[x][y]][i] = 0;
+        }
+    }
+}
+
+void clean() {
+    ms(hang, 0), ms(lie, 0), ms(gong, 0);
+    for (int i = 1; i &lt;= 9; ++i)
+    for (int j = 1; j &lt;= 9; ++j) blg[i][j] = ((i - 1) / 3) * 3 + ((j - 1) / 3 + 1);
+} 
+int solve() {
+    clean();
+    for (int i = 1; i &lt;= 9; ++i)
+    for (int j = 1; j &lt;= 9; ++j) scanf(&quot;%d&quot;, &amp;a[i][j]), hang[i][a[i][j]] = 1, lie[j][a[i][j]] = 1, gong[blg[i][j]][a[i][j]] = 1;
+    dfs(9, 1, 0);
+    if (flag) printf(&quot;%d\n&quot;, ans); else printf(&quot;-1\n&quot;);
+    return 0;
+}
+int main() {
+    solve();
+    return 0;
+}
+</code></pre>
+<h2 id="第5题-P1120-小木棍-DFS"><a href="#第5题-P1120-小木棍-DFS" class="headerlink" title="第5题 P1120 小木棍 (DFS )"></a>第5题 P1120 小木棍 (DFS )</h2><p><a href="https://www.luogu.org/problemnew/show/P1120" target="_blank" rel="external">P1120 小木棍</a><br>题意：见上。<br>解：暴力dfs+剪枝。</p>
+<pre><code class="c++">#include&lt;cstdio&gt; 
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;queue&gt;
+#include&lt;cmath&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define db double
+#define fir first
+#define sec second
+#define mp make_pair
+using namespace std;
+
+namespace flyinthesky {
+
+    int vis[100], a[100], n, sum, len;
+
+    bool dfs(int lst, int cnt, int rm) {
+        if (cnt &gt;= n &amp;&amp; rm == len) return true;
+        int f = 0; // 冗余排除
+        for (int i = lst; i &lt;= n; ++i) { // 冗余排除 
+            if (vis[i]) continue;
+            if (a[i] &lt;= rm &amp;&amp; a[i] != f) {
+                int fl = 0;
+                vis[i] = 1;
+                if (a[i] == rm) fl = dfs(1, cnt + 1, len); else fl = dfs(i + 1, cnt + 1, rm - a[i]);
+                vis[i] = 0;
+                if (fl) return true;
+                if (rm == len) return false; // 冗余排除 
+                if (rm == a[i]) return false; // 冗余排除 
+                f = a[i];
+            }
+        }
+        return false;
+    }
+
+    bool cmp(int x, int y) {return x &gt; y;}
+
+    void clean() {
+    }
+    int solve() {
+        clean();
+        int gg; scanf(&quot;%d&quot;, &amp;gg);
+        for (int x, i = 1; i &lt;= gg; ++i) {
+            scanf(&quot;%d&quot;, &amp;x);
+            if (x &lt;= 50) a[++n] = x, sum += x;
+        }
+        sort(a + 1, a + 1 + n, cmp); // 搜索顺序 
+        for (int i = 1; i &lt;= sum; ++i) if (sum % i == 0) {
+            if (len = i, dfs(1, 0, i)) return printf(&quot;%d\n&quot;, i);
+        }
+        return 0;
+    }
+}
+int main() {
+    flyinthesky::solve();
+    return 0;
+}
+</code></pre>
+<h2 id="第6题-Luogu-1379-八数码难题-BFS-状压"><a href="#第6题-Luogu-1379-八数码难题-BFS-状压" class="headerlink" title="第6题 Luogu 1379 八数码难题 (BFS + 状压)"></a>第6题 Luogu 1379 八数码难题 (BFS + 状压)</h2><p><a href="https://www.luogu.org/problemnew/show/P1379" target="_blank" rel="external">Luogu 1379 八数码难题</a><br>题意：见上。<br>解：用 0 在搜索中转移，相当于整个棋盘只有 0 在动。然后 BFS 每个状态，用 set 判重。<br>知识点：9 维 bool 数组也可以判断，可以不用 set 。不要被主观意识干扰。<br>代码：</p>
+<pre><code class="c++">#include&lt;cstdio&gt;
+#include&lt;algorithm&gt;
+#include&lt;cstring&gt;
+#include&lt;queue&gt;
+#include&lt;set&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define ULL unsigned long long
+#define db double
+
+const LL gl = 123804765ll;
+const int dx[4] = {1, 0, -1, 0};
+const int dy[4] = {0, 1, 0, -1};
+
+struct data {
+    int stp;
+    LL st;
+};
+
+LL now;
+int ma[5][5];
+std::queue&lt;data &gt; q;
+std::set&lt;LL &gt; s;
+
+void split(LL st) {
+    for (int i = 1; i &lt;= 3; i++) ma[1][i] = st % 10, st /= 10;
+    for (int i = 1; i &lt;= 3; i++) ma[2][i] = st % 10, st /= 10;
+    for (int i = 1; i &lt;= 3; i++) ma[3][i] = st % 10, st /= 10;
+}
+LL gethash() {
+    LL ret = 0;
+    for (int i = 3; i; i--) ret = ret * 10 + ma[3][i];
+    for (int i = 3; i; i--) ret = ret * 10 + ma[2][i];
+    for (int i = 3; i; i--) ret = ret * 10 + ma[1][i];
+    return ret;
+}
+
+void clean() {
+}
+int solve() {
+    clean();
+    s.insert(now), q.push((data){0, now});
+    while (!q.empty()) {
+        data p = q.front(); q.pop();
+        if (p.st == gl) return printf(&quot;%d\n&quot;, p.stp);
+        split(p.st);
+        int x, y; for (int i = 1; i &lt;= 3; i++) for (int j = 1; j &lt;= 3; j++) if (ma[i][j] == 0) {x = i, y = j; break;}
+        for (int i = 0; i &lt; 4; i++) {
+            int tx = x + dx[i], ty = y + dy[i];
+            if (tx &gt; 0 &amp;&amp; ty &gt; 0 &amp;&amp; tx &lt;= 3 &amp;&amp; ty &lt;= 3) {
+                std::swap(ma[tx][ty], ma[x][y]);
+                LL tmp = gethash();
+                if (!s.count(tmp)) s.insert(tmp), q.push((data){p.stp + 1, tmp});
+                std::swap(ma[tx][ty], ma[x][y]);
+            }
+        }
+    }
+    return 0;
+}
+int main() {
+    scanf(&quot;%lld&quot;, &amp;now), solve();
+    return 0;
+}
+</code></pre>
+<h2 id="第6题-Luogu-1731-生日蛋糕-DFS-优化"><a href="#第6题-Luogu-1731-生日蛋糕-DFS-优化" class="headerlink" title="第6题 Luogu 1731 生日蛋糕 (DFS + 优化)"></a>第6题 Luogu 1731 生日蛋糕 (DFS + 优化)</h2><p><a href="https://www.luogu.org/problemnew/show/P1731" target="_blank" rel="external">Luogu 1731 生日蛋糕</a><br>题意：见上。<br>解：直接搜索即可。注意剪枝，代码中有<br>知识点：<br>剪枝方法：<br>1、可行性剪枝 (初值，最好情况下无法到达xxx)<br>2、最优化剪枝 (最好情况下不能达到当前全局最优解，当前已经不能是全局最优解)<br>3、倒搜 (倒搜出奇迹)<br>4、玄学</p>
+<pre><code class="c++">#include&lt;cstdio&gt;
+#include&lt;algorithm&gt;
+#include&lt;cstring&gt;
+#include&lt;climits&gt;
+#include&lt;cmath&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define ULL unsigned long long
+#define db double
+
+int n, C, S = INT_MAX;
+
+void dfs(int a, int rm, int nowy, int nowc, int lstr, int lsth) {
+    if (nowy + nowc &gt;= S) return ; //最优性剪枝 (当前已经不能是全局最优解)
+    if (a == n + 1) {
+        if (rm == 0) {
+            S = std::min(S, nowy + nowc);
+        }
+        return ;
+    }
+    int z = n - a + 1;// 剩下的层数
+    if(rm - lstr * lstr * lsth * z &gt; 0) return ;//可行性剪枝 (最好情况下无法到达xxx) 已经无法将体积消耗完
+    for (int H = lsth - 1; H &gt;= z; H--) { //当前半径或高一定要大于等于 z，否则因为单调递减最上层不够
+        for (int R = lstr - 1; R &gt;= z; R--) {//可行性剪枝 (初值)
+            if (rm - R * R * H &lt; 0) continue;
+            dfs(a + 1, rm - R * R * H, std::max(R * R, nowy), nowc + 2 * R * H, R, H);
+        }
+    }
+}
+
+void clean() {
+}
+int solve() {
+    clean();
+    dfs(1, C, 0, 0, (int)sqrt(C), (int)sqrt(C));//半径从 sqrt 开始 (初值)
+    if (S == INT_MAX) return printf(&quot;0\n&quot;), 0;
+    else return printf(&quot;%d\n&quot;, S), 0;
+    return 0;
+}
+int main() {
+    scanf(&quot;%d%d&quot;, &amp;C, &amp;n), solve();
+    return 0;
+}
+</code></pre>
+<h2 id="第7题-NOIP2011-Mayan游戏-DFS-枚举重复性，必要性"><a href="#第7题-NOIP2011-Mayan游戏-DFS-枚举重复性，必要性" class="headerlink" title="第7题 NOIP2011 Mayan游戏 (DFS + 枚举重复性，必要性)"></a>第7题 NOIP2011 Mayan游戏 (DFS + 枚举重复性，必要性)</h2><p><a href="https://www.luogu.org/problemnew/show/P1312" target="_blank" rel="external">NOIP2011 Mayan游戏</a><br>题意：见上。<br>解：实现4个操作：</p>
+<ul>
+<li>update 更新游戏棋盘 (将悬空方块下降)</li>
+<li>remove 删除能消除的方块 (先打标记后删除的方法可以解决多个合法消除共享方块的情况)</li>
+<li>move 左右移动一个方块 (move 完后要 update，并且要循环)</li>
+<li>check 是否消除完毕</li>
+</ul>
+<p>具体实现看代码相关部分</p>
+<p>剪枝：<br>1、移动的两个方块颜色一样不用移动<br>2、方块左移如果有方块也不用移动，因为字典序枚举，枚举左边右移时已经包含了该情况。</p>
+<p>知识点：先打标记后删除可以避免一些问题<br>暴力搜索考虑重复性，枚举必要性</p>
+<pre><code class="c++">#include&lt;cstdio&gt;
+#include&lt;algorithm&gt;
+#include&lt;cstring&gt;
+#include&lt;climits&gt;
+#include&lt;queue&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define ULL unsigned long long
+#define db double
+
+int ma[10][10][10], seq[10][5], bj[10][10];
+int T;
+
+void update(int stg) {
+    for (int j = 1; j &lt;= 5; j++) {
+        int flag = false, wz = 0;
+        for (int i = 1; i &lt;= 7; i++) {
+            if (!flag &amp;&amp; ma[stg][i][j] == 0) flag = true, wz = i;
+            if (flag &amp;&amp; ma[stg][i][j] &gt; 0) ma[stg][wz][j] = ma[stg][i][j], ma[stg][i][j] = 0, wz++;
+        }
+    }
+}
+bool remove(int stg) {
+    int flag = false;
+    ms(bj, 0);
+    for (int i = 1; i &lt;= 7; i++) 
+    for (int j = 1; j &lt;= 5; j++) {
+        if (i - 1 &gt; 0 &amp;&amp; i + 1 &lt;= 7) if (ma[stg][i - 1][j] != 0 &amp;&amp; ma[stg][i - 1][j] == ma[stg][i][j] &amp;&amp; ma[stg][i][j] == ma[stg][i + 1][j]) bj[i - 1][j] = bj[i][j] = bj[i + 1][j] = 1;
+        if (j - 1 &gt; 0 &amp;&amp; j + 1 &lt;= 5) if (ma[stg][i][j - 1] != 0 &amp;&amp; ma[stg][i][j - 1] == ma[stg][i][j] &amp;&amp; ma[stg][i][j] == ma[stg][i][j + 1]) bj[i][j - 1] = bj[i][j] = bj[i][j + 1] = 1;
+    }
+    for (int i = 1; i &lt;= 7; i++) 
+    for (int j = 1; j &lt;= 5; j++) if (bj[i][j]) ma[stg][i][j] = 0, flag = 1;
+    return flag;
+}
+void move(int stg, int x, int y, int opt) {
+    if (y + opt &lt; 0 || y + opt &gt; 5) return ;
+    std::swap(ma[stg][x][y], ma[stg][x][y + opt]);
+    update(stg);
+    while (remove(stg)) 
+    update(stg);
+}
+bool check(int stg) {
+    int flag = true;
+    for (int i = 1; i &lt;= 7; i++) 
+    for (int j = 1; j &lt;= 5; j++) if (ma[stg][i][j] &gt; 0) {flag = false; break;}
+    return flag;
+}
+
+void dfs(int a) {
+    if (a &gt; T + 1) return ;
+    if (a == T + 1) {
+        if (check(a - 1)) {
+            for (int i = 1; i &lt;= T; i++) printf(&quot;%d %d %d\n&quot;, seq[i][0] - 1, seq[i][1] - 1, seq[i][2]);
+            exit(0);
+        }
+        return ;
+    }
+    for (int i = 1; i &lt;= 7; i++) for (int j = 1; j &lt;= 5; j++) ma[a][i][j] = ma[a - 1][i][j];
+    for (int j = 1; j &lt;= 5; j++) {
+        for (int i = 1; i &lt;= 7; i++) {
+            if (j + 1 &lt;= 5) {
+                if (ma[a][i][j] != ma[a][i][j + 1] &amp;&amp; ma[a][i][j] != 0) {
+                    move(a, i, j, 1), seq[a][0] = j, seq[a][1] = i, seq[a][2] = 1, dfs(a + 1);
+                    for (int i = 1; i &lt;= 7; i++) for (int j = 1; j &lt;= 5; j++) ma[a][i][j] = ma[a - 1][i][j];
+                }
+            }
+            if (j - 1 &gt; 0) {
+                if (ma[a][i][j] != ma[a][i][j - 1] &amp;&amp; ma[a][i][j] != 0 &amp;&amp; ma[a][i][j - 1] == 0) {
+                    move(a, i, j, -1), seq[a][0] = j, seq[a][1] = i, seq[a][2] = -1, dfs(a + 1);
+                    for (int i = 1; i &lt;= 7; i++) for (int j = 1; j &lt;= 5; j++) ma[a][i][j] = ma[a - 1][i][j];
+                }
+            }
+        }
+    }
+}
+
+void clean() {
+}
+int solve() {
+    clean();
+    for (int i = 1; i &lt;= 5; i++) {
+        int x, j = 1; scanf(&quot;%d&quot;, &amp;x);
+        while (x != 0) ma[0][j][i] = x, scanf(&quot;%d&quot;, &amp;x), j++;
+    }
+    dfs(1);
+    printf(&quot;-1\n&quot;);
+    return 0;
+}
+int main() {
+    scanf(&quot;%d&quot;, &amp;T), solve();
+    return 0;
+}
+</code></pre>
+<h2 id="第8题-NOIP2015-斗地主-DFS-枚举必要性"><a href="#第8题-NOIP2015-斗地主-DFS-枚举必要性" class="headerlink" title="第8题 NOIP2015 斗地主 (DFS + 枚举必要性)"></a>第8题 NOIP2015 斗地主 (DFS + 枚举必要性)</h2><p><a href="https://www.luogu.org/problemnew/show/P2668" target="_blank" rel="external">NOIP2015 斗地主</a><br>题意：见上。<br>解：最朴素的方法是枚举每个题目所给的牌型，然后判断有没有空。只有30分，30分也可以乱搞。<br>其实我们发现炸弹、三张牌、对子、单牌都可以一次性走完，那么我们就直接将这4种情况都合并起来一下处理，然后就不会超时了。<br>知识点：暴力搜索考虑重复性和后程枚举必要性。<br>要把题目看全面才行</p>
+<pre><code class="c++">//代码后面提供了一些检验数据
+#include&lt;cstdio&gt;
+#include&lt;algorithm&gt;
+#include&lt;cstring&gt;
+#include&lt;climits&gt;
+#include&lt;vector&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define ULL unsigned long long
+#define db double
+
+int n, tax[20], ans;
+
+int check() {
+    for (int i = 1; i &lt;= 15; i++) if (tax[i]) return false;
+    return true;
+}
+void dfs(int a) {
+    if (a - 1 &gt;= ans) return ;
+    if (check()) {
+        ans = std::min(ans, a - 1);
+        return ;
+    }
+    //三顺子 2
+    for (int i = 3; i &lt;= 12; i++) if (tax[i] &gt;= 3) {
+        int j = i + 1; if (j &gt; 13) j = 1;
+        while (1) {
+            if (j == 2) break;
+            if (tax[j] &lt; 3) break;
+            j++; if (j &gt; 13) j = 1;
+        }
+        j--;
+        if (j == 1) {
+            int tmp = 13 - i + 1 + 1;
+            if (tmp &lt; 3) continue;
+            for (int k = i; k &lt;= 13; k++) tax[k] -= 3;
+            tax[1] -= 3;
+            dfs(a + 1);
+            for (int k = i; k &lt;= 13; k++) tax[k] += 3;
+            tax[1] += 3;
+        } else if (j == 0) {
+            int tmp = 13 - i + 1;
+            if (tmp &lt; 3) continue;
+            for (int k = i; k &lt;= 13; k++) tax[k] -= 3;
+            dfs(a + 1);
+            for (int k = i; k &lt;= 13; k++) tax[k] += 3;
+        } else {
+            int tmp = j - i + 1;
+            if (tmp &lt; 3) continue;
+            for (int k = i; k &lt;= j; k++) tax[k] -= 3;
+            dfs(a + 1);
+            for (int k = i; k &lt;= j; k++) tax[k] += 3;
+        }
+    }
+    //双顺子 3
+    for (int i = 3; i &lt;= 12; i++) if (tax[i] &gt;= 2) {
+        int j = i + 1; if (j &gt; 13) j = 1;
+        while (1) {
+            if (j == 2) break;
+            if (tax[j] &lt; 2) break;
+            j++; if (j &gt; 13) j = 1;
+        }
+        j--;
+        if (j == 1) {
+            int tmp = 13 - i + 1 + 1;
+            if (tmp &lt; 3) continue;
+            for (int k = i; k &lt;= 13; k++) tax[k] -= 2;
+            tax[1] -= 2;
+            dfs(a + 1);
+            for (int k = i; k &lt;= 13; k++) tax[k] += 2;
+            tax[1] += 2;
+        } else if (j == 0) {
+            int tmp = 13 - i + 1;
+            if (tmp &lt; 3) continue;
+            for (int k = i; k &lt;= 13; k++) tax[k] -= 2;
+            dfs(a + 1);
+            for (int k = i; k &lt;= 13; k++) tax[k] += 2;
+        } else {
+            int tmp = j - i + 1;
+            if (tmp &lt; 3) continue;
+            for (int k = i; k &lt;= j; k++) tax[k] -= 2;
+            dfs(a + 1);
+            for (int k = i; k &lt;= j; k++) tax[k] += 2;
+        }
+    }
+    //单顺子 4
+    for (int i = 3; i &lt;= 12; i++) if (tax[i] &gt;= 1) {
+        int j = i + 1; if (j &gt; 13) j = 1;
+        while (1) {
+            if (j == 2) break;
+            if (tax[j] &lt; 1) break;
+            j++; if (j &gt; 13) j = 1;
+        }
+        j--;
+        if (j == 1) {
+            int tmp = 13 - i + 1 + 1;
+            if (tmp &lt; 5) continue;
+            for (int k = i; k &lt;= 13; k++) tax[k] -= 1;
+            tax[1] -= 1;
+            dfs(a + 1);
+            for (int k = i; k &lt;= 13; k++) tax[k] += 1;
+            tax[1] += 1;
+        } else if (j == 0) {
+            int tmp = 13 - i + 1;
+            if (tmp &lt; 5) continue;
+            for (int k = i; k &lt;= 13; k++) tax[k] -= 1;
+            dfs(a + 1);
+            for (int k = i; k &lt;= 13; k++) tax[k] += 1;
+        } else {
+            int tmp = j - i + 1;
+            if (tmp &lt; 5) continue;
+            for (int k = i; k &lt;= j; k++) tax[k] -= 1;
+            dfs(a + 1);
+            for (int k = i; k &lt;= j; k++) tax[k] += 1;
+        }
+    }
+    //四带二 1
+        //对子 
+    for (int i = 1; i &lt;= 13; i++) if (tax[i] &gt;= 4) {
+        tax[i] -= 4;
+        for (int j = 1; j &lt;= 13; j++) if (tax[j] &gt;= 2) {
+            tax[j] -= 2;
+            for (int k = 1; k &lt;= 13; k++) if (tax[k] &gt;= 2) {
+                tax[k] -= 2;
+                dfs(a + 1);
+                tax[k] += 2;
+            }
+            tax[j] += 2;
+        }
+        tax[i] += 4;
+    }
+        //单牌 
+    for (int i = 1; i &lt;= 13; i++) if (tax[i] &gt;= 4) {
+        tax[i] -= 4;
+        for (int j = 1; j &lt;= 15; j++) if (tax[j] &gt;= 1) {
+            tax[j] -= 1;
+            for (int k = 1; k &lt;= 15; k++) if (tax[k] &gt;= 1) {
+                tax[k] -= 1;
+                dfs(a + 1);
+                tax[k] += 1;
+            }
+            tax[j] += 1;
+        }
+        tax[i] += 4;
+    }
+    //三带二 5
+    for (int i = 1; i &lt;= 13; i++) if (tax[i] &gt;= 3) {
+        tax[i] -= 3;
+        for (int j = 1; j &lt;= 13; j++) if (tax[j] &gt;= 2) {
+            tax[j] -= 2;
+            dfs(a + 1);
+            tax[j] += 2;
+        }
+        tax[i] += 3;
+    } 
+    //三带一 6
+    for (int i = 1; i &lt;= 13; i++) if (tax[i] &gt;= 3) {
+        tax[i] -= 3;
+        for (int j = 1; j &lt;= 15; j++) if (tax[j] &gt;= 1) {
+            tax[j] -= 1;
+            dfs(a + 1);
+            tax[j] += 1;
+        }
+        tax[i] += 3;
+    } 
+    //火箭 9
+    if (tax[14] &amp;&amp; tax[15]) tax[14]--, tax[15]--, dfs(a + 1), tax[14]++, tax[15]++;
+    int hh = a - 1;
+    for (int i = 1; i &lt;= 15; i++) if (tax[i]) hh++;
+    ans = std::min(ans, hh);
+}
+
+void clean() {
+    ms(tax, 0);
+}
+int solve() {
+    clean();
+    for (int a, b, i = 1; i &lt;= n; i++) {
+        scanf(&quot;%d%d&quot;, &amp;a, &amp;b);
+        if (a == 0) tax[13 + b]++; else tax[a]++;
+    }
+    ans = n;
+    dfs(1);
+    printf(&quot;%d\n&quot;, ans);
+    return 0;
+}
+int main() {
+    int T; scanf(&quot;%d%d&quot;, &amp;T, &amp;n);
+    while (T--) solve();
+    return 0;
+}
+/*
+//单，三顺子 
+1 10
+4 1
+4 2
+4 3
+5 1
+5 2
+5 3
+6 1
+6 2
+6 3
+13 1
+
+//单，双顺子 
+1 7
+4 1
+4 2
+5 1
+5 2
+6 1
+6 2
+5 3
+
+//单，顺子
+1 9
+1 1
+7 1
+8 1
+9 1
+10 1
+11 1
+12 1
+13 1
+2 2
+
+//单，双，火箭 
+1 6
+0 1
+0 2
+1 3
+1 2
+2 1
+13 5
+
+//炸
+1 4
+3 1
+3 2
+3 3
+3 4 
+
+//三张
+1 3
+3 1
+3 2
+3 3 
+
+//三带一
+1 4
+3 1
+3 2
+3 3 
+13 1
+
+//三带二
+1 5
+3 1
+3 2
+3 3 
+13 1
+13 2
+
+//四带二
+1 6
+3 1
+3 2
+3 3
+3 4 
+13 1
+13 2 
+*/
+</code></pre>
+<h2 id="第9题-NOIP2003-传染病控制-DFS-枚举必要性"><a href="#第9题-NOIP2003-传染病控制-DFS-枚举必要性" class="headerlink" title="第9题 NOIP2003 传染病控制 (DFS + 枚举必要性)"></a>第9题 NOIP2003 传染病控制 (DFS + 枚举必要性)</h2><p><a href="https://www.luogu.org/problemnew/show/P1041" target="_blank" rel="external">NOIP2003 传染病控制</a><br>题意：见上。<br>解：本题相当于每一层删掉一个子树，那么我们预处理每一层的点，用 DFS 按层删除子树即可。<br>1、如果一个子树被删除了就要打上标记，然后如果一个子树已经在一个打了标记的子树中，就不要删除这个子树。这里判断就暴力枚举祖先节点就行。<br>2、如果一层一个节点都没删除，那么就是已经处理完毕了，直接更新答案即可，类似斗地主思想，不要 DFS 一个个下去，很慢很慢很慢，直接处理即可<br>知识点：这种数据1000以内的都可能是搜索题，但是必要剪枝。</p>
+<pre><code class="c++">#include&lt;cstdio&gt; 
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;set&gt;
+#include&lt;queue&gt;
+#include&lt;climits&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define db double
+
+const int MAXN = 300 + 5;
+
+int n, p, fa[MAXN], dep[MAXN], siz[MAXN], ans = 0, maxd = 0, vis[MAXN];
+std::vector&lt;int &gt; G[MAXN], whw[MAXN];
+
+void dfs1(int u, int pa) {
+    dep[u] = dep[pa] + 1, siz[u] = 1, fa[u] = pa;
+    for (int i = 0; i &lt; (int)G[u].size(); i++) {
+        int v = G[u][i];
+        if (v != pa) dfs1(v, u), siz[u] += siz[v];
+    }
+}
+void dfs2(int a, int tmp) {
+    if (a == maxd + 1) {
+        ans = std::max(ans, tmp);
+        return ;
+    }
+    int gg = 0;
+    for (int i = 0; i &lt; (int)whw[a].size(); i++) {
+        int u = whw[a][i], nmd = u, fl = 0;
+        while (nmd != 1) {
+            if (vis[nmd]) {fl = 1; break;}
+            nmd = fa[nmd];
+        }
+        if (fl) continue;
+        gg = 1, vis[u] = 1, dfs2(a + 1, tmp + siz[u]), vis[u] = 0;
+    }
+    if (!gg) ans = std::max(ans, tmp);
+}
+
+void clean() {
+    ms(vis, 0), ms(dep, 0), ms(siz, 0);
+}
+int solve() {
+    clean();
+    for (int x, y, i = 1; i &lt;= p; i++) scanf(&quot;%d%d&quot;, &amp;x, &amp;y), G[x].push_back(y), G[y].push_back(x);
+    dfs1(1, 0);
+    for (int i = 1; i &lt;= n; i++) whw[dep[i]].push_back(i), maxd = std::max(maxd, dep[i]);
+    dfs2(2, 0);
+    printf(&quot;%d\n&quot;, n - ans);
+    return 0; 
+}
+int main() {
+    scanf(&quot;%d%d&quot;, &amp;n, &amp;p), solve();
+    return 0;
+}
+</code></pre>
+<h2 id="第10题-NOIP2017-时间复杂度-栈模拟"><a href="#第10题-NOIP2017-时间复杂度-栈模拟" class="headerlink" title="第10题 NOIP2017 时间复杂度 (栈模拟)"></a>第10题 NOIP2017 时间复杂度 (栈模拟)</h2><p><a href="https://www.luogu.org/problemnew/show/P3952" target="_blank" rel="external">NOIP2017 时间复杂度</a><br>题意：虽然这是个栈模拟题……<br>解：用<strong>栈</strong>维护模拟即可。<br>注意如果语法错误不能立刻退出，否则就会对后面的数据造成影响。</p>
+<pre><code class="c++">#include&lt;cstdio&gt; 
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;set&gt;
+#include&lt;queue&gt;
+#include&lt;climits&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define db double
+
+struct data {
+    char ch;
+    int bj, gg;
+};
+
+int L, fzd, top, vis[30];
+char s[500];
+data st[105];
+
+void clean() {
+    ms(vis, 0), fzd = top = 0;
+}
+int solve() {
+    clean();
+    scanf(&quot;%d%s&quot;, &amp;L, s);
+    //复杂度 
+    if (s[2] == &#39;1&#39;) fzd = 0; else {
+        int tmp = 0, i = 4;
+        while (&#39;0&#39; &lt;= s[i] &amp;&amp; s[i] &lt;= &#39;9&#39;) tmp = tmp * 10 + s[i] - &#39;0&#39;, ++i;
+        fzd = tmp;
+        //printf(&quot;%d\n&quot;, fzd);
+    }
+    int ans = 0, now = 0, cs = 0, fl = 0;
+    for (int i = 1; i &lt;= L; ++i) {
+        scanf(&quot;%s&quot;, s);
+        if (s[0] == &#39;F&#39;) {
+            ++cs;
+            scanf(&quot;%s&quot;, s);
+            char c = s[0];
+            if (vis[c - &#39;a&#39;]) fl = 1;
+            int hh = false, jj = false;
+            scanf(&quot;%s&quot;, s);
+            if (s[0] == &#39;n&#39;) {
+                scanf(&quot;%s&quot;, s);
+                if (s[0] != &#39;n&#39;) hh = true;//x 是 n，y 不是 n，显然不能进入循环 
+                else jj = true, --cs;//x y 都是 n
+            } else {
+                int tmp1 = 0, tmp2 = 0, j = 0;
+                while (&#39;0&#39; &lt;= s[j] &amp;&amp; s[j] &lt;= &#39;9&#39;) tmp1 = tmp1 * 10 + s[j] - &#39;0&#39;, ++j;
+                scanf(&quot;%s&quot;, s);
+                if (s[0] != &#39;n&#39;) {//x y 都是数字 
+                    int k = 0;
+                    while (&#39;0&#39; &lt;= s[k] &amp;&amp; s[k] &lt;= &#39;9&#39;) tmp2 = tmp2 * 10 + s[k] - &#39;0&#39;, ++k;
+                    if (tmp1 &gt; tmp2) hh = true;//x y 都是数字，x 比 y 大，显然不能进入循环
+                    else jj = true, --cs; //x y 都是数字，x 比 y 小
+                } 
+                //x 是数字, y 是 n 
+            }
+            vis[c - &#39;a&#39;] = 1, st[++top] = (data){c, now, jj};
+            now |= hh;
+            if (!now) ans = std::max(ans, cs);
+        } else if (s[0] == &#39;E&#39;) {
+            if (top == 0) {fl = 1;continue;}
+            data b = st[top]; --top;
+            vis[b.ch - &#39;a&#39;] = 0, now = b.bj, cs -= !b.gg;
+        }
+    }
+    if (fl || top != 0) return printf(&quot;ERR\n&quot;), 0;
+    if (ans == fzd) printf(&quot;Yes\n&quot;); else printf(&quot;No\n&quot;);
+    return 0; 
+}
+int main() {
+    int T; scanf(&quot;%d&quot;, &amp;T);
+    while (T--) solve();
+    return 0;
+}
+</code></pre>
+<h2 id="第11题-NOIP2017-棋盘-记忆化-DFS"><a href="#第11题-NOIP2017-棋盘-记忆化-DFS" class="headerlink" title="第11题 NOIP2017 棋盘 (记忆化 DFS)"></a>第11题 NOIP2017 棋盘 (记忆化 DFS)</h2><p><a href="https://www.luogu.org/problemnew/show/P3956" target="_blank" rel="external">NOIP2017 棋盘</a><br>题意：见上。<br>解：<br>BFS解法：根据 BFS 转移费用为1第一次找到为最短路来优化复杂度。我们让同色之间转移费用设为1，然后异色之间转移费用拆成两步进行，相当于这个转移拆成两个费用为1的转移。对于魔法，我们拆成4步或者6步进行，具体类似上面的操作。这样 vis 数组就要加维。然而拆转移后状态不多，可以轻松AC。<br>记忆化搜索：直接搜索，然后最优化剪枝，每个坐标点记忆化一个最优解，最优化剪枝即可。<br>注意这题如果目标点没颜色如果能魔法就可以到达的！<br>知识点：<br>1、记忆化搜索-搜索-DP之间密切联系<br>2、不要忘记特殊情况的考虑</p>
+<pre><code class="c++">#include&lt;cstdio&gt; 
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;stack&gt;
+#include&lt;set&gt;
+#include&lt;map&gt;
+#include&lt;queue&gt;
+#include&lt;climits&gt;
+#include&lt;cmath&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define db double
+
+using namespace std;
+
+namespace flyinthesky {  
+
+    struct data {int x, y, rm, dis, tms;};
+
+    const int dx[4] = {1, 0, -1, 0};
+    const int dy[4] = {0, 1, 0, -1};
+
+    int m, n, ma[105][105], vis[105][105][10];
+
+    queue&lt;data &gt; q;
+
+    void clean() {
+        ms(ma, -1), ms(vis, 0);
+    }
+    int solve() {
+        scanf(&quot;%d%d&quot;, &amp;m, &amp;n);
+        clean();
+        for (int x, y, c, i = 1; i &lt;= n; ++i) scanf(&quot;%d%d%d&quot;, &amp;x, &amp;y, &amp;c), ma[x][y] = c;
+        vis[1][1][0] = 1, q.push((data){1, 1, 0, 0, 0});
+        while (!q.empty()) {
+            data p = q.front(); q.pop();
+            //printf(&quot;x=%d, y=%d, rm=%d, dis=%d, tms=%d\n&quot;, p.x, p.y, p.rm, p.dis, p.tms);
+            if (p.rm != 0) {
+                if (!vis[p.x][p.y][p.rm - 1]) q.push((data){p.x, p.y, p.rm - 1, p.dis + 1, p.tms}), vis[p.x][p.y][p.rm - 1] = 1; 
+                continue;
+            }
+            if (p.x == m &amp;&amp; p.y == m &amp;&amp; p.rm == 0) return printf(&quot;%d\n&quot;, p.dis - p.tms), 0;
+            for (int i = 0; i &lt; 4; i++) {
+                int tx = p.x + dx[i], ty = p.y + dy[i];
+                if (tx &gt; 0 &amp;&amp; ty &gt; 0 &amp;&amp; tx &lt;= m &amp;&amp; ty &lt;= m) {
+                    if (ma[p.x][p.y] == 0) {
+                        if (ma[tx][ty] == 0 &amp;&amp; !vis[tx][ty][0]) q.push((data){tx, ty, 0, p.dis + 1, p.tms + 1}), vis[tx][ty][0] = 1;
+                        else if (ma[tx][ty] == 1 &amp;&amp; !vis[tx][ty][1]) q.push((data){tx, ty, 1, p.dis + 1, p.tms + 1}), vis[tx][ty][1] = 1;
+                    } else if (ma[p.x][p.y] == 1) {
+                        if (ma[tx][ty] == 0 &amp;&amp; !vis[tx][ty][1]) q.push((data){tx, ty, 1, p.dis + 1, p.tms + 1}), vis[tx][ty][1] = 1;
+                        else if (ma[tx][ty] == 1 &amp;&amp; !vis[tx][ty][0]) q.push((data){tx, ty, 0, p.dis + 1, p.tms + 1}), vis[tx][ty][0] = 1;
+                    }
+                    if (ma[tx][ty] &lt; 0) {
+                        if (tx == m &amp;&amp; ty == m) return printf(&quot;%d\n&quot;, p.dis - p.tms + 2), 0;
+                        for (int j = 0; j &lt; 4; j++) {
+                            int gx = tx + dx[j], gy = ty + dy[j];
+                            if (gx == p.x &amp;&amp; gy == p.y) continue;
+                            if (gx &gt; 0 &amp;&amp; gy &gt; 0 &amp;&amp; gx &lt;= m &amp;&amp; gy &lt;= m &amp;&amp; (ma[gx][gy] == 0 || ma[gx][gy] == 1)) {
+                                if (ma[p.x][p.y] == 0) {
+                                    if (ma[gx][gy] == 0 &amp;&amp; !vis[gx][gy][3]) q.push((data){gx, gy, 3, p.dis + 1, p.tms + 2}), vis[gx][gy][3] = 1;
+                                    else if (ma[gx][gy] == 1 &amp;&amp; !vis[gx][gy][4]) q.push((data){gx, gy, 4, p.dis + 1, p.tms + 2}), vis[gx][gy][4] = 1; 
+                                } else if (ma[p.x][p.y] == 1) {
+                                    if (ma[gx][gy] == 0 &amp;&amp; !vis[gx][gy][4]) q.push((data){gx, gy, 4, p.dis + 1, p.tms + 2}), vis[gx][gy][4] = 1; 
+                                    else if (ma[gx][gy] == 1 &amp;&amp; !vis[gx][gy][3]) q.push((data){gx, gy, 3, p.dis + 1, p.tms + 2}), vis[gx][gy][3] = 1;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        printf(&quot;-1\n&quot;);
+        return 0; 
+    }
+}
+int main() {
+    flyinthesky::solve();
+    return 0;
+}
+</code></pre>
+<h2 id="第12题-Poj-1691-Painting-A-Board-DFS-最优化剪枝"><a href="#第12题-Poj-1691-Painting-A-Board-DFS-最优化剪枝" class="headerlink" title="第12题 Poj 1691 Painting A Board (DFS + 最优化剪枝)"></a>第12题 Poj 1691 Painting A Board (DFS + 最优化剪枝)</h2><p><a href="http://poj.org/problem?id=1691" target="_blank" rel="external">Poj 1691</a><br>题意：有这样一个面板（如下图），分成大大小小的矩形块。现在要对其上色，每个矩形块上一种颜色，颜色已经预先指定好。每次对一个矩形区域上色，要求必须在该矩形区域上方的所有矩形区域已经被上色后，才能对该矩形区域上色。如下图：如果要对F区域上色，则在它上面的区域A、B、C、D必须已经被上色。又每次上色，选择一种特定眼色的笔刷，例如选择蓝色，对A上色，此时可继续对C上色，无需更改颜色。之后，则只能对B区域上色了，则要选择红色笔刷，所以笔刷的使用次数加1。如果后续过程中，又要重新选择蓝色笔刷，则笔刷仍加1。问：所需的最少笔刷个数？<br>解：判断是否有矩形在上面用线段交。然后每个矩形预处理一个上面的矩形状态，每次DFS找到能刷的刷完再看换颜色刷的情况。<br>知识点：1、要记得加最优化剪枝</p>
+<pre><code class="c++">#include&lt;cstdio&gt; 
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;climits&gt;
+#include&lt;queue&gt;
+#include&lt;cmath&gt;
+#include&lt;stack&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define db double
+#define fir first
+#define sec second
+#define mp make_pair
+using namespace std;
+
+namespace flyinthesky {
+
+    const int MAXN = 20;
+
+    struct rc {
+        int xl, yl, xr, yr;
+        int st, col;
+    } jx[MAXN];
+
+    int n, vis[MAXN], ans;
+
+    bool check(int i, int j) {
+        if (jx[i].xr &gt;= jx[j].xl &amp;&amp; jx[i].xr &lt;= jx[j].xr) return 1;
+        return 0;
+    }
+
+    void dfs(int step, int st, int col) {
+        while (1) {
+            int fl = 0;
+            for (int i = 1; i &lt;= n; ++i) if (!vis[i]) {
+                if (jx[i].col != col) continue ;
+                if ((jx[i].st &amp; st) == jx[i].st) {
+                    st += (1 &lt;&lt; (i - 1)), vis[i] = step, fl = 1;
+                }
+            }
+            if (!fl) break;
+        }
+        int fl = 0;
+        for (int i = 1; i &lt;= n; ++i) if (!vis[i]) fl = 1;
+        if (!fl) {
+            ans = min(ans, step);
+            for (int i = 1; i &lt;= n; ++i) if (vis[i] == step) vis[i] = 0;
+            return ;
+        }
+        for (int i = 1; i &lt;= n; ++i) if (!vis[i]) {
+            if ((jx[i].st &amp; st) == jx[i].st) {
+                vis[i] = step + 1;
+                dfs(step + 1, st + (1 &lt;&lt; (i - 1)), jx[i].col);
+                vis[i] = 0;
+            }
+        }
+        for (int i = 1; i &lt;= n; ++i) if (vis[i] == step) vis[i] = 0;
+    }
+
+    void clean() {
+        ans = 1000000000, ms(vis, 0);
+    }
+    int solve() {
+        cin &gt;&gt; n;
+        clean();
+        for (int i = 1; i &lt;= n; ++i) scanf(&quot;%d%d%d%d%d&quot;, &amp;jx[i].yl, &amp;jx[i].xl, &amp;jx[i].yr, &amp;jx[i].xr, &amp;jx[i].col);
+        for (int i = 1; i &lt;= n; ++i) {
+            jx[i].st = 0;
+            for (int j = 1; j &lt;= n; ++j) if (i != j) {
+                if (jx[j].yr == jx[i].yl &amp;&amp; (check(i, j) || check(j, i))) jx[i].st += (1 &lt;&lt; (j - 1));
+            }
+        }
+        for (int i = 1; i &lt;= n; ++i) if (jx[i].st == 0) vis[i] = 1, dfs(1, (1 &lt;&lt; (i - 1)), jx[i].col), vis[i] = 0;
+        printf(&quot;%d\n&quot;, ans);
+        return 0;
+    }
+}
+int main() {
+    int T; scanf(&quot;%d&quot;, &amp;T);
+    while (T--) flyinthesky::solve();
+    return 0;
+}
+</code></pre>
+<h2 id="第13题-Poj-2308-DFS-可行性剪枝"><a href="#第13题-Poj-2308-DFS-可行性剪枝" class="headerlink" title="第13题 Poj 2308 (DFS + 可行性剪枝)"></a>第13题 Poj 2308 (DFS + 可行性剪枝)</h2><p><a href="http://poj.org/problem?id=2308" target="_blank" rel="external">Poj 2308</a><br>题意：连连看判是否有解。<br>解：DFS中途BFS。DFS看哪个点没消除用BFS找这个点能和哪个其他点消除，然后DFS递归消除即可。注意剪枝，如果出现<br>AB<br>BA<br>并且AB就各只有2个，则无解，直接退出本层DFS。</p>
+<p>知识点：<br>1、无解早判省时间<br>2、DFS不要局限于下一步，下一个坐标，而是整体上的，适当情况下可以用BFS辅助。</p>
+<pre><code class="c++">#include&lt;cstdio&gt; 
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;queue&gt;
+#include&lt;set&gt;
+#include&lt;cmath&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define db double
+#define fir first
+#define sec second
+#define mp make_pair
+using namespace std;
+
+namespace flyinthesky {
+
+    const int dx[4] = {1, 0, -1, 0};
+    const int dy[4] = {0, 1, 0, -1};
+
+    int n, m, a[15][15]; // 原矩阵 
+    int sz, whw[200][2]; // 可行消除方案 
+    int vis[15][15];
+    int cnt, num[10], flag = 0; // 记录，答案 
+
+    struct data {int x, y, fx, gj;};
+
+    bool check() {
+        for (int i = 1; i &lt; n; ++i) {
+            for (int j = 1; j &lt; m; ++j) {
+                if(!a[i][j] || !a[i][j + 1]) continue ;
+                if (a[i][j] == a[i + 1][j + 1] &amp;&amp; a[i + 1][j] == a[i][j + 1] &amp;&amp; num[a[i][j]] == 2 &amp;&amp; num[a[i + 1][j]] == 2) return true;
+            }
+        }
+        return false;
+    } 
+
+    void bfs(int x, int y, int col) {
+        queue&lt;data &gt; q;
+        ms(vis, 67), vis[x][y] = 0, q.push((data){x, y, -1, 0});
+        while (!q.empty()) {
+            data p = q.front(); q.pop();
+            //if (col == 1) cerr &lt;&lt; p.x &lt;&lt; &quot; &quot; &lt;&lt; p.y &lt;&lt; &quot; &quot; &lt;&lt; p.gj &lt;&lt; endl;
+            for (int i = 0; i &lt; 4; ++i) {
+                int tx = p.x + dx[i], ty = p.y + dy[i], tgj = p.gj;
+                if (tx &lt;= 0 || ty &lt;= 0 || tx &gt; n || ty &gt; m) continue ;
+                if (i != p.fx &amp;&amp; p.fx != -1) ++tgj; // 拐角判断 
+                if (tgj &gt; 2) continue ;
+                if (vis[tx][ty] &lt; tgj) continue ;
+                vis[tx][ty] = tgj; // 不如那么优 
+                if (a[tx][ty] == col) { // 找到同一颜色 
+                    whw[++sz][0] = tx, whw[sz][1] = ty; // 记录位置 
+                    continue ;
+                }
+                if (a[tx][ty]) continue ; // 有方块挡着
+                q.push((data){tx, ty, i, tgj});
+            }
+        }
+    }
+
+    void dfs(int rm) {
+        if (rm == 0) {
+            flag = 1; return ;
+        }
+        if (check()) return ;
+        for (int i = 1; i &lt;= n; ++i) {
+            for (int j = 1; j &lt;= m; ++j) {
+                if (a[i][j] == 0) continue ;
+                sz = 0;
+                bfs(i, j, a[i][j]);
+                //for (int k = 1; k &lt;= sz; ++k) cerr &lt;&lt; &quot;i=&quot; &lt;&lt; i &lt;&lt; &quot; j=&quot; &lt;&lt; j &lt;&lt; &quot;pos=&quot; &lt;&lt; whw[k][0] &lt;&lt; &quot; &quot; &lt;&lt; whw[k][1] &lt;&lt; endl;
+                int col = a[i][j];
+                num[col] -= 2; 
+                a[i][j] = 0;
+                for (int k = 1; k &lt;= sz; ++k) {
+                    a[whw[k][0]][whw[k][1]] = 0;
+                    dfs(rm - 2);
+                    a[whw[k][0]][whw[k][1]] = col;
+                }
+                num[col] += 2; 
+                a[i][j] = col;
+            }
+        }
+    }
+
+    void clean() {
+        ms(num, 0), cnt = 0, ms(a, 0), ms(whw, 0), flag = 0;
+    }
+    int solve() {
+
+        clean();
+
+        char s[15];
+        for (int i = 1; i &lt;= n; ++i) {
+            scanf(&quot;%s&quot;, s + 1);
+            int len = strlen(s + 1);
+            for (int j = 1; j &lt;= len; ++j) {
+                if (s[j] != &#39;*&#39;) ++cnt, ++num[s[j] - &#39;A&#39; + 1], a[i][j] = s[j] - &#39;A&#39; + 1; 
+            }
+        }
+
+        dfs(cnt);
+        if (flag) printf(&quot;yes\n&quot;); else printf(&quot;no\n&quot;);
+
+        return 0;
+    }
+}
+int main() {
+    while (scanf(&quot;%d%d&quot;, &amp;flyinthesky::n, &amp;flyinthesky::m) == 2 &amp;&amp; (flyinthesky::n &amp;&amp; flyinthesky::m)) flyinthesky::solve();
+    return 0;
+}
+</code></pre>
+<h2 id="第14题-Poj-3322-BFS"><a href="#第14题-Poj-3322-BFS" class="headerlink" title="第14题 Poj 3322 (BFS)"></a>第14题 Poj 3322 (BFS)</h2><p><a href="http://poj.org/problem?id=3322" target="_blank" rel="external">Poj 3322</a><br>题意：题目中游戏最小步数。<br>解：如果方块是一个，那就是裸BFS。将移动转移写到增量数组中，然后每个方块状态以他两个坐标值最小的方格为主要格子。然后 BFS 即可。<br>知识点：<br>1、BFS / DFS 选用<br>2、多方格搜索要定义一个主格 (状压放$1 \times 2$方块也有类似方法)</p>
+<pre><code class="c++">#include&lt;cstdio&gt; 
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;queue&gt;
+#include&lt;set&gt;
+#include&lt;cmath&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define db double
+#define fir first
+#define sec second
+#define mp make_pair
+using namespace std;
+
+namespace flyinthesky {
+
+    const int dx[3][4] = {{-2, 1,  0, 0}, {2, -1,  0, 0}, {0,  0, 1, -1}};
+    const int dy[3][4] = {{ 0, 0, -2, 1}, {0,  0, -1, 1}, {2, -1, 0,  0}};
+    const int dz[3][4] = {{ 1, 1,  2, 2}, {0,  0,  1, 1}, {0,  0, 2,  2}};
+
+    struct data {int x, y, z, stp;};
+
+    int n, m, endx, endy, stx, sty, stz, vis[505][505][5];
+    char s[505][505];
+
+    bool check(int x, int y, int z) {
+        if (x &lt;= 0 || y &lt;= 0 || x &gt; n || y &gt; m) return 0;
+        if (z == 0) {
+            if (s[x][y] != &#39;#&#39; &amp;&amp; s[x][y] != &#39;E&#39;) return 1;
+        } else if (z == 1) {
+            if (s[x][y] != &#39;#&#39; &amp;&amp; s[x + 1][y] != &#39;#&#39;) return 1;
+        } else if (z == 2) {
+            if (s[x][y] != &#39;#&#39; &amp;&amp; s[x][y + 1] != &#39;#&#39;) return 1;
+        }
+        return 0;
+    }
+
+    void clean() {
+        stx = sty = stz = endx = endy = 0, ms(vis, 0);
+    }
+    int solve() {
+        for (int i = 1; i &lt;= n; ++i) scanf(&quot;%s&quot;, s[i] + 1);
+        clean();
+        for (int i = 1; i &lt;= n; ++i) 
+        for (int j = 1; j &lt;= m; ++j) {
+            if (s[i][j] == &#39;O&#39;) endx = i, endy = j;
+            if (!stx &amp;&amp; s[i][j] == &#39;X&#39; &amp;&amp; s[i + 1][j] == &#39;X&#39;) stx = i, sty = j, stz = 1;
+            else if (!stx &amp;&amp; s[i][j] == &#39;X&#39; &amp;&amp; s[i][j + 1] == &#39;X&#39;) stx = i, sty = j, stz = 2;
+            else if (!stx &amp;&amp; s[i][j] == &#39;X&#39;) stx = i, sty = j, stz = 0;
+        }
+    //                                                                    cerr &lt;&lt; stx &lt;&lt; &quot; &quot; &lt;&lt; sty &lt;&lt; &quot; &quot; &lt;&lt; stz &lt;&lt; &quot; &quot; &lt;&lt; endl;
+    //                                                                    cerr &lt;&lt; endx &lt;&lt; &quot; &quot; &lt;&lt; endy &lt;&lt; endl;
+        queue&lt;data &gt; q;
+        vis[stx][sty][stz] = 1, q.push((data){stx, sty, stz, 0});
+        while (!q.empty()) {
+            data p = q.front(); q.pop();
+            //                                                            cerr &lt;&lt; p.x &lt;&lt; &quot; &quot; &lt;&lt; p.y &lt;&lt; &quot; &quot; &lt;&lt; p.z &lt;&lt; endl;
+            if (p.x == endx &amp;&amp; p.y == endy &amp;&amp; !p.z) return printf(&quot;%d\n&quot;, p.stp), 0;
+            for (int i = 0; i &lt; 4; ++i) {
+                int tx = p.x + dx[p.z][i], ty = p.y + dy[p.z][i], tz = dz[p.z][i];
+                if (vis[tx][ty][tz]) continue ; vis[tx][ty][tz] = 1;
+                if (!check(tx, ty, tz)) continue ;
+                q.push((data){tx, ty, tz, p.stp + 1});
+            }
+        }
+        printf(&quot;Impossible\n&quot;);
+        return 0;
+    }
+}
+int main() {
+    while (scanf(&quot;%d%d&quot;, &amp;flyinthesky::n, &amp;flyinthesky::m) == 2 &amp;&amp; flyinthesky::n &amp;&amp; flyinthesky::m) flyinthesky::solve();
+    return 0;
+}
+/*
+3 3
+X..
+...
+..O
+*/
+</code></pre>
+<h2 id="第15题-Poj-1475-BFS套BFS-状态简化"><a href="#第15题-Poj-1475-BFS套BFS-状态简化" class="headerlink" title="第15题 Poj 1475 (BFS套BFS+状态简化)"></a>第15题 Poj 1475 (BFS套BFS+状态简化)</h2><p><a href="http://poj.org/problem?id=1475" target="_blank" rel="external">Poj 1475</a><br>题意：推箱子游戏。<br>解：先 BFS 箱子的位移，然后再进行 BFS 人能不能到另一侧。状态记录人的位置，箱子的位置。由于箱子的位置和箱子上一次从哪里推来知道就能得出人的位置，所以 $vis$ 只用记录三维。</p>
+<p>知识点：<br>1、搜索状态简化，类似差值DP<br>2、BFS 套 BFS</p>
+<pre><code class="c++">#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;cstring&gt;
+#include&lt;cmath&gt;
+#include&lt;queue&gt;
+#include&lt;string&gt;
+#define LL long long
+#define db double
+#define ms(i, j) memset(i, j, sizeof i)
+
+using namespace std;
+
+int kse = 0;
+
+namespace flyinthesky {
+
+    const int dx[4] = {-1, 1, 0,  0};
+    const int dy[4] = { 0, 0, 1, -1};
+    const char upfx[4] = {&#39;N&#39;, &#39;S&#39;, &#39;E&#39;, &#39;W&#39;};
+    const char lwfx[4] = {&#39;n&#39;, &#39;s&#39;, &#39;e&#39;, &#39;w&#39;};
+
+    struct data {int x, y, px, py; string s;};
+    struct data2 {int x, y; string s; };
+
+    int n, m, Tx, Ty, Sx, Sy, Bx, By, vis[25][25][4], v2[25][25];
+    char ma[25][25];
+
+    string ans, bs;
+
+    bool insd(int x, int y) {
+        if (x &gt; 0 &amp;&amp; y &gt; 0 &amp;&amp; x &lt;= n &amp;&amp; y &lt;= m) return true;
+        return false;
+    }
+
+    bool bfsyou(int px, int py, int gx, int gy, int bx, int by) {  // you position, goal position
+        queue&lt;data2 &gt; q;
+        ms(v2, 0), v2[px][py] = v2[bx][by] = 1, bs = &quot;&quot;;
+        q.push((data2){px, py, &quot;&quot;});
+        while (!q.empty()) {
+            data2 p = q.front(); q.pop();
+            if (p.x == gx &amp;&amp; p.y == gy) return bs = p.s, true;
+            for (int i = 0; i &lt; 4; ++i) {
+                int tx = p.x + dx[i], ty = p.y + dy[i];
+                if (!insd(tx, ty)) continue ;
+                if (v2[tx][ty]) continue ;
+                if (ma[tx][ty] == &#39;#&#39;) continue ;
+                if (tx == bx &amp;&amp; ty == by) continue ;
+                v2[tx][ty] = 1;
+                q.push((data2){tx, ty, p.s + lwfx[i]});
+            }
+        }
+        return false;
+    }
+
+    bool bfsbox() {
+        queue&lt;data &gt; q;
+        ans = &quot;&quot;, ++kse;
+        q.push((data){Bx, By, Sx, Sy, &quot;&quot;});
+        while (!q.empty()) {
+            data p = q.front(); q.pop();
+            // p.x, p.y 当前箱子所在
+            // px, py 目标玩家位置
+            // tx，ty 目标箱子位置 
+            if (p.x == Tx &amp;&amp; p.y == Ty) return ans = p.s, true;
+            for (int i = 0; i &lt; 4; ++i) {
+                int tx = p.x + dx[i], ty = p.y + dy[i];
+                int px = p.x - dx[i], py = p.y - dy[i];
+                if (!insd(tx, ty)) continue ;
+                if (!insd(px, py)) continue ;
+                if (ma[tx][ty] == &#39;#&#39;) continue ;
+                if (ma[px][py] == &#39;#&#39;) continue ;
+                if (vis[tx][ty][i] == kse) continue ;
+                //cerr &lt;&lt; &quot;!!!&quot; &lt;&lt; p.px &lt;&lt; &quot; &quot; &lt;&lt; p.py &lt;&lt; &quot; &quot; &lt;&lt; px &lt;&lt; &quot; &quot; &lt;&lt; py &lt;&lt; &quot; &quot; &lt;&lt; tx &lt;&lt; &quot; &quot; &lt;&lt; ty &lt;&lt; endl;
+                if (bfsyou(p.px, p.py, px, py, p.x, p.y)) {
+                    //                                                                cerr &lt;&lt; &quot;???&quot; &lt;&lt; tx &lt;&lt; &quot; &quot; &lt;&lt; ty &lt;&lt; &quot; &quot; &lt;&lt; p.x &lt;&lt; &quot; &quot; &lt;&lt; p.y &lt;&lt; endl;
+                    q.push((data){tx, ty, p.x, p.y, p.s + bs + upfx[i]}), vis[tx][ty][i] = kse;
+                }
+            }
+        }
+        return false;
+    }
+
+    void clean() {
+        ms(vis, 0);
+    }
+    int solve() {
+        for (int i = 1; i &lt;= n; ++i) scanf(&quot;%s&quot;, ma[i] + 1);
+        clean();
+        for (int i = 1; i &lt;= n; ++i) 
+        for (int j = 1; j &lt;= m; ++j) {
+            if (ma[i][j] == &#39;S&#39;) Sx = i, Sy = j;
+            if (ma[i][j] == &#39;T&#39;) Tx = i, Ty = j;
+            if (ma[i][j] == &#39;B&#39;) Bx = i, By = j;
+        }
+        if (bfsbox()) {
+            printf(&quot;Maze #%d\n&quot;, kse);
+            cout &lt;&lt; ans &lt;&lt; endl &lt;&lt; endl;
+        } else printf(&quot;Maze #%d\nImpossible.\n\n&quot;, kse);
+        return 0;
+    }
+};
+int main() {
+    while (scanf(&quot;%d%d&quot;, &amp;flyinthesky::n, &amp;flyinthesky::m) == 2 &amp;&amp; flyinthesky::n &amp;&amp; flyinthesky::m) flyinthesky::solve();
+    return 0;
+}
+</code></pre>
+<h2 id="第16题-Poj-1324-状压BFS-状态简化"><a href="#第16题-Poj-1324-状压BFS-状态简化" class="headerlink" title="第16题 Poj 1324 (状压BFS+状态简化)"></a>第16题 Poj 1324 (状压BFS+状态简化)</h2><p><a href="http://poj.org/problem?id=1324" target="_blank" rel="external">Poj 1324</a><br>题意：贪吃蛇。要求蛇头到$(1,1)$的最短路程。<br>解：BFS。然后状态状压判重。发现这里蛇身体都相邻，所以只用记录某个方块和哪个相邻即可。<br>知识点：BFS 开函数写不要写在 solve 里！！！</p>
+<pre><code class="c++">#include&lt;cstdio&gt; 
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;queue&gt;
+#include&lt;cmath&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define db double
+#define fir first
+#define sec second
+#define mp make_pair
+using namespace std;
+
+int kse = 0;
+
+namespace flyinthesky {
+
+    const int dx[4] = {1, 0, -1, 0};
+    const int dy[4] = {0, 1, 0, -1};
+
+    struct data {
+        int x, y, fx[10], bs;
+    };
+
+    int n, m, L, Hx, Hy, Bx[10], By[10], ma[22][22]; 
+    int vis[22][22][4][4][4][4][4][4][4];
+
+    void clean() {
+        ms(vis, 0), ms(Bx, 0), ms(By, 0), ms(ma, 0);
+    }
+    int solve() {
+        scanf(&quot;%d%d&quot;, &amp;Hx, &amp;Hy);
+        clean();
+        for (int i = 1; i &lt; L; ++i) scanf(&quot;%d%d&quot;, &amp;Bx[i], &amp;By[i]);
+        int k; scanf(&quot;%d&quot;, &amp;k); for (int x, y, i = 1; i &lt;= k; ++i) scanf(&quot;%d%d&quot;, &amp;x, &amp;y), ma[x][y] = 1; 
+        //                                                                            printf(&quot;%.3f\n&quot;, (sizeof vis) / 1048576.0);
+        int fx[10];
+        ms(fx, 0);
+        for (int i = 0; i &lt; 4; ++i) if ((Bx[1] == Hx + dx[i]) &amp;&amp; (By[1] == Hy + dy[i])) {fx[1] = i; break ;}
+        for (int o = 1; o &lt; L - 1; ++o) {
+            if (Bx[o] == 0 &amp;&amp; By[o] == 0) break ;
+            for (int i = 0; i &lt; 4; ++i) if ((Bx[o + 1] == Bx[o] + dx[i]) &amp;&amp; (By[o + 1] == By[o] + dy[i])) {fx[o + 1] = i; break ;}
+        }
+        //                                                                            for (int i = 1; i &lt;= 7; ++i) cerr &lt;&lt; fx[i] &lt;&lt; endl;
+        vis[Hx][Hy][fx[1]][fx[2]][fx[3]][fx[4]][fx[5]][fx[6]][fx[7]] = 1;
+        data gg; gg.x = Hx, gg.y = Hy, gg.bs = 0; for (int i = 1; i &lt;= 7; ++i) gg.fx[i] = fx[i];
+        queue&lt;data &gt; q; q.push(gg);
+        while (!q.empty()) {
+            data p = q.front(); q.pop();
+            //                                                                                cerr &lt;&lt; &quot;***&quot; &lt;&lt; p.x &lt;&lt; &quot; &quot; &lt;&lt; p.y &lt;&lt; endl;
+            //                                                                                for (int i = 1; i &lt;= 7; ++i) cerr &lt;&lt; p.fx[i] &lt;&lt; &quot; &quot;;
+            //                                                                                cerr &lt;&lt; endl;
+            if (p.x == 1 &amp;&amp; p.y == 1) return printf(&quot;Case %d: %d\n&quot;, ++kse, p.bs), 0;
+            for (int i = 0; i &lt; 4; ++i) {
+                int tx = p.x + dx[i], ty = p.y + dy[i];
+
+                if (tx &lt;= 0 || ty &lt;= 0 || tx &gt; n || ty &gt; m) continue ;
+                if (ma[tx][ty] == 1) continue ;
+
+                // check 1
+                int nx = p.x, ny = p.y, fl = 0;
+                //                                                                            cerr &lt;&lt; &quot;!!!&quot; &lt;&lt; tx &lt;&lt; &quot; &quot; &lt;&lt; ty &lt;&lt; endl;
+                for (int j = 1; j &lt; L; ++j) {
+                    nx += dx[p.fx[j]], ny += dy[p.fx[j]];
+                //                                                                            cerr &lt;&lt; &quot;???&quot; &lt;&lt; nx &lt;&lt; &quot; &quot; &lt;&lt; ny &lt;&lt; endl;
+                    if (tx == nx &amp;&amp; ty == ny) {fl = 1; break ;}
+                }
+                if (fl) continue ;
+                // check 2
+                data gg; gg.x = tx, gg.y = ty, gg.bs = p.bs + 1, ms(gg.fx, 0); for (int j = 2; j &lt; L; ++j) gg.fx[j] = p.fx[j - 1]; 
+                for (int j = 0; j &lt; 4; ++j) if (tx + dx[j] == p.x &amp;&amp; ty + dy[j] == p.y) {gg.fx[1] = j; break ;}
+                /*                                                                                                        if(tx == 5 &amp;&amp; ty == 1) {
+                                                                                                                            cerr &lt;&lt; &quot;Fuck&quot;;
+                                                                                                                            for (int i = 1; i &lt;= 7; ++i) cerr &lt;&lt; gg.fx[i] &lt;&lt; &quot; &quot;;
+
+                                                                                                                            cerr &lt;&lt; endl;
+                                                                                                                        }*/
+                if (vis[tx][ty][gg.fx[1]][gg.fx[2]][gg.fx[3]][gg.fx[4]][gg.fx[5]][gg.fx[6]][gg.fx[7]] == 1) continue ;
+                // in queue
+                vis[tx][ty][gg.fx[1]][gg.fx[2]][gg.fx[3]][gg.fx[4]][gg.fx[5]][gg.fx[6]][gg.fx[7]] = 1;
+                //                                                                                                            cerr &lt;&lt; vis[5][1][2][1][1][2][2][0][0] &lt;&lt; endl;
+                q.push(gg);
+            }
+        }
+        printf(&quot;Case %d: %d\n&quot;, ++kse, -1);
+        return 0;
+    }
+}
+int main() {
+    while (scanf(&quot;%d%d%d&quot;, &amp;flyinthesky::n, &amp;flyinthesky::m, &amp;flyinthesky::L) == 3 &amp;&amp;
+    flyinthesky::n &amp;&amp; flyinthesky::m &amp;&amp; flyinthesky::L) 
+    flyinthesky::solve();
+    return 0;
+}
+</code></pre>
+<h2 id="第17题-Poj-2248-Addition-Chains-迭代加深-DFS"><a href="#第17题-Poj-2248-Addition-Chains-迭代加深-DFS" class="headerlink" title="第17题 Poj 2248 Addition Chains (迭代加深 DFS)"></a>第17题 Poj 2248 Addition Chains (迭代加深 DFS)</h2><p><a href="http://poj.org/problem?id=2248" target="_blank" rel="external">Poj 2248</a></p>
+<p>考虑对于每个位置 $k$ 枚举 $i,j$ 成为 $k$ 位置的值。<br>观察样例，层数不会太大，即 $m$ 不会太大，所以迭代加深搜索即可。<br>剪枝：<br>1、可行性剪枝<br>A：<code>a[i] + a[j] &gt; n</code> 则剪枝<br>2、搜索顺序<br>A：从大到小枚举$i,j$以尽快逼近$n$<br>3、冗余排除<br>A：<code>a[i] + a[j]</code> 相等的不要二次进行分支</p>
+<pre><code class="c++">#include&lt;cstdio&gt; 
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;queue&gt;
+#include&lt;cmath&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define db double
+#define fir first
+#define sec second
+#define mp make_pair
+using namespace std;
+
+namespace flyinthesky {
+
+    const int MAXN = 200;
+
+    int fl, len, n, a[MAXN];
+
+    void dfs(int ith) {
+        bool vis[101];
+        if (fl) return ;
+        if (ith &gt; len) {
+            if (a[ith - 1] == n) fl = 1;
+            return ;
+        }
+        ms(vis, 0);
+        for (int i = ith - 1; i &gt;= 0; --i)
+        for (int j = ith - 1; j &gt;= 0; --j) {
+            if (fl) return ;
+            if (a[i] + a[j] &gt; n) continue ;
+            if (a[i] + a[j] &lt;= a[ith - 1]) continue ;
+            if (vis[a[i] + a[j]]) continue ;
+            vis[a[i] + a[j]] = 1;
+            a[ith] = a[i] + a[j];
+            dfs(ith + 1);
+        }
+    }
+
+    void clean() {
+        fl = 0;
+        len = 1;
+        a[0] = 1;
+    }
+    int solve() {
+        clean();
+        if(n == 1) {printf(&quot;1\n&quot;); return 0;}
+        while (1) {
+            for (int i = 1; i &lt;= len; ++i) a[i] = 0;
+            a[len] = n;
+            dfs(1);
+            if (fl) {
+                for (int i = 0; i &lt;= len; ++i) printf(&quot;%d &quot;, a[i]);
+                printf(&quot;\n&quot;);
+                break ;
+            }
+            ++len;
+        }
+        return 0;
+    }
+}
+int main() {
+    while (scanf(&quot;%d&quot;, &amp;flyinthesky::n) == 1 &amp;&amp; flyinthesky::n) flyinthesky::solve();
+    return 0;
+}
+</code></pre>
+<h2 id="第18题-CH-2401-折半搜索-DFS"><a href="#第18题-CH-2401-折半搜索-DFS" class="headerlink" title="第18题 CH 2401 (折半搜索+DFS)"></a>第18题 CH 2401 (折半搜索+DFS)</h2><p><a href="http://contest-hunter.org:83/contest/0x20%E3%80%8C%E6%90%9C%E7%B4%A2%E3%80%8D%E4%BE%8B%E9%A2%98/2401%20%E9%80%81%E7%A4%BC%E7%89%A9" target="_blank" rel="external">CH 2401</a><br>题意：值域为$2^{31}-1$的01背包。<br>解：暴力即可。折半搜索减半复杂度。<br>将物品分成两半，前一半的答案存进桶/set/map/平衡树里，后一半答案边 DFS 边查询更新合并。<br>剪枝：<br>A: 降序排序<br>B: 适当增加前面一半的物品数量 (只在后半段用二分的话)<br>这里代码用set被卡两个点。<br>知识点：这种搜索爆炸又是搜索的题目就要像到折半搜索。</p>
+<pre><code class="c++">#include&lt;cstdio&gt; 
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;set&gt;
+#include&lt;cmath&gt;
+#define ms(i, j) memset(i, j, sizeof i)
+#define LL long long
+#define db double
+#define fir first
+#define sec second
+#define mp make_pair
+using namespace std;
+
+namespace flyinthesky {
+
+    const int MAXN = 45 + 5;
+
+    LL w, n, g[MAXN], m, ans = 0;
+    set&lt;LL &gt; s;
+
+    void dfs1(LL a, LL v) {
+        if (v &gt; w) return ;
+        s.insert(-v);
+        if (a &gt; m) return ;
+        dfs1(a + 1, v), dfs1(a + 1, v + g[a]);
+    }
+    void dfs2(LL a, LL v) {
+        if (v &gt; w) return ;
+        set&lt;LL &gt;::iterator it = s.lower_bound(-(w - v));
+        ans = max(ans, v);
+        if (it != s.end()) if (v + -*it &lt;= w) ans = max(ans, v + -*it);
+        if (a &gt; n) return ;
+        dfs2(a + 1, v), dfs2(a + 1, v + g[a]);
+    }
+    bool cmp(int a, int b) {return a &gt; b;}
+
+    void clean() {
+    }
+    int solve() {
+        clean();
+        scanf(&quot;%lld%lld&quot;, &amp;w, &amp;n);
+        for (LL i = 1; i &lt;= n; ++i) scanf(&quot;%lld&quot;, &amp;g[i]);
+        sort(g + 1, g + 1 + n, cmp);
+        m = n / 2 + 2;
+        dfs1(1, 0);
+        dfs2(m + 1, 0);
+        printf(&quot;%lld\n&quot;, ans);
+        return 0;
+    }
+}
+int main() {
+    flyinthesky::solve();
+    return 0;
+}
+</code></pre>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+	<div>
+	  
+		
+<div style="text-align:center;color: #ccc;font-size:14px;">
+------ 本文结束 ------</div>
+<br/>
+<div style="border: 1px solid black">
+<div style="margin-left:10px">
+<span style="font-weight:blod">版权声明</span>
+<img src="http://blog.flyinthesky.win/pics/sources/cc.png" >
+<br/>
+<p style="font-size: 10px;line-height: 30px"><a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky's blog</a> by <a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky</a> is licensed under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" style="color:#258FC6">Creative Commons BY-NC-ND 4.0 International License</a>.<br/>
+由<a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky</a>创作并维护的<a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky's blog</a>博客采用<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" style="color:#258FC6">创作共用保留署名-非商业-禁止演绎4.0国际许可证</a>。<br/>
+本文首发于<a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky's blog</a> 博客（ <a href="http://blog.flyinthesky.win/" style="color:#258FC6">http://blog.flyinthesky.win/</a> ），版权所有，侵权必究。</p>
+</div>
+</div>
+
+	  
+	</div>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/DFS/" rel="tag"><i class="fa fa-tag"></i> DFS</a>
+          
+            <a href="/tags/STL/" rel="tag"><i class="fa fa-tag"></i> STL</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/数学题专练/" rel="next" title="NOIP 数学训练">
+                <i class="fa fa-chevron-left"></i> NOIP 数学训练
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/动归题专练/" rel="prev" title="DP题训练">
+                DP题训练 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm"
+                alt="FlyInTheSky" />
+            
+              <p class="site-author-name" itemprop="name">FlyInTheSky</p>
+              <p class="site-description motion-element" itemprop="description">自己选择的路，跪着也要走完。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">587</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">144</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+		
+		<font size="3"><b>一言</b></font>
+		<script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+		 <script>
+         $.get('https://v1.hitokoto.cn/?c=a', function (data) {
+            if (typeof data === 'string') data = JSON.parse(data);
+            $('#hitokoto-loader').removeClass('active');
+            $('#hitokoto-content').css('display', '').text(data.hitokoto);
+            if (data.from) {
+              $('#hitokoto-from').css('display', '').text('——' + data.from);
+            }
+          });
+          
+          </script>
+          <div style="font-size: 1em; line-height: 1.5em; display: none; " id="hitokoto-content"></div>
+          <div style="text-align: right; margin-top: 15px; font-size: 0.9em; color: #666; display: none; " id="hitokoto-from"></div>
+
+		
+		<!--<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="220" height="320" src="http://www.missevan.com/albumiframe/379343?autoplay=false&playlist=true"></iframe>-->
+		
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第1题-NOIP2010-引水入城-DFS-贪心"><span class="nav-number">1.</span> <span class="nav-text">第1题 NOIP2010 引水入城 (DFS+贪心)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第2题-Luogu-P1441-砝码称重-DFS-DP"><span class="nav-number">2.</span> <span class="nav-text">第2题 Luogu P1441 砝码称重 (DFS+DP)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第3题-Luogu-P1242-新汉诺塔"><span class="nav-number">3.</span> <span class="nav-text">第3题 Luogu P1242 新汉诺塔</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第4题-NOIP2009-靶形数独-DFS按位，枚举顺序优化"><span class="nav-number">4.</span> <span class="nav-text">第4题 NOIP2009 靶形数独 (DFS按位，枚举顺序优化)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第5题-P1120-小木棍-DFS"><span class="nav-number">5.</span> <span class="nav-text">第5题 P1120 小木棍 (DFS )</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第6题-Luogu-1379-八数码难题-BFS-状压"><span class="nav-number">6.</span> <span class="nav-text">第6题 Luogu 1379 八数码难题 (BFS + 状压)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第6题-Luogu-1731-生日蛋糕-DFS-优化"><span class="nav-number">7.</span> <span class="nav-text">第6题 Luogu 1731 生日蛋糕 (DFS + 优化)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第7题-NOIP2011-Mayan游戏-DFS-枚举重复性，必要性"><span class="nav-number">8.</span> <span class="nav-text">第7题 NOIP2011 Mayan游戏 (DFS + 枚举重复性，必要性)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第8题-NOIP2015-斗地主-DFS-枚举必要性"><span class="nav-number">9.</span> <span class="nav-text">第8题 NOIP2015 斗地主 (DFS + 枚举必要性)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第9题-NOIP2003-传染病控制-DFS-枚举必要性"><span class="nav-number">10.</span> <span class="nav-text">第9题 NOIP2003 传染病控制 (DFS + 枚举必要性)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第10题-NOIP2017-时间复杂度-栈模拟"><span class="nav-number">11.</span> <span class="nav-text">第10题 NOIP2017 时间复杂度 (栈模拟)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第11题-NOIP2017-棋盘-记忆化-DFS"><span class="nav-number">12.</span> <span class="nav-text">第11题 NOIP2017 棋盘 (记忆化 DFS)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第12题-Poj-1691-Painting-A-Board-DFS-最优化剪枝"><span class="nav-number">13.</span> <span class="nav-text">第12题 Poj 1691 Painting A Board (DFS + 最优化剪枝)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第13题-Poj-2308-DFS-可行性剪枝"><span class="nav-number">14.</span> <span class="nav-text">第13题 Poj 2308 (DFS + 可行性剪枝)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第14题-Poj-3322-BFS"><span class="nav-number">15.</span> <span class="nav-text">第14题 Poj 3322 (BFS)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第15题-Poj-1475-BFS套BFS-状态简化"><span class="nav-number">16.</span> <span class="nav-text">第15题 Poj 1475 (BFS套BFS+状态简化)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第16题-Poj-1324-状压BFS-状态简化"><span class="nav-number">17.</span> <span class="nav-text">第16题 Poj 1324 (状压BFS+状态简化)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第17题-Poj-2248-Addition-Chains-迭代加深-DFS"><span class="nav-number">18.</span> <span class="nav-text">第17题 Poj 2248 Addition Chains (迭代加深 DFS)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第18题-CH-2401-折半搜索-DFS"><span class="nav-number">19.</span> <span class="nav-text">第18题 CH 2401 (折半搜索+DFS)</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FlyInTheSky</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.0.3</div>
+
+
+
+  <div class="footer-custom">Hosted by <a target="_blank" href="https://pages.coding.me/">Coding Pages</a></div>
+
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.0.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.0.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.3"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: true,
+        appId: 'HbPrhSjQ6NCUr3zYqcbO4iKU-MdYXbMMI',
+        appKey: 'untdESV1xpzTGEu6IH2lwKOb',
+        placeholder: '写下您dalao对本蒟蒻博文的宝贵评论~(￣▽￣)~* ',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("Ex3VDezHHaHR2GEGMlazQCfC-gzGzoHsz", "u9iJTthJj7R0ieApCMNvyAjO");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  <script src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+    <!--<script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script> --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"messageStyle": "none","tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> 
+
+<script src="https://www.flyinthesky.win/highlight.min.js"></script>
+<script >hljs.initHighlightingOnLoad();</script>
+
+<!-- 代码块复制功能 -->
+<script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+<script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+
+
+</body>
+</html>

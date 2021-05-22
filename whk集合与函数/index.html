@@ -1,0 +1,1929 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico?v=6.0.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=6.0.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico?v=6.0.3">
+
+
+  <link rel="mask-icon" href="/favicon.ico?v=6.0.3" color="#222">
+
+
+  <link rel="manifest" href="/favicon.ico">
+
+
+  <meta name="msapplication-config" content="/favicon.ico" />
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.0.3',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":true,"scrollpercent":false,"onmobile":true},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'T4TYK1DMV0',
+      apiKey: '8ae84ecb094e73f826b093645f9d90bc',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  
+  <meta name="keywords" content="FlyInTheSky, oi, oier, noip, noi, 题解, 信息学, 信息学竞赛, 竞赛" />
+
+
+<meta name="description" content="一些Trick1、偶数表示为$2n$, 奇数表示为$2n + 1$2、正难则反(教材全解必修1 p11 例2)3、十字相乘解形如$px^2+ax+q=0$的方程4、集合元素有互异性，可以判断不相等的情况(教材全解必修1 p17 t12)5、$\in N$或者$\in Z$有分数要讨论奇偶性(教材全解必修1 p20 例5)6、集合一般能化简就要化简做7、方程条件转化为范围条件：$px^2+rx+q=">
+<meta property="og:type" content="article">
+<meta property="og:title" content="高中数学集合与函数做题笔记">
+<meta property="og:url" content="http://blog.flyinthesky.win/whk集合与函数/index.html">
+<meta property="og:site_name" content="FlyInTheSky&#39;s blog">
+<meta property="og:description" content="一些Trick1、偶数表示为$2n$, 奇数表示为$2n + 1$2、正难则反(教材全解必修1 p11 例2)3、十字相乘解形如$px^2+ax+q=0$的方程4、集合元素有互异性，可以判断不相等的情况(教材全解必修1 p17 t12)5、$\in N$或者$\in Z$有分数要讨论奇偶性(教材全解必修1 p20 例5)6、集合一般能化简就要化简做7、方程条件转化为范围条件：$px^2+rx+q=">
+<meta property="og:image" content="http://blog.flyinthesky.win/pics/高中数学/奇偶函数运算性质.jpg">
+<meta property="og:image" content="http://blog.flyinthesky.win/pics/高中数学/幂函数性质.jpg">
+<meta property="og:image" content="http://blog.flyinthesky.win/pics/高中数学/一元二次方程根的分布1.jpg">
+<meta property="og:image" content="http://blog.flyinthesky.win/pics/高中数学/一元二次方程根的分布2.jpg">
+<meta property="og:image" content="http://blog.flyinthesky.win/pics/高中数学/必修1难点-1.jpg">
+<meta property="og:image" content="http://blog.flyinthesky.win/pics/高中数学/必修1难点-2.jpg">
+<meta property="og:image" content="http://blog.flyinthesky.win/pics/高中数学/必修1难点-3.jpg">
+<meta property="og:updated_time" content="2019-09-12T11:52:13.703Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="高中数学集合与函数做题笔记">
+<meta name="twitter:description" content="一些Trick1、偶数表示为$2n$, 奇数表示为$2n + 1$2、正难则反(教材全解必修1 p11 例2)3、十字相乘解形如$px^2+ax+q=0$的方程4、集合元素有互异性，可以判断不相等的情况(教材全解必修1 p17 t12)5、$\in N$或者$\in Z$有分数要讨论奇偶性(教材全解必修1 p20 例5)6、集合一般能化简就要化简做7、方程条件转化为范围条件：$px^2+rx+q=">
+<meta name="twitter:image" content="http://blog.flyinthesky.win/pics/高中数学/奇偶函数运算性质.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="http://blog.flyinthesky.win/whk集合与函数/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+  <title>高中数学集合与函数做题笔记 | FlyInTheSky's blog</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5cb42869838f4cfeb9c9b241d7f2a21c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+  <link href="https://www.flyinthesky.win/tomorrow.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.1/google-fonts/fira-mono.css" rel="stylesheet">
+</head>
+
+
+<div id="hexo-helper-live2d">
+  <canvas id="live2dcanvas" width="300" height="600"></canvas>
+</div>
+<style>
+  #live2dcanvas{
+    position: fixed;
+    width: 300px;
+    height: 600px;
+    opacity:0.8;
+    right: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -120px;
+  }
+</style>
+<script type="text/javascript" src="/live2d/device.min.js"></script>
+<script type="text/javascript">
+const loadScript = function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};
+(function(){
+  if((typeof(device) != 'undefined') && (device.mobile())){
+    var trElement = document.getElementById('hexo-helper-live2d');
+    trElement.parentNode.removeChild(trElement);
+    return;
+  }else
+    if (typeof(device) === 'undefined') console.error('Cannot find current-device script.');
+  loadScript("/live2d/script.js", function(){loadlive2d("live2dcanvas", "/live2d/assets/wanko.model.json", 0.5);});
+})();
+</script>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+  
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">FlyInTheSky's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">OI, 梦开始的地方。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />分类</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-friends">
+          <a href="/friends/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-handshake-o"></i> <br />朋友</a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/whk集合与函数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FlyInTheSky">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FlyInTheSky's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">高中数学集合与函数做题笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-04T18:03:00+08:00">2018-02-04</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/文化课/" itemprop="url" rel="index"><span itemprop="name">文化课</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/whk集合与函数/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/whk集合与函数/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/whk集合与函数/" class="leancloud_visitors" data-flag-title="高中数学集合与函数做题笔记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">+</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 s
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="一些Trick"><a href="#一些Trick" class="headerlink" title="一些Trick"></a>一些Trick</h1><p>1、偶数表示为$2n$, 奇数表示为$2n + 1$<br>2、正难则反(<a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p11例2.html">教材全解必修1 p11 例2</a>)<br>3、十字相乘解形如$px^2+ax+q=0$的方程<br>4、集合元素有互异性，可以判断不相等的情况(<a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p17t12.html">教材全解必修1 p17 t12</a>)<br>5、$\in N$或者$\in Z$有分数要讨论奇偶性(<a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p20例5.html">教材全解必修1 p20 例5</a>)<br>6、集合一般能化简就要化简做<br>7、方程条件转化为范围条件：$px^2+rx+q=0 →(x_1 - a)(x_2 - b) &lt; 0$<br>8、对勾函数解析式：$f(x)=x+\frac ax$，极值点在$\sqrt a$</p>
+<h1 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h1><h2 id="分类讨论思想"><a href="#分类讨论思想" class="headerlink" title="分类讨论思想"></a>分类讨论思想</h2><p>对应性：<a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p13例8.html">教材全解必修1 p13 例8</a>, <a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p17t12.html">教材全解必修1 p17 t12</a><br>多情况：<a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p15考例1.html">教材全解必修1 p15 考例1</a>，<a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p16考例2.html">教材全解必修1 p16 考例2</a>，<a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p16考例3.html">教材全解必修1 p16 考例3</a><br>正负性：<a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p17t4.html">教材全解必修1 p17 t4</a><br>方程根：<a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p13例9.html">教材全解必修1 p13 例9</a><br>分段：<a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p21变式3.html">教材全解必修1 p21 变式3</a></p>
+<h2 id="集合的含义及表示"><a href="#集合的含义及表示" class="headerlink" title="集合的含义及表示"></a>集合的含义及表示</h2><h3 id="元素与集合的关系"><a href="#元素与集合的关系" class="headerlink" title="元素与集合的关系"></a>元素与集合的关系</h3><h4 id="构造题"><a href="#构造题" class="headerlink" title="构造题"></a>构造题</h4><blockquote>
+<p>此类题目一般要求某些元素是否是属于某个集合，一般要构造成与条件形式相同的形式。</p>
+</blockquote>
+<p>第一问构造平方差，第二问构造与条件形式相同的形式：<a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p11例1.html">教材全解必修1 p11 例1</a>，教材全解必修1 p17 t6</p>
+<h4 id="循环带入题"><a href="#循环带入题" class="headerlink" title="循环带入题"></a>循环带入题</h4><blockquote>
+<p>此类题目一般是将代数式循环带入后形成周期。</p>
+</blockquote>
+<p>若$X \in M$, 则$\frac{1+a}{1-a} \in M$，求集合$M$的元素个数/证明集合中各数不同<br><a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p11变式1.html">教材全解必修1 p11 变式1</a></p>
+<a id="more"></a>
+<h3 id="集合相等问题"><a href="#集合相等问题" class="headerlink" title="集合相等问题"></a>集合相等问题</h3><h4 id="有且只有一个正确"><a href="#有且只有一个正确" class="headerlink" title="有且只有一个正确"></a>有且只有一个正确</h4><blockquote>
+<p>此类题目一般分情况对应以及运用相异性来解题</p>
+</blockquote>
+<p><a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p16考例2.html">教材全解必修1 p16 考例2</a><br><a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p16考例3.html">教材全解必修1 p16 考例3</a></p>
+<h4 id="推断题"><a href="#推断题" class="headerlink" title="推断题"></a>推断题</h4><blockquote>
+<p>此类题目一般分情况对应以及运用相异性, 正负性等来解题</p>
+</blockquote>
+<p>根据相异性，正负性等解题：<a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p17t12.html">教材全解必修1 p17 t12</a></p>
+<h3 id="方程根的问题"><a href="#方程根的问题" class="headerlink" title="方程根的问题"></a>方程根的问题</h3><blockquote>
+<p>抓住以下导图做题</p>
+</blockquote>
+<p>$a=0$<br>——–$b≠0$<br>——–$b=0$<br>—————-$c=0$<br>—————-$c≠0$<br>$a≠0$<br>——–$\Delta &lt; 0$<br>——–$\Delta=0$<br>——–$\Delta &gt; 0$</p>
+<p><a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p13例9.html">教材全解必修1 p13 例9</a></p>
+<h2 id="集合间的基本关系"><a href="#集合间的基本关系" class="headerlink" title="集合间的基本关系"></a>集合间的基本关系</h2><h3 id="判断集合是否包含"><a href="#判断集合是否包含" class="headerlink" title="判断集合是否包含"></a>判断集合是否包含</h3><h4 id="元素对比"><a href="#元素对比" class="headerlink" title="元素对比"></a>元素对比</h4><blockquote>
+<p>仅仅根据元素对比或者条件对比</p>
+</blockquote>
+<h4 id="条件范围对比"><a href="#条件范围对比" class="headerlink" title="条件范围对比"></a>条件范围对比</h4><blockquote>
+<p>运用集合条件范围来对比</p>
+</blockquote>
+<p><a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p20示例2.html">教材全解必修1 p20 示例2</a></p>
+<h3 id="判断集合是否相等"><a href="#判断集合是否相等" class="headerlink" title="判断集合是否相等"></a>判断集合是否相等</h3><h4 id="元素-条件范围对比"><a href="#元素-条件范围对比" class="headerlink" title="元素, 条件范围对比"></a>元素, 条件范围对比</h4><blockquote>
+<p>仅仅根据元素对比或者条件对比</p>
+</blockquote>
+<h4 id="双重包含"><a href="#双重包含" class="headerlink" title="双重包含"></a>双重包含</h4><blockquote>
+<p>运用$A \subseteq B，B \subseteq A$来得出$A=B$</p>
+</blockquote>
+<p><a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p20例5.html">教材全解必修1 p20 例5</a></p>
+<h3 id="判断集合是否真子集"><a href="#判断集合是否真子集" class="headerlink" title="判断集合是否真子集"></a>判断集合是否真子集</h3><h4 id="B属于A且A不属于B"><a href="#B属于A且A不属于B" class="headerlink" title="B属于A且A不属于B"></a>B属于A且A不属于B</h4><blockquote>
+<p>运用$B \subseteq A，A \nsubseteq B$来得出$B \subsetneqq A$</p>
+</blockquote>
+<p><a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p20示例2.html">教材全解必修1 p20 示例2</a></p>
+<h3 id="判断集合之间的关系"><a href="#判断集合之间的关系" class="headerlink" title="判断集合之间的关系"></a>判断集合之间的关系</h3><h4 id="构造拼凑"><a href="#构造拼凑" class="headerlink" title="构造拼凑"></a>构造拼凑</h4><blockquote>
+<p>将某个集合的条件凑成另一个集合的条件形式</p>
+</blockquote>
+<p><a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p21例2.html">教材全解必修1 p21 例2</a></p>
+<h3 id="求集合中含参问题"><a href="#求集合中含参问题" class="headerlink" title="求集合中含参问题"></a>求集合中含参问题</h3><h4 id="条件为范围"><a href="#条件为范围" class="headerlink" title="条件为范围"></a>条件为范围</h4><blockquote>
+<p>将已知范围集合画在数轴上，根据实际情况列不等式方程组(注意空集的情况)</p>
+</blockquote>
+<p>$A \subseteq B$或$A \subsetneqq B$且$B≠\emptyset$的情况要分$A=\emptyset，A≠\emptyset$的情况讨论</p>
+<p><a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p22例4.html">教材全解必修1 p22 例4</a></p>
+<p>统一为所求参数：<a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p21变式3.html">教材全解必修1 p21 变式3</a></p>
+<h4 id="条件为数"><a href="#条件为数" class="headerlink" title="条件为数"></a>条件为数</h4><blockquote>
+<p>分类讨论根的情况，一个/两个/没有的情况</p>
+</blockquote>
+<p>两个根的情况要检验是否是原来的两个根</p>
+<p><a href="../resources/problems/数学/高中数学/集合与函数/高中必刷题必修1p5t10.html">高中必刷题必修1 p5 t10</a></p>
+<h2 id="集合的基本运算"><a href="#集合的基本运算" class="headerlink" title="集合的基本运算"></a>集合的基本运算</h2><h3 id="转化为集合间的基本关系"><a href="#转化为集合间的基本关系" class="headerlink" title="转化为集合间的基本关系"></a>转化为集合间的基本关系</h3><blockquote>
+<p>转化为集合间的基本关系运用之前的知识解题</p>
+</blockquote>
+<p>$A \cap B = A$等价于$B \subseteq A$<br>$A \cup B = A$等价于$A \subseteq B$</p>
+<h3 id="补集转化"><a href="#补集转化" class="headerlink" title="补集转化"></a>补集转化</h3><blockquote>
+<p>正难则反</p>
+</blockquote>
+<p><a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p31例12.html">教材全解必修1 p31 例12</a></p>
+<h3 id="数形结合"><a href="#数形结合" class="headerlink" title="数形结合"></a>数形结合</h3><blockquote>
+<p>运用数轴和Venn图灵活解题</p>
+</blockquote>
+<p>Venn图：教材全解必修1 p31 例13</p>
+<h3 id="容斥原理求并集元素个数"><a href="#容斥原理求并集元素个数" class="headerlink" title="容斥原理求并集元素个数"></a>容斥原理求并集元素个数</h3><blockquote>
+<p>奇加偶减</p>
+</blockquote>
+<p>设未知数：教材全解必修1 p31 例13<br>套容斥公式：<a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p32变式7.html">教材全解必修1 p32 变式7</a></p>
+<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><h2 id="函数的概念"><a href="#函数的概念" class="headerlink" title="函数的概念"></a>函数的概念</h2><h3 id="同一函数的判定"><a href="#同一函数的判定" class="headerlink" title="同一函数的判定"></a>同一函数的判定</h3><blockquote>
+<p>定义域、对应关系相等的是同一函数</p>
+</blockquote>
+<h3 id="求函数定义域"><a href="#求函数定义域" class="headerlink" title="求函数定义域"></a>求函数定义域</h3><blockquote>
+<p>根据定义/实际问题求解</p>
+</blockquote>
+<h4 id="复合函数"><a href="#复合函数" class="headerlink" title="复合函数"></a>复合函数</h4><p>注意内函数必须要保证外函数</p>
+<h4 id="抽象函数"><a href="#抽象函数" class="headerlink" title="抽象函数"></a>抽象函数</h4><p>给出$f[g(x)]$的定义域，求$f[\varphi(x)]$的定义域<br>思路：先求$f(x)$的定义域，再求$f[\varphi(x)]$的定义域<br><a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p40例10.html">教材全解必修1 p40 例10</a></p>
+<h3 id="求函数值域"><a href="#求函数值域" class="headerlink" title="求函数值域"></a>求函数值域</h3><h4 id="图象法"><a href="#图象法" class="headerlink" title="图象法"></a>图象法</h4><p>能画出图象的函数可以画图求解。<br>例题：$y=2x+1$的值域, $y=x^2+2x-3$的值域</p>
+<h4 id="解析式法"><a href="#解析式法" class="headerlink" title="解析式法"></a>解析式法</h4><p>1、给出二次函数，配方为顶点式求最大/最小值</p>
+<h4 id="分离常数法"><a href="#分离常数法" class="headerlink" title="分离常数法"></a>分离常数法</h4><p>形如$y= \frac{ax+b}{cx+d}$的函数值域一般要分离常数，即将$a,c$提取出来，然后再通过反比例函数性质求解。</p>
+<p>形如$y= \frac{a_1x^2+b_1x+c_1}{a_2x^2+b_2x+c_2}$的函数值域解法：<br>1、能十字相乘就相乘，然后约去相同因子(注意如果消掉要考虑0的情况)，然后转化为$y= \frac{ax+b}{cx+d}$的形式<br>2、不能做就转为一元二次方程求解，分类讨论是否存在根(方程思想)：<a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p40例8.html">教材全解必修1 p40 例8</a></p>
+<h4 id="观察法"><a href="#观察法" class="headerlink" title="观察法"></a>观察法</h4><p>观察某个部分的性质求解。<br>例题：$y=\sqrt{x}+1$的值域</p>
+<h4 id="换元法"><a href="#换元法" class="headerlink" title="换元法"></a>换元法</h4><p>不好表示的部分要设元替换。如$\sqrt{2x-1}$<br>例题：$y=x+\sqrt{2x-1}$的值域</p>
+<h4 id="方程思想"><a href="#方程思想" class="headerlink" title="方程思想"></a>方程思想</h4><p>将函数化为方程，方程要有解列不等式/方程<br><a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p40例8.html">教材全解必修1 p40 例8</a></p>
+<h3 id="求函数参数"><a href="#求函数参数" class="headerlink" title="求函数参数"></a>求函数参数</h3><blockquote>
+<p>一般是逆向思维解题。</p>
+</blockquote>
+<h4 id="给出定义域"><a href="#给出定义域" class="headerlink" title="给出定义域"></a>给出定义域</h4><p>分母不为0，且方程$分母=0$无整数解</p>
+<p><a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p40例7.html">教材全解必修1 p40 例7</a></p>
+<h4 id="给出值域"><a href="#给出值域" class="headerlink" title="给出值域"></a>给出值域</h4><p><a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p40例8.html">教材全解必修1 p40 例8</a></p>
+<h2 id="函数的表示法"><a href="#函数的表示法" class="headerlink" title="函数的表示法"></a>函数的表示法</h2><h3 id="求函数解析式"><a href="#求函数解析式" class="headerlink" title="求函数解析式"></a>求函数解析式</h3><h4 id="替换法"><a href="#替换法" class="headerlink" title="替换法"></a>替换法</h4><p>例题：已知$f(x+1)=x^2$，求$f(x)$的解析式：将$x$换为$x-1$，则$f(x)=(x-1)^2$</p>
+<h4 id="配凑法"><a href="#配凑法" class="headerlink" title="配凑法"></a>配凑法</h4><p>例题：已知$f(t)=g(x)$，求$f(x)$的解析式：将$g(x)$变形为只含$t$的式子，再将$t$换成$x$</p>
+<h4 id="换元法-1"><a href="#换元法-1" class="headerlink" title="换元法"></a>换元法</h4><p>将整体代换。</p>
+<h4 id="待定系数法"><a href="#待定系数法" class="headerlink" title="待定系数法"></a>待定系数法</h4><p>已知函数类型，直接设函数然后解出系数即可。<br>例题：已知$f(x)$为二次函数，求解析式：设$f(x)=ax^2+bx+c$</p>
+<h4 id="解方程组法"><a href="#解方程组法" class="headerlink" title="解方程组法"></a>解方程组法</h4><p>例题：已知$f(x)+2f(\frac1x)=x(x≠0)$，求$f(x)$：$x$与$\frac1x$互换</p>
+<h3 id="数形结合-1"><a href="#数形结合-1" class="headerlink" title="数形结合"></a>数形结合</h3><h4 id="画出已知函数图象解题"><a href="#画出已知函数图象解题" class="headerlink" title="画出已知函数图象解题"></a>画出已知函数图象解题</h4><p>如果已知函数/不知函数都可以画出图象来解问题。</p>
+<h4 id="图象变化问题"><a href="#图象变化问题" class="headerlink" title="图象变化问题"></a>图象变化问题</h4><p>平移：<br>1、左右：$f(x+a)$(左加右减)<br>2、上下：$f(x)+a$(上加下减)<br>对称：<br>1、$y$轴：$f(-x)$<br>2、$x$轴：$-f(x)$<br>3、原点：$-f(-x)$<br>翻折：<br>1、$|f(x)|$：整个图象都是在$N$集合的，对应负数区域对称翻折<br>2、$f(|x|)$：右边图象保留，左边删除，左边对称翻折右边的图象</p>
+<h4 id="给出图象分析问题"><a href="#给出图象分析问题" class="headerlink" title="给出图象分析问题"></a>给出图象分析问题</h4><p>1、求参：带入特殊值进行推理即可<br>2、转化为 画出已知函数图象解题</p>
+<h3 id="分段函数"><a href="#分段函数" class="headerlink" title="分段函数"></a>分段函数</h3><h4 id="x-分段讨论正负性求得分段函数"><a href="#x-分段讨论正负性求得分段函数" class="headerlink" title="|x|分段讨论正负性求得分段函数"></a>|x|分段讨论正负性求得分段函数</h4><p>$|x-2|+|5-x|$分$x \leq 2, 2 \leq x \leq 5, x \geq 5$三种情况讨论</p>
+<h2 id="函数的单调性与极值-重难点"><a href="#函数的单调性与极值-重难点" class="headerlink" title="函数的单调性与极值(重难点)"></a>函数的单调性与极值(重难点)</h2><h3 id="定义法证明单调性"><a href="#定义法证明单调性" class="headerlink" title="定义法证明单调性"></a>定义法证明单调性</h3><p><strong>例题1：</strong>证明$f(x)=\sqrt{x}$在其定义域上是增函数。(定义法)<br>解法：<br>1、取$x_1&lt;x_2$<br>2、$f(x_1)-f(x_2)$代数出来，化成带有$x_1-x_2$或$x_2-x_1$的式子<br>3、比较$f(x_1)-f(x_2)$的符号<br>4、定论(增函数、减函数)<br>(不仅可以作差，还可以作商)<br><strong>技巧：因式分解、通分、配方、分子有理化</strong></p>
+<p><strong>例题2：</strong>$f(x)=x+\frac ax$的单调性。(分类讨论参数法)<br>解法：(总体和上面的做法一致)，但是参数$a$的值不知道，就要分类讨论<br>从<strong>极端情况</strong>入手，可取$x_1=x_2$找到边界进行讨论</p>
+<h3 id="分段求单调性"><a href="#分段求单调性" class="headerlink" title="分段求单调性"></a>分段求单调性</h3><p>根据单调函数运算性质求单调性<br>例题：$\frac{x^3-4x+3}{x}，x \notin N$</p>
+<h3 id="求单调区间-重难点"><a href="#求单调区间-重难点" class="headerlink" title="求单调区间(重难点)"></a>求单调区间(重难点)</h3><h4 id="图象法-1"><a href="#图象法-1" class="headerlink" title="图象法"></a>图象法</h4><p>画出图象即可判断单调区间：<br>高中必刷题必修1 p22 t11<br>教材全解必修1 p59 例3<br>教材全解必修1 p59 变式2</p>
+<h4 id="获取信息法"><a href="#获取信息法" class="headerlink" title="获取信息法"></a>获取信息法</h4><p><a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p59例4.html">教材全解必修1 p59 例4</a></p>
+<h4 id="定义法"><a href="#定义法" class="headerlink" title="定义法"></a>定义法</h4><p>与 定义法证明单调性 差不多，但要先求出<strong>函数的定义域</strong>，在每个定义域上找单调区间：<br>高中必刷题必修1 p24 t5</p>
+<h4 id="常数分离法"><a href="#常数分离法" class="headerlink" title="常数分离法"></a>常数分离法</h4><p>形如$y= \frac{ax+b}{cx+d}$的函数，提取之后根据反比例函数等的性质判断<br><a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p60例5.html">教材全解必修1 p60 例5</a></p>
+<h4 id="分类讨论"><a href="#分类讨论" class="headerlink" title="分类讨论"></a>分类讨论</h4><p>绝对值、$max、min$一般要分类进行讨论<br>高中必刷题必修1 p22 t11</p>
+<h4 id="复合函数-1"><a href="#复合函数-1" class="headerlink" title="复合函数"></a>复合函数</h4><p><a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p65例22.html">教材全解必修1 p65 例22</a></p>
+<h3 id="求一般函数极值"><a href="#求一般函数极值" class="headerlink" title="求一般函数极值"></a>求一般函数极值</h3><h4 id="单调性法"><a href="#单调性法" class="headerlink" title="单调性法"></a>单调性法</h4><p>证明函数在区间的单调性，根据区间端点求极值。<br><a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p60例5.html">教材全解必修1 p60 例6</a></p>
+<h4 id="图象法-2"><a href="#图象法-2" class="headerlink" title="图象法"></a>图象法</h4><p>画出图象即可求函数极值。</p>
+<h4 id="配方法"><a href="#配方法" class="headerlink" title="配方法"></a>配方法</h4><p>把二次函数配方为顶点式。</p>
+<h4 id="换元法-2"><a href="#换元法-2" class="headerlink" title="换元法"></a>换元法</h4><p>把带根号的式子用一个字母表示，然后转化为配方法求极值。</p>
+<h3 id="求二次函数的极值"><a href="#求二次函数的极值" class="headerlink" title="求二次函数的极值"></a>求二次函数的极值</h3><h4 id="轴定，区间定"><a href="#轴定，区间定" class="headerlink" title="轴定，区间定"></a>轴定，区间定</h4><p>初中题。</p>
+<h4 id="轴动，区间定"><a href="#轴动，区间定" class="headerlink" title="轴动，区间定"></a>轴动，区间定</h4><p>分类讨论轴的位置<br><a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p61例11.html">教材全解必修1 p61 例11</a></p>
+<h4 id="轴动，区间动-难点"><a href="#轴动，区间动-难点" class="headerlink" title="轴动，区间动(难点)"></a>轴动，区间动(难点)</h4><p>将区间看作不动，对称轴变化<br><a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p62例12.html">教材全解必修1 p62 例12</a></p>
+<h3 id="单调性求参数取值范围-重难点"><a href="#单调性求参数取值范围-重难点" class="headerlink" title="单调性求参数取值范围(重难点)"></a><strong>单调性求参数取值范围(重难点)</strong></h3><h4 id="定义法-1"><a href="#定义法-1" class="headerlink" title="定义法"></a>定义法</h4><p>未知函数的单调性，求参数取值范围：<br><a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p62例15.html">教材全解必修1 p62 例15</a><br>高中必刷题必修1 p24 t9<br>高中必刷题必修1 p25 t4(定义域定义)</p>
+<h4 id="获取信息法-1"><a href="#获取信息法-1" class="headerlink" title="获取信息法"></a>获取信息法</h4><p>分段函数已知单调性，列不等式求参数取值范围(可能的约束都要写)：<br><a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p68t10.html">教材全解必修1 p68 t10</a><br>教材全解必修1 p64 t21<br>高中必刷题必修1 p23 t12<br>高中必刷题必修1 p24 t6<br>高中必刷题必修1 p24 t8</p>
+<h4 id="二次函数"><a href="#二次函数" class="headerlink" title="二次函数"></a>二次函数</h4><p>二次函数求对称轴位置列不等式求参数取值范围：<br><a href="../resources/problems/数学/高中数学/集合与函数/高中必刷题必修1p22t11.html">高中必刷题必修1 p22 t11</a><br>高中必刷题必修1 p22 t14<br>高中必刷题必修1 p25 t1</p>
+<h3 id="单调性解不等式"><a href="#单调性解不等式" class="headerlink" title="单调性解不等式"></a>单调性解不等式</h3><p>将不等式化为$f(x_1)&lt;f(x_2)$的形式。<br>变形：<a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p63例16.html">教材全解必修1 p63 例16</a><br>构造：<a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p63例18.html">教材全解必修1 p63 例18</a></p>
+<h3 id="单调函数运算性质"><a href="#单调函数运算性质" class="headerlink" title="单调函数运算性质"></a>单调函数运算性质</h3><p>基本：<br>$a$大于$0$时，$af(x)$与$f(x)$有相同性质，否则相反<br>$f(x)$与$\frac{1}{f(x)}$有相反性质<br>$f(x)$与$\sqrt{f(x)}$有相同性质<br>有公共单调区间：<br>增+增=增，减+减=减<br>增-减=增，减-增=减</p>
+<h3 id="复合函数的单调性"><a href="#复合函数的单调性" class="headerlink" title="复合函数的单调性"></a>复合函数的单调性</h3><h4 id="复合函数的单调性-1"><a href="#复合函数的单调性-1" class="headerlink" title="复合函数的单调性"></a>复合函数的单调性</h4><p>同增异减，步骤：<br>1、确定函数定义域<br>2、分解函数<br>3、分别确定函数单调性<br>4、确定复合函数单调性</p>
+<h4 id="求复合函数的单调区间"><a href="#求复合函数的单调区间" class="headerlink" title="求复合函数的单调区间"></a>求复合函数的单调区间</h4><p>1、确定函数定义域<br>2、分解函数<br>3、分别确定函数单调性<br>4、再求单调区间<br>5、确定复合函数的单调区间</p>
+<h3 id="抽象函数的单调性"><a href="#抽象函数的单调性" class="headerlink" title="抽象函数的单调性"></a>抽象函数的单调性</h3><p>常用方法：<br>1、赋值法：即特殊值法<br>2、配凑法：<br>有$f(x+y)$，则$f(x_2)-f(x_1)$配为$f((x_2-x_1)+x_1)-f(x_1)$<br>有$f(xy)$，则$f(x_2)-​f(x_1)$配为$f(x_1 \cdot \frac{x_2}{x_1})-f(x_1)$</p>
+<h2 id="函数的奇偶性-重难点"><a href="#函数的奇偶性-重难点" class="headerlink" title="函数的奇偶性(重难点)"></a>函数的奇偶性(重难点)</h2><h3 id="判断函数奇偶性"><a href="#判断函数奇偶性" class="headerlink" title="判断函数奇偶性"></a>判断函数奇偶性</h3><p>举反例就能证明函数不具有奇偶性。</p>
+<h4 id="不含参数"><a href="#不含参数" class="headerlink" title="不含参数"></a>不含参数</h4><h5 id="定义法-2"><a href="#定义法-2" class="headerlink" title="定义法"></a>定义法</h5><p>1、求定义域<br>2、定义域是否关于原点对称<br>3、验证$f(x)$与$f(-x)$的关系</p>
+<h5 id="图象法-3"><a href="#图象法-3" class="headerlink" title="图象法"></a>图象法</h5><p>从图中观察即可。</p>
+<h5 id="运算性质法"><a href="#运算性质法" class="headerlink" title="运算性质法"></a>运算性质法</h5><p>由多个奇偶函数组成的函数，一般用运算的性质来解题。<br><img src="../pics/高中数学/奇偶函数运算性质.jpg" alt="Markdown"></p>
+<h4 id="含参数"><a href="#含参数" class="headerlink" title="含参数"></a>含参数</h4><h5 id="定义法-3"><a href="#定义法-3" class="headerlink" title="定义法"></a>定义法</h5><p>1、分$a=0,a≠0$两种情况讨论。<br>用定义法，代入式子求值，验证$f(x)$与$f(-x)$的关系</p>
+<h3 id="函数奇偶性的定义应用"><a href="#函数奇偶性的定义应用" class="headerlink" title="函数奇偶性的定义应用"></a>函数奇偶性的定义应用</h3><h4 id="求函数值"><a href="#求函数值" class="headerlink" title="求函数值"></a>求函数值</h4><p>通过$f(x)=-f(-x), f(x)=f(-x)$来求函数值<br><a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p72例3.html">教材全解必修1 p72 例3</a></p>
+<h4 id="求函数解析式-1"><a href="#求函数解析式-1" class="headerlink" title="求函数解析式"></a>求函数解析式</h4><p>通过$f(x)=-f(-x), f(x)=f(-x)$来求函数解析式<br><a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p72例4.html">教材全解必修1 p72 例4</a></p>
+<h4 id="求参数"><a href="#求参数" class="headerlink" title="求参数"></a>求参数</h4><p>通过$f(x)=-f(-x), f(x)=f(-x)$来求参数<br><a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p72例6.html">教材全解必修1 p72 例6</a></p>
+<h3 id="函数奇偶性的单调区间"><a href="#函数奇偶性的单调区间" class="headerlink" title="函数奇偶性的单调区间"></a>函数奇偶性的单调区间</h3><h4 id="比较大小"><a href="#比较大小" class="headerlink" title="比较大小"></a>比较大小</h4><p>求出单调区间然后结合单调性(图象最方便)</p>
+<h4 id="解不等式"><a href="#解不等式" class="headerlink" title="解不等式"></a>解不等式</h4><p>用单调性来解不等式<br><a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p73例8.html">教材全解必修1 p73 例8</a><br><a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p73例9.html">教材全解必修1 p73 例9</a></p>
+<h3 id="分段函数的奇偶性"><a href="#分段函数的奇偶性" class="headerlink" title="分段函数的奇偶性"></a>分段函数的奇偶性</h3><h4 id="证明奇偶性"><a href="#证明奇偶性" class="headerlink" title="证明奇偶性"></a>证明奇偶性</h4><p>分段证明或者图象法(分段要没一段进行证明)</p>
+<h3 id="抽象函数的奇偶性"><a href="#抽象函数的奇偶性" class="headerlink" title="抽象函数的奇偶性"></a>抽象函数的奇偶性</h3><p>赋值法、定义法进行证明。<br><a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p74例11.html">教材全解必修1 p74 例11</a></p>
+<h3 id="函数图象对称点-直线"><a href="#函数图象对称点-直线" class="headerlink" title="函数图象对称点/直线"></a>函数图象对称点/直线</h3><p>偶函数：<br>$f(a+x)=f(a-x)$关于直线$x=a$对称<br>$f(a+x)=f(b-x)$关于直线$x=\frac{a+b}{2}$对称<br>奇函数：<br>$f(a+x)+f(a-x)=0$关于点$(a,0)$对称<br>$f(a+x)+f(b-x)=0$关于点$(\frac{a+b}{2},0)$对称</p>
+<h2 id="恒存在问题"><a href="#恒存在问题" class="headerlink" title="恒存在问题"></a>恒存在问题</h2><p>题目的$key word$：$xx$图象总在$xx$图象上、对一切$xx$都成立、$xx$恒成立</p>
+<p>$m$<strong>为所求参数，一定要单独放在一边！如果m的正负性不定就整体复合函数换元</strong><br>$m \geq f(x)$恒成立等价于$m \geq f(x)_{max}$<br>$m \leq f(x)$恒成立等价于$m \leq f(x)_{min}$<br>例题：<a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p84例16.html">教材全解必修1 p84 t16</a>，<a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p84例21.html">教材全解必修1 p84 t21</a>，<a href="../resources/problems/数学/高中数学/集合与函数/教材全解必修1p84例22.html">教材全解必修1 p84 t22</a></p>
+<h2 id="存在问题"><a href="#存在问题" class="headerlink" title="存在问题"></a>存在问题</h2><p>题目的$key word$：存在<strong>一个</strong>$x$使得$xx$</p>
+<p>$m$<strong>为所求参数，一定要单独放在一边！如果m的正负性不定就整体复合函数换元</strong><br>$m \geq f(x)$存在<strong>一个</strong>$x$使得$xx$等价于$m \geq f(x)_{min}$<br>$m \leq f(x)$存在<strong>一个</strong>$x$使得$xx$等价于$m \leq f(x)_{max}$</p>
+<h1 id="指数函数"><a href="#指数函数" class="headerlink" title="指数函数"></a>指数函数</h1><h2 id="指数幂的运算"><a href="#指数幂的运算" class="headerlink" title="指数幂的运算"></a>指数幂的运算</h2><h3 id="化简求值"><a href="#化简求值" class="headerlink" title="化简求值"></a>化简求值</h3><h4 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h4><p>完全平方公式: $(a^{\frac12}±b^{\frac12})^2=a±2a^{\frac12}b^{\frac12}+b$<br>平方差公式: $a-b=(a^{\frac12}+b^{\frac12})(a^{\frac12}-b^{\frac12})$<br>立方差公式: $a±b=(a^{\frac13}\pm b^{\frac13})(a^{\frac23}\mp a^{\frac13}b^{\frac13}+b^{\frac23})$</p>
+<h4 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h4><p>1、化负为正<br>将指数含有减法算式的分开，比如$4^{1-x}=4 * 4^{-x}$<br>将指数含有负数的算式转为正数：$1-a^{-\frac13}=\frac{a^{\frac13}-1}{a^{\frac13}}$<br>2、加入$x^y \cdot x^{-y}=1$</p>
+<h3 id="比较大小-1"><a href="#比较大小-1" class="headerlink" title="比较大小"></a>比较大小</h3><p>1、通分<br>2、化为同底数<br>3、化为同指数</p>
+<h2 id="指数函数-1"><a href="#指数函数-1" class="headerlink" title="指数函数"></a>指数函数</h2><h3 id="求定义域、值域"><a href="#求定义域、值域" class="headerlink" title="求定义域、值域"></a>求定义域、值域</h3><h4 id="定义域"><a href="#定义域" class="headerlink" title="定义域"></a>定义域</h4><p>$y=a^{f(x)}$的定义域是$f(x)$的定义域</p>
+<h4 id="值域"><a href="#值域" class="headerlink" title="值域"></a>值域</h4><p>$y=a^{f(x)}$的值域：<br>1、求$f(x)$的值域<br>2、由$y=a^u$的单调性求$y=a^{f(x)}$的值域</p>
+<p>$y=f(a^x)$的值域：<br>1、求$u=a^x$的值域<br>2、由$y=f(b)$的单调性求$y=f(a^x)$的值域</p>
+<p><strong>(注意$a$的分类讨论)</strong></p>
+<h3 id="指数幂大小比较"><a href="#指数幂大小比较" class="headerlink" title="指数幂大小比较"></a>指数幂大小比较</h3><h4 id="比差-商法"><a href="#比差-商法" class="headerlink" title="比差/商法"></a>比差/商法</h4><p>比差法，差小于$0$则$a$小于$b$<br>比商法，商小于$1$则$a$小于$b$</p>
+<h4 id="函数单调性法"><a href="#函数单调性法" class="headerlink" title="函数单调性法"></a>函数单调性法</h4><p>根据单调性比较两个底数相同的指数幂</p>
+<h4 id="图象法-4"><a href="#图象法-4" class="headerlink" title="图象法"></a>图象法</h4><p>画出图象解决问题</p>
+<h4 id="中间值法"><a href="#中间值法" class="headerlink" title="中间值法"></a>中间值法</h4><p>$x^0=1$来作为中间值，常用中间值：$0,1,2$</p>
+<h3 id="指数函数复合函数单调性"><a href="#指数函数复合函数单调性" class="headerlink" title="指数函数复合函数单调性"></a>指数函数复合函数单调性</h3><p>先求出复合函数的单调性，再求指数函数的单调性，最后进行综合。<br><strong>同增异减。</strong></p>
+<h3 id="解指数不等式方程"><a href="#解指数不等式方程" class="headerlink" title="解指数不等式方程"></a>解指数不等式方程</h3><h4 id="方程"><a href="#方程" class="headerlink" title="方程"></a>方程</h4><p>方法一：将等式两边带换为同一底数<br>方法二：换元<br>方法三：分离参数法</p>
+<h4 id="不等式"><a href="#不等式" class="headerlink" title="不等式"></a>不等式</h4><p>1、将等式两边带换为同一底数<br>2、利用单调性求解，<strong>必要时要分类讨论$a$</strong></p>
+<h1 id="对数函数"><a href="#对数函数" class="headerlink" title="对数函数"></a>对数函数</h1><h2 id="对数"><a href="#对数" class="headerlink" title="对数"></a>对数</h2><h3 id="计算技巧"><a href="#计算技巧" class="headerlink" title="计算技巧"></a>计算技巧</h3><p>$lgN=log_{10}N, log_eN=lnN$<br>$log_a1=0,log_aa=1,a^{log_aN}=N$<br>$lg5+lg2=1$<br>$lg20=1+lg2$</p>
+<h3 id="常用公式"><a href="#常用公式" class="headerlink" title="常用公式"></a>常用公式</h3><p>基本：<br>1$log_cab=log_ca+log_cb$<br>2$log_ca/b=log_ca-log_cb$<br>3$log_ca^b=blog_ca$<br>换底：<br>4$log_ab=\frac{log_cb}{log_ca}$<br>5$log_{a^m}b^n=\frac nmlog_ab$<br>6$log_ab=\frac{1}{log_ba}$<br>7$log_ab \cdot log_bc=log_ac$<br>扩展：<br>指数式可以和对数式互换：<br>1、(式子)性质法<br>2、(方程)方程两边同时取对数</p>
+<h3 id="对数方程"><a href="#对数方程" class="headerlink" title="对数方程"></a>对数方程</h3><p>1、基本：$log_af(x)=b$，转化为$f(x)=a^b$<br>2、同底数：$log_af(x)=log_a g(x)$，转化为$f(x)=g(x)$(要检验)<br>3、代换：$F(log_ax)=0$，用$t=log_ax$换元</p>
+<h2 id="对数函数-1"><a href="#对数函数-1" class="headerlink" title="对数函数"></a>对数函数</h2><h3 id="求定义域、值域-1"><a href="#求定义域、值域-1" class="headerlink" title="求定义域、值域"></a>求定义域、值域</h3><h4 id="定义域-1"><a href="#定义域-1" class="headerlink" title="定义域"></a>定义域</h4><p>根据对数函数性质概念即可。</p>
+<h4 id="值域与最值"><a href="#值域与最值" class="headerlink" title="值域与最值"></a>值域与最值</h4><p>值域：根据定义域以及单调性即可。<br>最值：单调性，可以配合换元等</p>
+<h3 id="解对数不等式"><a href="#解对数不等式" class="headerlink" title="解对数不等式"></a>解对数不等式</h3><h3 id="比较对数值大小"><a href="#比较对数值大小" class="headerlink" title="比较对数值大小"></a>比较对数值大小</h3><p>1、同底：单调性<br>2、同真数：图象<br>3、otherwise：中介值</p>
+<h3 id="复合函数-2"><a href="#复合函数-2" class="headerlink" title="复合函数"></a>复合函数</h3><h4 id="求单调区间"><a href="#求单调区间" class="headerlink" title="求单调区间"></a>求单调区间</h4><p>1、$y=log_af(x)$的单调性：<br>在$a \in (0, 1)$时与函数$f(x)=u$<strong>相反</strong>，反之<strong>相同</strong><br>2、$y=f(log_ax)$的单调性：<br>换元，使$t=log_ax$，然后讨论$t=log_ax$和$y=f(t)$的单调性</p>
+<h4 id="求值域、最值"><a href="#求值域、最值" class="headerlink" title="求值域、最值"></a>求值域、最值</h4><p>换元、单调性等方法</p>
+<h1 id="幂函数"><a href="#幂函数" class="headerlink" title="幂函数"></a>幂函数</h1><h2 id="幂函数性质"><a href="#幂函数性质" class="headerlink" title="幂函数性质"></a>幂函数性质</h2><p><img src="../pics/高中数学/幂函数性质.jpg" alt="Markdown"></p>
+<h2 id="比较大小-2"><a href="#比较大小-2" class="headerlink" title="比较大小"></a>比较大小</h2><p>根据单调性等比较大小</p>
+<h2 id="单调性"><a href="#单调性" class="headerlink" title="单调性"></a>单调性</h2><p>根据单调性解最值问题</p>
+<h1 id="函数零点"><a href="#函数零点" class="headerlink" title="函数零点"></a>函数零点</h1><h2 id="求函数零点"><a href="#求函数零点" class="headerlink" title="求函数零点"></a>求函数零点</h2><h3 id="求解析式的根"><a href="#求解析式的根" class="headerlink" title="求解析式的根"></a>求解析式的根</h3><p>给出$f(x)$具体的函数解析式，求$f(x)=0$的值即可。</p>
+<h3 id="利用函数图象"><a href="#利用函数图象" class="headerlink" title="利用函数图象"></a>利用函数图象</h3><p>观察函数图象即可。</p>
+<h2 id="求函数零点个数"><a href="#求函数零点个数" class="headerlink" title="求函数零点个数"></a>求函数零点个数</h2><h3 id="利用函数零点存在性定理"><a href="#利用函数零点存在性定理" class="headerlink" title="利用函数零点存在性定理"></a>利用函数零点存在性定理</h3><p>略去，按照单调性和定理即可。</p>
+<h3 id="数形结合-2"><a href="#数形结合-2" class="headerlink" title="数形结合"></a>数形结合</h3><p>给出$F(x)=f(x)-g(x)$，可以转化为$f(x)-g(x)=0$, 即$f(x)=g(x)$，然后讨论两个函数的交点个数</p>
+<h3 id="利用奇偶性"><a href="#利用奇偶性" class="headerlink" title="利用奇偶性"></a>利用奇偶性</h3><p>区间$[-a, a]$上的零点可以先研究$(0, a]$上的零点情况</p>
+<h3 id="利用单调性"><a href="#利用单调性" class="headerlink" title="利用单调性"></a>利用单调性</h3><p>某个函数在某个区间单调，即可利用判断零点的位置</p>
+<h2 id="已知函数有零点问题"><a href="#已知函数有零点问题" class="headerlink" title="已知函数有零点问题"></a>已知函数有零点问题</h2><p>将一个个值求出来用函数零点存在性定理找即可</p>
+<h2 id="一元二次方程根的分布"><a href="#一元二次方程根的分布" class="headerlink" title="一元二次方程根的分布"></a>一元二次方程根的分布</h2><p><img src="../pics/高中数学/一元二次方程根的分布1.jpg" alt="Markdown"><br><img src="../pics/高中数学/一元二次方程根的分布2.jpg" alt="Markdown"></p>
+<h1 id="最后的总结"><a href="#最后的总结" class="headerlink" title="最后的总结"></a>最后的总结</h1><p><img src="../pics/高中数学/必修1难点-1.jpg" alt="Markdown"><br><img src="../pics/高中数学/必修1难点-2.jpg" alt="Markdown"><br><img src="../pics/高中数学/必修1难点-3.jpg" alt="Markdown"></p>
+<p><strong>End</strong></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+	<div>
+	  
+		
+<div style="text-align:center;color: #ccc;font-size:14px;">
+------ 本文结束 ------</div>
+<br/>
+<div style="border: 1px solid black">
+<div style="margin-left:10px">
+<span style="font-weight:blod">版权声明</span>
+<img src="http://blog.flyinthesky.win/pics/sources/cc.png" >
+<br/>
+<p style="font-size: 10px;line-height: 30px"><a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky's blog</a> by <a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky</a> is licensed under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" style="color:#258FC6">Creative Commons BY-NC-ND 4.0 International License</a>.<br/>
+由<a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky</a>创作并维护的<a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky's blog</a>博客采用<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" style="color:#258FC6">创作共用保留署名-非商业-禁止演绎4.0国际许可证</a>。<br/>
+本文首发于<a href="http://blog.flyinthesky.win/" style="color:#258FC6">FlyInTheSky's blog</a> 博客（ <a href="http://blog.flyinthesky.win/" style="color:#258FC6">http://blog.flyinthesky.win/</a> ），版权所有，侵权必究。</p>
+</div>
+</div>
+
+	  
+	</div>
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Codeforces919D/" rel="next" title="Codeforces 919D(拓扑排序+DP)">
+                <i class="fa fa-chevron-left"></i> Codeforces 919D(拓扑排序+DP)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/sz莫队算法/" rel="prev" title="莫队算法 学习笔记">
+                莫队算法 学习笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://cn.gravatar.com/avatar/fa8ad94625f3f56e641d9511160906c8?s=200&d=mm"
+                alt="FlyInTheSky" />
+            
+              <p class="site-author-name" itemprop="name">FlyInTheSky</p>
+              <p class="site-description motion-element" itemprop="description">自己选择的路，跪着也要走完。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">587</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">144</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+		
+		<font size="3"><b>一言</b></font>
+		<script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+		 <script>
+         $.get('https://v1.hitokoto.cn/?c=a', function (data) {
+            if (typeof data === 'string') data = JSON.parse(data);
+            $('#hitokoto-loader').removeClass('active');
+            $('#hitokoto-content').css('display', '').text(data.hitokoto);
+            if (data.from) {
+              $('#hitokoto-from').css('display', '').text('——' + data.from);
+            }
+          });
+          
+          </script>
+          <div style="font-size: 1em; line-height: 1.5em; display: none; " id="hitokoto-content"></div>
+          <div style="text-align: right; margin-top: 15px; font-size: 0.9em; color: #666; display: none; " id="hitokoto-from"></div>
+
+		
+		<!--<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="220" height="320" src="http://www.missevan.com/albumiframe/379343?autoplay=false&playlist=true"></iframe>-->
+		
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一些Trick"><span class="nav-number">1.</span> <span class="nav-text">一些Trick</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#集合"><span class="nav-number">2.</span> <span class="nav-text">集合</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分类讨论思想"><span class="nav-number">2.1.</span> <span class="nav-text">分类讨论思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集合的含义及表示"><span class="nav-number">2.2.</span> <span class="nav-text">集合的含义及表示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#元素与集合的关系"><span class="nav-number">2.2.1.</span> <span class="nav-text">元素与集合的关系</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#构造题"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">构造题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#循环带入题"><span class="nav-number">2.2.1.2.</span> <span class="nav-text">循环带入题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集合相等问题"><span class="nav-number">2.2.2.</span> <span class="nav-text">集合相等问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#有且只有一个正确"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">有且只有一个正确</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#推断题"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">推断题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方程根的问题"><span class="nav-number">2.2.3.</span> <span class="nav-text">方程根的问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集合间的基本关系"><span class="nav-number">2.3.</span> <span class="nav-text">集合间的基本关系</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#判断集合是否包含"><span class="nav-number">2.3.1.</span> <span class="nav-text">判断集合是否包含</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#元素对比"><span class="nav-number">2.3.1.1.</span> <span class="nav-text">元素对比</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#条件范围对比"><span class="nav-number">2.3.1.2.</span> <span class="nav-text">条件范围对比</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#判断集合是否相等"><span class="nav-number">2.3.2.</span> <span class="nav-text">判断集合是否相等</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#元素-条件范围对比"><span class="nav-number">2.3.2.1.</span> <span class="nav-text">元素, 条件范围对比</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#双重包含"><span class="nav-number">2.3.2.2.</span> <span class="nav-text">双重包含</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#判断集合是否真子集"><span class="nav-number">2.3.3.</span> <span class="nav-text">判断集合是否真子集</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#B属于A且A不属于B"><span class="nav-number">2.3.3.1.</span> <span class="nav-text">B属于A且A不属于B</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#判断集合之间的关系"><span class="nav-number">2.3.4.</span> <span class="nav-text">判断集合之间的关系</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#构造拼凑"><span class="nav-number">2.3.4.1.</span> <span class="nav-text">构造拼凑</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#求集合中含参问题"><span class="nav-number">2.3.5.</span> <span class="nav-text">求集合中含参问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#条件为范围"><span class="nav-number">2.3.5.1.</span> <span class="nav-text">条件为范围</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#条件为数"><span class="nav-number">2.3.5.2.</span> <span class="nav-text">条件为数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集合的基本运算"><span class="nav-number">2.4.</span> <span class="nav-text">集合的基本运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#转化为集合间的基本关系"><span class="nav-number">2.4.1.</span> <span class="nav-text">转化为集合间的基本关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#补集转化"><span class="nav-number">2.4.2.</span> <span class="nav-text">补集转化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数形结合"><span class="nav-number">2.4.3.</span> <span class="nav-text">数形结合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容斥原理求并集元素个数"><span class="nav-number">2.4.4.</span> <span class="nav-text">容斥原理求并集元素个数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数"><span class="nav-number">3.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#函数的概念"><span class="nav-number">3.1.</span> <span class="nav-text">函数的概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#同一函数的判定"><span class="nav-number">3.1.1.</span> <span class="nav-text">同一函数的判定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#求函数定义域"><span class="nav-number">3.1.2.</span> <span class="nav-text">求函数定义域</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#复合函数"><span class="nav-number">3.1.2.1.</span> <span class="nav-text">复合函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#抽象函数"><span class="nav-number">3.1.2.2.</span> <span class="nav-text">抽象函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#求函数值域"><span class="nav-number">3.1.3.</span> <span class="nav-text">求函数值域</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#图象法"><span class="nav-number">3.1.3.1.</span> <span class="nav-text">图象法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解析式法"><span class="nav-number">3.1.3.2.</span> <span class="nav-text">解析式法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分离常数法"><span class="nav-number">3.1.3.3.</span> <span class="nav-text">分离常数法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#观察法"><span class="nav-number">3.1.3.4.</span> <span class="nav-text">观察法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#换元法"><span class="nav-number">3.1.3.5.</span> <span class="nav-text">换元法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方程思想"><span class="nav-number">3.1.3.6.</span> <span class="nav-text">方程思想</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#求函数参数"><span class="nav-number">3.1.4.</span> <span class="nav-text">求函数参数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#给出定义域"><span class="nav-number">3.1.4.1.</span> <span class="nav-text">给出定义域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#给出值域"><span class="nav-number">3.1.4.2.</span> <span class="nav-text">给出值域</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数的表示法"><span class="nav-number">3.2.</span> <span class="nav-text">函数的表示法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#求函数解析式"><span class="nav-number">3.2.1.</span> <span class="nav-text">求函数解析式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#替换法"><span class="nav-number">3.2.1.1.</span> <span class="nav-text">替换法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配凑法"><span class="nav-number">3.2.1.2.</span> <span class="nav-text">配凑法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#换元法-1"><span class="nav-number">3.2.1.3.</span> <span class="nav-text">换元法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#待定系数法"><span class="nav-number">3.2.1.4.</span> <span class="nav-text">待定系数法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解方程组法"><span class="nav-number">3.2.1.5.</span> <span class="nav-text">解方程组法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数形结合-1"><span class="nav-number">3.2.2.</span> <span class="nav-text">数形结合</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#画出已知函数图象解题"><span class="nav-number">3.2.2.1.</span> <span class="nav-text">画出已知函数图象解题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图象变化问题"><span class="nav-number">3.2.2.2.</span> <span class="nav-text">图象变化问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#给出图象分析问题"><span class="nav-number">3.2.2.3.</span> <span class="nav-text">给出图象分析问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分段函数"><span class="nav-number">3.2.3.</span> <span class="nav-text">分段函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#x-分段讨论正负性求得分段函数"><span class="nav-number">3.2.3.1.</span> <span class="nav-text">|x|分段讨论正负性求得分段函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数的单调性与极值-重难点"><span class="nav-number">3.3.</span> <span class="nav-text">函数的单调性与极值(重难点)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义法证明单调性"><span class="nav-number">3.3.1.</span> <span class="nav-text">定义法证明单调性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分段求单调性"><span class="nav-number">3.3.2.</span> <span class="nav-text">分段求单调性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#求单调区间-重难点"><span class="nav-number">3.3.3.</span> <span class="nav-text">求单调区间(重难点)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#图象法-1"><span class="nav-number">3.3.3.1.</span> <span class="nav-text">图象法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取信息法"><span class="nav-number">3.3.3.2.</span> <span class="nav-text">获取信息法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#定义法"><span class="nav-number">3.3.3.3.</span> <span class="nav-text">定义法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常数分离法"><span class="nav-number">3.3.3.4.</span> <span class="nav-text">常数分离法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分类讨论"><span class="nav-number">3.3.3.5.</span> <span class="nav-text">分类讨论</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#复合函数-1"><span class="nav-number">3.3.3.6.</span> <span class="nav-text">复合函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#求一般函数极值"><span class="nav-number">3.3.4.</span> <span class="nav-text">求一般函数极值</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#单调性法"><span class="nav-number">3.3.4.1.</span> <span class="nav-text">单调性法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图象法-2"><span class="nav-number">3.3.4.2.</span> <span class="nav-text">图象法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配方法"><span class="nav-number">3.3.4.3.</span> <span class="nav-text">配方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#换元法-2"><span class="nav-number">3.3.4.4.</span> <span class="nav-text">换元法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#求二次函数的极值"><span class="nav-number">3.3.5.</span> <span class="nav-text">求二次函数的极值</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#轴定，区间定"><span class="nav-number">3.3.5.1.</span> <span class="nav-text">轴定，区间定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#轴动，区间定"><span class="nav-number">3.3.5.2.</span> <span class="nav-text">轴动，区间定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#轴动，区间动-难点"><span class="nav-number">3.3.5.3.</span> <span class="nav-text">轴动，区间动(难点)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单调性求参数取值范围-重难点"><span class="nav-number">3.3.6.</span> <span class="nav-text">单调性求参数取值范围(重难点)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义法-1"><span class="nav-number">3.3.6.1.</span> <span class="nav-text">定义法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取信息法-1"><span class="nav-number">3.3.6.2.</span> <span class="nav-text">获取信息法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二次函数"><span class="nav-number">3.3.6.3.</span> <span class="nav-text">二次函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单调性解不等式"><span class="nav-number">3.3.7.</span> <span class="nav-text">单调性解不等式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单调函数运算性质"><span class="nav-number">3.3.8.</span> <span class="nav-text">单调函数运算性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复合函数的单调性"><span class="nav-number">3.3.9.</span> <span class="nav-text">复合函数的单调性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#复合函数的单调性-1"><span class="nav-number">3.3.9.1.</span> <span class="nav-text">复合函数的单调性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#求复合函数的单调区间"><span class="nav-number">3.3.9.2.</span> <span class="nav-text">求复合函数的单调区间</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#抽象函数的单调性"><span class="nav-number">3.3.10.</span> <span class="nav-text">抽象函数的单调性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数的奇偶性-重难点"><span class="nav-number">3.4.</span> <span class="nav-text">函数的奇偶性(重难点)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#判断函数奇偶性"><span class="nav-number">3.4.1.</span> <span class="nav-text">判断函数奇偶性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#不含参数"><span class="nav-number">3.4.1.1.</span> <span class="nav-text">不含参数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#定义法-2"><span class="nav-number">3.4.1.1.1.</span> <span class="nav-text">定义法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#图象法-3"><span class="nav-number">3.4.1.1.2.</span> <span class="nav-text">图象法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#运算性质法"><span class="nav-number">3.4.1.1.3.</span> <span class="nav-text">运算性质法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#含参数"><span class="nav-number">3.4.1.2.</span> <span class="nav-text">含参数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#定义法-3"><span class="nav-number">3.4.1.2.1.</span> <span class="nav-text">定义法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数奇偶性的定义应用"><span class="nav-number">3.4.2.</span> <span class="nav-text">函数奇偶性的定义应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#求函数值"><span class="nav-number">3.4.2.1.</span> <span class="nav-text">求函数值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#求函数解析式-1"><span class="nav-number">3.4.2.2.</span> <span class="nav-text">求函数解析式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#求参数"><span class="nav-number">3.4.2.3.</span> <span class="nav-text">求参数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数奇偶性的单调区间"><span class="nav-number">3.4.3.</span> <span class="nav-text">函数奇偶性的单调区间</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#比较大小"><span class="nav-number">3.4.3.1.</span> <span class="nav-text">比较大小</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解不等式"><span class="nav-number">3.4.3.2.</span> <span class="nav-text">解不等式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分段函数的奇偶性"><span class="nav-number">3.4.4.</span> <span class="nav-text">分段函数的奇偶性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#证明奇偶性"><span class="nav-number">3.4.4.1.</span> <span class="nav-text">证明奇偶性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#抽象函数的奇偶性"><span class="nav-number">3.4.5.</span> <span class="nav-text">抽象函数的奇偶性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数图象对称点-直线"><span class="nav-number">3.4.6.</span> <span class="nav-text">函数图象对称点/直线</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#恒存在问题"><span class="nav-number">3.5.</span> <span class="nav-text">恒存在问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存在问题"><span class="nav-number">3.6.</span> <span class="nav-text">存在问题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#指数函数"><span class="nav-number">4.</span> <span class="nav-text">指数函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#指数幂的运算"><span class="nav-number">4.1.</span> <span class="nav-text">指数幂的运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#化简求值"><span class="nav-number">4.1.1.</span> <span class="nav-text">化简求值</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#公式"><span class="nav-number">4.1.1.1.</span> <span class="nav-text">公式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#技巧"><span class="nav-number">4.1.1.2.</span> <span class="nav-text">技巧</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#比较大小-1"><span class="nav-number">4.1.2.</span> <span class="nav-text">比较大小</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指数函数-1"><span class="nav-number">4.2.</span> <span class="nav-text">指数函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#求定义域、值域"><span class="nav-number">4.2.1.</span> <span class="nav-text">求定义域、值域</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义域"><span class="nav-number">4.2.1.1.</span> <span class="nav-text">定义域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#值域"><span class="nav-number">4.2.1.2.</span> <span class="nav-text">值域</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指数幂大小比较"><span class="nav-number">4.2.2.</span> <span class="nav-text">指数幂大小比较</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#比差-商法"><span class="nav-number">4.2.2.1.</span> <span class="nav-text">比差/商法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数单调性法"><span class="nav-number">4.2.2.2.</span> <span class="nav-text">函数单调性法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图象法-4"><span class="nav-number">4.2.2.3.</span> <span class="nav-text">图象法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#中间值法"><span class="nav-number">4.2.2.4.</span> <span class="nav-text">中间值法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指数函数复合函数单调性"><span class="nav-number">4.2.3.</span> <span class="nav-text">指数函数复合函数单调性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解指数不等式方程"><span class="nav-number">4.2.4.</span> <span class="nav-text">解指数不等式方程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方程"><span class="nav-number">4.2.4.1.</span> <span class="nav-text">方程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不等式"><span class="nav-number">4.2.4.2.</span> <span class="nav-text">不等式</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对数函数"><span class="nav-number">5.</span> <span class="nav-text">对数函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#对数"><span class="nav-number">5.1.</span> <span class="nav-text">对数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#计算技巧"><span class="nav-number">5.1.1.</span> <span class="nav-text">计算技巧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用公式"><span class="nav-number">5.1.2.</span> <span class="nav-text">常用公式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对数方程"><span class="nav-number">5.1.3.</span> <span class="nav-text">对数方程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对数函数-1"><span class="nav-number">5.2.</span> <span class="nav-text">对数函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#求定义域、值域-1"><span class="nav-number">5.2.1.</span> <span class="nav-text">求定义域、值域</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义域-1"><span class="nav-number">5.2.1.1.</span> <span class="nav-text">定义域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#值域与最值"><span class="nav-number">5.2.1.2.</span> <span class="nav-text">值域与最值</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解对数不等式"><span class="nav-number">5.2.2.</span> <span class="nav-text">解对数不等式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#比较对数值大小"><span class="nav-number">5.2.3.</span> <span class="nav-text">比较对数值大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复合函数-2"><span class="nav-number">5.2.4.</span> <span class="nav-text">复合函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#求单调区间"><span class="nav-number">5.2.4.1.</span> <span class="nav-text">求单调区间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#求值域、最值"><span class="nav-number">5.2.4.2.</span> <span class="nav-text">求值域、最值</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#幂函数"><span class="nav-number">6.</span> <span class="nav-text">幂函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#幂函数性质"><span class="nav-number">6.1.</span> <span class="nav-text">幂函数性质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#比较大小-2"><span class="nav-number">6.2.</span> <span class="nav-text">比较大小</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单调性"><span class="nav-number">6.3.</span> <span class="nav-text">单调性</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数零点"><span class="nav-number">7.</span> <span class="nav-text">函数零点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#求函数零点"><span class="nav-number">7.1.</span> <span class="nav-text">求函数零点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#求解析式的根"><span class="nav-number">7.1.1.</span> <span class="nav-text">求解析式的根</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#利用函数图象"><span class="nav-number">7.1.2.</span> <span class="nav-text">利用函数图象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#求函数零点个数"><span class="nav-number">7.2.</span> <span class="nav-text">求函数零点个数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#利用函数零点存在性定理"><span class="nav-number">7.2.1.</span> <span class="nav-text">利用函数零点存在性定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数形结合-2"><span class="nav-number">7.2.2.</span> <span class="nav-text">数形结合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#利用奇偶性"><span class="nav-number">7.2.3.</span> <span class="nav-text">利用奇偶性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#利用单调性"><span class="nav-number">7.2.4.</span> <span class="nav-text">利用单调性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#已知函数有零点问题"><span class="nav-number">7.3.</span> <span class="nav-text">已知函数有零点问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一元二次方程根的分布"><span class="nav-number">7.4.</span> <span class="nav-text">一元二次方程根的分布</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最后的总结"><span class="nav-number">8.</span> <span class="nav-text">最后的总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FlyInTheSky</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.0.3</div>
+
+
+
+  <div class="footer-custom">Hosted by <a target="_blank" href="https://pages.coding.me/">Coding Pages</a></div>
+
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.0.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.0.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.3"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: true,
+        appId: 'HbPrhSjQ6NCUr3zYqcbO4iKU-MdYXbMMI',
+        appKey: 'untdESV1xpzTGEu6IH2lwKOb',
+        placeholder: '写下您dalao对本蒟蒻博文的宝贵评论~(￣▽￣)~* ',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("Ex3VDezHHaHR2GEGMlazQCfC-gzGzoHsz", "u9iJTthJj7R0ieApCMNvyAjO");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  <script src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+    <!--<script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script> --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"messageStyle": "none","tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> 
+
+<script src="https://www.flyinthesky.win/highlight.min.js"></script>
+<script >hljs.initHighlightingOnLoad();</script>
+
+<!-- 代码块复制功能 -->
+<script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+<script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+
+
+</body>
+</html>

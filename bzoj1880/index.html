@@ -118,11 +118,11 @@
 
 
   
-  <meta name="keywords" content="DP,Bzoj,最短路,枚举,拓扑排序," />
+  <meta name="keywords" content="DP,Bzoj,最短路,拓扑排序,枚举," />
 
 
 <meta name="description" content="BZOJ 1880题意：求出$s_1$到$t_1$的最短路径与$s_2$到$t_2$的最短路径的最长公共长度是多少。解：我们求出四个点出发的单源最短路，然后枚举一条路径$(i,j)$，判断这条路径是否在两条最短路上，用公式算出公共长度，然后更新答案即可。Hack，枚举的路径不一定在两条最短路径的公共路径上，必须要先预处理出每个点是否在公共路径上，因为每次枚举的最短路径端点都要在公共路径上。知识点：">
-<meta name="keywords" content="DP,Bzoj,最短路,枚举,拓扑排序">
+<meta name="keywords" content="DP,Bzoj,最短路,拓扑排序,枚举">
 <meta property="og:type" content="article">
 <meta property="og:title" content="「Bzoj 1880」「Sdoi2009」Elaxia的路线 (最短路+枚举&#x2F;最短路图+拓扑排序+DP)">
 <meta property="og:url" content="http://blog.flyinthesky.win/bzoj1880/index.html">
@@ -384,7 +384,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FlyInTheSky">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -615,9 +615,9 @@ int main() {
           
             <a href="/tags/最短路/" rel="tag"><i class="fa fa-tag"></i> 最短路</a>
           
-            <a href="/tags/枚举/" rel="tag"><i class="fa fa-tag"></i> 枚举</a>
-          
             <a href="/tags/拓扑排序/" rel="tag"><i class="fa fa-tag"></i> 拓扑排序</a>
+          
+            <a href="/tags/枚举/" rel="tag"><i class="fa fa-tag"></i> 枚举</a>
           
         </div>
       
@@ -702,7 +702,7 @@ int main() {
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image"
-                src="https://blog.flyinthesky.win/avator.jpg"
+                src="https://blog.flyinthesky.win/avatar.jpg"
                 alt="FlyInTheSky" />
             
               <p class="site-author-name" itemprop="name">FlyInTheSky</p>

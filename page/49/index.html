@@ -383,7 +383,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FlyInTheSky">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -550,7 +550,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FlyInTheSky">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -717,7 +717,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FlyInTheSky">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -880,12 +880,182 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/bzoj1610/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FlyInTheSky">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FlyInTheSky's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/bzoj1610/" itemprop="url">「Bzoj 1610」「Usaco2008 Feb」Line连线游戏 (计算几何+排序去重)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-21T00:00:00+08:00">2017-06-21</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Bzoj/" itemprop="url" rel="index"><span itemprop="name">Bzoj</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/bzoj1610/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/bzoj1610/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/bzoj1610/" class="leancloud_visitors" data-flag-title="「Bzoj 1610」「Usaco2008 Feb」Line连线游戏 (计算几何+排序去重)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">+</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 s
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=1610" target="_blank" rel="external">BZOJ 1610</a><br><a href="https://www.luogu.org/problem/show?pid=2665" target="_blank" rel="external">Luogu 2665</a><br>from: USACO 2008 Feb Sliver(USACO刷题第17题)</p>
+<p>刚开始想到搜索每个点然后求斜率…然后并不行<br>看题解以后直接全部求出来排序去重就可以了…</p>
+<p>求斜率公式：$$k = \frac{y_1-y_2}{x_1-x_2}$$<br>推导过程：设两个点为$(x_1, y_1),(x_2, y_2)$，它们之间连线的解析式为$y=kx+b$<br>将两点坐标带入解析式，得$y_1=kx_1+b, y_2=kx_2+b$<br>$y_1- y_2$，得$ y_1-y_2=kx_1-kx_2$<br>$k(x_1-x_2) = y_1-y_2$<br>即$k = \frac{y_1-y_2}{x_1-x_2}$</p>
+<p>注意，比较两个浮点数的大小为$fabs(a-b)&lt;eps$即相等, $eps$为最小误差值<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/bzoj1610/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+	<div>
+	  
+	</div>
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/bzoj1612/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FlyInTheSky">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1053,7 +1223,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FlyInTheSky">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1216,350 +1386,12 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/bzoj1610/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FlyInTheSky">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FlyInTheSky's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/bzoj1610/" itemprop="url">「Bzoj 1610」「Usaco2008 Feb」Line连线游戏 (计算几何+排序去重)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-21T00:00:00+08:00">2017-06-21</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Bzoj/" itemprop="url" rel="index"><span itemprop="name">Bzoj</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/bzoj1610/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/bzoj1610/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/bzoj1610/" class="leancloud_visitors" data-flag-title="「Bzoj 1610」「Usaco2008 Feb」Line连线游戏 (计算几何+排序去重)">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">+</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-				 s
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=1610" target="_blank" rel="external">BZOJ 1610</a><br><a href="https://www.luogu.org/problem/show?pid=2665" target="_blank" rel="external">Luogu 2665</a><br>from: USACO 2008 Feb Sliver(USACO刷题第17题)</p>
-<p>刚开始想到搜索每个点然后求斜率…然后并不行<br>看题解以后直接全部求出来排序去重就可以了…</p>
-<p>求斜率公式：$$k = \frac{y_1-y_2}{x_1-x_2}$$<br>推导过程：设两个点为$(x_1, y_1),(x_2, y_2)$，它们之间连线的解析式为$y=kx+b$<br>将两点坐标带入解析式，得$y_1=kx_1+b, y_2=kx_2+b$<br>$y_1- y_2$，得$ y_1-y_2=kx_1-kx_2$<br>$k(x_1-x_2) = y_1-y_2$<br>即$k = \frac{y_1-y_2}{x_1-x_2}$</p>
-<p>注意，比较两个浮点数的大小为$fabs(a-b)&lt;eps$即相等, $eps$为最小误差值<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/bzoj1610/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-	<div>
-	  
-	</div>
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/bzoj1638/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FlyInTheSky">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FlyInTheSky's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/bzoj1638/" itemprop="url">「Bzoj 1638」「Usaco2007 Mar」Cow Traffic 奶牛交通 (树形DP+乘法原理)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-20T00:00:00+08:00">2017-06-20</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Bzoj/" itemprop="url" rel="index"><span itemprop="name">Bzoj</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/bzoj1638/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/bzoj1638/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/bzoj1638/" class="leancloud_visitors" data-flag-title="「Bzoj 1638」「Usaco2007 Mar」Cow Traffic 奶牛交通 (树形DP+乘法原理)">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">+</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-				 s
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=1638" target="_blank" rel="external">BZOJ 1638</a><br><a href="https://www.luogu.org/problem/show?pid=2883" target="_blank" rel="external">Luogu 2883</a><br>from: USACO 2007 Mar Sliver(USACO刷题第14题)</p>
-<p>一开始只能想到暴力做法，看了题解才知道怎么做<br>首先，对于一条边$(a,b)$,  设入度为0的节点为$w$, $path(x, y)$为$x -&gt; y$的路径条数<br>根据乘法原理，经过该边次数为<br>$$path(w, a) * path(b, n)$$<br>这样我们可以分别求出$path(w, a), path(b, n)$，$path(w, a)$即$g$使用反图$RG$用DP求解，$path(b, n)$即$f$使用原图$G$用DP求解</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/bzoj1638/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-	<div>
-	  
-	</div>
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/bzoj1641/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FlyInTheSky">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1722,12 +1554,180 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/bzoj1638/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FlyInTheSky">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FlyInTheSky's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/bzoj1638/" itemprop="url">「Bzoj 1638」「Usaco2007 Mar」Cow Traffic 奶牛交通 (树形DP+乘法原理)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-20T00:00:00+08:00">2017-06-20</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Bzoj/" itemprop="url" rel="index"><span itemprop="name">Bzoj</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/bzoj1638/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/bzoj1638/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/bzoj1638/" class="leancloud_visitors" data-flag-title="「Bzoj 1638」「Usaco2007 Mar」Cow Traffic 奶牛交通 (树形DP+乘法原理)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">+</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 s
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=1638" target="_blank" rel="external">BZOJ 1638</a><br><a href="https://www.luogu.org/problem/show?pid=2883" target="_blank" rel="external">Luogu 2883</a><br>from: USACO 2007 Mar Sliver(USACO刷题第14题)</p>
+<p>一开始只能想到暴力做法，看了题解才知道怎么做<br>首先，对于一条边$(a,b)$,  设入度为0的节点为$w$, $path(x, y)$为$x -&gt; y$的路径条数<br>根据乘法原理，经过该边次数为<br>$$path(w, a) * path(b, n)$$<br>这样我们可以分别求出$path(w, a), path(b, n)$，$path(w, a)$即$g$使用反图$RG$用DP求解，$path(b, n)$即$f$使用原图$G$用DP求解</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/bzoj1638/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+	<div>
+	  
+	</div>
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.flyinthesky.win/bzoj1635/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FlyInTheSky">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1896,7 +1896,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FlyInTheSky">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -2084,7 +2084,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image"
-                src="https://blog.flyinthesky.win/avator.jpg"
+                src="https://blog.flyinthesky.win/avatar.jpg"
                 alt="FlyInTheSky" />
             
               <p class="site-author-name" itemprop="name">FlyInTheSky</p>

@@ -189,11 +189,11 @@
         <title>「Bzoj 4538」「HNOI2016」网络 (树链剖分 + 线段树 + 堆)</title>
         <pubTime>2019-09-13T12:39:00.000Z</pubTime>
         
-        <tag>堆</tag>
-         
         <tag>Bzoj</tag>
          
         <tag>线段树</tag>
+         
+        <tag>堆</tag>
          
         <tag>树链剖分</tag>
          
@@ -650,9 +650,9 @@
         
         <tag>Codeforces</tag>
          
-        <tag>树上启发式合并</tag>
-         
         <tag>DFS</tag>
+         
+        <tag>树上启发式合并</tag>
          
         <tag>莫队</tag>
          
@@ -1509,9 +1509,9 @@
         <title>「Bzoj 5495」「十二省联考2019」异或粽子 (可持久化01Trie + 堆)</title>
         <pubTime>2019-04-25T02:34:00.000Z</pubTime>
         
-        <tag>堆</tag>
-         
         <tag>Bzoj</tag>
+         
+        <tag>堆</tag>
          
         <tag>可持久化Trie</tag>
          
@@ -2712,9 +2712,9 @@
         <title>「Bzoj 2006」「Noi2010」超级钢琴 (堆 / 主席树+堆)</title>
         <pubTime>2019-03-13T11:13:00.000Z</pubTime>
         
-        <tag>堆</tag>
-         
         <tag>Bzoj</tag>
+         
+        <tag>堆</tag>
          
         <tag>主席树</tag>
          
@@ -2840,9 +2840,9 @@
         
         <tag>Bzoj</tag>
          
-        <tag>二分</tag>
-         
         <tag>前缀和</tag>
+         
+        <tag>二分</tag>
          
         <tag>主席树</tag>
          
@@ -4663,9 +4663,9 @@
         <title>「Bzoj 1233」「HNOI2001」产品加工 (单调队列优化DP+贪心)</title>
         <pubTime>2019-01-26T15:23:00.000Z</pubTime>
         
-        <tag>贪心</tag>
-         
         <tag>DP</tag>
+         
+        <tag>贪心</tag>
          
         <tag>Bzoj</tag>
          
@@ -5131,9 +5131,9 @@
         <title>「poj 3017」Cut the Sequence (DP+堆+单调队列)</title>
         <pubTime>2019-01-13T14:30:00.000Z</pubTime>
         
-        <tag>堆</tag>
-         
         <tag>DP</tag>
+         
+        <tag>堆</tag>
          
         <tag>单调队列</tag>
          
@@ -5553,9 +5553,9 @@
         
         <tag>计数原理</tag>
          
-        <tag>贪心</tag>
-         
         <tag>DP</tag>
+         
+        <tag>贪心</tag>
          
         <tag>BFS</tag>
          
@@ -5652,9 +5652,9 @@
         <title>「Bzoj 2288」生日礼物 (链表+堆)</title>
         <pubTime>2019-01-03T14:34:00.000Z</pubTime>
         
-        <tag>堆</tag>
-         
         <tag>Bzoj</tag>
+         
+        <tag>堆</tag>
          
         <tag>链表</tag>
          
@@ -6050,9 +6050,9 @@
         <title>「Bzoj 1899」「Zjoi2004」Lunch 午餐 (贪心+DP)</title>
         <pubTime>2018-08-24T08:06:00.000Z</pubTime>
         
-        <tag>贪心</tag>
-         
         <tag>DP</tag>
+         
+        <tag>贪心</tag>
          
         <tag>Bzoj</tag>
          
@@ -6080,9 +6080,9 @@
          
         <tag>最短路</tag>
          
-        <tag>枚举</tag>
-         
         <tag>拓扑排序</tag>
+         
+        <tag>枚举</tag>
          
          
            
@@ -7169,11 +7169,11 @@
         <title>「Bzoj 1150」「CTSC2007」数据备份Backup (贪心+堆+链表+差分)</title>
         <pubTime>2018-12-04T13:18:00.000Z</pubTime>
         
-        <tag>堆</tag>
-         
         <tag>贪心</tag>
          
         <tag>Bzoj</tag>
+         
+        <tag>堆</tag>
          
         <tag>差分序列</tag>
          
@@ -8175,9 +8175,9 @@
         <title>Codeforces 1082E(DP / 贪心)</title>
         <pubTime>2018-12-05T13:53:00.000Z</pubTime>
         
-        <tag>贪心</tag>
-         
         <tag>DP</tag>
+         
+        <tag>贪心</tag>
          
         <tag>Codeforces</tag>
          
@@ -9498,9 +9498,9 @@
         
         <tag>模拟题/训练题</tag>
          
-        <tag>贪心</tag>
-         
         <tag>DP</tag>
+         
+        <tag>贪心</tag>
          
          
            
@@ -9644,9 +9644,9 @@
         
         <tag>DP</tag>
          
-        <tag>单调队列</tag>
-         
         <tag>Codeforces</tag>
+         
+        <tag>单调队列</tag>
          
          
            
@@ -11261,9 +11261,9 @@
         
         <tag>Codeforces</tag>
          
-        <tag>二分</tag>
-         
         <tag>前缀和</tag>
+         
+        <tag>二分</tag>
          
          
            
@@ -11305,9 +11305,9 @@
         <title>Codeforces 854C(堆+贪心)</title>
         <pubTime>2017-10-24T12:12:00.000Z</pubTime>
         
-        <tag>堆</tag>
-         
         <tag>贪心</tag>
+         
+        <tag>堆</tag>
          
         <tag>Codeforces</tag>
          
@@ -11489,9 +11489,9 @@
          
         <tag>线段树</tag>
          
-        <tag>二分</tag>
-         
         <tag>前缀和</tag>
+         
+        <tag>二分</tag>
          
         <tag>NOIP</tag>
          
@@ -12051,9 +12051,9 @@
         
         <tag>模拟题/训练题</tag>
          
-        <tag>堆</tag>
-         
         <tag>贪心</tag>
+         
+        <tag>堆</tag>
          
          
            
@@ -12075,9 +12075,9 @@
         
         <tag>模拟题/训练题</tag>
          
-        <tag>堆</tag>
-         
         <tag>贪心</tag>
+         
+        <tag>堆</tag>
          
          
            

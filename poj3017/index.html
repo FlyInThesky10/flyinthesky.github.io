@@ -118,11 +118,11 @@
 
 
   
-  <meta name="keywords" content="堆,DP,单调队列,poj," />
+  <meta name="keywords" content="DP,堆,单调队列,poj," />
 
 
 <meta name="description" content="poj 3017给定一个数列$a_n$，任意将连续的$a_i$分块，使所有块的和都不超过$M$，最小化各块的最大值的和。 设$dp(i)$为前$i$个的最优值。$$dp(i)=\min(dp(j)+\max(a[j,i-1]))$$ 这个是$O(n^2)$的。考虑优化。这里$\max(a[j,i-1])$不能表示为多项式，所以不能斜率优化了。那么我们考虑缩小候选集合$j$的大小。 引理：  若$j">
-<meta name="keywords" content="堆,DP,单调队列,poj">
+<meta name="keywords" content="DP,堆,单调队列,poj">
 <meta property="og:type" content="article">
 <meta property="og:title" content="「poj 3017」Cut the Sequence (DP+堆+单调队列)">
 <meta property="og:url" content="http://blog.flyinthesky.win/poj3017/index.html">
@@ -384,7 +384,7 @@ const loadScript = function loadScript(c,b){var a=document.createElement("script
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FlyInTheSky">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://blog.flyinthesky.win/avator.jpg">
+      <meta itemprop="image" content="https://blog.flyinthesky.win/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -594,9 +594,9 @@ int main() {
       
         <div class="post-tags">
           
-            <a href="/tags/堆/" rel="tag"><i class="fa fa-tag"></i> 堆</a>
-          
             <a href="/tags/DP/" rel="tag"><i class="fa fa-tag"></i> DP</a>
+          
+            <a href="/tags/堆/" rel="tag"><i class="fa fa-tag"></i> 堆</a>
           
             <a href="/tags/单调队列/" rel="tag"><i class="fa fa-tag"></i> 单调队列</a>
           
@@ -685,7 +685,7 @@ int main() {
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image"
-                src="https://blog.flyinthesky.win/avator.jpg"
+                src="https://blog.flyinthesky.win/avatar.jpg"
                 alt="FlyInTheSky" />
             
               <p class="site-author-name" itemprop="name">FlyInTheSky</p>
